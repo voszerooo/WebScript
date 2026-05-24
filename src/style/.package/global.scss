@@ -1,0 +1,869 @@
+
+
+#ovnDOM { z-index: var(--ovnPriority09); pointer-events: none; padding: 0; margin: 0; font-size: var(--ovnBaseSize); }
+#ovnDOM, #ovnDOM *, #ovnDOM ::before, #ovnDOM ::after { box-sizing: border-box; outline: none; }
+
+// #ovnDOM * {
+//     padding: 0;
+//     margin: 0;
+//     font-size: var(--ovnBaseSize);
+//     list-style: none;
+// }
+
+
+// $ ================================================== ↓ Animation
+
+    @keyframes ovnLoader {
+        000% { left: -10%; width: 10%; }
+        020% { left: 010%; width: 30%; }
+        040% { left: 040%; width: 50%; }
+        060% { left: 070%; width: 30%; }
+        100% { left: 100%; width: 10%; }
+    }
+    @keyframes ovnSlideTop {
+        000% { transform: translate(-50%, -150%) scale(0.90); opacity: 0; }
+        015% { transform: translate(-50%, 010px) scale(1.05); opacity: 1; }
+        030% { transform: translate(-50%, 000px) scale(1.00); opacity: 1; }
+        080% { transform: translate(-50%, 000px) scale(1.00); opacity: 1; }
+        100% { transform: translate(-50%, -050%) scale(0.95); opacity: 0; }
+    }
+    @keyframes ovnSlideLeft {
+        000% { transform: translate(-200%, 0) scale(0.90); opacity: 0; }
+        020% { transform: translate(010px, 0) scale(1.02); opacity: 1; }
+        030% { transform: translate(000px, 0) scale(1.00); opacity: 1; }
+        085% { transform: translate(000px, 0) scale(1.00); opacity: 1; }
+        100% { transform: translate(-100%, 0) scale(0.95); opacity: 0; }
+    }
+    @keyframes ovnZoomIn {
+        000% { transform: scale(0.00); opacity: 0; }
+        020% { transform: scale(0.40); opacity: 0.5; }
+        030% { transform: scale(0.80); opacity: 1.0; }
+        085% { transform: scale(1.03); opacity: 1.0; }
+        100% { transform: scale(1.00); opacity: 1.0; }
+    }
+    
+    
+// $ ================================================== ↓ LoaderBar
+
+    #ovnLoaderBar {
+        
+        --ovnX: 2px;
+        
+        opacity: .92;
+        z-index: var(--ovnPriority09);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: var(--ovnX);
+        font-size: var(--ovnX);
+        
+        background: linear-gradient(
+            90deg,
+            hsla(var(--ovnGlow05HSL), 1),
+            hsla(var(--ovnGlow05HSL), 1),
+            hsla(var(--ovnGlow03HSL), 1));
+        box-shadow:
+            0 2px 05px 0px hsla(var(--ovnGlow05HSL), .6),
+            0 2px 15px 0px hsla(var(--ovnGlow05HSL), .6),
+            0 2px 25px 2px hsla(var(--ovnGlow03HSL), .6);
+            
+        border-radius: 100vmax;
+        will-change: left, width;
+        transition: width .4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity .26s ease-out;
+        
+    }
+    #ovnLoaderBar[data-state="loading"] {
+        animation: ovnLoader 2.4s infinite cubic-bezier(0.4, 0.0, 0.6, 1);
+    }
+    
+    
+// $ ================================================== ↓ Panel
+
+    /** TREE
+    * 
+    * #    ovnOptionsPanel
+    * -
+    * *        ovnPanelBody
+    * -            ovnGroupBase
+    * =                ovnGroupHead
+    * -                    ovnFoldBox
+    * -                        ovnArrow
+    * -                    ovnHeaderRow
+    * =                ovnGroupBody
+    * -                    ovnBodyRow
+    * -                    ovnGroupBase.Sub
+    * -                    
+    * -                        ovnGroupHead
+    * -                            ovnFoldBox
+    * -                                ovnArrow
+    * -                            ovnHeaderRow
+    * -                        ovnGroupBody
+    * -                            ovnBodyRow
+    * *        ovnButton
+    * 
+    */
+    
+        :where(.ovnOptionBase) {
+            
+            label { margin: 0; padding: 0; color: inherit; }
+            div, span { color: inherit; }
+            input:before, input:after { display: none; }
+            
+        }
+        
+        .ovnPanelBase {
+            
+            --ovnGap: 12px;
+            --ovnXXX: 20px;
+            
+            pointer-events: auto;
+            will-change: opacity, transform;
+            padding: var(--ovnXXX) 0;
+            border: var(--ovnOftenPanelBorderBase);
+            font-family: var(--ovnBaseFont);
+            color: var(--ovnBase05HEX);
+            background: hsla(var(--ovnBase00HSL-H), 60%, 6%, .8); // hsla(var(--ovnBase00HSL-H), 24%, 12%, .8)
+            box-shadow: var(--ovnSurfaceShadow) hsla(var(--ovnAccentShadow), .8);
+            border-radius: var(--ovnSurfaceRadius);
+            backdrop-filter: var(--ovnPanelFilter);
+            transition: all .526s var(--ovnTransitionElastic), opacity .26s ease;
+            
+        }
+        .ovnPanelBase.ovnShow { opacity: 1; transform: translate(0, -50%); }
+        .ovnPanelBase.ovnHide { opacity: 0; transform: translate(120%, -50%); }
+        
+        .ovnCenter {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .ovnFixed {
+            position: fixed;
+            top: 50%;
+            right: var(--ovnSpaceAxialX);
+            transform: translate(120%, -50%);
+        }
+        .ovnRelative {
+            position: relative;
+            top: 20px;
+            right: 20px;
+        }
+        
+    // $ ==================== ↓ Options
+    
+        #ovnOptionsPanel {
+            
+            --ovnHeightHead: 35px;
+            --ovnHeightRow: 32px;
+            --ovnRowPadding: 15px;
+            
+        }
+        
+        .ovnOptionBase {
+            z-index: var(--ovnPriority09);
+            overflow: visible;
+            display: flex;
+            flex-direction: column;
+            gap: var(--ovnGap);
+            width: calc(260px + 40px);
+            max-height: 80vh;
+        }
+        
+            .ovnOptionBase h2 {
+                margin: calc(var(--ovnGap) / 2) 0 calc(var(--ovnGap) / 2 + 5px) 0;
+                color: var(--ovnGlow04HEX);
+                font-size: 1.7em;
+                font-weight: var(--ovnTitleWeight);
+                text-align: center;
+                text-shadow: 0 0 5px var(--ovnGlow04HEX);
+            }
+            
+            .ovnPanelBody {
+                display: flex;
+                flex: 1 1 auto;
+                flex-direction: column;
+                gap: var(--ovnGap);
+                overflow-y: auto;
+                overflow-x: hidden;
+                scrollbar-width: none;
+                max-height: 80vh;
+            }
+            .ovnPanelBody, .ovnButton { padding: 0 var(--ovnXXX); }
+            
+            .ovnButton {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+                .ovnGroupBase {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0;
+                    width: 100%;
+                }
+                
+                    .ovnGroupBody > :first-child {
+                        margin: calc(var(--ovnGap) / 2) 0 0 calc(var(--ovnGap) - 2px);
+                    }
+                    
+                    // .ovnHeaderRow > span { user-select: none; }
+                    .ovnGroupBase:not(.Sub) > .ovnGroupHead {
+                        color: hsla(var(--ovnBase06HSL), .6);
+                        // box-shadow: 0 10px 20px hsla(var(--ovnBase00HSL), .4);
+                        filter: drop-shadow(0 10px 20px hsla(var(--ovnBase00HSL), .4));
+                    }
+                    .ovnGroupBase.Sub > .ovnGroupHead, .ovnGroupBase > .ovnGroupBody {
+                        color: hsla(var(--ovnBase05HSL), .9);
+                    }
+                    
+                    .ovnGroupHead {
+                        display: flex;
+                        align-items: center;
+                        width: 100%;
+                    }
+                    .ovnGroupBody {
+                        will-change: height;
+                        display: flex;
+                        flex-direction: column;
+                        gap: calc(var(--ovnGap) / 2 - 1px);
+                        opacity: 1;
+                        overflow: hidden;
+                        height: auto;
+                        transition: height .526s var(--ovnTransitionSmooth), opacity .26s ease;
+                    }
+                    .ovnGroupBody.ovnOpen { overflow: hidden; }
+                    .ovnGroupBody.ovnClose { overflow: hidden; opacity: 0; height: 0 !important; }
+                    
+                        .ovnHeaderRow {
+                            cursor: pointer;
+                            padding: 5px var(--ovnRowPadding) 5px 5px;
+                            height: var(--ovnHeightHead);
+                            display: flex;
+                            flex: 1 1 auto;
+                            align-items: center;
+                            justify-content: flex-start;
+                            font-size: .85em;
+                            font-weight: var(--ovnTitleWeight);
+                            border-radius: 0 var(--ovnUIRadius) var(--ovnUIRadius) 0;
+                        }
+                        .ovnBodyRow {
+                            cursor: pointer;
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            padding: 9px var(--ovnRowPadding);
+                            margin: 0 0 0 calc(var(--ovnGap) - 2px);
+                            border-radius: var(--ovnUIRadius);
+                        }
+                        .ovnBodyRow > :last-child { margin: 0 0 calc(var(--ovnGap) / 4) calc(var(--ovnGap) - 2px); }
+                        
+                        .ovnFoldBox {
+                            cursor: pointer;
+                            flex: 0 0 auto;
+                            width: calc(var(--ovnHeightHead) - 5px);
+                            height: var(--ovnHeightHead);
+                            font-size: 18px;
+                            user-select: none;
+                            transition: transform 0.4s ease;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            border-radius: var(--ovnUIRadius) 0 0 var(--ovnUIRadius);
+                        }
+                        
+                        .ovnHeaderRow, .ovnFoldBox {
+                            background: hsla(var(--ovnBase00HSL), .6);
+                            transition: background-color .26s;
+                        }
+                        .ovnHeaderRow:hover, .ovnFoldBox:hover { background: hsla(var(--ovnBase00HSL), .8); }
+                        
+                            .ovnArrow {
+                                margin: -1px -4px 0 0;
+                                font-size: 16px;
+                                transform: rotate(0deg);
+                                transition: transform .4s ease;
+                            }
+                            .ovnArrow.ovnRotated { transform: rotate(90deg); }
+                            
+                    // ========== ↓ 功能模块 > 子功能样式
+                    
+                        .ovnBodyRow, .ovnGroupBase.Sub .ovnHeaderRow {
+                            font-size: .82em;
+                            font-weight: normal;
+                        }
+                        .ovnGroupBody > .ovnGroupBase.Sub:first-child { margin-left: 0; }
+                        
+                        .ovnBodyRow, .ovnGroupBase.Sub .ovnHeaderRow, .ovnGroupBase.Sub .ovnFoldBox {
+                            height: var(--ovnHeightRow);
+                            background: hsla(var(--ovnBase00HSL), .4);
+                            transition: background-color .26s, opacity 0.26s;
+                        }
+                        .ovnBodyRow:hover, .ovnGroupBase.Sub .ovnHeaderRow:hover {
+                            background: hsla(var(--ovnBase00HSL), .8);
+                        }
+                        
+                        .ovnGroupBase.Sub {
+                            
+                            .ovnGroupBody { margin: 0 0 0 calc(var(--ovnGap) - 2px); }
+                            
+                            .ovnFoldBox {
+                                opacity: .4;
+                                width: calc(var(--ovnHeightRow) - 5px);
+                                color: hsla(var(--ovnBase00HSL), .8);
+                                background: transparent;
+                                box-shadow: none;
+                                margin: 0 0 0 calc(var(--ovnGap) - 28px);
+                            }
+                            .ovnHeaderRow { padding: 9px var(--ovnRowPadding); }
+                            .ovnHeaderRow, .ovnFoldBox {
+                                border-radius: var(--ovnUIRadius);
+                                // box-shadow: 0 10px 20px hsla(var(--ovnBase00HSL), .2);
+                                filter: drop-shadow(0 10px 20px hsla(var(--ovnBase00HSL), .2));
+                            }
+                            .ovnBodyRow { color: hsla(var(--ovnBase05HSL), .8); }
+                            
+                        }
+                        
+                        
+    // $ ==================== ↓ Debug
+    
+        #ovnDebugOverlay {
+            z-index: var(--ovnPriority09);
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: hsla(var(--ovnBase00HSL), .4);
+        }
+        #ovnDebugPanel {
+            --ovnGap: 10px;
+            --ovnHeightRow: 45px;
+            display: flex;
+            flex-direction: column;
+            width: 40vw;
+            height: auto;
+            max-height: 70vh;
+            padding: calc(var(--ovnXXX) + var(--ovnGap));
+            color: hsla(var(--ovnBase05HSL), 1);
+        }
+        
+        .ovnDebugGrid {
+            overflow-x: auto;
+            scrollbar-width: none;
+            display: flex;
+            justify-content: space-around;
+            gap: calc(var(--ovnGap) * 2);
+            margin-top: calc(var(--ovnGap) * -1);
+            margin-bottom: calc(var(--ovnGap) * 2.2);
+        }
+        .ovnDebugBottom {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            grid-template-rows: 1fr 60px;
+            gap: var(--ovnGap);
+        }
+            .ovnObserver, .ovnDevMode, .ovnDebugConsole {
+                overflow: auto;
+                scrollbar-width: none;
+                white-space: pre;
+                padding: calc(var(--ovnXXX) / 2) var(--ovnXXX);
+                margin: 0;
+                max-height: 20vh;
+                font-family: var(--ovnCodeFont);
+                font-size: 12px;
+                line-height: 2;
+                border-radius: var(--ovnPanelRadius);
+                background: hsla(var(--ovnBase00HSL), .6);
+            }
+            .ovnDebugConsole { grid-column: 2; grid-row: 1 / 3; }
+            .ovnDevMode {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: hsla(var(--ovnBase05HSL), .5);
+                font-size: 1em;
+                font-weight: bold;
+            }
+            
+            .ovnDebugCol {
+                overflow-x: auto;
+                scrollbar-width: none;
+                width: 220px;
+                max-height: calc(var(--ovnHeightRow) * 5 + 59px + 20px);  // Row * 5 + Title + Gap
+                display: flex;
+                flex-direction: column;
+                gap: calc(var(--ovnGap) / 1.5);
+            }
+            
+                .ovnDebugGroupTitle {
+                    padding: calc(var(--ovnGap) * 1.2) 0;
+                    color: var(--ovnGlow04HEX);
+                    font-size: 1.3em;
+                    font-weight: var(--ovnTitleWeight);
+                    text-align: center;
+                    text-shadow: 0 0 .3em var(--ovnGlow04HEX);
+                }
+                .ovnDebugItem {
+                    position: relative;
+                    display: flex;
+                    flex-direction: column;
+                    gap: calc(var(--ovnGap) / 2);
+                    padding: calc(var(--ovnGap) / .92) calc(var(--ovnGap) * 1.2);
+                    height: var(--ovnHeightRow);
+                    border-radius: var(--ovnUIRadius);
+                    background: hsla(var(--ovnBase00HSL), .4);
+                    transition: background 0.2s ease;
+                }
+                .ovnDebugItem:hover {
+                    background: hsla(var(--ovnBase00HSL), .8);
+                }
+                
+                    .ovnDebugModkey {
+                        width: max-content;
+                        padding-bottom: .2em;
+                        margin-left: -.092em;
+                        font-size: .85em;
+                        font-weight: 400;
+                        line-height: 1em;
+                        word-break: break-word;
+                        color: hsla(var(--ovnBase05HSL), .8);
+                    }
+                    .ovnDebugStatus {
+                        position: absolute;
+                        top: 50%;
+                        right: var(--ovnGap);
+                        transform: translateY(-50%);
+                        font-weight: var(--ovnTitleWeight);
+                        font-size: .8em;
+                        text-align: right;
+                        letter-spacing: -.0126em;
+                    }
+                    .ovnDebugLine {
+                        
+                        display: flex;
+                        gap: 5px;
+                        
+                        .ovnDebugDot.ovnState[data-ovn-state] {
+                            width: 5px;
+                            height: 5px;
+                        }
+                        
+                    }
+                    
+                    
+// $ ==================== ↓ ovnState
+
+    .ovnState {
+        
+        &[data-ovn-type="imp"] {
+            color: var(--ovnGreen000);
+        }
+        &[data-ovn-type="sec"] {
+            color: var(--ovnCyan0000);
+        }
+        
+        &.ovnBack {
+            
+            &[data-ovn-state] {
+                cursor: pointer;
+                position: relative;
+                appearance: none;
+                width: .6em;
+                height: .6em;
+                margin: 0;
+                background: var(--ovnBase04HEX);
+                border: none;
+                border-radius: 50%;
+                transition: background-color .26s ease;
+                box-shadow: 0 0 2px hsla(0, 0%, 0%, .3);
+            }
+            &[data-ovn-state="success"] {
+                background: var(--ovnGreen000);
+                box-shadow: 0 0 10px var(--ovnGreen000);
+            }
+            &[data-ovn-state="warn"] {
+                background: var(--ovnOrange00);
+                box-shadow: 0 0 10px var(--ovnOrange00);
+            }
+            &[data-ovn-state="error"] {
+                background: var(--ovnRed00000);
+                box-shadow: 0 0 10px var(--ovnRed00000);
+            }
+            
+        }
+        
+        &.ovnFore {
+            
+            &[data-ovn-state="success"] {
+                color: var(--ovnGreen000);
+            }
+            &[data-ovn-state="warn"] {
+                color: var(--ovnOrange00);
+            }
+            &[data-ovn-state="error"] {
+                color: var(--ovnRed00000);
+            }
+            
+        }
+        
+    }
+    
+// $ ==================== ↓ ovnButton
+
+    .ovnButtonBase {
+        cursor: pointer;
+        user-select: none;
+        border: var(--ovnUIBorder) var(--ovnAccentBorder);
+        font-size: 1em;
+        font-weight: var(--ovnTitleWeight);
+        color: var(--ovnBase00HEX);
+        background: var(--ovnAccentHEX);
+        box-shadow: var(--ovnUIShadow) var(--ovnAccentShadow);
+        border-radius: var(--ovnPanelRadius);
+        transition: transform .26s var(--ovnTransitionSoft);
+    }
+    .ovnButtonBase:hover { transform: var(--ovnSurfaceZoomIn); }
+    .ovnButtonBase:first-of-type { margin-top: calc(var(--ovnGap) - 2px); }
+    
+    .ovnButtonBase.fill { cursor: pointer; }
+    .ovnButtonBase.outline { cursor: pointer; }
+    .ovnButtonBase.text { cursor: pointer; }
+    .ovnButtonBase.ICON { cursor: pointer; }
+    
+    .ovnButtonBase.ovnApply {
+        border: none;
+        background: linear-gradient( 90deg, var(--ovnGreen001), var(--ovnBlue0001) );
+        box-shadow:
+            inset 0 0 12px #FFFFFF50,
+            inset 0 0 02px #4DE0E0FF,
+            inset 0 0 20px hsla(var(--ovnGlow06HSL), .6),
+            0 0 10px hsla(var(--ovnGlow04HSL), .4);
+    }
+    .ovnButtonBase.ovnReset {
+        border: none;
+        background: linear-gradient( 90deg, var(--ovnGreen001), var(--ovnBlue0001) );
+        box-shadow:
+            inset 0 0 12px #FFFFFF50,
+            inset 0 0 02px #4DE0E0FF,
+            inset 0 0 20px hsla(var(--ovnGlow06HSL), .6),
+            0 0 10px hsla(var(--ovnGlow04HSL), .4);
+    }
+    .ovnButtonFixed {
+        padding: 5px 10px;
+        width: var(--ovnButtonWidth);
+        height: var(--ovnButtonHeight);
+    }
+    .ovnButtonAdapt {
+        padding: 10px 0;
+        width: 100%;
+    }
+    
+    
+// $ ==================== ↓ ovnTips
+
+    .ovnTips {
+        
+        --gap: .6em;
+        
+        z-index: var(--ovnPriority09);
+        position: fixed;
+        display: flex;
+        align-items: center;
+        gap: var(--gap);
+        padding: .6em 1.26em;
+        border: .1em solid hsla(var(--ovnBase09HSL), .126);
+        
+        text-align: justify;
+        font-size: 14px;
+        font-weight: 526;
+        background: hsla(var(--ovnBase02HSL), .926);
+        color: var(--ovnGlow04HEX);
+        box-shadow:
+            var(--ovnTipsShadow-M) hsla(var(--ovnAccentHSL), .120),
+            var(--ovnTipsShadow-L) hsla(var(--ovnAccentHSL), .092);
+        border-radius: .92em;
+        transition: var(--ovnOftenTransition);
+        
+    }
+    .ovnTips.fade { opacity: 0; transition: opacity .26s ease; }
+    .ovnTips.top {
+        top: 2em;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: ovnSlideTop 2s cubic-bezier(.25, .8, .25, 1) forwards;
+    }
+    .ovnTips.left {
+        top: 2.26em;
+        left: 2em;
+        animation: ovnSlideLeft 2s cubic-bezier(.25, 1.4, .5, 1) forwards;
+    }
+    .ovnTips.inside {
+        position: absolute;
+        top: 2em;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .ovnTips.hover {
+        opacity: 0;
+        z-index: calc(var(--ovnPriority09) + 1);
+        pointer-events: none;
+        gap: 0;
+        border: var(--ovnUIBorder) hsla(var(--ovnAccentHSL), .2);
+        /* max-width: 260px; */
+        min-height: 12px;
+        font-size: 12px;
+        background: hsla(var(--ovnBase00HSL), .8);
+        box-shadow: var(--ovnUIShadow) hsla(var(--ovnBase00HSL), .4);
+        transition: opacity .26s ease;
+    }
+    .ovnTips.hover.show { opacity: 1; }
+    
+    
+    .ovnTips:has(::before) {
+        padding: var(--gap) calc(var(--gap) + var(--gap) / 1.5);
+    }
+    .ovnTips.remind::before, .ovnTips.correct::before, .ovnTips.warn::before, .ovnTips.error::before {
+        content: "";
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        background: center / contain no-repeat;
+    }
+    .ovnTips.remind::before { background-image: var(--ovnICON-Correct-Empty); }
+    .ovnTips.correct::before { background-image: var(--ovnICON-Correct-Empty); }
+    .ovnTips.warn::before { background-image: var(--ovnICON-Warn-Empty); }
+    .ovnTips.error::before { background-image: var(--ovnICON-Error-Empty); }
+    
+    .ovnTips.remind {
+        box-shadow:
+            var(--ovnTipsShadow-M) hsla(var(--ovnAccentHSL), .126),
+            var(--ovnTipsShadow-L) hsla(var(--ovnAccentHSL), .092);
+    }
+    .ovnTips.correct {
+        border-color: hsla(var(--ovnStateCorrectHSL), .26);
+        color: hsla(var(--ovnStateCorrectHSL), 1);
+        box-shadow:
+            var(--ovnTipsShadow-M) hsla(var(--ovnStateCorrectHSL), .126),
+            var(--ovnTipsShadow-L) hsla(var(--ovnStateCorrectHSL), .092);
+    }
+    .ovnTips.warn {
+        border-color: hsla(var(--ovnStateWarnHSL), .26);
+        color: hsla(var(--ovnStateWarnHSL), 1);
+        box-shadow:
+            var(--ovnTipsShadow-M) hsla(var(--ovnStateWarnHSL), .126),
+            var(--ovnTipsShadow-L) hsla(var(--ovnStateWarnHSL), .092);
+    }
+    .ovnTips.error {
+        border-color: hsla(var(--ovnStateErrorHSL), .26);
+        color: hsla(var(--ovnStateErrorHSL), 1);
+        box-shadow:
+            var(--ovnTipsShadow-M) hsla(var(--ovnStateErrorHSL), .126),
+            var(--ovnTipsShadow-L) hsla(var(--ovnStateErrorHSL), .092);
+    }
+    
+    
+// $ ==================== ↓ Focal
+
+    .ovnFocal {
+        
+        --height: 2px;
+        --time: .526s;
+        --offset: 0px;
+        --base: var(--ovnAccentHEX);
+        --radius: var(--ovnBaseRadius);
+        --bezier: var(--ovnTransitionSoft);
+        
+        position: relative;
+        text-decoration: none;
+        
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: calc(var(--height) * -1 + var(--offset));
+            width: 100%; /*  width: max-content; */
+            height: var(--height);
+            background: var(--base);
+            border-radius: var(--radius);
+            transition: transform var(--time) var(--bezier);
+        }
+        
+        &.ovnCT::after {
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            transform-origin: center;
+        }
+        &.ovnCT:hover::after { transform: translateX(-50%) scaleX(1);}
+        
+        &.ovnLR::after {
+            left: 0;
+            transform: scaleX(0);
+            transform-origin: left;
+        }
+        &.ovnLR:hover::after { transform: scaleX(1); }
+        
+    }
+    
+    
+// $ ==================== ↓ Grid
+
+    .ovnGrid {
+        
+        --top: #FFF;
+        --centre: #FFF;
+        --bottom: #FFF;
+        --base: transparent;
+        
+        z-index: 1;
+        position: relative;
+        
+        &::after {
+            pointer-events: none;
+            z-index: -1;
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-color: var(--base);
+            mask-image: linear-gradient(to bottom, var(--top), var(--centre), var(--bottom));
+        }
+        
+        &.ovnSolid::after {
+            
+            --line: 1px;
+            --sizeS: 20px;
+            --sizeL: 100px;
+            --lineS: var(--ovnGrid-S);
+            --lineL: var(--ovnGrid-L);
+            
+            background-image:
+                linear-gradient(00deg, var(--lineS) var(--line), transparent 0),
+                linear-gradient(90deg, var(--lineS) var(--line), transparent 0),
+                linear-gradient(00deg, var(--lineL) var(--line), transparent 0),
+                linear-gradient(90deg, var(--lineL) var(--line), transparent 0);
+            background-size: 
+                var(--sizeS) var(--sizeS), var(--sizeS) var(--sizeS),
+                var(--sizeL) var(--sizeL), var(--sizeL) var(--sizeL);
+                
+        }
+        &.ovnDot::after {
+            
+            --size: 2px;
+            --gap: 20px;
+            --dot: var(--ovnGrid-D);
+            
+            background-image:
+                radial-gradient(circle, var(--dot) var(--size), transparent var(--size));
+            background-size: var(--gap) var(--gap);
+            background-repeat: repeat;
+            background-position: 0 0;
+            
+        }
+        
+    }
+    
+    
+// $ ==================== ↓ Link
+
+    .ovnLink {
+        
+        position: relative !important;
+        text-decoration: none !important;
+        
+        &::before, &::after {
+            content: "" !important;
+            position: absolute !important;
+            top: calc(100% + 0px) !important;
+            left: 0 !important;
+            width: 100% !important;
+            border-bottom: dashed .0926em currentColor !important;
+        }
+        &:hover::before, &:hover::after { border-bottom-style: solid !important; }
+        
+    }
+    
+// $ ==================== ↓ Table
+
+    .ovnTable {
+        
+        overflow: hidden !important;
+        border-collapse: collapse !important;
+        background: transparent !important;
+        box-shadow: 
+            0 0 0 1px hsla(0, 0%, 5%, .02),
+            0 2px 10px hsla(0, 0%, 0%, .04),
+            0 10px 10px hsla(0, 0%, 0%, .02) !important;
+        border-radius: var(--ovnSurfaceRadius) !important;
+        
+        thead {
+            font-weight: var(--ovnTitleWeight) !important;
+            background: #FFF !important;
+        }
+        
+        th, td {
+            border-style: solid !important;
+            border-width: 0 0 1px 0 !important;
+            border-color: #F9F9F9 !important;
+            /* text-align: left !important; */
+        }
+        th { color: #4D4D4D !important;}
+        td { color: #444444 !important;}
+        
+        code {
+            padding: 2px 5px !important;
+            font-family: var(--ovnCodeFont) !important;
+            color: var(--ovnCodeColor) !important;
+            background: #F2F2F2 !important;
+            border-radius: var(--ovnBaseRadius) !important;
+        }
+        
+        tbody tr:last-child td { border-bottom: none !important;}
+        tbody tr:nth-of-type(odd) { background: #FBFBFB !important; }
+        tbody tr:hover { background: #F9F9F9 !important; }
+        
+        tr:first-child td:not(:first-child, :last-child) {
+            border-left: 1px solid #00000006 !important;
+            border-right: 1px solid #00000006 !important;
+        }
+        
+        th[style*="padding: 0px"], td:not([style*="padding"]) {
+            padding: 5px 10px !important;
+        }
+        
+    }
+    
+// $ ==================== ↓ Other
+
+    .ovnCurrentRow::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 1.2%;
+        transform: translateY(-50%);
+        height: 1.2em;
+        width: .26rem;
+        background: var(--ovnGlow01HEX);
+        box-shadow: 4px 0 14px 1px hsla(var(--ovnGlow01HSL), .92);
+        border-radius: 1em;
+    }
+    
+    .ovnCardShadow {
+        box-shadow:
+            0 04px 06px -4px hsla(var(--ovnBase00HSL), .20),
+            0 10px 15px -2px hsla(var(--ovnBase00HSL), .04),
+            0 10px 20px -2px hsla(var(--ovnBase00HSL), .06);
+    }
+    
+    .ovnFadeInLoad {
+        opacity: 0;
+        transform: translateY(100px);
+        transition: opacity .5s var(--ovnTransitionSmooth), transform .9s var(--ovnTransitionSmooth);
+    }
+    .ovnFadeInLoad.ovnLoaded {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    

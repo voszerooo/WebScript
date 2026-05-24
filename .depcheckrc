@@ -1,0 +1,26 @@
+
+
+ignores: [
+    
+    "@parcel/watcher",
+    "@babel/preset-env",
+    "babel-loader",
+    "string-replace-loader",
+    "cross-env",
+    "webpack-cli",
+    "webpack-dev-server",
+    
+    "css-loader",
+    "duplicate-package-checker-webpack-plugin",
+    "progress-bar-webpack-plugin",
+    "sass",
+    "sass-loader",
+    "style-loader",
+    "case-sensitive-paths-webpack-plugin",
+    "babel-plugin-transform-remove-console",
+    
+]
+specials: [
+    
+]
+

@@ -1,0 +1,119 @@
+
+
+html {
+    
+    &:root body {
+        
+        --ovnComfyWidth: var(--ovnSpaceWidth02);     // XXXXX
+        --ovnComfyHight: var(--ovnSpace2Y);          // XXXXX
+        
+        --ovnComfyRS: var(--ovnBaseRadius);
+        --ovnComfyRU: var(--ovnUIRadius);
+        --ovnComfyRM: var(--ovnPanelRadius);
+        --ovnComfyRL: var(--ovnSurfaceRadius);
+        --ovnComfyRX: var(--ovnRadiusX);
+        
+    }
+    
+    .XXXXXXXXXX, /* ==== XXXXX */
+    .XXXXXXXXXX, /* ==== XXXXX */
+    .XXXXXXXXXX  /* ==== XXXXX */ {
+        display: none;
+    }
+    
+    // $ ================================================== ↓ Global
+    
+        // $ ==================== ↓ XXXXXXXX
+        // ==================== ↓ XXXXX
+        // ========== XXXXX
+        
+        
+    // $ ================================================== ↓ XXXXX
+        
+        :where(#XXXXX) {
+            
+            --ovnComfyXXX: hsla(var(--ovnPrimaryHSL), .5);
+            
+        }
+        
+}
+
+// $ ================================================== ↓ Unknown
+
+                
+                    :root {
+                        --themeColor: 220, 90%, 60%;
+                        --navHeight: 50px;
+                        --rgHeight: 10px;
+                    }
+                    #vue-app {
+                        --bar-shadow: 0 0 1.5rem #00000060;
+                    }
+                    
+                    html .comfyui-menu[data-v-1545ebd4] { height: var(--navHeight); }
+                    html .comfyui-body-left[data-v-0e9641c8] { z-index: 999; }
+                    
+                    html .side-tool-bar-container[data-v-44002598], html .comfyui-menu[data-v-1545ebd4] {
+                        background: var(--ovnGlassShadow);
+                        backdrop-filter: var(--ovnSurfaceFilter);
+                    }
+                    
+                    /* ========== ↓ 右键菜单 */
+                    
+                        html .litegraph.litecontextmenu {
+                            padding: 5px;
+                            width: max-content;
+                            min-width: 150px;
+                            max-width: 260px;
+                            border-radius: var(--ovnUIRadius);
+                            box-shadow: var(--ovnUIShadow) #00000060 !important;
+                        }
+                        
+                        /* ========== ↓ 菜单选项 */
+                        html .litegraph.litecontextmenu .litemenu-entry:not(.separator) {
+                            display: flex;
+                            align-items: center;
+                            padding: 2px;
+                            margin: 4px 0px;
+                            height: 25px;
+                        }
+                        html .litegraph.litecontextmenu .litemenu-entry.submenu:not(.separator),
+                        html .litegraph.litecontextmenu.dark .litemenu-entry.submenu {
+                            padding: 0 8px;
+                            line-height: 1.92;
+                            border-radius: var(--ovnUIRadius);
+                        }
+                        html .litegraph .litemenu-entry.separator {
+                            border-bottom: .1em dashed #00000040;
+                        }
+                        
+                        /* ========== ↓ 箭头图标 */
+                        html .litemenu-entry.has_submenu::after {
+                            content: "";
+                            position: absolute;
+                            top: 50%;
+                            right: 5px;
+                            transform: translateY(-50%);
+                            height: 1.2em;
+                            width: .2rem;
+                            background: hsla(var(--themeColor), 1);
+                            box-shadow: 2px 0 6px 0px hsla(var(--themeColor), .6);
+                            border-radius: 1em;
+                        }
+                        html .litegraph .litemenu-entry.has_submenu { border-right: none;}
+                        
+                        /* ========== ↓ 取值输入框 */
+                        
+                            html .litegraph .graphdialog {
+                                padding: 7px 10px 7px 15px;
+                                border: var(--ovnUIBorder) var(--border-color);
+                                border-radius: var(--ovnPanelRadius);
+                            }
+                            html .graphdialog {
+                                box-shadow: var(--bar-shadow);
+                            }
+                            
+                            html .graphdialog input, html .graphdialog textarea, html .graphdialog select {
+                                border-radius: var(--ovnUIRadius);
+                            }
+                            

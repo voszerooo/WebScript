@@ -1,0 +1,41 @@
+
+:root, [ovnGlobalSpace] {
+    
+    --ovnPriority00: 9999;
+    --ovnPriority02: 999999;
+    --ovnPriority09: 999999999;
+    --ovnPriorityHead: ;
+    --ovnPrioritySidebar: ;
+    --ovnPriorityFooter: ;
+    --ovnPriorityBase: ;
+    
+    --ovnSpace2X: 20px;
+    --ovnSpace4X: 60px;
+    --ovnSpace2Y: 260px;
+    --ovnSpace4Y: 292.6px;
+    --ovnSpaceAxialX: 1.26%;
+    --ovnSpaceAxialY: ;
+    --ovnSpaceWidth00: 80%;
+    --ovnSpaceWidth02: 40vw;
+    --ovnSpaceWidthVW: 60vw;
+    --ovnSpaceWidthPX: calc(260px + 920px + 220px);
+    --ovnSpaceHead: ;
+    --ovnSpacePadding: 10px 20px;
+    --ovnSpaceMargin: 15px 0;
+    
+    --ovnButtonWidth: 92px;
+    --ovnButtonHeight: 40px;
+    --ovnButtonPadding: ;
+    --ovnButtonAxialX: ;
+    --ovnButtonAxialY: ;
+    --ovnButtonBase: ;
+    
+    --ovnTransitionSmooth:  cubic-bezier(.260, .920, .60, 0.926);
+    --ovnTransitionSoft:    cubic-bezier(.250, .460, .45, 0.940);
+    --ovnTransitionDrop:    cubic-bezier(.240, .920, .92, 0.240);
+    --ovnTransitionZoom:    cubic-bezier(.526, .260, .92, 0.920);
+    --ovnTransitionFlow:    cubic-bezier(.240, .926, .60, 0.920);
+    --ovnTransitionElastic: cubic-bezier(.175, .885, .32, 1.260);
+    --ovnOftenTransition: all .526s var(--ovnTransitionSoft);
+    
+}

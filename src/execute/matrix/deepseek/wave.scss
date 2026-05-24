@@ -1,0 +1,125 @@
+
+
+html {
+    
+    &:root body {
+        
+        --vbDeepSeekWidth: var(--ovnSpaceWidth02);     // XXXXX
+        --vbDeepSeekHight: var(--ovnSpace2Y);          // XXXXX
+        
+        --vbDeepSeekRS: var(--ovnBaseRadius);
+        --vbDeepSeekRU: var(--ovnUIRadius);
+        --vbDeepSeekRM: var(--ovnPanelRadius);
+        --vbDeepSeekRL: var(--ovnSurfaceRadius);
+        --vbDeepSeekRX: var(--ovnRadiusX);
+        
+    }
+    
+    .XXXXXXXXXX,  // ==== XXXXX
+    .XXXXXXXXXX,  // ==== XXXXX
+    .XXXXXXXXXX { // ==== XXXXX
+        display: none;
+    }
+    
+    // $ ================================================== ↓ Global
+    
+        // $ ==================== ↓ XXXXXXXX
+        // ==================== ↓ XXXXX
+        
+        
+    // $ ================================================== ↓ 首页
+    
+        // ========== 快速/专家 模式
+        .c15ec89f, .b0db7355, ._9f2341b { border-radius: var(--ovnRadiusM); }
+        
+        
+    // $ ================================================== ↓ 聊天页
+    
+        // ========== 返回底部
+        .ds-atom-button.ds-floating-button {
+            right: 50%;
+            transform: translateX(calc(-50% + 35px));
+        }
+        
+        
+    // $ ================================================== ↓ XXXXX
+        
+        :where(#XXXXX) {
+            
+            --vbDeepSeekXXX: hsla(var(--ovnPrimaryHSL), .5);
+            
+        }
+        
+}
+
+// $ ================================================== ↓ Unknown
+
+
+
+
+
+
+
+
+
+
+                
+                    html {
+                        
+                        &:root body {
+                            
+                            --ovn-DeepSeek-Width: var(--ovnSpaceWidth02);
+                            --ovn-DeepSeek-Hight: var(--ovnSpace2Y);
+                            
+                            --ovnRadiusS: var(--ovnBaseRadius);
+                            --ovnRadiusU: var(--ovnUIRadius);
+                            --ovnRadiusM: var(--ovnPanelRadius);
+                            --ovnRadiusL: var(--ovnSurfaceRadius);
+                            
+                        }
+                        
+                        body { --dsw-alias-border-l2-darkmode-thin: hsla(0, 0%, 0%, .05); }
+                        body, body[data-ds-dark-theme] { --dsw-static-neutral-bluish-1000: #3c3c3d; }
+                        
+                        .md-code-block > pre, .md-code-block > pre * { font-family: var(--ds-font-family-code) !important; }
+                        
+                        /* ========== ↓ 首页搜索框 */
+                        ._9a2f8e4 { max-width: calc(var(--ovn-DeepSeek-Width) + 5vw); }
+                        
+                        /* ========== ↓ 输入框 */
+                        ._77cefa5 ._27c9245, ._77cefa5 .b13855df { min-height: 92px; }
+                        
+                        /* ========== ↓ 聊天容器 */
+                        .ds-virtual-list { --message-list-max-width: calc(var(--ovn-DeepSeek-Width) + 5vw); }
+                        
+                        @media (width <= 1920px) {
+                            ._9a2f8e4 { max-width: calc(var(--ovn-DeepSeek-Width) + 20vw); }
+                            .ds-virtual-list { --message-list-max-width: calc(var(--ovn-DeepSeek-Width) + 20vw); }
+                        }
+                        @media (width <= 1260px) {
+                            ._9a2f8e4 { max-width: calc(var(--ovn-DeepSeek-Width) + 40vw); }
+                            .ds-virtual-list { --message-list-max-width: calc(var(--ovn-DeepSeek-Width) + 40vw); }
+                        }
+                        
+                        
+                        
+                        .e37a04e4,        /* 会话标题 */
+                        ._090c426,        /* 新对话 按钮 */
+                        .fbb737a4,        /* 聊天信息框 */
+                        ._546d736,        /* 右侧列表 对话 */ 
+                        ._5a8ac7a,        /* 右侧列表 新对话 */ 
+                        .ds-toggle-button /* 深度思考 & 联网搜索 */{
+                            border-radius: var(--ovnRadiusM);
+                        }
+                        
+                        // .fbb737a4 { min-width: 35%; }
+                        
+                        
+                        /* ========== ↓ 代码块 */
+                        &.ovn .md-code-block > pre, .md-code-block > pre * {
+                            font-family: var(--ovnCodeFont) !important;
+                            font-size: 12px;
+                        }
+                        
+                    }
+                    

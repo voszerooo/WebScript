@@ -1,0 +1,24 @@
+@mixin flex($layout) {
+    display: flex;
+    justify-content: $layout;
+    align-items: $layout;
+}
+
+@mixin itemBlock {
+    box-sizing: border-box;
+    position: relative;
+    padding: var(--ovnSpacePadding);
+    margin: var(--ovnSpaceMargin);
+    border: none;
+    width: 100%;
+    font-size: 12px;
+    background: #FFFFFF;
+    box-shadow: var(--ovnOftenSurfaceShadowBase);
+    border-radius: var(--ovnSurfaceRadius);
+    transition: var(--ovnOftenTransition);
+}
+        .ovnItemBlock:hover {
+            z-index: var(--ovnPriority00);
+            box-shadow: inset 0 0 2px hsla(0, 0%, 92%, .6), var(--ovnOftenSurfaceShadowHover);
+            transform: var(--ovnSurfaceZoomIn);
+        }

@@ -1,0 +1,140 @@
+// 基础色定义
+$bases: (
+  "00": #1C1E22,
+  "01": #1F2228,
+  "02": #2C2F35,
+  "03": #353941,
+  "04": #454A54,
+  "05": #757C8A,
+  "06": #ABB0BA,
+  "07": #BEC2CA,
+  "08": #F4F4F4,
+  "09": #F9F9F9,
+);
+
+:root, [ovnGlobalColor] {
+  @each $name, $color in $bases {
+    --ovnBase#{$name}HEX: #{$color};
+    
+    // 提取 HSL 分量（需要自定义函数）
+    --ovnBase#{$name}HSL-H: #{hue($color)};
+    --ovnBase#{$name}HSL-S: #{saturation($color)};
+    --ovnBase#{$name}HSL-L: #{lightness($color)};
+    --ovnBase#{$name}HSL: var(--ovnBase#{$name}HSL-H), var(--ovnBase#{$name}HSL-S), var(--ovnBase#{$name}HSL-L);
+  }
+  
+  // 衍生变量（Alt、Pick、Border、Shadow）可以用 mixin 批量生成
+  @include generate-derivatives("00", "02", "04"); // 只对有衍生需求的键调用
+}
+
+
+
+
+
+
+@mixin make-derivatives($name, $h, $s, $l, $alt-s: 0%, $alt-l: 0%, $pick-s: 0%, $pick-l: -10%, $border-offset: 20%, $shadow-s: 0%, $shadow-l: 0%) {
+  --#{$name}AltXXX: #{$h}, calc(#{$s} - #{$alt-s}), calc(#{$l} - #{$alt-l});
+  --#{$name}PickXX: #{$h}, calc(#{$s} - #{$pick-s}), calc(#{$l} - #{$pick-l});
+  --#{$name}Border: #{$h}, calc(#{$s} - 0%), calc(#{$l} + #{$border-offset});
+  --#{$name}Shadow: #{$h}, calc(#{$s} - #{$shadow-s}), calc(#{$l} - #{$shadow-l});
+}
+
+
+.ovnThemeDark {
+  $accent-h: 230; $accent-s: 20%; $accent-l: 43%;
+  --ovnAccentHEX: hsl(#{$accent-h}, #{$accent-s}, #{$accent-l});
+  --ovnAccentHSL: #{$accent-h}, #{$accent-s}, #{$accent-l};
+  @include make-derivatives("ovnAccent", $accent-h, $accent-s, $accent-l);
+}
+
+
+
+
+
+$glows: (
+  "09": #85E0D7,
+  "02": #9087F8,
+  // ...
+);
+
+@each $key, $color in $glows {
+  --ovnGlow#{$key}HEX: #{$color};
+  --ovnGlow#{$key}HSL: #{hue($color)}, #{saturation($color)}, #{lightness($color)};
+}
+
+
+// @each, @mixin
+// lighten(), darken()
+
+
+
+
+
+
+
+
+
+
+
+// _tokens.scss
+$base-colors: (
+  "00": #1C1E22,
+  "01": #1F2228,
+  // ... 省略其它
+);
+
+:root, [ovnGlobalColor] {
+  @each $name, $color in $base-colors {
+    --ovnBase#{$name}HEX: #{$color};
+    // 利用 SCSS 内置函数直接提取 HSL
+    --ovnBase#{$name}HSL-H: #{hue($color)};
+    --ovnBase#{$name}HSL-S: #{saturation($color)};
+    --ovnBase#{$name}HSL-L: #{lightness($color)};
+    --ovnBase#{$name}HSL: var(--ovnBase#{$name}HSL-H), var(--ovnBase#{$name}HSL-S), var(--ovnBase#{$name}HSL-L);
+  }
+  // 衍生变量同样用 mixin 批量生成，不再一个个手写
+}
+
+
+
+
+
+// module: {
+//   rules: [
+//     // 原有：其他 .css/.scss 文件保持纯文本导出
+//     {
+//       test: /\.s?css$/,
+//       exclude: /tokens\.scss$/,           // 排除 tokens.scss
+//       type: 'asset/source',
+//       use: [
+//         {
+//           loader: 'string-replace-loader',
+//           options: {
+//             search: /(?<!:)\/\/[^\n\r]*/g,
+//             replace: '',
+//             flags: 'g'
+//           }
+//         }
+//       ]
+//     },
+//     // 新增：单独编译 tokens.scss 为 CSS 字符串
+//     {
+//       test: /tokens\.scss$/,
+//       use: ['sass-loader'],               // 编译 SCSS → CSS 字符串
+//       type: 'asset/source'                // 导出为字符串
+//     }
+//   ]
+// }
+
+
+
+
+
+
+// import tokens from './tokens.scss';          // 编译后的 CSS 变量部分
+// // 以下其他文件仍然以原始文本导入，保持嵌套原样
+// import layout from './package/layout.scss';
+// import components from './package/components.scss';
+// // ...
+
+// const mergedStyles = [tokens, layout, components].filter(Boolean).join('\n\n');

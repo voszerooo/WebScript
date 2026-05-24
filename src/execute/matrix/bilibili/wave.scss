@@ -1,0 +1,123 @@
+
+
+html {
+    
+    &:root body {
+        
+        --ovnBiliCount: 15;
+        --ovnBiliPlayList: calc(35px * var(--ovnBiliCount));      // 播放列表高度
+        --ovnBiliBase: hsla(var(--ovnAccentHSL-H), 10%, 20%, 1);  // 播放器 底色
+        --ovnBiliShadow: var(--ovnGlassShadow);
+        --ovnBiliBlur: var(--ovnPanelFilter);
+        
+        --ovnBiliRS: var(--ovnBaseRadius);
+        --ovnBiliRU: var(--ovnUIRadius);
+        --ovnBiliRM: var(--ovnPanelRadius);
+        --ovnBiliRL: var(--ovnSurfaceRadius);
+        --ovnBiliRX: var(--ovnRadiusX);
+        
+    }
+    
+    .XXXXXXXXXX, /* ==== XXXXX */
+    .XXXXXXXXXX  /* ==== XXXXX */ {
+        display: none;
+    }
+    
+    // $ ================================================== ↓ Global
+    
+        // .header-channel, 
+        // .search-input-container .search-fixed-header,
+        .bili-header .mini-header { // ========== Head
+            box-shadow: var(--ovnBiliShadow);
+        }
+        
+        
+    // $ ================================================== ↓ 播放页
+    
+        :where(#mirror-vdcon) {
+        
+            // $ ==================== ↓ 播放器
+            
+                // 圆角 + 阴影 「非 全屏/网页全屏 时作用」
+                #playerWrap:not(:has(.bpx-player-container:is([data-screen="web"], [data-screen="full"], [data-screen=mini]))) {
+                    border-radius: var(--ovnBiliRU);
+                    .bpx-player-video-area {
+                        border-radius: var(--ovnBiliRM);
+                        box-shadow: 0 20px 20px hsla(var(--ovnAccentHSL), .2);
+                    }
+                }
+                
+                // 「在 隐藏黑边 时作用」
+                // <div class="bpx-player-control-entity" data-shadow-show="true">
+                
+                .bpx-player-container[data-screen=mini] { border-radius: var(--ovnBiliRU); }
+                // #bilibili-player-placeholder-top {
+                //     background: var(--bpx-dmsend-main-bg, #FFF);
+                // }
+                .bpx-player-video-perch, .bpx-player-video-wrap, .bpx-docker-major,
+                .bpx-player-container, .bpx-player-primary-area, .bpx-player-video-area {
+                    background: var(--bpx-dmsend-main-bg, #FFF);
+                }
+                .video-toolbar-container, .bpx-player-sending-bar, .bpx-player-sending-area:before {
+                    background: transparent;
+                }
+                #bilibili-player-placeholder, .bpx-player-container { box-shadow: none; }
+                
+                // ========== 全盘/网页全屏 视频背景
+                .bpx-player-video-wrap video {
+                    background: 
+                        radial-gradient(
+                            circle at 50% 50%,
+                            hsla(0, 0%, 0%, .5) 000%,
+                            hsla(0, 0%, 0%, .5) 050%,
+                            hsla(0, 0%, 0%, .2) 100%
+                        ),
+                        linear-gradient( 
+                            to bottom,
+                            var(--ovnBiliBase) 000%,
+                            hsla(0, 0%, 0%, 1) 050%,
+                            var(--ovnBiliBase) 100%
+                        )
+                    ;
+                }
+                
+                // ========== 进度条 章节
+                .bpx-player-progress-schedule.bpx-player-progress-schedule-segment { border-radius: var(--ovnBiliRX); }
+                
+                // ========== 弹幕输入
+                .bpx-player-sending-bar .bpx-player-video-inputbar { backdrop-filter: var(--ovnBiliBlur); }
+                
+                // ========== 选集 > 当前播放 icon
+                .bpx-player-ctrl-eplist-menu-wrap { width: max-content; }
+                .bpx-player-ctrl-eplist-multi-menu-item .bpx-common-svg-icon {
+                    order: 1;
+                }
+                
+            // $ ==================== ↓ 播放列表
+            
+                .simple-base-item .title { font-size: 14px; justify-content: space-between; }
+                .simple-base-item .title .title-txt { order: 1; }
+                .simple-base-item .title .playing-gif { order: 2; margin: 0 4px; }
+                .simple-base-item.normal.active { border-radius: var(--ovnBiliRS); }
+                
+                // ========== 默认小按钮
+                .video-pod .video-pod__header .header-bottom .right .subscribe-btn.subscribe-btn {
+                    border-radius: var(--ovnBiliRS);
+                }
+                // ========== 播放列表
+                .video-pod .video-pod__body.video-pod__body {
+                    max-height: var(--ovnBiliPlayList);
+                }
+        
+            // ==================== ↓ 视频下方 边框线条
+            
+                .left-container :is(.video-toolbar-container, .video-tag-container) {
+                    border-color: #00000010;
+                }
+                
+        }
+        
+}
+
+// $ ================================================== ↓ Unknown
+
