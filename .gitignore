@@ -1,0 +1,41 @@
+
+
+# $ ==================== ↓ OVN
+
+node_modules/
+# .vscode/
+# .github/
+
+# .build/
+# build/
+# dist/
+
+-/---/
+-/MEMORY.md
+-/NORM.md
+-/versions/*.js
+
+*.xxfilterxx.*
+
+
+# ==================== ↓ Other
+
+.venv/
+.env/
+
+.DS_Store
+desktop.ini
+custom.ico
+
+.cache/
+*.db
+*.log
+*.cache
+*.tmp
+*.temp
+
+
+# ==================== ↓ KEEP
+
+!.build/.cache/
+

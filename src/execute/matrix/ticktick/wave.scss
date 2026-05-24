@@ -1,0 +1,51 @@
+
+
+html {
+    
+    &:root body {
+        
+        --ovnTickWidth: var(--ovnSpaceWidth02);     // XXXXX
+        --ovnTickHight: var(--ovnSpace2Y);          // XXXXX
+        
+        --ovnTickRS: var(--ovnBaseRadius);
+        --ovnTickRU: var(--ovnUIRadius);
+        --ovnTickRM: var(--ovnPanelRadius);
+        --ovnTickRL: var(--ovnSurfaceRadius);
+        --ovnTickRX: var(--ovnRadiusX);
+        
+    }
+    
+    .XXXXXXXXXX, /* ==== XXXXX */
+    .XXXXXXXXXX, /* ==== XXXXX */
+    .XXXXXXXXXX  /* ==== XXXXX */ {
+        display: none;
+    }
+    
+    // $ ================================================== ↓ Global
+        
+        // ========== 默认阴影
+        .shadow-default, .shadow-md {
+            box-shadow: var(--ovnUIShadow) hsla(var(--ovnBase04HSL), .12);
+        }
+        
+        
+    // $ ================================================== ↓ 首页
+    
+        // $ ==================== ↓ XXXXXXXX
+        
+        // ========== 左下角 小日历
+        .bg-sidebar-bg-color { background: transparent; }
+        
+        // ========== 看板 各列
+        #column-list-inner > article { width: var(--ovnSpace4Y) !important; }
+        
+        // ========== 看板 各列标题
+        // .tasklist-static-title-editor {
+        //     text-overflow: ellipsis;
+        //     white-space: nowrap;
+        // }
+        
+}
+
+// $ ================================================== ↓ Unknown
+

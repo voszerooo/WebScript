@@ -1,0 +1,58 @@
+
+
+html {
+    
+    &:root body {
+        
+        --ovnXxxCA: var(--ovnAccentHEX);
+        --ovnXxxCS: var(--ovnSecondaryHEX);
+        --ovnXxxCP: var(--ovnPrimaryHEX);
+        
+        --ovnXxxRS: var(--ovnBaseRadius);
+        --ovnXxxRU: var(--ovnUIRadius);
+        --ovnXxxRM: var(--ovnPanelRadius);
+        --ovnXxxRL: var(--ovnSurfaceRadius);
+        --ovnXxxRX: var(--ovnRadiusX);
+        
+        --ovnXxxWidth: var(--ovnSpaceWidth02);    // XXXXX
+        
+    }
+    
+    .XXXXXXXXXX {
+        opacity: 0;
+    }
+    .XXXXXXXXXX,  // ==== XXXXX
+    .XXXXXXXXXX { // ==== XXXXX
+        display: none;
+    }
+    
+    // $ ================================================== ↓ Global
+    
+        // $ ==================== ↓ XXXXXXXX
+        // ==================== ↓ XXXXX
+        // ========== XXXXX
+        
+        
+    // $ ================================================== ↓ XXXXX
+        
+        :where(XXXXX) {
+            
+            --ovnXxx: hsla(var(--ovnPrimaryHSL), .5);
+            
+        }
+        
+        #XXXXX {
+            
+            [class*="xxxxx_"] {    // ========== XXXX
+                background: transparent !important; // 覆盖内联
+            }
+            
+        }
+        
+}
+
+// $ ================================================== ↓ Unknown
+
+// [class*="XXXXX"]
+// * { background: #0FF !important; }
+

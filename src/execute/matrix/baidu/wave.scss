@@ -1,0 +1,922 @@
+
+
+html {
+    
+    &:root body {
+        
+        --ovnBaiduRepair: -6px;
+        --ovnBaiduKeyWord: #3978d0;
+        --ovnBaiduBG: var(--ovnBase09HEX);
+        --ovnBaiduP: var(--ovnSpacePadding);
+        --ovnBaiduM: var(--ovnSpaceMargin);
+        --ovnBaiduS: var(--ovnOftenSurfaceShadowBase);
+        --ovnBaiduSH: var(--ovnOftenSurfaceShadowHover);
+        --ovnBaiduSC: var(--ovnSurfaceShadow);
+        --ovnBaiduT: var(--ovnOftenTransition);
+        --ovnBaiduZ: var(--ovnSurfaceZoomIn);
+        --ovnBaiduWidth: var(--ovnSpaceWidthVW);
+        --ovnBaiduSearch: calc(var(--ovnSpaceWidthVW) / 2 );
+        
+        --ovnBaiduRS: var(--ovnBaseRadius);
+        --ovnBaiduRU: var(--ovnUIRadius);
+        --ovnBaiduRM: var(--ovnPanelRadius);
+        --ovnBaiduRL: var(--ovnSurfaceRadius);
+        --ovnBaiduRX: var(--ovnRadiusX);
+        
+    }
+    
+    #foot,                                                                      // ==== 底部 - 帮助 反馈 支持
+    #searchTag,                                                                 // ==== 顶部 - 搜索关联词
+    #content_right,                                                             // ==== 内容区 - 右侧板块
+    #rs_new .c-color-t[class*="rs-label_"],                                     // ==== 底部 - 相关搜索 标题
+    #container .c-container[tpl="note_lead"],                                   // ==== 内容区 - 模块 精选笔记
+    #container .c-container[tpl="yl_vd_generic_new"],                           // ==== 内容区 - 模块 电影
+    #container .c-container[tpl="recommend_list"] .c-color-t[class*="title_"] { // ==== 内容区 - 大家还搜索了 标题
+        display: none;
+    }
+    
+    // $ ================================================== ↓ Global
+    
+        .wrapper_new { background: var(--ovnBaiduBG);}
+        
+        // ==================== ↓ 移除下划线
+        
+            #container .c-container :is(
+                .t *,
+                .c-title *,
+                .cosc-title-slot,
+                .cosc-title-slot:hover,
+                .cosc-title-a :is(:hover, :hover em),
+                [class*="video-main-title_"]:hover [class*="title-default_"],
+                [class*="title_"] .cos-link,
+                [class*="site-link_"] .custom-underline a .cosc-title-slot:hover
+            ), a, em, :link, a:hover, em:hover, a:hover em, a.cos-link:hover {
+                text-decoration: none;
+            }
+            
+            #container .c-container :is(
+                [class*="_sc-title_"] :is(*, :hover, :hover *),
+                [class*="doc-title_"] :is(a:hover, &:hover em, a:hover em) 
+            ) {
+                text-decoration: none !important;
+            }
+            
+        // ==================== ↓ 内容区图片尺寸
+        
+            .c-container[tpl="ai_ecology"] .cos-row-col-12 > .cos-col-6,                      // ==== 轻秒图片转换器
+            .c-container .cos-swiper-list .cos-swiper-item[style*="width: 34%;"],             // ==== 百度翻译
+            .c-container .cos-swiper-list .cos-swiper-item[style*="width: calc(33% - 5px)"] { // ==== 百度有驾
+                width: 15% !important;
+            }
+            .c-container[tpl="nvl_bookstore_san"] .cos-row-col-12 > .cos-col-3,                          // ==== 在线阅读
+            .c-container[tpl="sg_kg_entity_san"] .cos-row.cos-gutter > .cos-col-3,                       // ==== 百度百科
+            .c-container .cos-row > .cos-col[style*="width:25%"],                                        // ==== 百度百科
+            .c-container .cos-row.bottom-gap_2aWpR.single-image_6zdhC > .cos-col[style*="width:24.5%"] { // ==== 电影 封面
+                width: 10% !important;
+            }
+            
+        // ==================== ↓ 原生模块边框
+        
+            .pc-fresh-smooth .cu-border:after,
+            .pc-fresh-smooth .c-group-wrapper::after,
+            .pc-fresh-smooth .cosc-card-shadow:after,
+            .pc-fresh-smooth .new-pmd .c-border::after {
+                border: transparent;
+            }
+            
+            .pc-fresh-smooth [class*="jr-exrate-pc-wrapper_"] {
+                outline: transparent;
+            }
+            
+        // ==================== ↓ 原生模块阴影
+        
+            .cu-border,
+            .new-pmd .c-border,
+            .cosc-card-shadow,
+            [class*="re-box-shadow_"],
+            [class*="pc-first-style_"] {
+                box-shadow: none;
+            }
+            
+            
+    // $ ================================================== ↓ Head
+    
+        :where(#head) {
+            
+            --ovnBaiduXXX: hsla(var(--ovnPrimaryHSL), .5);
+            
+        }
+        
+        
+    // $ ================================================== ↓ Content
+    
+        // html #wrapper #wrapper_wrapper #container #content_left .c-container[tpl="XXXXX"] {
+        
+
+            // ========== 官方标
+            [class*="title-wrapper_"] [class*="prefix-icon_"] {
+                position: absolute;
+                right: 0;
+                transform: scale(.8);
+            }
+        
+        #wrapper_wrapper {
+            
+            margin: 0 auto;
+            width: var(--ovnBaiduWidth);
+            
+            #container {
+                width: 100%;
+                padding: 0;
+                margin: 0 auto;
+            }
+            #container #content_left {
+                width: 100%;
+                padding: 0 !important;     // 覆盖内联
+                margin: 0 auto !important; // 覆盖内联
+            }
+            
+        }
+        
+        :where(#wrapper) {
+            
+            :where(.c-container) {
+                
+                &[tpl="ms_new_calc"] {        // $ ==================== ↓ 组件 计算器
+                
+                    .new-pmd { width: 60%; margin: 20px auto; }
+                    .calc-oprate_24c8k { display: flex; justify-content: space-evenly; }
+                    .calc-oprate_24c8k .func-calc_3t0OK { width: 60%;}
+                    
+                    .calc-box_1qoea {
+                        box-shadow: 
+                            inset 1px 1px 1px 0px rgba(255, 255, 255, 0.8),
+                            inset -1px -1px 1px 0px rgba(40, 49, 85, 0.3),
+                            1px 1px 3px 0px rgba(40, 49, 85, 0.1);
+                    }
+                    
+                }
+                
+                &[tpl="ms_calendar_san"] {    // $ ==================== ↓ 组件 日历
+                
+                    &.new-pmd { width: 60%; min-width: 600px; margin: 20px auto; }
+                    ._bg-header_1ml43_46 { width: 99%; top: -5px; left: 5px; }
+                    
+                }
+                
+                &[tpl="world_time_san"] {     // $ ==================== ↓ 组件 百度时间
+                
+                    .source_4yrHg { position: absolute; bottom: 5px; }
+                    ._paragraph_1g9za_2.md, .sc-source-text { color: #FFF; }
+                    
+                }
+                
+                &[tpl="jr_exrate_san"] {      // $ ==================== ↓ 组件 汇率换算
+                
+                    .aladdin_3Tvaz .bg-header_G63NE { top: calc(-10px + var(--ovnBaiduRepair)); }
+                    
+                }
+                
+                &[tpl="ms_measures_san"] {    // $ ==================== ↓ 组件 单位换算
+                
+                    .cosc-card-light-bg { top: -18px; }
+                    .cosc-card-horizontal-gradient { width: 110%; background-position: center; }
+                    
+                }
+                
+            }
+            
+            // $ ==================== ↓ 模块
+            
+                #container {
+                    
+                    .new-pmd.c-container, .new-pmd[tpl="app/rs"] {
+                        box-sizing: border-box;
+                        position: relative;
+                        padding: var(--ovnBaiduP);
+                        margin: var(--ovnBaiduM);
+                        width: 100%;
+                        font-size: 12px;
+                        background: #FFFFFF;
+                        box-shadow: var(--ovnBaiduS);
+                        border-radius: var(--ovnBaiduRL);
+                        transition: var(--ovnBaiduT);
+                    }
+                    .new-pmd.c-container:hover, .new-pmd[tpl="app/rs"]:hover {
+                        z-index: 2;
+                        box-shadow: inset 0 0 2px hsla(0, 0%, 92%, .6), var(--ovnBaiduSH);
+                        transform: var(--ovnBaiduZ);
+                    }
+                    #content_left > :first-of-type:hover,           // ==== 内容区 首个
+                    .new-pmd[tpl="app/rs"]:hover,                   // ==== 相关搜索
+                    .new-pmd[tpl="recommend_list"]:hover,           // ==== 相关搜索
+                    .new-pmd[tpl="wenda_generate"]:hover,           // ==== AI 问答生成
+                    .new-pmd[tpl="ai_ask"]:hover,                   // ==== AI 提问
+                    .new-pmd[tpl="new_baikan_index"]:hover,         // ==== 百度 AI
+                    .new-pmd[tpl="image_grid_san"]:hover,           // ==== 百度图片
+                    .new-pmd[tpl="sg_kg_entity_san"]:hover,         // ==== 百度百科
+                    .new-pmd[tpl="bk_polysemy"]:hover,              // ==== 百度百科
+                    .new-pmd[tpl="jy_wenku_wenshu"]:hover,          // ==== 百度文库
+                    .new-pmd[tpl="xueshu_links_new"]:hover,         // ==== 百度学术
+                    .new-pmd[tpl="med_wenzhen_san"]:hover,          // ==== 百度健康
+                    .new-pmd[tpl="med_aigc_guru_san"]:hover,        // ==== 百度健康
+                    .new-pmd[tpl*="jr_stock"]:hover,                // ==== 百度股市通
+                    .new-pmd[tpl="jr_exchange_rate"]:hover,         // ==== 百度股市通
+                    .new-pmd[tpl="ai_agent_qa_recommend"]:hover,    // ==== 聊一下更多精彩 
+                    .new-pmd[tpl="yl_rw_figure_sample_san"]:hover { // ==== 作品成就
+                        transform: none;
+                    }
+                    
+                    // ========== 修正
+                    &.sam_newgrid #content_left .result-op, &.sam_newgrid #content_left .result {
+                        margin-bottom: 0;
+                    }
+                    
+                }
+                
+                #container .new-pmd {
+                    
+                    .recommend-none-border { display: flex; gap: 20px; }
+                    .c-gap-top-middle { margin-top: 0; }
+                    
+                    // $ ==================== ↓ 百度 AI
+                    
+                        // .c-group-wrapper {
+                        //     padding: 0;
+                        //     margin: 0;
+                        //     background: transparent;
+                        //     box-shadow: none;
+                        // }
+                        // .c-group-wrapper .result-op { width: 100% !important; }
+                        
+                        &[tpl="ai_index"],
+                        &[tpl="wenda_generate"],
+                        &[tpl="new_baikan_index"] {
+                            
+                            [class*="nbk-index_"] [class*="content-folded_"] {
+                                max-height: 526px !important; // 覆盖内联
+                            }
+                            
+                            // overflow: auto;
+                            // max-height: calc(526px + 40px);
+                            // &::-webkit-scrollbar { display: none; }
+                            
+                            [class*="card-border_"] { margin-top: -5px; border-color: transparent; }
+                            
+                            /* .cosc-card-content { margin-top: var(--ovnBaiduRepair); } */
+                            .cosc-card-light-bg:not([tpl="wenda_generate"] div) { top: var(--ovnBaiduRepair); }
+                            .cosd-markdown .marklang .marklang-paragraph { line-height: 1.5; }
+                            
+                            .cosc-card-shadow { padding: 10px var(--cos-space-md) 10px; }
+                            
+                        }
+                        &[tpl="ai_index"] {
+                        
+                            [class*="_aladdin"] {
+                                width: 97%;
+                                margin: 0 auto;
+                                padding: 0;
+                            }
+                            
+                            [class*="swiper-box_"] {
+                                width: 102.6%;
+                                margin: -10px auto;
+                                margin-left: -20px;
+                                box-shadow: none;
+                                border-radius: var(--ovnBaiduRM);
+                            }
+                            [class*="_bg-header_"] { overflow: visible; }
+                            [class*="_horizontal-gradient_"] {
+                                width: 102.6%;
+                                margin: 3px auto;
+                                margin-left: -20px;
+                                background-size: 110% 100% !important;
+                                background-position: top center !important;
+                                border-radius: var(--ovnBaiduRM);
+                            }
+                            
+                        }
+                        &[tpl="wenda_generate"] {
+                        
+                            padding-top: 20px; // 初始 首屏生效
+                            [class*="cos-dqa-group-bg_"] .cosc-card-light-bg {
+                                top: -15px;
+                                left: -15px;
+                                right: -15px;
+                            }
+                            
+                            // ========== ICON 听
+                            [class*="audio_"] { margin-top: 0; }
+                            
+                        }
+                        &[tpl="new_baikan_index"] {
+                            
+                            padding-top: 20px;
+                            padding-bottom: 0;
+                            
+                            [class*="nbk-index_"] [class*="nbk-interact_"] {
+                                margin: 0;
+                                padding: 15px 0;
+                            }
+                            
+                        }
+                        
+                    // $ ==================== ↓ 百度翻译
+                    
+                        &[tpl="fy_fanyi_ai_san"],
+                        &[tpl="fy_sg_dictwisenew_san"] {
+                        
+                            h3.cosc-title { background: transparent; }
+                            [class*="dict-card_"] .cosc-card { padding-top: 0 !important; }
+                            
+                            [class*="daoliu-con_"] { margin-top: 15px; }
+                            [class*="footer_"] { margin-top: -5px; }
+                            
+                            .cosc-card-content { margin-top: var(--ovnBaiduRepair); }
+                            .cosc-card-light-bg:not([tpl="wenda_generate"] div) { top: var(--ovnBaiduRepair); }
+                            
+                        }
+                        &[tpl="fy_sg_dict_new_san"],
+                        &[tpl="fy_sg_dictwisenew_san"] {
+                        
+                            h3.cosc-title,
+                            h3.cosc-title[class*="pc-title_"] { background: transparent; margin-bottom: -5px; }
+                            .cosc-card-shadow { padding-top: 10px; }
+                            .cos-swiper-item { max-width: 15%; }
+                            [class*="video-wrap_"] .ovnFocal { display: none; }
+                            
+                        }
+                        
+                    // $ ==================== ↓ 百度翻译
+                    
+                        &[tpl="bk_polysemy"] {
+                        
+                            .c-span9 { width: calc(100% - 150px - 20px); }
+                            .c-span12 { width: 100%; }
+                            
+                        }
+                        &[tpl="yl_ps_main"] {
+                        
+                            [class*="matting-container_"] { width: 3rem; }
+                            
+                        }
+                        &[tpl="sg_kg_entity_san"] {
+                            
+                            .c-span9 { width: 85%; }
+                            [class*="button_"] [class*="content_"] { 
+                                color: var(--ovnBaiduKeyWord);
+                            }
+                            
+                            // ========== 演员列表
+                            .cos-swiper-list { justify-content: space-around; }
+                            
+                        }
+                        
+                    // $ ==================== ↓ 百度文库
+                    
+                        &[tpl="jy_wenku_wenshu"] {
+                        
+                            [class*="title-wrapper_"] [class*="front-icon_"] { z-index: 1; font-size: 15px; }
+                            
+                            // ========== 修复标题
+                            [class*="doc-title_"] { background: transparent; }
+                            
+                        }
+                        &[tpl="www_index"][mu*="https://wenku.baidu.com/"] {
+                        
+                            // ========== ICON
+                            
+                                [class*="title-wrapper_"] [class*="front-icon_"] { position: absolute; transform: scale(.8); }
+                                [class*="title-box_"]:has([class*="front-icon_"]) .t { padding-left: 50px; }
+                            
+                        }
+                        
+                    // $ ==================== ↓ 百度汉语
+                    
+                        &[tpl="jy_hy_zi_broad_san"],
+                        &[tpl="jy_hy_zi_attr_san"],
+                        &[tpl="jy_hy_zi_accu_san"] {
+                            
+                            h3.t { background: transparent; }
+                            
+                            // ========== 修复标题背景
+                            
+                                [class*="bg-header_"], [class*="bg-header_"][class*="_bg-header_"] {
+                                    width: 102%;
+                                    top: -6px;
+                                    left: -15px;
+                                }
+                                [class*="bg-header_"][class*="_bg-header_"] {
+                                    width: 99.26%;
+                                    top: -15px;
+                                    left: 615px;
+                                }
+                                [class*="bg-header_"] [class*="radial-gradient-right_"] {
+                                    opacity: .6;
+                                    left: 40%;
+                                    width: 60%;
+                                }
+                            
+                        }
+                        
+                    &[tpl="image_grid_san"] {             // $ ==================== ↓ 百度图片
+                    
+                        h3.cosc-title { margin: 0px -20px; background: transparent; }
+                        h3.cosc-title > a.ovnFocal.ovnLR { display: inline-block; }
+                        [class*="image-container_"][class*="image-container-pc_"] { display: flex; gap: 40px; }
+                        [class*="image-container_"] [class*="row-border-list_"] { gap: 20px; }
+                        .cos-image-background { border-radius: var(--ovnPanelRadius); }
+                        
+                    }
+                    
+                    &[tpl="tieba_general"] {              // $ ==================== ↓ 百度贴吧
+                    
+                        .cos-space-mt-md { width: 96%; }
+                        
+                    }
+                    
+                    &[tpl="xueshu_links_new"] {           // $ ==================== ↓ 百度学术
+                    
+                        .c-tabs-nav { background: transparent; }
+                        .c-tabs-nav .c-tabs-nav-li { margin: 0; }
+                        .c-tabs-nav .c-tabs-nav-selected { background: #F5F5F6; }
+                        .op-xueshu-links-new-d20-source { margin-top: 20px; }
+                        
+                    }
+                    
+                    &[tpl="weather_forecast_san"] {       // $ ==================== ↓ 百度天气
+                    
+                        --ovnX: 10px;
+                        
+                        [class*="content-border_"] { box-shadow: none; }
+                        
+                        // ========== 按钮 左右翻页
+                        
+                            [class*="load_"][class*="back_"] { left: var(--ovnX); }
+                            [class*="load_"][class*="more_"] { right: var(--ovnX); }
+                            
+                    }
+                    
+                    &[tpl="car_kg2_san"] {                // $ ==================== ↓ 百度有驾
+                    
+                        --ovnX: 10px;
+                        
+                    }
+                    
+                    &[tpl="med_aigc_guru_san"] {          // $ ==================== ↓ 百度健康
+                    
+                        [class*="medAigcPcCard_"] { margin-top: 10px; }
+                        
+                    }
+                    
+                    &[tpl="yl_music_song"] {              // $ ==================== ↓ 音乐
+                    
+                        --ovnX: 1260px;
+                        
+                        [class*="table-container_"] [class*="table-thead_"] [class*="th-num_"],
+                        [class*="table-container_"] [class*="table-tbody_"] [class*="td-num_"] {
+                            width: var(--ovnX);
+                        }
+                        
+                    }
+                    
+                    &[tpl="game-page-pandemand"] {        // $ ==================== ↓ 游戏
+                    
+                        .content[class*="content-info_"] {
+                            display: grid;
+                            justify-items: center;
+                        }
+                        .content[class*="content-info_"] > [class*="tab-wrapper_"] {
+                            grid-column: 1 / 3;
+                            text-align: center;
+                        }
+                        .content[class*="content-info_"] > .c-row.c-gap-top-large:last-of-type { display: none; }
+                        .c-row.c-gap-top-large > .c-span2 { margin-right: 35px; }
+                        
+                    }
+                    
+                    &[tpl="rel-baike"] {                  // $ ==================== ↓ 聚合搜索
+                    
+                        [class*="rel-baike_"] [class*="lemma-item_"] { margin: 0; }
+                        [class*="rel-baike_"] [class*="default-baike_"][class*="scroll-bar_"] {
+                            display: flex;
+                            margin: 15px 0 5px 0;
+                        }
+                        
+                    }
+                    
+                    &[tpl="ai_ecology"] {                 // $ ==================== ↓ AI 工具箱
+                    
+                        --ovnX: 12%;
+                        
+                        .cos-row-col-12 > .cos-col-3 { width: var(--ovnX); }
+                        [class*="card-footer-normal"] { left: calc(var(--ovnX) - 15px/4); }
+                        
+                    }
+                    
+                    &[tpl="yl_rw_figure_sample_san"] {    // $ ==================== ↓ 作品成就
+                    
+                        [class*="movie_"][class*="single_"] [class*="cosc-image-with-tags_"] { width: 10%; }
+                        [class*="list_"] [class*="movie-item_"], [class*="list_"] [class*="music-item_"] {
+                            width: calc(10% - var(--space-between)) !important;
+                        }
+                        
+                    }
+                    
+                    &[tpl="sp_purc_pc"] {                 // $ ==================== ↓ 全网热卖
+                    
+                        h3 { margin: -22px -20px 10px -20px; } 
+                        [class*="content-wrap_"] > div[style*="display: block"] {
+                            display: flex !important;
+                            justify-content: space-evenly;
+                        }
+                        [class*="row_"] { margin: 0; }
+                        [class*="sp_purc_pc-sku-item_"] { margin: 15px 40px 15px 0; }
+                        
+                    }
+                    
+                    &[tpl="rel_base_realtime"] {              // $ ==================== ↓ 在线观看
+                    
+                        img { border-radius: var(--ovnBaseRadius); }
+                        .cos-image-3-2 { padding-bottom: 25%; mask-image: linear-gradient(to bottom, #000 95%, transparent 100%); }
+                        .cos-image-fit-cover .cos-image-background { background-size: contain; }
+                        
+                        .cos-row.cos-gutter:not(:has(.cos-col-3)) { margin-left: calc(var(--cos-grid-gutter) * -.5 + 25%); }
+                        .cos-space-mt-md:not(:has(.cos-col-3)) .cos-row.cos-gutter { margin-left: 0; }
+                        
+                    }
+                    
+                    &[tpl="yl-vd-basis"] {                // $ ==================== ↓ 在线观看
+                    
+                        .c-span9 { width: max-content; }
+                        
+                    }
+                    &[tpl="rel_base_realtime"] {          // $ ==================== ↓ 在线观看
+                    
+                        img { border-radius: var(--ovnBaseRadius); }
+                        .cos-image-3-2 { padding-bottom: 25%; mask-image: linear-gradient(to bottom, #000 95%, transparent 100%); }
+                        .cos-image-fit-cover .cos-image-background { background-size: contain; }
+                        
+                        .cos-row.cos-gutter:not(:has(.cos-col-3)) { margin-left: calc(var(--cos-grid-gutter) * -.5 + 25%); }
+                        .cos-space-mt-md:not(:has(.cos-col-3)) .cos-row.cos-gutter { margin-left: 0; }
+                        
+                    }
+                    
+                    &[tpl="short_video"] {                // $ ==================== ↓ 高清在线观看
+                    
+                        .content_LHXYt > div { display: flex; gap: 20px; }
+                        .content_LHXYt .c-row { display: flex; gap: 20px; }
+                        .c-gap-top-large, .c-span4 { margin: 0; }
+                        
+                    }
+                    
+                    &[tpl="ai_agent_distribute"] {        // $ ==================== ↓ 聊一下更多精彩
+                    
+                        .card-title_6qPL6 { width: 100%; }
+                        .content_EbWw1 .common-content_4dXMi { width: 95%; }
+                        
+                    }
+                    
+                    &[tpl="ai_agent_qa_recommend"] {      // $ ==================== ↓ 实时智能回复
+                    
+                        /* ========== ↓ 标题 */
+                        
+                            .cos-space-mt-lg { margin-top: 0; }
+                            .agent-qa-card_3V5cX .card-title_2GtKe { margin: 10px 0; }
+                        
+                    }
+                    
+                    &[tpl="news-realtime"] {              // $ ==================== ↓ 最新信息
+                    
+                        .single-card-wrapper_2nlg9 {
+                            display: flex;
+                            justify-content: flex-start;
+                            border-radius: var(--ovnSurfaceRadius);
+                            box-shadow: none;
+                        }
+                        .single-card-wrapper_2nlg9 > .c-row { display: flex; }
+                        .single-card-wrapper_2nlg9 > .c-row:last-of-type { display: none; }
+                        
+                    }
+                    
+                    &[mu*="https://wenku.baidu.com/"] {   // $ ==================== ↓ 最新相关信息
+                    
+                        ._image_14uts_1 {
+                            background-size: contain !important;
+                            padding-bottom: 25% !important;
+                        }
+                        
+                    }
+                    
+                    &[tpl="recommend_list"] {             // $ ==================== ↓ 相关搜索
+                    
+                        .pc-rg-upgrade_2X3zi .item_3WKCf {
+                            margin: 5px !important;
+                            color: var(--ovnBaiduKeyWord);
+                        }
+                        
+                    }
+                    &[tpl="app/rs"] {                    // $ ==================== ↓ 相关搜索
+                    
+                        padding: var(--ovnSpacePadding) !important;
+                        margin: var(--ovnSpaceMargin) !important;
+                        
+                        #rs_new { margin: 0; width: 100%; }
+                        #rs_new table { margin: 20px auto; }
+                        #rs_new table tr { display: flex; gap: 40px; }
+                        #rs_new table tr .rs-link_2DE3Q { color: var(--ovnBaseColor);}
+                        
+                    }
+                    
+                }
+                
+        }
+        
+        
+    // $ ================================================== ↓ Bottom
+    
+        :where(#page) {
+            
+            margin-top: 40px;
+            width: 100%;
+            background: transparent !important; // 覆盖内联
+            
+        }
+        
+        #page {
+            
+            &.page-sample {
+                padding: 40px 0;
+                margin: 0;
+            }
+            
+            a:hover, a:hover .pc, .n:hover, a { color: var(--ovnBaiduKeyWord); }
+            a:hover, a:hover .pc, .n:hover {
+                background: transparent;
+                box-shadow: var(--ovnBaiduSC) hsla(var(--ovnAccentHSL), .2);
+            }
+            
+            // ========== 翻页
+            [class*="page-inner_"] {
+                padding: 0 !important;         // 覆盖官方
+                margin: 10px auto !important;  // 覆盖官方
+                width: max-content !important; // 覆盖官方
+            }
+            
+        }
+        
+}
+
+// $ ================================================== ↓ Unknown
+
+
+
+
+
+
+
+
+
+// * { background: #0FF !important; }
+
+
+
+
+
+
+
+
+
+
+
+
+    html {
+        
+            
+        /* ========== ↓ 修正标题间隙 */
+        
+            .pc-fresh-smooth .new-pmd .c-border /* 初始生效 全网热卖 */ {
+                padding-top: 0;
+            }
+            
+        /* ========== ↓ 修正标题动画 */
+        
+            .pc-fresh-title-con .custom-underline > .cosc-title-a {
+                display: inline-block;
+            }
+            
+    }
+        
+/* ================================================== ↓ Head */
+
+    html .wrapper_new #head { 
+        top: 0;
+        width: 100%;
+        background: var(--ovnGlassBase) !important;
+        backdrop-filter: var(--ovnPanelFilter);
+        transition: var(--ovnOftenTransition);
+    }
+    html .wrapper_new #head.peak-down { background: transparent; }
+    html .wrapper_new #head.s_down { box-shadow: var(--ovnGlassShadow); }
+    
+    html #wrapper #head:not(.s-manhattan-index div, .s_form_nologin div) {
+    
+        .head_wrapper {
+            display: flex;
+            justify-content: space-around;
+            transform: translate3d(-15px, 0 , 1px);
+            width: 100%;
+        }
+        
+        /* ========== ↓ 用户中心 */
+        
+            .head_wrapper #u {
+                position: fixed;
+                right: 40px;
+                padding: 0;
+            }
+            
+        /* ========== ↓ 搜索框 */
+        
+            .s_form {
+                display: flex;
+                justify-content: center;
+                padding: 0;
+                width: auto;
+            }
+            .s_ipt_wr { width: var(--ovnBaiduSearch); }
+            .s_form_fresh { width: inherit; padding: 0; }
+            .bdsug-new { width: var(--ovnBaiduSearch); }
+            .soutu-env-new .soutu-layer .soutu-url-wrap, .soutu-env-new .soutu-layer #soutu-url-kw { width: var(--ovnBaiduSearch); }
+            
+            #kw.s_ipt { width: 87%; }
+            
+    }
+    
+    /* ========== ↓ 分类 */
+    
+        html .result-molecule.new-pmd:has(#s_tab) {
+            --container-left-gap: auto;
+            display: flex;
+            justify-content: center;
+        }
+        
+        html #wrapper .new-pmd[tpl="app/head-tab"] {
+        
+            #s_tab {
+                display: flex;
+                justify-content: center;
+                border: none;
+                padding-top: 70px;
+                padding-left: 0;
+            }
+            
+            #s_tab .s_tab_inner {
+                display: flex;
+                justify-content: space-between;
+                width: calc(var(--ovnBaiduSearch) + 260px);
+                min-width: 920px;
+                padding-left: 0;
+            }
+            
+        }
+        
+    /* ========== ↓ 检索信息 搜索框下 */
+    
+        html #rs_top_new, html .hit-toptip, html .hit_top_new {
+            opacity: .6;
+            display: flex;
+            justify-content: center;
+            margin: 20px 0 10px;
+            width: auto;
+        }
+        
+        html #wrapper .new-pmd[tpl="app/search-tool"] {
+        
+            br { display: none; }
+            
+            /* ========== ↓ 筛选信息 */
+            .outer_wqJjM { margin-top: 10px;}
+            .options_2Vntk { opacity: .8; width: 90%; margin: 0 auto;}
+            
+        }
+        
+        html #wrapper .new-pmd[tpl="app/toptip"] {
+        
+            br { display: none; }
+            .c-gap-bottom-large { margin-bottom: 0px; }
+            
+        }
+        
+        html #wrapper .new-pmd[tpl="app/hit-top-new"] {
+        
+            br { display: none; }
+            .c-icon-bear-circle { transform: scale(.8); }
+            
+        }
+        
+        /* ========== ↓ 以商家官网为准 */
+        html #content_left > .k8vt8hp {
+            opacity: .5;
+            margin: 0 auto; /* margin-top: -1.2em; */
+            margin-top: 10px;
+            width: max-content;
+        }
+        
+        
+/* ================================================== ↓ Content */
+
+
+    /* ========== ↓ 模块 标题 */
+    
+        html #wrapper #container h3:not( 
+            .cos-space-mt-md h3,
+            .card-title_2GtKe h3,
+            .exta-links-pc_2sXPl h3,
+            .exta-link-pc_3aUAb h3,
+            .c-container[tpl="world_time_san"] h3,
+            .c-container[tpl="wenda_generate"] h3,
+            .c-container[tpl="fy_fanyi_ai_san"] h3,
+            .c-container[tpl="jr_stock_comment_san"] h3
+        ) {
+            padding: var(--ovnSpacePadding);
+            margin: -10px -20px 10px -20px;
+            width: 100%;
+            background: var(--ovnBase09HEX);
+            border-radius: var(--ovnSurfaceRadius) var(--ovnSurfaceRadius) 5px 5px;
+        }
+        html .cos-pc .title-box_4YBsj { width: 100%; }
+        html .cos-pc .title-wrapper_6E6PV { margin-top: -10px; }
+        html .cos-pc .title-wrapper_6E6PV .pre-text_6ulGP { z-index: 1; }
+        html ._link_1iyz5_2 { margin-bottom: 0; }
+        
+        /* ========== ↓ 标题字号 */
+        
+            html a, html a:hover,
+            html a.cos-link, html a.cos-link:hover { color: var(--ovnBaiduKeyWord); }
+        
+            html .cosc-title-md,
+            html ._paragraph_10ku5_2.md,
+            html ._paragraph_1g9za_2.md,
+            html #wrapper #container.sam_newgrid .c-group-title a,
+            html #wrapper #container.sam_newgrid .c-container .t,
+            html #wrapper #container.sam_newgrid .c-container .c-title,
+            html #wrapper #container.sam_newgrid .c-container ._paragraph_1g9za_2.lg {
+                color: var(--ovnBaiduKeyWord);
+                font-size: 15px;
+                font-weight: bold;
+                line-height: 1.5;
+            }
+            
+        /* ========== ↓ 官方标 */
+        
+            html .cos-pc .title-wrapper_6E6PV .suffix-icon_3Ox2w { position: absolute; right: calc(20px - 25px); /* 减去模块内边距 */ }
+            html .cos-pc .title-wrapper_6E6PV .suffix-icon_3Ox2w .www-tag-fill-blue_3n0y3 { border-radius: var(--ovnUIRadius); }
+            
+            html #wrapper #container .c-container[tpl="vmp_offical_website"] {
+            
+                .header_CIV6C:has(h3.t) { margin-top: -10px; }
+                
+                .header_CIV6C a.official-label_26SUN { position: absolute; right: calc(20px - 20px); }
+                
+            }
+            
+        /* ========== ↓ 标题 icon */
+        
+        html .front-icon_7wpfB { z-index: 999;}
+        
+        
+        
+/* ================================================== ↓ Other */
+
+    /* ---------- ↓ 修正模块距离 */
+    html .cos-pc .aladdin-struct_r13eS { margin: 10px 0; }
+    
+    /* ========== ↓ 内容块 -> 内容 距离 */
+    
+        html ._content-border_1ml43_4:not([tpl="jy_hy_zi_accu_san"] ._content-border_1ml43_4) {
+            padding: 0 20px;
+            margin: 10px -20px;
+            /* padding: var(--ovnSpacePadding);
+            margin: 0 -20px; */
+        }
+        
+        /* ========== ↓ 内容块 -> 内容 宽度 */
+        html #wrapper #container .c-container[tpl="www_index"] {
+        
+            .cos-row .cos-col.content-space-between_44mGk[style*="width:75%;"] {
+                width: 89% !important;
+            }
+            
+        }
+        
+    /* ========== ↓ Markdown AI 问答区 「预计更改」 */
+    
+        html .cosd-markdown .marklang h3 { font-size: 14px; }
+        
+        html .cosd-markdown .marklang,
+        html .cosd-markdown .marklang .marklang-paragraph {
+            font-size: 14px;
+        }
+        
+        

@@ -1,0 +1,40 @@
+
+:root, [ovnGlobalFont] {
+    
+    --ovnBaseFont: 
+        Emoji,
+        "Public Sans", "Inter",
+        "PingFang SC", "Source Han Sans SC", "Microsoft YaHei",
+        sans-serif, system-ui;
+        
+    --ovnBaseSize: 14px;
+    --ovnBaseWeight: 400;
+    --ovnBaseLineHeight: 1.5;
+    --ovnBaseColor: var(--ovnBase04HEX);
+    
+    --ovnTitleSize: 24px;
+    --ovnTitleWeight: 700;
+    --ovnTitleLineHeight: 1.5;
+    --ovnTitleColor: var(--ovnBase02HEX);
+    
+    --ovnCodeFont: 
+        Emoji,
+        "JetBrains Mono", "Fira Code",
+        "PingFang SC", "Source Han Sans SC", "Microsoft YaHei",
+        monospace, system-ui;
+        
+    --ovnCodeSize: 12px;
+    --ovnCodeWeight: 400;
+    --ovnCodeLineHeight: 1.5;
+    --ovnCodeColor: var(--ovnAccentHEX);
+    
+    --ovnOftenFontBase: var(--ovnBaseWeight) var(--ovnBaseSize)/var(--ovnBaseLineHeight) var(--ovnBaseFont);
+    --ovnOftenFontTitle: var(--ovnTitleWeight) var(--ovnTitleSize)/var(--ovnTitleLineHeight) var(--ovnBaseFont);
+    
+}
+
+@font-face {
+    font-family: Emoji;
+    src: local("Apple Color Emoji"), local("Segoe UI Emoji"), local("Segoe UI Symbol"), local("Noto Color Emoji");
+    unicode-range: U+1F000-1F9FF;
+}

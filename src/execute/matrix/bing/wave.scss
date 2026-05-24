@@ -1,0 +1,568 @@
+
+
+html {
+    
+    &:root body {
+        
+        --ovnBingWidth: var(--ovnSpaceWidth02);     // XXXXX
+        --ovnBingHight: var(--ovnSpace2Y);          // XXXXX
+        
+        --ovnBingRS: var(--ovnBaseRadius);
+        --ovnBingRU: var(--ovnUIRadius);
+        --ovnBingRM: var(--ovnPanelRadius);
+        --ovnBingRL: var(--ovnSurfaceRadius);
+        --ovnBingRX: var(--ovnRadiusX);
+        
+    }
+    
+    .XXXXXXXXXX, /* ==== XXXXX */
+    .XXXXXXXXXX, /* ==== XXXXX */
+    .XXXXXXXXXX  /* ==== XXXXX */ {
+        display: none;
+    }
+    
+    // $ ================================================== ↓ Global
+    
+        // $ ==================== ↓ XXXXXXXX
+        // ==================== ↓ XXXXX
+        // ========== XXXXX
+        
+        
+    // $ ================================================== ↓ XXXXX
+        
+        :where(#XXXXX) {
+            
+            --ovnBingXXX: hsla(var(--ovnPrimaryHSL), .5);
+            
+        }
+        
+}
+
+// $ ================================================== ↓ Unknown
+
+
+
+
+
+
+
+                
+                    /* ================================================== ↓ Global */
+                    
+                        html {
+                            --ovnColorBase: var(--ovnBase09HEX);
+                            --ovnSearchWidth: calc(var(--ovnSpaceWidthVW) / 1.5);
+                            --ovnLine: #00000009;
+                        }
+                        
+                        /* ========== ↓ 隐藏模块 */
+                            
+                            html #b_footer,
+                            html #b_results > li.b_ans #brsv3 h2,     /* 相关搜索 标题 */
+                            html #b_results > li.b_ans.b_mop.b_vidAns /* 模块 视频 */ {
+                                display: none;
+                            }
+                            
+                        /* ========== ↓ 移除下划线 */
+                        
+                            html .b_rc_gb_sub .b_rc_gb_sub_title,
+                            html #b_results > li.b_algo h2 a,
+                            html #b_topw .b_wpt_container .b_wpt_bl:hover h2 a {
+                                text-decoration: none !important;
+                            }
+                            
+                            html a:hover,
+                            html .b_algoheader a h2:hover,
+                            html .b_algo:first-child:hover h2 a,
+                            html .b_algo .b_underline a,
+                            html .sb_add .b_underline a,
+                            html #b_results>.b_ad li:first-child .sb_adTA:hover h2 a,
+                            html #b_topw>.b_ad li:first-child .sb_adTA:hover h2 a,
+                            html #b_header:hover~#b_content #b_results li:first-child.b_ad li:first-child div.sb_adTA h2 a,
+                            html #b_header:hover~#b_content #b_topw li:first-child.b_ad li:first-child div.sb_adTA h2 a,
+                            html #b_header:hover~#b_content #b_results li:first-child.b_algo h2 a,
+                            html #b_results li.b_msg.b_canvas a:focus-visible,
+                            html #b_content .acfImgAns .iaheader .iacf_head:hover span,
+                            html #b_results #brsv3 .b_vList li a:hover,
+                            html #relatedQnAListDisplay .slide:hover .df_ansatb .b_algo,
+                            html #relatedQnAListDisplay .slide:hover .df_ansatb .b_algo a {
+                                text-decoration: none;
+                            }
+                            
+                        /* ========== ↓ 文本着重色 */
+                        
+                            html a,
+                            html #b_tween a:visited,
+                            html #b_results .b_no a,
+                            html .b_tranthis,                               /* 翻译此结果 */
+                            html #b_results > li a,                         /* 其他 */
+                            html #b_results > li .b_richcard a,             /* 更多咨询 */
+                            html #b_results > li.b_algo h2 a,               /* 标题 */
+                            html #b_results > li.b_algo h2:not(.sa_uc h2) a /* 标题 */ {
+                                color: var(--ovnBing);
+                            }
+                            
+                            
+                    /* ================================================== ↓ Head */
+                    
+                        html #b_header {
+                            min-height: calc(var(--ovnSpace4X) + 20px);
+                            background: var(--ovnColorBase);
+                            transition: var(--ovnOftenTransition);
+                        }
+                        html #b_header::after {
+                            pointer-events: none;
+                            z-index: -1;
+                            content: "";
+                            position: absolute;
+                            inset: 0;
+                            backdrop-filter: var(--ovnPanelFilter);
+                        }
+                        html .b_pinhead:not(.b_dark) #b_header {
+                            background: hsla(0, 0%, 100%, 0.6) !important;
+                            box-shadow: var(--ovnGlassShadow);
+                        }
+                        
+                        /* ========== ↓ 版本切换按钮 */
+                        html #b_header > #est_switch {
+                            display: flex;
+                            margin: 0 auto;
+                            justify-content: center;
+                        }
+                        
+                        @media (width <= 1500px) {
+                            html body #b_header #sb_form, html body #b_header .b_scopebar { width: var(--ovnSpaceWidthVW); }
+                        }
+                        
+                        /* ========== ↓ 搜索框 */
+                        
+                            html {
+                            
+                                #b_header #sb_form {
+                                    z-index: 999;
+                                    display: flex;
+                                    justify-content: space-between;
+                                    margin: 12px auto;
+                                    width: var(--ovnSearchWidth);
+                                }
+                                
+                                    .b_logoArea { flex: 0 0 auto; margin: 0; width: 80px; }
+                                    
+                                    .b_searchboxForm {
+                                        position: relative;
+                                        display: flex;
+                                        align-items: center;
+                                        flex: 1 1 auto;
+                                    }
+                                    
+                                        #b_header #sb_form .b_searchbox {
+                                            flex: 1 1 auto;
+                                            width: auto;
+                                            min-width: 300px;
+                                        }
+                                        #b_header .b_searchboxForm.as_shadow #sw_as {
+                                            position: absolute;
+                                            top: 100%;
+                                            left: 0;
+                                            right: 0;
+                                            z-index: 1000;
+                                            display: none;
+                                        }
+                                        #b_header .b_searchboxForm.as_rsform #sw_as #sa_ul { width: 50%; }
+                                        #b_header #sa_requery { width: 40%; padding-bottom: 10px; }
+                                        #sw_as .paa_tx, #sw_as .rs_tx, #sw_as .pasf_tx { width: auto; }
+                                        #sw_as .pasf_rich_drw { flex-wrap: wrap; gap: 10px; }
+                                        
+                                        #sw_as .sa_sg_corner_icon { transform: scale(.8); }
+                                        #sa_hs_block > ul, #sa_sug_block > ul { padding: 0 10px; }
+                                        #b_header .b_searchboxForm #sb_search { padding-left: 5px; }
+                                        #sb_form #sw_as .sa_as #sa_ul li, #sw_as .sa_prnt { border-radius: var(--ovnPanelRadius); }
+                                        #sw_as .sa_tm_paa, #sw_as .sa_tm_rs, #sa_ul, .pp_title { font-size: 14px; }
+                                        
+                                .b_searchboxForm {
+                                    box-shadow:
+                                        0px 0px 00px 1px hsla(0, 0%, 0%, .02),
+                                        2px 5px 10px 1px hsla(0, 0%, 0%, .06);
+                                }
+                                .b_searchboxForm:hover, .b_focus .b_searchboxForm {
+                                    box-shadow:
+                                        0px 0px 00px 1px hsla(0, 0%, 0%, .04),
+                                        2px 5px 10px 1px hsla(0, 0%, 0%, .09);
+                                }
+                                .b_searchboxForm.as_shadow.as_show, .as_on .b_searchboxForm.as_shadow {
+                                    box-shadow:
+                                        0px 02px 09px 0 hsla(0, 0%, 0%, .09),
+                                        0px 10px 20px 0 hsla(0, 0%, 0%, .06);
+                                }
+                                .b_searchboxForm.as_rsform.as_shadow #sw_as .sa_as, .b_searchboxForm.as_shadow #sw_as .sa_as {
+                                    box-shadow:
+                                        0px 05px 10px 0 hsla(0, 0%, 0%, .02),
+                                        0px 20px 25px 0 hsla(0, 0%, 0%, .06);
+                                }
+                                
+                            }
+                            
+                        /* ========== ↓ 分类 */
+                        
+                            html #b_header .b_scopebar {
+                                margin: 0 auto;
+                                margin-top: 10px;
+                                width: var(--ovnSearchWidth);
+                            }
+                            html .b_scopebar:not(:has(> #fltIdtCon)) > ul { display: flex; justify-content: space-evenly; }
+                            html #b_header .b_scopebar #fltIdtCon { background: transparent; }
+                            
+                            @media (width >= 1200px) {
+                                html .b_scopebar:not(:has(> #fltIdtCon)) > ul {
+                                    margin: auto 24px;
+                                    transform: translateX(45px);
+                                }
+                            }
+                            
+                            
+                        /* ========== ↓ 用户中心 */
+                        
+                            html #b_header #id_h {
+                                z-index: 999;
+                                position: fixed;
+                                top: 20px;
+                                right: 20px;
+                            }
+                            html #id_a { border-radius: var(--ovnUIRadius); }
+                            
+                            
+                    /* ================================================== ↓ Content */
+                        
+                        html { background: var(--ovnColorBase); }
+                        
+                        html #b_content {
+                            background: var(--ovnColorBase);
+                            max-width: 100%;
+                            padding: 40px 0 0 0;
+                        }
+                        html #b_content > main {
+                            display: block;
+                            width: var(--ovnSpaceWidthVW);
+                            max-width: 100%;
+                            margin: 0 auto;
+                        }
+                        html #b_results, html #b_mcw, html #b_topw { width: 100%; }
+                        
+                        /* ========== ↓ 模块 通用 */
+                        
+                            html #b_content #b_results > li:not(.b_top, .b_pag) {
+                                box-sizing: border-box;
+                                position: relative;
+                                padding: var(--ovnSpacePadding);
+                                margin: var(--ovnSpaceMargin);
+                                width: 100%;
+                                font-size: 12px;
+                                background: #FFFFFF;
+                                box-shadow: var(--ovnOftenSurfaceShadowBase);
+                                border-radius: var(--ovnSurfaceRadius);
+                                transition: var(--ovnOftenTransition);
+                            }
+                            html #b_content #b_results > li:not(.b_top, .b_pag):hover {
+                                z-index: 2;
+                                box-shadow: inset 0 0 2px hsla(0, 0%, 92%, .6), var(--ovnOftenSurfaceShadowHover);
+                                transform: var(--ovnSurfaceZoomIn);
+                            }
+                            
+                            html #b_content #b_results > li.b_ans:hover,           /* 相关搜索 */
+                            html #b_content #b_results > li.b_msg:hover,           /* 相关搜索 */
+                            html #b_content #b_results > li.b_pag:hover,           /* 底部翻页 */
+                            html #b_content #b_results > li.b_algoBigWiki:hover,   /* Wiki */ 
+                            html #b_content #b_results > li.b_rc_gb_template:hover {
+                                transform: none;
+                            }
+                            
+                            /* ========== ↓ 搜索结果 相关 */
+                            
+                                /* html #b_content #b_results > li.b_ans[data-bm="6"], */
+                                html #b_content #b_results > li.b_msg.b_canvas {
+                                    opacity: .6;
+                                    display: flex;
+                                    gap: 20px;
+                                    margin: 0;
+                                    background: transparent;
+                                    box-shadow: none;
+                                }
+                                html #b_results .b_promtxt { font-size: 14px; }
+                                html .b_deepdesk { padding-left: 0; }
+                                
+                            /* ========== ↓ 标题 */
+                                
+                                html .b_algo .b_deepdesk h3,
+                                html .b_algo .b_deep h3.deeplink_title,
+                                html .b_algo .b_deep h3 .deeplink_title,
+                                html #b_topw .b_wpt_container .b_wpt_bl h2,
+                                html #b_results > li.b_algo h2 a,
+                                html #b_results .b_ans #brsv3 h2,
+                                html #b_content .b_wpt_container .b_crtrm_wrapper .b_cnt_resp h3 {
+                                    font-size: 15px;
+                                    font-weight: bold;
+                                }
+                                
+                            /* ========== ↓ 正文 */
+                                
+                                html .b_cnt_resp,
+                                html .b_cus_fields .b_field_title,
+                                html #b_results #brsv3 .b_vList li a,
+                                html #b_results .b_algo .b_lineclamp1, html #b_results .b_algo .b_lineclamp2,
+                                html #b_results .b_algo .b_lineclamp3, html #b_results .b_algo .b_lineclamp4,
+                                html #b_results .b_rc_gb_sub.b_rc_gb_sub_hero .b_rc_gb_sub_column .b_rc_gb_sub_cell p {
+                                    font-size: 13px;
+                                }
+                                
+                            /* ========== ↓ 源 */
+                            
+                                html #b_content #b_results .b_algo > .b_tpcn,
+                                html #b_content #b_results .b_algo_group > .b_tpcn {
+                                    opacity: .6;
+                                    padding: var(--ovnSpacePadding);
+                                    margin: -10px -20px 10px -20px;
+                                    width: 100%;
+                                    background: var(--ovnBase09HEX);
+                                    border-radius: var(--ovnSurfaceRadius) var(--ovnSurfaceRadius) 5px 5px;
+                                }
+                                html .b_algo .b_tpcn > .tilk, html .b_algo .b_tpcn strong > .tilk { padding-bottom: 0; }
+                                
+                                /* html .b_tpcn > .tilk { width: 100%; }
+                                html .b_tpcn > .tilk > .tptxt {
+                                    display: flex;
+                                    justify-content: space-between;
+                                    width: 100%;
+                                    align-items: center;
+                                } */
+                               
+                            /* ========== ↓ 图片 */
+                            
+                                html .b_imagePair > .inner { padding-bottom: 0; }
+                                
+                            /* ========== ↓ Other */
+                            
+                                html .b_rcGbMod { width: 100%; }
+                                
+                                
+                        /* ========== ↓ Copilot */
+                        
+                            html #b_bop_cs_sb_place.b_pinbop {
+                                position: fixed;
+                                width: 50%;
+                                left: 50%;
+                                bottom: 0;
+                                transform: translateX(-50%);
+                                padding: 0;
+                            }
+                            html .b_bop_cs_sb.b_collapsed_co .b_bop_cs_sb_l .composer_container {
+                                display: flex;
+                                flex-direction: row;
+                                justify-content: center;
+                                margin: 20px 0;
+                            }
+                            html .b_bop_cs_sb.b_collapsed_co .composer_wrapper { max-width: 50%; }
+                            
+                        /* ========== ↓ Aside */
+                        
+                            html #b_content #b_context {
+                                /* --top: 10px; */
+                                z-index: 999;
+                                opacity: 0;
+                                overflow-y: auto;
+                                overflow-x: hidden;
+                                position: fixed; /* position: absolute; */
+                                top: 50%; /* var(--top) */
+                                right: 20px;
+                                max-height: 80vh;
+                                background: var(--ovnGlassBase);
+                                backdrop-filter: var(--ovnPanelFilter);
+                                border-radius: var(--ovnPanelRadius);
+                                transform: translateY(-50%); /* translateY(calc(var(--top) - 20px)) */
+                                transition: opacity .26s ease, transform .26s ease;
+                            }
+                            html #b_content #b_context:hover { opacity: 1; transform: translateY(calc(-50% - 20px)); /* translateY(var(--top)); */ }
+                            
+                            @media (width <= 2160px), (height <= 1260px) { #b_content #b_context { display: none; } }
+                            
+                            /* ========== ↓ 官方词条 */
+                                
+                                html #b_content #b_context .lite-entcard-main { border-radius: var(--ovnPanelRadius); }
+                                html #b_content #b_context .spl_logobg, html #b_content #b_context .bsimg {
+                                    border-radius: var(--ovnPanelRadius) var(--ovnPanelRadius) 0 0;
+                                }
+                                
+                            /* ========== ↓ 相关搜索 */
+                                
+                                html #b_context .richrsrailtitle { display: none; }
+                                html #b_context .b_ans, #b_rrat_cont .b_ans { border-radius: var(--ovnPanelRadius); }
+                                
+                                html #b_context .b_ans { padding: 20px; }
+                                
+                                
+                        /* ========== ↓ 模块 特殊 「首个模块」 */
+                        
+                            html body #b_pole .b_poleContent { width: 80%; margin: 0 auto; }
+                            html #uaanswer { width: auto; }
+                            html #b_pole #ent-car-exp.carousel .carousel-controls { margin: 0; }
+                            html #b_tween:not(.b_hidetoggletween) ~ #b_pole { padding-left: 0; }
+                            
+                            html #b_topw .b_wpTabsWrapper {
+                                width: 80%;
+                                margin: 10px auto -20px auto;
+                                background: transparent;
+                            }
+                            
+                            html #b_pole #ent-car-exp.carousel {
+                                padding: 0 var(--smtc-gap-between-content-medium);
+                                padding-bottom: 30px;
+                                border-radius: var(--ovnPanelRadius);
+                            }
+                            
+                            html #b_tween { width: 80%; padding-left: 8px; margin: 0 auto; }
+                            
+                            html #b_content #b_results li.b_ans.b_top {
+                                opacity: 1;
+                                box-shadow: none;
+                                min-height: 200px;
+                            }
+                            html #b_content #b_results li.b_ans .qna_tlgacont { width: 80%; margin: 0 auto; }
+                            html #fbtop:not(.fbstatic) { bottom: 0; }
+                            
+                            html #b_results > li { background: transparent; }
+                            
+                            html .rwrl_fontexp:not(.rwrl_resetFont) {
+                                font-size: 15px;
+                                line-height: 2;
+                            }
+                            
+                            
+                        /* ========== ↓ 模块 官方词条 */
+                        
+                            html #b_pole { width: 100%; padding: 0; margin: 0; }
+                            html #b_pole .b_wpTabsWrapper {
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                min-height: 92px;
+                                margin: 0;
+                                padding: 0;
+                                border-radius: var(--ovnSurfaceRadius);
+                            }
+                            html #b_pole .b_wpTabsWrapper .ent-dtab-content > div { padding: 0; margin: 0; }
+                            
+                        /* ========== ↓ 模块 Copilot Search */
+                        
+                            html #copans_container { width: 90%; margin: 0 auto; margin-bottom: 20px; }
+                            html #b_topw .b_ans .b_wpt_container { margin: 10px auto 20px; max-width: 100%; }
+                            
+                            @media (width >= 1405px) {
+                                html #copans_container { display: flex; justify-content: center; }
+                                
+                            }
+                            
+                        /* ========== ↓ 模块 Wiki */
+                        
+                            html #b_content #b_results .b_algo.b_algoBigWiki.b_algoBorder { margin-bottom: 40px; }
+                            html #b_results .b_algo:has(.b_wiki_bottom_cover) { min-height: 480px; }
+                            html #b_results .b_wiki_bottom_cover { border-radius: inherit; }
+                            
+                            /* 
+                            html .b_rc_gb_sub.b_rc_gb_scroll { height: 260px; }
+                            html .b_rc_gb_sub_column {
+                                display: flex;
+                                align-items: flex-start;
+                                gap: 20px;
+                            } */
+                            html .b_rc_gb_sub.b_rc_gb_scroll { width: 80%; margin: 0 auto; }
+                            html #b_rc_gb_origin.b_rc_gb_sub .b_rc_gb_sub_column { max-width: 50%; }
+                            html .b_wiki_license { opacity: .5; z-index: 9; margin-top: 10px }
+                            
+                            html .b_rc_gb_sub_section .b_rc_gb_sub_cell:hover { box-shadow: none !important; }
+                            html .b_rc_gb_text_cell_wrapper { min-width: calc(var(--ovnSpaceWidthVW) / 6); }
+                            
+                        /* ========== ↓ 模块 查看更多 */
+                        
+                            html #b_results .b_wpt_container { margin: 0; }
+                            html #b_results .b_wpt_container .grid { max-width: 100%; justify-items: center; }
+                            
+                            html #b_content #b_results > li.b_rc_gb_template { margin-bottom: 40px; }
+                            
+                        /* ========== ↓ 模块 影像 */
+                        
+                            html #b_content .iacfic.mmkiaacf .iacf_crsl[data-wptds-carousel] {
+                                display: flex;
+                                justify-content: center;
+                            }
+                            
+                        /* ========== ↓ 模块 图像 */
+                        
+                            html #b_content .acfImgAns .salink::before,
+                            html #b_content .acfImgAns .iasalink::before {
+                                border-color: var(--ovnLine);
+                            }
+                            
+                            
+                        /* ========== ↓ 模块 表单轮播 */
+                        
+                            html [id^="tabcontrol"] .tab-menu { width: 80% !important; }
+                            
+                            
+                        /* ========== ↓ 模块 分类标题 */
+                        
+                            html #b_results .b_algo .b_vlist2col.b_deep, html #b_results .b_algo .b_deep.b_moreLink { padding-left: 0; }
+                            html #b_results .b_algo .b_vlist2col.b_deep ul, html #b_results .b_algo .b_vlist2col.b_deep h3 { width: 50%; }
+                            
+                            
+                        /* ========== ↓ 模块 其他人问了以下问题 */
+                        
+                            html .rqnaacfacc .df_hdr { display: none; }
+                            html #df_listaa .df_hd .b_primtxt { font-size: 15px; }
+                            html .rqnaContainerwithfeedback { margin: 10px 20px 20px 20px; padding: 0; }
+                            
+                            
+                    /* ================================================== ↓ Bottom */
+                    
+                        html #b_results .b_ans #brsv3 {
+                            display: flex;
+                            align-items: center;
+                            width: calc(var(--ovnSpaceWidthVW) - 100px);
+                            margin: 10px auto;
+                        }
+                        html #b_results #brsv3 .b_vList li {
+                            width: 260px;
+                            margin: 5px !important;
+                            transform: none !important;
+                        }
+                        html #b_results #brsv3 .b_vList a .b_suggestionText { overflow: visible; flex: none; }
+                        
+                        /* ========== ↓ 翻页 */
+                        
+                            html #b_results .b_pag, html #b_PagAboveFooter {
+                                display: flex;
+                                justify-content: center;
+                                padding: 0;
+                                margin: 50px auto;
+                                background: transparent;
+                            }
+                            html #b_results .b_pag a:not(.sb_pagS_bp):hover {
+                                border-radius: var(--ovnUIRadius);
+                            }
+                            
+                            /* ========== ↓ 不同版本 修正 */
+                            
+                                html .b_pag_above_footer_list .b_pag {
+                                    width: max-content;
+                                    padding: 0;
+                                    margin: 20px auto;
+                                }
+                            
+                        html .b_bop_cs_sb:not(.b_above_footer),
+                        html .b_bop_cs_sb:not(.b_bop_nobg),
+                        html #b_bop_pin_placehold:not(.b_bop_nobg) {
+                            background: var(--ovnColorBase);
+                        }
+                        
+                    /* ================================================== ↓ Other */
+                    
+                        .b_factRowContainer { margin-left: 0; margin-bottom: 10px; }
+                        

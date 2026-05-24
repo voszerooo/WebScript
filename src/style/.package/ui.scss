@@ -1,0 +1,55 @@
+
+:root, [ovnGlobalUI] {
+    
+    --ovnBaseRadius: 4px;
+    --ovnBaseBorder: 1px solid;
+    --ovnBaseShadow: 0 0 10px 0;
+    --ovnBaseFilter: blur(5.26px);
+    --ovnBaseZoomIn: ;
+    --ovnOftenBaseBorderBase: var();
+    --ovnOftenBaseBorderHover: var();
+    --ovnOftenBaseShadowBase: var();
+    --ovnOftenBaseShadowHover: var();
+    
+    --ovnUIRadius: 6px;
+    --ovnUIBorder: 2px solid;
+    --ovnUIShadow: 10px 10px 20px 0;
+    --ovnUIFilter: blur(9.26px) saturate(1.52);
+    --ovnUIZoomIn: scale(1.26);
+    --ovnOftenUIBorderBase: var(--ovnUIBorder) hsla(var(--ovnAccentHSL), .4);
+    --ovnOftenUIBorderHover: var();
+    --ovnOftenUIShadowBase: var();
+    --ovnOftenUIShadowHover: var();
+    
+    --ovnPanelRadius: 12.6px;
+    --ovnPanelBorder: 3px solid;
+    --ovnPanelShadow: 0px 10px 20px 0;
+    --ovnPanelFilter: blur(12.6px);
+    --ovnPanelZoomIn: ;
+    --ovnOftenPanelBorderBase: var(--ovnPanelBorder) hsla(var(--ovnAccentHSL), .4);
+    --ovnOftenPanelBorderHover: var(--ovnPanelBorder) hsla(var(--ovnAccentHSL), .6);
+    --ovnOftenPanelShadowBase: var(--ovnPanelShadow) hsla(var(--ovnAccentShadow), .4);
+    --ovnOftenPanelShadowHover: var(--ovnPanelShadow) hsla(var(--ovnAccentShadow), .6);
+    
+    --ovnSurfaceRadius: 20.6px;
+    --ovnSurfaceBorder: 2px solid;
+    --ovnSurfaceShadow: 0px 20px 30px 0;
+    --ovnSurfaceFilter: blur(20.6px);
+    --ovnSurfaceZoomIn: scale(1.026);
+    --ovnOftenSurfaceBorderBase: var();
+    --ovnOftenSurfaceBorderHover: var();
+    --ovnOftenSurfaceShadowBase: var(--ovnSurfaceShadow) hsla(var(--ovnBase04HSL), .05);
+    --ovnOftenSurfaceShadowHover: var(--ovnSurfaceShadow) hsla(var(--ovnAccentHSL), .126);
+    
+    --ovnLargeRadius: 24.6px;
+    --ovnRadiusX: 9260px;
+    
+    --ovnGlassShadow: 
+        inset 0px -1px 4px hsla(var(--ovnBase09HSL), .26),
+        var(--ovnPanelShadow) hsla(var(--ovnBase04HSL), .0526);
+        
+    --ovnTipsShadow-S: inset 0 0 0 2px;
+    --ovnTipsShadow-M: 10px 10px 20px;
+    --ovnTipsShadow-L: 10px 10px 40px;
+    
+}
