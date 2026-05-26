@@ -6,7 +6,7 @@
 // @version                   7.0.0
 // @author                    voszerooo
 // @icon                      https://greasyfork.org/vite/assets/blacklogo96-CxYTSM_T.png
-// @sourceXXX                 https://greasyfork.org/scripts/XXXXXX
+// @sourceXXX                 https://greasyfork.org/scripts/579569
 
 // @match                     *://**/*
 // @include                   *://baidu.com/*
