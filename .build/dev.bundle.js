@@ -2767,9 +2767,6 @@ const OVN_GLOBAL_CONFIG = {
           exclude: []
         }
       }
-      // QuickRead: {
-      //     feature: "快速阅读 | ↑↓←→ / WSAD 翻页",
-      // },
     },
     Chat: {
       fold: true,
@@ -5454,7 +5451,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-(function initializeScript() {
+(function init() {
   if (typeof window !== "undefined" && ( false || window.top !== window.self)) {
     return;
   }
@@ -5470,7 +5467,7 @@ __webpack_require__.r(__webpack_exports__);
       onReady();
     }
   } catch (error) {
-    console.error('[Global.Custom] 初始化失败:', error);
+    console.error('[==👽OVN==] | [Global.Custom] 初始化失败:', error);
   }
 })();
 function onReady() {
@@ -5487,7 +5484,7 @@ function onReady() {
     _store_derive_js__WEBPACK_IMPORTED_MODULE_2__.OVN.SCHEDULER.run();
     _store_derive_js__WEBPACK_IMPORTED_MODULE_2__.OVN.DEBUG.infoTotal();
   } catch (error) {
-    console.error('[Global.Custom] 启动出错:', error.stack);
+    console.error('[==👽OVN==] | [Global.Custom] 启动出错:', error.stack);
   }
 }
 })();
