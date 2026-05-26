@@ -11,7 +11,7 @@ import { OVN_SUBJOIN_HOOK } from './store/core/hook.js';
 import './execute/ignite.js';
 
 
-(function initializeScript() {
+(function init() {
     
     if (
         typeof window !== "undefined" &&
@@ -31,7 +31,7 @@ import './execute/ignite.js';
             onReady();
         }
     } catch (error) {
-        console.error('[Global.Custom] 初始化失败:', error);
+        console.error('[==👽OVN==] | [Global.Custom] 初始化失败:', error);
     }
     
 })();
@@ -51,7 +51,7 @@ function onReady() {
         OVN.SCHEDULER.run();
         OVN.DEBUG.infoTotal();
     } catch (error) {
-        console.error('[Global.Custom] 启动出错:', error.stack);
+        console.error('[==👽OVN==] | [Global.Custom] 启动出错:', error.stack);
     }
 }
 

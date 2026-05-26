@@ -91,9 +91,6 @@ import { OVN_SUBJOIN_HOOK }      from '../../store/core/hook.js';
                 Bing: {
                     match: { include: [ "*bing.com/*" ], exclude: [ ] },
                 },
-                // QuickRead: {
-                //     feature: "快速阅读 | ↑↓←→ / WSAD 翻页",
-                // },
                 
             },
             Chat: {
