@@ -4,7 +4,7 @@
     <h3 style="font-size: 1.26em; line-height: .5;">👽</h3>
     <h1 style="font-size: 2.26em; line-height: 1; opacity: .92;">WebScript</h1>
     <div style="margin-top: 15px;">
-        <a style="text-decoration: none;" href="https://github.com/voszerooo/WebScript/releases">
+        <a style="text-decoration: none;" href="https://github.com/voszerooo/WebScript/releases/latest">
             <img style="border-radius: 4px;" src="https://img.shields.io/github/v/release/voszerooo/WebScript?style=flat-square" alt="release">
         </a>
         <a style="text-decoration: none;" href="https://github.com/voszerooo/WebScript/tree/main">
@@ -16,12 +16,12 @@
         <a style="text-decoration: none;" href="https://github.com/voszerooo/WebScript/blob/main/-/GUIDE.md">
             <img style="border-radius: 4px;" src="https://img.shields.io/badge/guide-gray?style=flat-square" alt="guide">
         </a>
-        <a style="text-decoration: none;" href="https://raw.githubusercontent.com/voszerooo/WebScript/refs/heads/main/LICENSE">
+        <a style="text-decoration: none;" href="https://cdn.jsdelivr.net/gh/voszerooo/WebScript@main/LICENSE">
             <img style="border-radius: 4px;" src="https://img.shields.io/github/license/voszerooo/WebScript?style=flat-square" alt="license">
         </a>
     </div>
     <br>
-    <img src="https://raw.githubusercontent.com/voszerooo/WebScript/refs/heads/main/resource/Preview-min.png" width="100%">
+    <img src="https://cdn.jsdelivr.net/gh/voszerooo/WebScript@main/resource/Preview-min.png" width="100%">
 </div>
 
 
@@ -134,7 +134,7 @@
 <br>
 
 
-<img src="https://raw.githubusercontent.com/voszerooo/WebScript/refs/heads/main/resource/Permission-min.png" width="100%">
+<img src="https://cdn.jsdelivr.net/gh/voszerooo/WebScript@main/resource/Permission-min.png" width="100%">
 
 
 <br>
