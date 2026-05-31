@@ -4,29 +4,61 @@ html {
     
     &:root body {
         
-        --vbDeepSeekWidth: var(--ovnSpaceWidth02);     // XXXXX
-        --vbDeepSeekHight: var(--ovnSpace2Y);          // XXXXX
+        --ovnDeepSCA: var(--ovnAccentHEX);
+        --ovnDeepSCS: var(--ovnSecondaryHEX);
+        --ovnDeepSCP: var(--ovnPrimaryHEX);
+        --ovnDeepSBG: var(--ovnBase09HEX);
         
-        --vbDeepSeekRS: var(--ovnBaseRadius);
-        --vbDeepSeekRU: var(--ovnUIRadius);
-        --vbDeepSeekRM: var(--ovnPanelRadius);
-        --vbDeepSeekRL: var(--ovnSurfaceRadius);
-        --vbDeepSeekRX: var(--ovnRadiusX);
+        --ovnDeepSRS: var(--ovnBaseRadius);
+        --ovnDeepSRU: var(--ovnUIRadius);
+        --ovnDeepSRM: var(--ovnPanelRadius);
+        --ovnDeepSRL: var(--ovnSurfaceRadius);
+        --ovnDeepSRX: var(--ovnRadiusX);
+        
+        --ovnDeepSW: var(--ovnSpaceWidth02);
         
     }
     
-    .XXXXXXXXXX,  // ==== XXXXX
-    .XXXXXXXXXX,  // ==== XXXXX
-    .XXXXXXXXXX { // ==== XXXXX
-        display: none;
-    }
+    // @media (width <= 2460px) { --ovnDeepSW: calc(var(--ovnSpaceWidth02) + 2vw) }
+    // @media (width <= 1920px) { --ovnDeepSW: calc(var(--ovnSpaceWidth02) + 2vw) }
+    // @media (width <= 1260px) { --ovnDeepSW: calc(var(--ovnSpaceWidth02) - 2vw) }
     
     // $ ================================================== ↓ Global
     
-        // $ ==================== ↓ XXXXXXXX
-        // ==================== ↓ XXXXX
+        .XXXXXXXXXXXX { background: var(--ovnDeepSBG);}
         
+        // ==================== ↓ 無
         
+            .XXXXXXXXXXXX {
+                opacity: 0;
+            }
+            .XXXXXXXXXXXX,  // ==== XXXXX
+            .XXXXXXXXXXXX { // ==== XXXXX
+                display: none;
+            }
+            
+        // ==================== ↓ 隐
+        
+            .XXXXXXXXXXXX {
+                border: transparent;
+            }
+            .XXXXXXXXXXXX {
+                outline: transparent;
+            }
+            .XXXXXXXXXXXX {
+                box-shadow: none;
+            }
+            .XXXXXXXXXXXX {
+                text-decoration: none;
+            }
+            .XXXXXXXXXXXX {
+                text-decoration: none !important;
+            }
+            
+            
+        // $ ==================== ↓ XXXXX
+            // ========== XXXXX
+            
     // $ ================================================== ↓ 首页
     
         // ========== 快速/专家 模式
@@ -41,7 +73,11 @@ html {
             transform: translateX(calc(-50% + 35px));
         }
         
-        
+        // ========== fix 
+            .katex .base { display: contents; }
+            .cjk_fallback { font: var(--ovnOftenFontBase); }
+            
+            
     // $ ================================================== ↓ XXXXX
         
         :where(#XXXXX) {

@@ -92,8 +92,9 @@ import { OVN_OBSERVER_CENTER }   from '../../store/infra/observer.js';
             const html = document.documentElement;
             const newTheme = themeWebsite() || themeBrightness() || themeSystem() || "light";
             if (newTheme === currentTheme) return;
-            html.classList.remove("ovnThemeLight", "ovnThemeDark");
-            html.classList.add(newTheme === "light" ? "ovnThemeLight" : "ovnThemeDark");
+            // html.classList.remove("ovnThemeLight", "ovnThemeDark");
+            // html.classList.add(newTheme === "light" ? "ovnThemeLight" : "ovnThemeDark");
+            html.setAttribute("data-ovn-theme", newTheme);
             currentTheme = newTheme;
         };
         

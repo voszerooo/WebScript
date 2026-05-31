@@ -1,27 +1,20 @@
 
 
-<div style="font-size: 16px;" align="center">
-    <h3 style="font-size: 1.26em; line-height: .5;">👽</h3>
-    <h1 style="font-size: 2.26em; line-height: 1; opacity: .92;">WebScript</h1>
-    <div style="margin-top: 15px;">
-        <a style="text-decoration: none;" href="https://github.com/voszerooo/WebScript/releases/latest">
-            <img style="border-radius: 4px;" src="https://img.shields.io/github/v/release/voszerooo/WebScript?style=flat-square" alt="release">
-        </a>
-        <a style="text-decoration: none;" href="https://github.com/voszerooo/WebScript/tree/main">
-            <img style="border-radius: 4px;" src="https://img.shields.io/badge/main-gray?style=flat-square" alt="main">
-        </a>
-        <a style="text-decoration: none;" href="https://github.com/voszerooo/WebScript/tree/dev">
-            <img style="border-radius: 4px;" src="https://img.shields.io/badge/dev-gray?style=flat-square" alt="dev">
-        </a>
-        <a style="text-decoration: none;" href="https://github.com/voszerooo/WebScript/blob/main/-/GUIDE.md">
-            <img style="border-radius: 4px;" src="https://img.shields.io/badge/guide-gray?style=flat-square" alt="guide">
-        </a>
-        <a style="text-decoration: none;" href="https://cdn.jsdelivr.net/gh/voszerooo/WebScript@main/LICENSE">
-            <img style="border-radius: 4px;" src="https://img.shields.io/github/license/voszerooo/WebScript?style=flat-square" alt="license">
-        </a>
-    </div>
-    <br>
-    <img src="https://cdn.jsdelivr.net/gh/voszerooo/WebScript@main/resource/Preview-min.png" width="100%">
+<div align="center">
+
+### 👽
+# WebScript
+
+[![release](https://img.shields.io/github/v/release/voszerooo/WebScript)](https://github.com/voszerooo/WebScript/releases/latest)
+[![main](https://img.shields.io/badge/main-gray)](https://github.com/voszerooo/WebScript/tree/main)
+[![dev](https://img.shields.io/badge/dev-gray)](https://github.com/voszerooo/WebScript/tree/dev)
+[![guide](https://img.shields.io/badge/guide-gray)](https://github.com/voszerooo/WebScript/blob/main/-/GUIDE.md)
+[![license](https://img.shields.io/github/license/voszerooo/WebScript)](https://cdn.jsdelivr.net/gh/voszerooo/WebScript@main/LICENSE)
+
+<br>
+
+<img src="https://cdn.jsdelivr.net/gh/voszerooo/WebScript@main/resource/preview-min.png" width="100%">
+
 </div>
 
 
@@ -134,7 +127,7 @@
 <br>
 
 
-<img src="https://cdn.jsdelivr.net/gh/voszerooo/WebScript@main/resource/Permission-min.png" width="100%">
+<img src="https://cdn.jsdelivr.net/gh/voszerooo/WebScript@main/resource/permission-min.png" width="100%">
 
 
 <br>

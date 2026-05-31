@@ -28,8 +28,8 @@
     --ovnPanelZoomIn: ;
     --ovnOftenPanelBorderBase: var(--ovnPanelBorder) hsla(var(--ovnAccentHSL), .4);
     --ovnOftenPanelBorderHover: var(--ovnPanelBorder) hsla(var(--ovnAccentHSL), .6);
-    --ovnOftenPanelShadowBase: var(--ovnPanelShadow) hsla(var(--ovnAccentShadow), .4);
-    --ovnOftenPanelShadowHover: var(--ovnPanelShadow) hsla(var(--ovnAccentShadow), .6);
+    --ovnOftenPanelShadowBase: var(--ovnPanelShadow) hsla(var(--ovnAccentCSD), .4);
+    --ovnOftenPanelShadowHover: var(--ovnPanelShadow) hsla(var(--ovnAccentCSD), .6);
     
     --ovnSurfaceRadius: 20.6px;
     --ovnSurfaceBorder: 2px solid;
@@ -52,4 +52,8 @@
     --ovnTipsShadow-M: 10px 10px 20px;
     --ovnTipsShadow-L: 10px 10px 40px;
     
+}
+
+:root, [ovnGlobalUI] {
+    --ovnRS: 20.6px;
 }

@@ -10,6 +10,10 @@
     "prettier.requireConfig": true,
     "prettier.prettierPath": "",
     
+    // "compile-hero.disable-compile-files-on-did-save-code": false,
+    // "compile-hero.scss-output-toggle": true,
+    // "compile-hero.scss-output-directory": "../../../-/---",
+    
     "----------------------------------------------------------------------------------------------------": "-----",
     
     

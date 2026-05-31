@@ -15,7 +15,14 @@ node_modules/
 -/NORM.md
 -/versions/*.js
 
+resource/source/
+custom.ico
 *.xxfilterxx.*
+
+
+# ==================== ↓ KEEP
+
+!.build/.cache/
 
 
 # ==================== ↓ Other
@@ -25,17 +32,10 @@ node_modules/
 
 .DS_Store
 desktop.ini
-custom.ico
 
-.cache/
 *.db
 *.log
 *.cache
 *.tmp
 *.temp
-
-
-# ==================== ↓ KEEP
-
-!.build/.cache/
 

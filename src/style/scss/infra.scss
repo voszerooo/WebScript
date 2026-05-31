@@ -1,0 +1,83 @@
+
+
+@mixin ovn {
+    @include panel;
+}
+
+@mixin often {
+    @include glass;
+}
+
+// $ ================================================== ↓ layout
+
+@mixin flex($layout) {
+    display: flex;
+    justify-content: $layout;
+    align-items: $layout;
+}
+
+@mixin pos($layout) {
+    position: $layout;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+// $ ================================================== ↓ ui
+
+@mixin panel {
+    padding: 20px 0;
+    border: var(--ovnOftenPanelBorderBase);
+    font-family: var(--ovnBaseFont);
+    color: var(--ovnBase05HEX);
+}
+
+@mixin item {
+}
+
+@mixin block {
+    
+    padding: var(--ovnSpaceP) var(--ovnSpaceP);
+    margin: var(--ovnSpaceM) var(--ovnSpaceM);
+    border: none;
+    width: 100%;
+    font: var(--ovnOftenFB);
+    background: hsla(var(--ovnBase00HSL), 1);
+    box-shadow: var(--ovnOftenSSB);
+    border-radius: var(--ovnRS);
+    transition: var(--ovnOftenT);
+    
+    &:hover {
+        z-index: var(--ovnPriority00);
+        box-shadow: 
+            inset 0 0 2px hsla(0, 0%, 92%, .6),
+            var(--ovnOftenSSH);
+        transform: var(--ovnSurfaceZoomIn);
+    }
+    
+}
+
+@mixin button {
+}
+
+// $ ================================================== ↓ effect
+
+@mixin glass {
+    background: hsla(var(--ovnBase00HSL-H), 24%, 12%, .8);
+    backdrop-filter: var(--ovnPanelFilter);
+}
+
+@mixin zoom {
+    transition: all .526s var(--ovnTransitionElastic), opacity .26s ease;
+}
+
+
+// ================================================== ↓ example
+
+// .item {
+//     @include flex(center);
+//     @include glass;
+//     @include block;
+// }
+

@@ -27,6 +27,7 @@ import { OVN_AUTO_LOAD }         from '../../../store/utils/auto-load.js';
 import { OVN_AUTO_EXECUTE }      from '../../../store/utils/auto-execute.js';
 
 import wave from './wave.scss';
+import scss from './.wave.scss';
 
 
 // $ ================================================== ↓ START
@@ -35,6 +36,7 @@ import wave from './wave.scss';
 OVN_GLOBAL_SCHEDULER.run("XXXXXXXXXX", () => {
     
     GM_addStyle(wave);
+    GM_addStyle(scss);
     
     (function OVN_XXXXXXXXXX_QuickRead() {
         

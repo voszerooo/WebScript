@@ -22,8 +22,7 @@
         "build:minor": "pnpm version minor --recursive --no-git-tag-version && pnpm build:release && node script/publish.js",
         "build:major": "pnpm version major --recursive --no-git-tag-version && pnpm build:release && node script/publish.js",
         "x": "cross-env BUILD_VERSION=true ANALYZE=true webpack --config webpack.config.build.js",
-        "lint": "eslint src/**/*.js",
-        "lint:fix": "pnpm lint -- --fix"
+        "scss": "node script/compile.js"
     },
     "devDependencies": {
         "@babel/core": "^7.29.0",

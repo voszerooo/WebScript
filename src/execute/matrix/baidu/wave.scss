@@ -110,15 +110,7 @@ html {
         
     // $ ================================================== ↓ Content
     
-        // html #wrapper #wrapper_wrapper #container #content_left .c-container[tpl="XXXXX"] {
-        
-
-            // ========== 官方标
-            [class*="title-wrapper_"] [class*="prefix-icon_"] {
-                position: absolute;
-                right: 0;
-                transform: scale(.8);
-            }
+        // html #wrapper #wrapper_wrapper #container #content_left .c-container[tpl="XXXXX"]
         
         #wrapper_wrapper {
             
@@ -140,52 +132,102 @@ html {
         
         :where(#wrapper) {
             
-            :where(.c-container) {
+            // ==================== ↓ Markdown
+            
+                --ovnMdH: 1.5em;
                 
-                &[tpl="ms_new_calc"] {        // $ ==================== ↓ 组件 计算器
-                
-                    .new-pmd { width: 60%; margin: 20px auto; }
-                    .calc-oprate_24c8k { display: flex; justify-content: space-evenly; }
-                    .calc-oprate_24c8k .func-calc_3t0OK { width: 60%;}
-                    
-                    .calc-box_1qoea {
-                        box-shadow: 
-                            inset 1px 1px 1px 0px rgba(255, 255, 255, 0.8),
-                            inset -1px -1px 1px 0px rgba(40, 49, 85, 0.3),
-                            1px 1px 3px 0px rgba(40, 49, 85, 0.1);
-                    }
-                    
+                .cosd-markdown .marklang h3,
+                [class*="accordion-panels-link_"] [class*="accordion-panels-title_"] {
+                    font-size: 15px;
+                    font-weight: bold;
+                    line-height: 1.5;
                 }
                 
-                &[tpl="ms_calendar_san"] {    // $ ==================== ↓ 组件 日历
-                
-                    &.new-pmd { width: 60%; min-width: 600px; margin: 20px auto; }
-                    ._bg-header_1ml43_46 { width: 99%; top: -5px; left: 5px; }
-                    
+                [class*="follow-up-guide_"],
+                .cosd-markdown .marklang .marklang-paragraph,
+                [class*="pc-content-container_"] .cosd-markdown .marklang {
+                    font-size: 14px;
                 }
                 
-                &[tpl="world_time_san"] {     // $ ==================== ↓ 组件 百度时间
-                
-                    .source_4yrHg { position: absolute; bottom: 5px; }
-                    ._paragraph_1g9za_2.md, .sc-source-text { color: #FFF; }
-                    
+                [class*="follow-up-guide_"],
+                .cosd-markdown .marklang li,
+                .cosd-markdown .marklang .marklang-paragraph {
+                    line-height: var(--ovnMdH);
                 }
                 
-                &[tpl="jr_exrate_san"] {      // $ ==================== ↓ 组件 汇率换算
-                
-                    .aladdin_3Tvaz .bg-header_G63NE { top: calc(-10px + var(--ovnBaiduRepair)); }
-                    
+                .marklang ol li, .marklang ul li {
+                    min-height: var(--ovnMdH);
                 }
                 
-                &[tpl="ms_measures_san"] {    // $ ==================== ↓ 组件 单位换算
-                
-                    .cosc-card-light-bg { top: -18px; }
-                    .cosc-card-horizontal-gradient { width: 110%; background-position: center; }
-                    
+                .cos-accordion [class*="accordion-panels-link-header_"] div span {
+                    font-weight: bold;
                 }
                 
+            // ========== 官方标
+            [class*="title-wrapper_"] [class*="prefix-icon_"] {
+                position: absolute;
+                right: 0;
+                transform: scale(.8);
             }
             
+            // $ ==================== ↓ 组件
+            
+                :where(.c-container) {
+                        
+                    // $ ==================== ↓ 计算器
+                    
+                        &[tpl="ms_new_calc"] {
+                        
+                            .new-pmd { width: 60%; margin: 20px auto; }
+                            .calc-oprate_24c8k { display: flex; justify-content: space-evenly; }
+                            .calc-oprate_24c8k .func-calc_3t0OK { width: 60%;}
+                            
+                            .calc-box_1qoea {
+                                box-shadow: 
+                                    inset 1px 1px 1px 0px rgba(255, 255, 255, 0.8),
+                                    inset -1px -1px 1px 0px rgba(40, 49, 85, 0.3),
+                                    1px 1px 3px 0px rgba(40, 49, 85, 0.1);
+                            }
+                            
+                        }
+                        
+                    // $ ==================== ↓ 日历
+                    
+                        &[tpl="ms_calendar_san"] {
+                        
+                            &.new-pmd { width: 60%; min-width: 600px; margin: 20px auto; }
+                            ._bg-header_1ml43_46 { width: 99%; top: -5px; left: 5px; }
+                            
+                        }
+                        
+                    // $ ==================== ↓ 百度时间
+                    
+                        &[tpl="world_time_san"] {
+                        
+                            .source_4yrHg { position: absolute; bottom: 5px; }
+                            ._paragraph_1g9za_2.md, .sc-source-text { color: #FFF; }
+                            
+                        }
+                        
+                    // $ ==================== ↓ 汇率换算
+                    
+                        &[tpl="jr_exrate_san"] {
+                        
+                            .aladdin_3Tvaz .bg-header_G63NE { top: calc(-10px + var(--ovnBaiduRepair)); }
+                            
+                        }
+                        
+                    // $ ==================== ↓ 单位换算
+                    
+                        &[tpl="ms_measures_san"] {
+                        
+                            .cosc-card-light-bg { top: -18px; }
+                            .cosc-card-horizontal-gradient { width: 110%; background-position: center; }
+                            
+                        }
+                        
+                }
+                
             // $ ==================== ↓ 模块
             
                 #container {
@@ -195,7 +237,7 @@ html {
                         position: relative;
                         padding: var(--ovnBaiduP);
                         margin: var(--ovnBaiduM);
-                        width: 100%;
+                        width: 100% !important; // 覆盖官方
                         font-size: 12px;
                         background: #FFFFFF;
                         box-shadow: var(--ovnBaiduS);
@@ -214,6 +256,7 @@ html {
                     .new-pmd[tpl="ai_ask"]:hover,                   // ==== AI 提问
                     .new-pmd[tpl="new_baikan_index"]:hover,         // ==== 百度 AI
                     .new-pmd[tpl="image_grid_san"]:hover,           // ==== 百度图片
+                    .new-pmd[tpl="fy_sg_dict_new_san"]:hover,       // ==== 百度翻译
                     .new-pmd[tpl="sg_kg_entity_san"]:hover,         // ==== 百度百科
                     .new-pmd[tpl="bk_polysemy"]:hover,              // ==== 百度百科
                     .new-pmd[tpl="jy_wenku_wenshu"]:hover,          // ==== 百度文库
@@ -256,6 +299,12 @@ html {
                             [class*="nbk-index_"] [class*="content-folded_"] {
                                 max-height: 526px !important; // 覆盖内联
                             }
+                            [class*="cosd-fold-switch-mask_"] {
+                                border-radius: var(--ovnBaiduRL);
+                            }
+                            [class*="cosd-fold-switch_"] {
+                                padding: 20px 0;
+                            }
                             
                             // overflow: auto;
                             // max-height: calc(526px + 40px);
@@ -263,7 +312,7 @@ html {
                             
                             [class*="card-border_"] { margin-top: -5px; border-color: transparent; }
                             
-                            /* .cosc-card-content { margin-top: var(--ovnBaiduRepair); } */
+                            // .cosc-card-content { margin-top: var(--ovnBaiduRepair); }
                             .cosc-card-light-bg:not([tpl="wenda_generate"] div) { top: var(--ovnBaiduRepair); }
                             .cosd-markdown .marklang .marklang-paragraph { line-height: 1.5; }
                             
@@ -338,12 +387,18 @@ html {
                         }
                         &[tpl="fy_sg_dict_new_san"],
                         &[tpl="fy_sg_dictwisenew_san"] {
-                        
-                            h3.cosc-title,
-                            h3.cosc-title[class*="pc-title_"] { background: transparent; margin-bottom: -5px; }
+                            
                             .cosc-card-shadow { padding-top: 10px; }
                             .cos-swiper-item { max-width: 15%; }
                             [class*="video-wrap_"] .ovnFocal { display: none; }
+                            
+                        }
+                        &[tpl="fy_sg_dictwisenew_san"] {
+                        
+                            h3.cosc-title, h3.cosc-title[class*="pc-title_"] {
+                                margin-bottom: -5px;
+                                background: transparent;
+                            }
                             
                         }
                         
@@ -380,6 +435,9 @@ html {
                             
                             // ========== 修复标题
                             [class*="doc-title_"] { background: transparent; }
+                            
+                            // ========== 小标题
+                            [class*="_paragraph_"].sm { font-size: 14px; }
                             
                         }
                         &[tpl="www_index"][mu*="https://wenku.baidu.com/"] {
@@ -419,215 +477,253 @@ html {
                             
                         }
                         
-                    &[tpl="image_grid_san"] {             // $ ==================== ↓ 百度图片
+                    // $ ==================== ↓ 百度图片
                     
-                        h3.cosc-title { margin: 0px -20px; background: transparent; }
-                        h3.cosc-title > a.ovnFocal.ovnLR { display: inline-block; }
-                        [class*="image-container_"][class*="image-container-pc_"] { display: flex; gap: 40px; }
-                        [class*="image-container_"] [class*="row-border-list_"] { gap: 20px; }
-                        .cos-image-background { border-radius: var(--ovnPanelRadius); }
+                        &[tpl="image_grid_san"] {
                         
-                    }
-                    
-                    &[tpl="tieba_general"] {              // $ ==================== ↓ 百度贴吧
-                    
-                        .cos-space-mt-md { width: 96%; }
-                        
-                    }
-                    
-                    &[tpl="xueshu_links_new"] {           // $ ==================== ↓ 百度学术
-                    
-                        .c-tabs-nav { background: transparent; }
-                        .c-tabs-nav .c-tabs-nav-li { margin: 0; }
-                        .c-tabs-nav .c-tabs-nav-selected { background: #F5F5F6; }
-                        .op-xueshu-links-new-d20-source { margin-top: 20px; }
-                        
-                    }
-                    
-                    &[tpl="weather_forecast_san"] {       // $ ==================== ↓ 百度天气
-                    
-                        --ovnX: 10px;
-                        
-                        [class*="content-border_"] { box-shadow: none; }
-                        
-                        // ========== 按钮 左右翻页
-                        
-                            [class*="load_"][class*="back_"] { left: var(--ovnX); }
-                            [class*="load_"][class*="more_"] { right: var(--ovnX); }
+                            h3.cosc-title { margin: 0px -20px; background: transparent; }
+                            h3.cosc-title > a.ovnFocal.ovnLR { display: inline-block; }
+                            [class*="image-container_"][class*="image-container-pc_"] { display: flex; gap: 40px; }
+                            [class*="image-container_"] [class*="row-border-list_"] { gap: 20px; }
+                            .cos-image-background { border-radius: var(--ovnPanelRadius); }
                             
-                    }
-                    
-                    &[tpl="car_kg2_san"] {                // $ ==================== ↓ 百度有驾
-                    
-                        --ovnX: 10px;
-                        
-                    }
-                    
-                    &[tpl="med_aigc_guru_san"] {          // $ ==================== ↓ 百度健康
-                    
-                        [class*="medAigcPcCard_"] { margin-top: 10px; }
-                        
-                    }
-                    
-                    &[tpl="yl_music_song"] {              // $ ==================== ↓ 音乐
-                    
-                        --ovnX: 1260px;
-                        
-                        [class*="table-container_"] [class*="table-thead_"] [class*="th-num_"],
-                        [class*="table-container_"] [class*="table-tbody_"] [class*="td-num_"] {
-                            width: var(--ovnX);
                         }
                         
-                    }
+                    // $ ==================== ↓ 百度贴吧
                     
-                    &[tpl="game-page-pandemand"] {        // $ ==================== ↓ 游戏
-                    
-                        .content[class*="content-info_"] {
-                            display: grid;
-                            justify-items: center;
-                        }
-                        .content[class*="content-info_"] > [class*="tab-wrapper_"] {
-                            grid-column: 1 / 3;
-                            text-align: center;
-                        }
-                        .content[class*="content-info_"] > .c-row.c-gap-top-large:last-of-type { display: none; }
-                        .c-row.c-gap-top-large > .c-span2 { margin-right: 35px; }
+                        &[tpl="tieba_general"] {
                         
-                    }
-                    
-                    &[tpl="rel-baike"] {                  // $ ==================== ↓ 聚合搜索
-                    
-                        [class*="rel-baike_"] [class*="lemma-item_"] { margin: 0; }
-                        [class*="rel-baike_"] [class*="default-baike_"][class*="scroll-bar_"] {
-                            display: flex;
-                            margin: 15px 0 5px 0;
+                            .cos-space-mt-md { width: 96%; }
+                            
                         }
                         
-                    }
+                    // $ ==================== ↓ 百度学术
                     
-                    &[tpl="ai_ecology"] {                 // $ ==================== ↓ AI 工具箱
-                    
-                        --ovnX: 12%;
+                        &[tpl="xueshu_links_new"] {
                         
-                        .cos-row-col-12 > .cos-col-3 { width: var(--ovnX); }
-                        [class*="card-footer-normal"] { left: calc(var(--ovnX) - 15px/4); }
-                        
-                    }
-                    
-                    &[tpl="yl_rw_figure_sample_san"] {    // $ ==================== ↓ 作品成就
-                    
-                        [class*="movie_"][class*="single_"] [class*="cosc-image-with-tags_"] { width: 10%; }
-                        [class*="list_"] [class*="movie-item_"], [class*="list_"] [class*="music-item_"] {
-                            width: calc(10% - var(--space-between)) !important;
+                            .c-tabs-nav { background: transparent; }
+                            .c-tabs-nav .c-tabs-nav-li { margin: 0; }
+                            .c-tabs-nav .c-tabs-nav-selected { background: #F5F5F6; }
+                            .op-xueshu-links-new-d20-source { margin-top: 20px; }
+                            
                         }
                         
-                    }
+                    // $ ==================== ↓ 百度天气
                     
-                    &[tpl="sp_purc_pc"] {                 // $ ==================== ↓ 全网热卖
-                    
-                        h3 { margin: -22px -20px 10px -20px; } 
-                        [class*="content-wrap_"] > div[style*="display: block"] {
-                            display: flex !important;
-                            justify-content: space-evenly;
-                        }
-                        [class*="row_"] { margin: 0; }
-                        [class*="sp_purc_pc-sku-item_"] { margin: 15px 40px 15px 0; }
+                        &[tpl="weather_forecast_san"] {
                         
-                    }
-                    
-                    &[tpl="rel_base_realtime"] {              // $ ==================== ↓ 在线观看
-                    
-                        img { border-radius: var(--ovnBaseRadius); }
-                        .cos-image-3-2 { padding-bottom: 25%; mask-image: linear-gradient(to bottom, #000 95%, transparent 100%); }
-                        .cos-image-fit-cover .cos-image-background { background-size: contain; }
-                        
-                        .cos-row.cos-gutter:not(:has(.cos-col-3)) { margin-left: calc(var(--cos-grid-gutter) * -.5 + 25%); }
-                        .cos-space-mt-md:not(:has(.cos-col-3)) .cos-row.cos-gutter { margin-left: 0; }
-                        
-                    }
-                    
-                    &[tpl="yl-vd-basis"] {                // $ ==================== ↓ 在线观看
-                    
-                        .c-span9 { width: max-content; }
-                        
-                    }
-                    &[tpl="rel_base_realtime"] {          // $ ==================== ↓ 在线观看
-                    
-                        img { border-radius: var(--ovnBaseRadius); }
-                        .cos-image-3-2 { padding-bottom: 25%; mask-image: linear-gradient(to bottom, #000 95%, transparent 100%); }
-                        .cos-image-fit-cover .cos-image-background { background-size: contain; }
-                        
-                        .cos-row.cos-gutter:not(:has(.cos-col-3)) { margin-left: calc(var(--cos-grid-gutter) * -.5 + 25%); }
-                        .cos-space-mt-md:not(:has(.cos-col-3)) .cos-row.cos-gutter { margin-left: 0; }
-                        
-                    }
-                    
-                    &[tpl="short_video"] {                // $ ==================== ↓ 高清在线观看
-                    
-                        .content_LHXYt > div { display: flex; gap: 20px; }
-                        .content_LHXYt .c-row { display: flex; gap: 20px; }
-                        .c-gap-top-large, .c-span4 { margin: 0; }
-                        
-                    }
-                    
-                    &[tpl="ai_agent_distribute"] {        // $ ==================== ↓ 聊一下更多精彩
-                    
-                        .card-title_6qPL6 { width: 100%; }
-                        .content_EbWw1 .common-content_4dXMi { width: 95%; }
-                        
-                    }
-                    
-                    &[tpl="ai_agent_qa_recommend"] {      // $ ==================== ↓ 实时智能回复
-                    
-                        /* ========== ↓ 标题 */
-                        
-                            .cos-space-mt-lg { margin-top: 0; }
-                            .agent-qa-card_3V5cX .card-title_2GtKe { margin: 10px 0; }
-                        
-                    }
-                    
-                    &[tpl="news-realtime"] {              // $ ==================== ↓ 最新信息
-                    
-                        .single-card-wrapper_2nlg9 {
-                            display: flex;
-                            justify-content: flex-start;
-                            border-radius: var(--ovnSurfaceRadius);
-                            box-shadow: none;
-                        }
-                        .single-card-wrapper_2nlg9 > .c-row { display: flex; }
-                        .single-card-wrapper_2nlg9 > .c-row:last-of-type { display: none; }
-                        
-                    }
-                    
-                    &[mu*="https://wenku.baidu.com/"] {   // $ ==================== ↓ 最新相关信息
-                    
-                        ._image_14uts_1 {
-                            background-size: contain !important;
-                            padding-bottom: 25% !important;
+                            --ovnX: 10px;
+                            
+                            [class*="content-border_"] { box-shadow: none; }
+                            
+                            // ========== 按钮 左右翻页
+                            
+                                [class*="load_"][class*="back_"] { left: var(--ovnX); }
+                                [class*="load_"][class*="more_"] { right: var(--ovnX); }
+                                
                         }
                         
-                    }
+                    // $ ==================== ↓ 百度有驾
                     
-                    &[tpl="recommend_list"] {             // $ ==================== ↓ 相关搜索
-                    
-                        .pc-rg-upgrade_2X3zi .item_3WKCf {
-                            margin: 5px !important;
-                            color: var(--ovnBaiduKeyWord);
+                        &[tpl="car_kg2_san"] {
+                        
+                            --ovnX: 10px;
+                            
                         }
                         
-                    }
-                    &[tpl="app/rs"] {                    // $ ==================== ↓ 相关搜索
+                    // $ ==================== ↓ 百度健康
                     
-                        padding: var(--ovnSpacePadding) !important;
-                        margin: var(--ovnSpaceMargin) !important;
+                        &[tpl="med_aigc_guru_san"] {
                         
-                        #rs_new { margin: 0; width: 100%; }
-                        #rs_new table { margin: 20px auto; }
-                        #rs_new table tr { display: flex; gap: 40px; }
-                        #rs_new table tr .rs-link_2DE3Q { color: var(--ovnBaseColor);}
+                            [class*="medAigcPcCard_"] { margin-top: 10px; }
+                            
+                        }
                         
-                    }
+                    // $ ==================== ↓ 音乐
                     
+                        &[tpl="yl_music_song"] {
+                        
+                            --ovnX: 1260px;
+                            
+                            [class*="table-container_"] [class*="table-thead_"] [class*="th-num_"],
+                            [class*="table-container_"] [class*="table-tbody_"] [class*="td-num_"] {
+                                width: var(--ovnX);
+                            }
+                            
+                        }
+                        
+                    // $ ==================== ↓ 游戏
+                    
+                        &[tpl="game-page-pandemand"] {
+                        
+                            .content[class*="content-info_"] {
+                                display: grid;
+                                justify-items: center;
+                            }
+                            .content[class*="content-info_"] > [class*="tab-wrapper_"] {
+                                grid-column: 1 / 3;
+                                text-align: center;
+                            }
+                            .content[class*="content-info_"] > .c-row.c-gap-top-large:last-of-type { display: none; }
+                            .c-row.c-gap-top-large > .c-span2 { margin-right: 35px; }
+                            
+                        }
+                        
+                    // $ ==================== ↓ 聚合搜索
+                    
+                        &[tpl="rel-baike"] {
+                        
+                            [class*="rel-baike_"] [class*="lemma-item_"] { margin: 0; }
+                            [class*="rel-baike_"] [class*="default-baike_"][class*="scroll-bar_"] {
+                                display: flex;
+                                margin: 15px 0 5px 0;
+                            }
+                            
+                        }
+                        
+                    // $ ==================== ↓ AI 工具箱
+                    
+                        &[tpl="ai_ecology"] {
+                        
+                            --ovnX: 12%;
+                            
+                            .cos-row-col-12 > .cos-col-3 { width: var(--ovnX); }
+                            [class*="card-footer-normal"] { left: calc(var(--ovnX) - 15px/4); }
+                            
+                        }
+                        
+                    // $ ==================== ↓ 作品成就    
+                    
+                        &[tpl="yl_rw_figure_sample_san"] {
+                        
+                            [class*="movie_"][class*="single_"] [class*="cosc-image-with-tags_"] { width: 10%; }
+                            [class*="list_"] [class*="movie-item_"], [class*="list_"] [class*="music-item_"] {
+                                width: calc(10% - var(--space-between)) !important;
+                            }
+                            
+                        }
+                        
+                    // $ ==================== ↓ 全网热卖
+                    
+                        &[tpl="sp_purc_pc"] {
+                        
+                            h3 { margin: -22px -20px 10px -20px; } 
+                            [class*="content-wrap_"] > div[style*="display: block"] {
+                                display: flex !important;
+                                justify-content: space-evenly;
+                            }
+                            [class*="row_"] { margin: 0; }
+                            [class*="sp_purc_pc-sku-item_"] { margin: 15px 40px 15px 0; }
+                            
+                        }
+                        
+                    // $ ==================== ↓ 在线观看
+                    
+                        &[tpl="rel_base_realtime"] {
+                        
+                            img { border-radius: var(--ovnBaseRadius); }
+                            .cos-image-3-2 { padding-bottom: 25%; mask-image: linear-gradient(to bottom, #000 95%, transparent 100%); }
+                            .cos-image-fit-cover .cos-image-background { background-size: contain; }
+                            
+                            .cos-row.cos-gutter:not(:has(.cos-col-3)) { margin-left: calc(var(--cos-grid-gutter) * -.5 + 25%); }
+                            .cos-space-mt-md:not(:has(.cos-col-3)) .cos-row.cos-gutter { margin-left: 0; }
+                            
+                        }
+                        
+                        &[tpl="yl-vd-basis"] {
+                        
+                            .c-span9 { width: max-content; }
+                            
+                        }
+                        &[tpl="rel_base_realtime"] {
+                        
+                            img { border-radius: var(--ovnBaseRadius); }
+                            .cos-image-3-2 { padding-bottom: 25%; mask-image: linear-gradient(to bottom, #000 95%, transparent 100%); }
+                            .cos-image-fit-cover .cos-image-background { background-size: contain; }
+                            
+                            .cos-row.cos-gutter:not(:has(.cos-col-3)) { margin-left: calc(var(--cos-grid-gutter) * -.5 + 25%); }
+                            .cos-space-mt-md:not(:has(.cos-col-3)) .cos-row.cos-gutter { margin-left: 0; }
+                            
+                        }
+                        
+                    // $ ==================== ↓ 高清在线观看
+                    
+                        &[tpl="short_video"] {
+                        
+                            .content_LHXYt > div { display: flex; gap: 20px; }
+                            .content_LHXYt .c-row { display: flex; gap: 20px; }
+                            .c-gap-top-large, .c-span4 { margin: 0; }
+                            
+                        }
+                        
+                    // $ ==================== ↓ 聊一下更多精彩
+                    
+                        &[tpl="ai_agent_distribute"] {
+                        
+                            .card-title_6qPL6 { width: 100%; }
+                            .content_EbWw1 .common-content_4dXMi { width: 95%; }
+                            
+                        }
+                        
+                    // $ ==================== ↓ 实时智能回复
+                    
+                        &[tpl="ai_agent_qa_recommend"] {
+                            
+                            // ========== 标题
+                            
+                                .cos-space-mt-lg { margin-top: 0; }
+                                .agent-qa-card_3V5cX .card-title_2GtKe { margin: 10px 0; }
+                                
+                        }
+                        
+                    // $ ==================== ↓ 最新信息
+                    
+                        &[tpl="news-realtime"] {
+                        
+                            .single-card-wrapper_2nlg9 {
+                                display: flex;
+                                justify-content: flex-start;
+                                border-radius: var(--ovnSurfaceRadius);
+                                box-shadow: none;
+                            }
+                            .single-card-wrapper_2nlg9 > .c-row { display: flex; }
+                            .single-card-wrapper_2nlg9 > .c-row:last-of-type { display: none; }
+                            
+                        }
+                        
+                    // $ ==================== ↓ 最新相关信息
+                    
+                        &[mu*="https://wenku.baidu.com/"] {
+                        
+                            ._image_14uts_1 {
+                                background-size: contain !important;
+                                padding-bottom: 25% !important;
+                            }
+                            
+                        }
+                        
+                    // $ ==================== ↓ 相关搜索
+                    
+                        &[tpl="recommend_list"] {
+                        
+                            .pc-rg-upgrade_2X3zi .item_3WKCf {
+                                margin: 5px !important;
+                                color: var(--ovnBaiduKeyWord);
+                            }
+                            
+                        }
+                        &[tpl="app/rs"] {
+                        
+                            padding: var(--ovnSpacePadding) !important;
+                            margin: var(--ovnSpaceMargin) !important;
+                            
+                            #rs_new { margin: 0; width: 100%; }
+                            #rs_new table { margin: 20px auto; }
+                            #rs_new table tr { display: flex; gap: 40px; }
+                            #rs_new table tr .rs-link_2DE3Q { color: var(--ovnBaseColor);}
+                            
+                        }
+                        
                 }
                 
         }
@@ -675,9 +771,6 @@ html {
 
 
 
-
-
-// * { background: #0FF !important; }
 
 
 
@@ -835,6 +928,7 @@ html {
             .exta-links-pc_2sXPl h3,
             .exta-link-pc_3aUAb h3,
             .c-container[tpl="world_time_san"] h3,
+            .c-container[tpl="fy_sg_dict_new_san"] h3,
             .c-container[tpl="wenda_generate"] h3,
             .c-container[tpl="fy_fanyi_ai_san"] h3,
             .c-container[tpl="jr_stock_comment_san"] h3
@@ -909,14 +1003,3 @@ html {
             }
             
         }
-        
-    /* ========== ↓ Markdown AI 问答区 「预计更改」 */
-    
-        html .cosd-markdown .marklang h3 { font-size: 14px; }
-        
-        html .cosd-markdown .marklang,
-        html .cosd-markdown .marklang .marklang-paragraph {
-            font-size: 14px;
-        }
-        
-        

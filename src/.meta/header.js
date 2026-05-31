@@ -44,8 +44,6 @@
 // @copyright                 2026 __AUTHOR__
 // @contact                   __CONTACT__
 // @supportURL                __HOMEPAGE__/issues
-// @downloadURL               https://update.__SOURCE__/GlobalCustom.user.js
-// @updateURL                 https://update.__SOURCE__/GlobalCustom.meta.js
 
 
 // ==/UserScript==

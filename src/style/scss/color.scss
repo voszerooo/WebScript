@@ -1,0 +1,187 @@
+
+
+@use "sass:color";
+@use "sass:map";
+@use "sass:math";
+@use "theme.scss" as *;
+
+
+$mainLight: (
+    "Accent":    #75839F,
+    "Secondary": #454A54,
+    "Primary":   #2C2F35,
+    "Dark":      #000000,
+);
+$mainDark: (
+    "Accent":    #4C525E,
+    "Secondary": #2D3139,
+    "Primary":   #1D1E20,
+    "Dark":      #000000,
+);
+
+$baseLight: (
+    "00": #1C1E22,
+    "01": #1F2228,
+    "02": #2C2F35,
+    "03": #353941,
+    "04": #454A54,
+    "05": #757C8A,
+    "06": #ABB0BA,
+    "07": #BEC2CA,
+    "08": #F4F4F4,
+    "09": #F9F9F9,
+);
+$baseDark: (
+    "00": #1C1E22, // "00": map.get($baseLight, "09"),
+    "01": #1F2228, // "01": map.get($baseLight, "08"),
+    "02": #2C2F35, // "02": map.get($baseLight, "07"),
+    "03": #353941, // "03": map.get($baseLight, "06"),
+    "04": #454A54, // "04": map.get($baseLight, "05"),
+    "05": #757C8A, // "05": map.get($baseLight, "04"),
+    "06": #ABB0BA, // "06": map.get($baseLight, "03"),
+    "07": #BEC2CA, // "07": map.get($baseLight, "02"),
+    "08": #F4F4F4, // "08": map.get($baseLight, "01"),
+    "09": #F9F9F9, // "09": map.get($baseLight, "00"),
+);
+
+$glow: (
+    "00": #D9B9F9,
+    "01": #708BC2,
+    "02": #9087F8,
+    "03": #25F493,
+    "04": #13EC99,
+    "05": #79ECD9,
+    "06": #CEF4FD,
+    "07": #F7F0B7,
+    "08": #BCF5F4,
+    "09": #85E0D7,
+);
+$state: (
+    "Success":  #25F49D,
+    "Warn":     #FF7424,
+    "Error":    #FC5E4F,
+    "Link":     #478BE5, // var(--ovnBlue0000),
+    "Visited":  #00B3B3, // var(--ovnCyan0000),
+    "Match":    #FF5242, // var(--ovnOrange01),
+);
+$hue: (
+    "Red00":    #E93F3F,
+    "Red02":    #EF4444,
+    "Orange00": #F55F3A,
+    "Orange01": #FF5242,
+    "Orange02": #EE5C2A,
+    "Yellow00": #F7F0B7, // var(--ovnGlow07HEX),
+    "Green00":  #11D080,
+    "Green01":  #29F9A9,
+    "Green02":  #10B981,
+    "Cyan00":   #00B3B3,
+    "Blue00":   #478BE5,
+    "Blue01":   #2BC2FF,
+    "Blue02":   #2BC2FF,
+    "Purple00": #9087F8, // var(--ovnGlow02HEX),
+);
+
+
+@mixin magic($prefix, $map, $mutually: false) {
+    @each $key, $value in $map {
+        $h: math.round(math.div(color.channel($value, "hue", $space: hsl), 1deg));
+        $s: math.round(color.channel($value, "saturation", $space: hsl));
+        $l: math.round(color.channel($value, "lightness", $space: hsl));
+        
+        --#{$prefix}#{$key}HEX: #{$value};
+        --#{$prefix}#{$key}HSL-H: #{$h};
+        --#{$prefix}#{$key}HSL-S: #{$s};
+        --#{$prefix}#{$key}HSL-L: #{$l};
+        --#{$prefix}#{$key}HSL: #{$h}, #{$s}, #{$l};
+        
+        @if $mutually {
+            --#{$prefix}#{$key}ALT: #{$h}, #{$s - 00%}, #{$l + 02%};
+            --#{$prefix}#{$key}SEL: #{$h}, #{$s - 02%}, #{$l - 10%};
+            --#{$prefix}#{$key}CBD: #{$h}, #{$s - 00%}, #{$l + 20%};
+            --#{$prefix}#{$key}CSD: #{$h}, #{$s - 00%}, #{$l - 10%};
+        }
+    }
+}
+
+:root {
+    
+    @include magic("ovn", $mainLight, $mutually: true);
+    @include magic("ovnBase", $baseLight, $mutually: true);
+    
+    @include theme() {
+        
+        &, &[ovnMain] {
+            $main: null;
+            @if $theme == light { $main: $mainLight; } @else { $main: $mainDark; }
+            @include magic("ovn", $main, $mutually: true);
+        }
+        &, &[ovnBase] {
+            $base: null;
+            @if $theme == light { $base: $baseLight; } @else { $base: $baseDark; }
+            @include magic("ovnBase", $base, $mutually: true);
+        }
+        
+    }
+    
+}
+
+:root, [ovnState] {
+    @include magic("ovnGlow", $glow);
+    @include magic("ovnState", $state);
+    @include magic("ovn", $hue);
+}
+
+:root, [ovnStore] {
+    
+    --ovnGridS: hsla(var(--ovnBase05HSL), .05);
+    --ovnGridL: hsla(var(--ovnBase05HSL), .07);
+    --ovnGridD: hsla(var(--ovnBase05HSL), .07);
+    
+    --ovnGlassBase: hsla(var(--ovnBase09HSL), .6);
+    --ovnGlassTidy: hsla(var(--ovnBase09HSL), .8);
+    --ovnGlassDark: hsla(var(--ovnPrimaryHSL), .526);
+    
+    --ovnForeground: #000;
+    --ovnBackground: #000;
+    --ovnBackdrop:   #000;
+    
+    // --ovnGrid-S: hsla(0, 0%, 50%, 0.07);
+    // --ovnGrid-L: hsla(0, 0%, 50%, 0.09);
+    // --ovnGrid-D: hsla(0, 0%, 50%, 0.09);
+    // 
+    // --ovnGlassBase: hsla(0, 0%, 98%, .6);
+    // --ovnGlassClean: hsla(0, 0%, 98%, .8);
+    // 
+    // 
+    // --ovnGrid-S: hsla(0, 0%, 50%, 0.05);
+    // --ovnGrid-L: hsla(0, 0%, 50%, 0.07);
+    // --ovnGrid-D: hsla(0, 0%, 50%, 0.07);
+    // 
+    // --ovnGlassBase: hsla(0, 0%, 98%, .6);
+    // --ovnGlassClean: hsla(0, 0%, 98%, .8);
+    
+}
+
+:root, [ovnMarkdown] {
+    --ovnMarkdownH1: #494F4D;
+    --ovnMarkdownH2: #515463;
+    --ovnMarkdownH3: #40465D;
+    --ovnMarkdownH4: #4D5B66;
+    --ovnMarkdownH5: #4F5E68;
+    --ovnMarkdownH6: #5B7481;
+}
+
+:root, [ovnGather] {
+    --ovnBaidu:        #4E6EF2;
+    --ovnGoogleBlue:   #4285F4;
+    --ovnGoogleRad:    #ea4335;
+    --ovnGoogleYellow: #FBBC05;
+    --ovnGoogleGreen:  #34a853;
+    --ovnBing:         #174AE4;
+    --ovnYoutubeRad:   #FD0234;
+    --ovn115:          #2777F8;
+    --ovnIQIYI:        #00F48E;
+    --ovnBiliPink:     #FB7299;
+    --ovnBiliBlue:     #00AEEC;
+}
+

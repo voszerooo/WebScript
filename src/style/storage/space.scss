@@ -7,6 +7,7 @@
     --ovnPriorityHead: ;
     --ovnPrioritySidebar: ;
     --ovnPriorityFooter: ;
+    --ovnPriorityItem: ;
     --ovnPriorityBase: ;
     
     --ovnSpace2X: 20px;
@@ -37,5 +38,6 @@
     --ovnTransitionFlow:    cubic-bezier(.240, .926, .60, 0.920);
     --ovnTransitionElastic: cubic-bezier(.175, .885, .32, 1.260);
     --ovnOftenTransition: all .526s var(--ovnTransitionSoft);
+    --ovnOftenTrans: .526s var(--ovnTransitionSoft);
     
 }
