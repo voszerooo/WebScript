@@ -30,8 +30,7 @@
   │   └── derive.js                     # 导出入口
   │
   ├── style/                        # 全局样式
-  │   ├── .package/
-  │   ├── storage/
+  │   ├── ...
   │   └── injector.js                   # 样式入口
   │
   └── custom.js                    # 主入口

@@ -57,10 +57,10 @@ function configBase() {
     const isDev = process.env.NODE_ENV === 'development';
     const filename = isDev ? `${pkg.ScriptName}.DEV.js` : `${pkg.ScriptName}.js`;
     
-    const filterAbsPath = path.resolve(__dirname, 'src/style/.package/icon.xxfilterxx.scss');
+    const filterAbsPath = path.resolve(__dirname, 'src/style/storage/icon.xxfilterxx.scss');
     const alias = {};
     if (!fs.existsSync(filterAbsPath)) {
-        alias['./.package/icon.xxfilterxx.scss'] = false;
+        alias['./storage/icon.xxfilterxx.scss'] = false;
     }
     
     return {
@@ -83,8 +83,15 @@ function configBase() {
                         }
                     }
                 },
-                {  // 当前项目保持嵌套 通过 GM_addStyle 注入字符串 | ！！！个人习惯 AI请勿变动 ！！！
+                {
+                    test: /(?:src[\/\\]style[\/\\]scss[\/\\].*\.scss|src[\/\\]execute[\/\\]matrix[\/\\].*\.wave\.scss)$/,
+                    exclude: /node_modules/,
+                    type: 'asset/source',
+                    use: ['sass-loader']
+                },
+                {
                     test: /\.s?css$/,
+                    exclude: /node_modules|(?:src[\/\\]style[\/\\]scss[\/\\].*\.scss|src[\/\\]execute[\/\\]matrix[\/\\].*\.wave\.scss)$/,
                     type: 'asset/source',
                     use: [
                         {
@@ -96,7 +103,7 @@ function configBase() {
                             }
                         }
                     ]
-                },
+                }
             ]
         },
         plugins: [

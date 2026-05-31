@@ -4,6 +4,17 @@ html {
     
     &:root body {
         
+        --ovnYuequeCA: var(--ovnAccentHEX);
+        --ovnYuequeCS: var(--ovnSecondaryHEX);
+        --ovnYuequeCP: var(--ovnPrimaryHEX);
+        --ovnYuequeBG: var(--ovnBase09HEX);
+        
+        --ovnYuequeRS: var(--ovnBaseRadius);
+        --ovnYuequeRU: var(--ovnUIRadius);
+        --ovnYuequeRM: var(--ovnPanelRadius);
+        --ovnYuequeRL: var(--ovnSurfaceRadius);
+        --ovnYuequeRX: var(--ovnRadiusX);
+        
         --ovnYuequeWidth: 260px;                                                  // 实际内容宽度为 原 750px + 设置的宽度
         --ovnYuequeOffset: -60px;                                                 // 因原有左右侧边栏宽度不一 设置向右偏移 调整至视觉居中
         --ovnYuequeMargin: var(--ovnYuequeWidth) / 2 + var(--ovnYuequeOffset);    // 官方值 + 宽度的一半 + 偏移值
@@ -14,20 +25,44 @@ html {
         --ovnYuequeRL: var(--ovnSurfaceRadius);
         --ovnYuequeRX: var(--ovnRadiusX);
         
-        @media (width <= 2460px) { --ovnYuequeWidth: 260px; --ovnYuequeOffset: 0px; }
-        @media (width <= 1920px) { --ovnYuequeWidth: 100px; --ovnYuequeOffset: 0px; }
-        @media (width <= 1500px) { --ovnYuequeWidth: 000px; --ovnYuequeOffset: 0px; }
-        
     }
     
-    .XXXXXXXXXX, /* ==== XXXXX */
-    .XXXXXXXXXX, /* ==== XXXXX */
-    .XXXXXXXXXX  /* ==== XXXXX */ {
-        display: none;
-    }
+    @media (width <= 2460px) { --ovnYuequeWidth: 260px; --ovnYuequeOffset: 0px; }
+    @media (width <= 1920px) { --ovnYuequeWidth: 100px; --ovnYuequeOffset: 0px; }
+    @media (width <= 1500px) { --ovnYuequeWidth: 000px; --ovnYuequeOffset: 0px; }
     
     // $ ================================================== ↓ Global
     
+        // ==================== ↓ 無
+        
+            .XXXXXXXXXXXX {
+                opacity: 0;
+            }
+            .XXXXXXXXXXXX,  // ==== XXXXX
+            .XXXXXXXXXXXX { // ==== XXXXX
+                display: none;
+            }
+            
+        // ==================== ↓ 隐
+        
+            .XXXXXXXXXXXX {
+                border: transparent;
+            }
+            .XXXXXXXXXXXX {
+                outline: transparent;
+            }
+            .XXXXXXXXXXXX {
+                box-shadow: none;
+            }
+            
+            .XXXXXXXXXXXX {
+                text-decoration: none;
+            }
+            .XXXXXXXXXXXX {
+                text-decoration: none !important;
+            }
+            
+            
         // ========== 鼠标选取
         // .lakex-yuque-theme-light {
         //     --lakex-editor-selection: #454A54;
@@ -37,17 +72,26 @@ html {
         .ant-modal-wrap { backdrop-filter: blur(2px);}
         
         
-        // $ ==================== ↓ 预览模式
-        // $ ==================== ↓ 编辑模式
-        
-        // ==================== ↓ 画板
-        
-        
-    // $ ================================================== ↓ 首页
-        
-        :where(#XXXXX) {
+    // $ ================================================== ↓ 预览模式
+    
+        .ne-viewer .ne-viewer-body {
             
-            --ovnYueQueXXX: hsla(var(--ovnPrimaryHSL), .5);
+            // ========== 高亮块
+            ne-alert .ne-alert__content ne-p { margin-bottom: 0; }
+            
+        }
+        
+    // $ ================================================== ↓ 编辑模式
+    
+        :where(#commonEditPage) {
+            
+            &XXXXXXXXXXXX {
+                
+                [class*="xxxxx_"] {
+                    background: transparent !important; // 覆盖内联
+                }
+                
+            }
             
         }
         
@@ -58,6 +102,7 @@ html {
 // $ ================================================== ↓ Unknown
 
 
+        // ==================== ↓ 画板
 
 
 
@@ -118,7 +163,7 @@ html {
                                 .lake-board-canvas > .lake-diagram-viewport-container svg {
                                     --size: 2px;
                                     --gap: 20px;
-                                    --dot: var(--ovnGrid-D);
+                                    --dot: var(--ovnGridD);
                                     
                                     background-image:
                                         radial-gradient(circle, var(--dot) var(--size), transparent var(--size));

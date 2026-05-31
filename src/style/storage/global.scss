@@ -1,14 +1,53 @@
 
 
-#ovnDOM { z-index: var(--ovnPriority09); pointer-events: none; padding: 0; margin: 0; font-size: var(--ovnBaseSize); }
-#ovnDOM, #ovnDOM *, #ovnDOM ::before, #ovnDOM ::after { box-sizing: border-box; outline: none; }
+:where(
+    #ovnDOM,
+    #ovnDOM *,
+    #ovnDOM *::before,
+    #ovnDOM *::after
+) {
+    
+    appearance: auto;
+    list-style: none;
+    
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: none;
+    
+    font: inherit;
+    color: inherit;
+    text-decoration: none;
+    text-shadow: none;
+    text-transform: none;
+    word-spacing: normal;
+    vertical-align: baseline;
+    letter-spacing: normal;
+    white-space: normal;
+    word-break: normal;
+    writing-mode: horizontal-tb;
+    
+    filter: none;
+    backdrop-filter: none;
+    animation: none;
+    transition: none;
+    
+}
 
-// #ovnDOM * {
-//     padding: 0;
-//     margin: 0;
-//     font-size: var(--ovnBaseSize);
-//     list-style: none;
-// }
+:where(#ovnDOM) {
+    
+    all: initial;
+    pointer-events: none;
+    
+    font-family: var(--ovnBaseFont);
+    font-size: var(--ovnBaseSize);
+    color: var(--ovnBase05HEX);
+    
+    p, pre { line-height: 2; }
+    label { margin: 0; padding: 0; }
+    
+}
 
 
 // $ ================================================== ↓ Animation
@@ -80,77 +119,35 @@
     
 // $ ================================================== ↓ Panel
 
-    /** TREE
-    * 
-    * #    ovnOptionsPanel
-    * -
-    * *        ovnPanelBody
-    * -            ovnGroupBase
-    * =                ovnGroupHead
-    * -                    ovnFoldBox
-    * -                        ovnArrow
-    * -                    ovnHeaderRow
-    * =                ovnGroupBody
-    * -                    ovnBodyRow
-    * -                    ovnGroupBase.Sub
-    * -                    
-    * -                        ovnGroupHead
-    * -                            ovnFoldBox
-    * -                                ovnArrow
-    * -                            ovnHeaderRow
-    * -                        ovnGroupBody
-    * -                            ovnBodyRow
-    * *        ovnButton
-    * 
-    */
+    .ovnPanelBase {
+        
+        --ovnGap: 12px;
+        --ovnXXX: 20px;
+        
+        pointer-events: auto;
+        will-change: opacity, transform;
+        padding: var(--ovnXXX) 0;
+        border: var(--ovnOftenPanelBorderBase);
+        font-family: var(--ovnBaseFont);
+        color: var(--ovnBase05HEX);
+        background: hsla(var(--ovnBase00HSL-H), 60%, 6%, .8); // hsla(var(--ovnBase00HSL-H), 24%, 12%, .8)
+        box-shadow: var(--ovnSurfaceShadow) hsla(var(--ovnAccentCSD), .8);
+        border-radius: var(--ovnSurfaceRadius);
+        backdrop-filter: var(--ovnPanelFilter);
+        transition: all .526s var(--ovnTransitionElastic), opacity .26s ease;
+        
+        &.ovnShow { opacity: 1; transform: translate(0, -50%); }
+        &.ovnHide { opacity: 0; transform: translate(120%, -50%); }
+        
+    }
     
-        :where(.ovnOptionBase) {
-            
-            label { margin: 0; padding: 0; color: inherit; }
-            div, span { color: inherit; }
-            input:before, input:after { display: none; }
-            
-        }
-        
-        .ovnPanelBase {
-            
-            --ovnGap: 12px;
-            --ovnXXX: 20px;
-            
-            pointer-events: auto;
-            will-change: opacity, transform;
-            padding: var(--ovnXXX) 0;
-            border: var(--ovnOftenPanelBorderBase);
-            font-family: var(--ovnBaseFont);
-            color: var(--ovnBase05HEX);
-            background: hsla(var(--ovnBase00HSL-H), 60%, 6%, .8); // hsla(var(--ovnBase00HSL-H), 24%, 12%, .8)
-            box-shadow: var(--ovnSurfaceShadow) hsla(var(--ovnAccentShadow), .8);
-            border-radius: var(--ovnSurfaceRadius);
-            backdrop-filter: var(--ovnPanelFilter);
-            transition: all .526s var(--ovnTransitionElastic), opacity .26s ease;
-            
-        }
-        .ovnPanelBase.ovnShow { opacity: 1; transform: translate(0, -50%); }
-        .ovnPanelBase.ovnHide { opacity: 0; transform: translate(120%, -50%); }
-        
-        .ovnCenter {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        .ovnFixed {
-            position: fixed;
-            top: 50%;
-            right: var(--ovnSpaceAxialX);
-            transform: translate(120%, -50%);
-        }
-        .ovnRelative {
-            position: relative;
-            top: 20px;
-            right: 20px;
-        }
-        
+    .ovnFixed {
+        position: fixed;
+        top: 50%;
+        right: var(--ovnSpaceAxialX);
+        transform: translate(120%, -50%);
+    }
+    
     // $ ==================== ↓ Options
     
         #ovnOptionsPanel {
@@ -162,40 +159,43 @@
         }
         
         .ovnOptionBase {
+            
             z-index: var(--ovnPriority09);
             overflow: visible;
             display: flex;
             flex-direction: column;
-            gap: var(--ovnGap);
             width: calc(260px + 40px);
             max-height: 80vh;
-        }
-        
-            .ovnOptionBase h2 {
-                margin: calc(var(--ovnGap) / 2) 0 calc(var(--ovnGap) / 2 + 5px) 0;
+            
+            h2 {
+                padding: calc(var(--ovnGap) / 2) 0 calc(var(--ovnGap) / 2 + 5px) 0;
                 color: var(--ovnGlow04HEX);
                 font-size: 1.7em;
                 font-weight: var(--ovnTitleWeight);
                 text-align: center;
                 text-shadow: 0 0 5px var(--ovnGlow04HEX);
             }
+            span { user-select: none; }
             
+        }
+        
             .ovnPanelBody {
                 display: flex;
                 flex: 1 1 auto;
                 flex-direction: column;
                 gap: var(--ovnGap);
+                padding: var(--ovnXXX) 0;
                 overflow-y: auto;
                 overflow-x: hidden;
                 scrollbar-width: none;
                 max-height: 80vh;
             }
-            .ovnPanelBody, .ovnButton { padding: 0 var(--ovnXXX); }
             
             .ovnButton {
                 display: flex;
                 flex-direction: column;
                 gap: 10px;
+                padding: 0 var(--ovnXXX);
             }
             
                 .ovnGroupBase {
@@ -205,16 +205,23 @@
                     width: 100%;
                 }
                 
+                .ovnGroupBase:not(.Sub, :has(.ovnGroupBase.Sub)),
+                .ovnGroupBase:has(.Sub) > :is(.ovnGroupHead, .ovnGroupBody) {
+                    padding: 0 var(--ovnXXX);
+                }
+                
                     .ovnGroupBody > :first-child {
                         margin: calc(var(--ovnGap) / 2) 0 0 calc(var(--ovnGap) - 2px);
                     }
                     
-                    // .ovnHeaderRow > span { user-select: none; }
                     .ovnGroupBase:not(.Sub) > .ovnGroupHead {
                         color: hsla(var(--ovnBase06HSL), .6);
-                        // box-shadow: 0 10px 20px hsla(var(--ovnBase00HSL), .4);
                         filter: drop-shadow(0 10px 20px hsla(var(--ovnBase00HSL), .4));
                     }
+                    :first-child.ovnGroupBase:not(.Sub) > .ovnGroupHead {
+                        filter: drop-shadow(0 10px 14px hsla(var(--ovnBase00HSL), .26));
+                    }
+                    
                     .ovnGroupBase.Sub > .ovnGroupHead, .ovnGroupBase > .ovnGroupBody {
                         color: hsla(var(--ovnBase05HSL), .9);
                     }
@@ -320,7 +327,6 @@
                             .ovnHeaderRow { padding: 9px var(--ovnRowPadding); }
                             .ovnHeaderRow, .ovnFoldBox {
                                 border-radius: var(--ovnUIRadius);
-                                // box-shadow: 0 10px 20px hsla(var(--ovnBase00HSL), .2);
                                 filter: drop-shadow(0 10px 20px hsla(var(--ovnBase00HSL), .2));
                             }
                             .ovnBodyRow { color: hsla(var(--ovnBase05HSL), .8); }
@@ -459,12 +465,9 @@
 
     .ovnState {
         
-        &[data-ovn-type="imp"] {
-            color: var(--ovnGreen000);
-        }
-        &[data-ovn-type="sec"] {
-            color: var(--ovnCyan0000);
-        }
+        &:before, &:after { content: none !important; }
+        &[data-ovn-type="imp"] { color: var(--ovnGreen00HEX); }
+        &[data-ovn-type="sec"] { color: var(--ovnCyan00HEX); }
         
         &.ovnBack {
             
@@ -482,16 +485,16 @@
                 box-shadow: 0 0 2px hsla(0, 0%, 0%, .3);
             }
             &[data-ovn-state="success"] {
-                background: var(--ovnGreen000);
-                box-shadow: 0 0 10px var(--ovnGreen000);
+                background: var(--ovnGreen00HEX);
+                box-shadow: 0 0 10px var(--ovnGreen00HEX);
             }
             &[data-ovn-state="warn"] {
-                background: var(--ovnOrange00);
-                box-shadow: 0 0 10px var(--ovnOrange00);
+                background: var(--ovnOrange00HEX);
+                box-shadow: 0 0 10px var(--ovnOrange00HEX);
             }
             &[data-ovn-state="error"] {
-                background: var(--ovnRed00000);
-                box-shadow: 0 0 10px var(--ovnRed00000);
+                background: var(--ovnRed00HEX);
+                box-shadow: 0 0 10px var(--ovnRed00HEX);
             }
             
         }
@@ -499,13 +502,13 @@
         &.ovnFore {
             
             &[data-ovn-state="success"] {
-                color: var(--ovnGreen000);
+                color: var(--ovnGreen00HEX);
             }
             &[data-ovn-state="warn"] {
-                color: var(--ovnOrange00);
+                color: var(--ovnOrange00HEX);
             }
             &[data-ovn-state="error"] {
-                color: var(--ovnRed00000);
+                color: var(--ovnRed00HEX);
             }
             
         }
@@ -517,12 +520,13 @@
     .ovnButtonBase {
         cursor: pointer;
         user-select: none;
-        border: var(--ovnUIBorder) var(--ovnAccentBorder);
+        border: var(--ovnUIBorder) var(--ovnAccentCBD);
         font-size: 1em;
         font-weight: var(--ovnTitleWeight);
+        text-align: center;
         color: var(--ovnBase00HEX);
         background: var(--ovnAccentHEX);
-        box-shadow: var(--ovnUIShadow) var(--ovnAccentShadow);
+        box-shadow: var(--ovnUIShadow) var(--ovnAccentCSD);
         border-radius: var(--ovnPanelRadius);
         transition: transform .26s var(--ovnTransitionSoft);
     }
@@ -536,7 +540,7 @@
     
     .ovnButtonBase.ovnApply {
         border: none;
-        background: linear-gradient( 90deg, var(--ovnGreen001), var(--ovnBlue0001) );
+        background: linear-gradient( 90deg, var(--ovnGreen01HEX), var(--ovnBlue01HEX) );
         box-shadow:
             inset 0 0 12px #FFFFFF50,
             inset 0 0 02px #4DE0E0FF,
@@ -545,7 +549,7 @@
     }
     .ovnButtonBase.ovnReset {
         border: none;
-        background: linear-gradient( 90deg, var(--ovnGreen001), var(--ovnBlue0001) );
+        background: linear-gradient( 90deg, var(--ovnGreen01HEX), var(--ovnBlue01HEX) );
         box-shadow:
             inset 0 0 12px #FFFFFF50,
             inset 0 0 02px #4DE0E0FF,
@@ -644,11 +648,11 @@
             var(--ovnTipsShadow-L) hsla(var(--ovnAccentHSL), .092);
     }
     .ovnTips.correct {
-        border-color: hsla(var(--ovnStateCorrectHSL), .26);
-        color: hsla(var(--ovnStateCorrectHSL), 1);
+        border-color: hsla(var(--ovnStateSuccessHSL), .26);
+        color: hsla(var(--ovnStateSuccessHSL), 1);
         box-shadow:
-            var(--ovnTipsShadow-M) hsla(var(--ovnStateCorrectHSL), .126),
-            var(--ovnTipsShadow-L) hsla(var(--ovnStateCorrectHSL), .092);
+            var(--ovnTipsShadow-M) hsla(var(--ovnStateSuccessHSL), .126),
+            var(--ovnTipsShadow-L) hsla(var(--ovnStateSuccessHSL), .092);
     }
     .ovnTips.warn {
         border-color: hsla(var(--ovnStateWarnHSL), .26);
@@ -735,8 +739,8 @@
             --line: 1px;
             --sizeS: 20px;
             --sizeL: 100px;
-            --lineS: var(--ovnGrid-S);
-            --lineL: var(--ovnGrid-L);
+            --lineS: var(--ovnGridS);
+            --lineL: var(--ovnGridL);
             
             background-image:
                 linear-gradient(00deg, var(--lineS) var(--line), transparent 0),
@@ -752,7 +756,7 @@
             
             --size: 2px;
             --gap: 20px;
-            --dot: var(--ovnGrid-D);
+            --dot: var(--ovnGridD);
             
             background-image:
                 radial-gradient(circle, var(--dot) var(--size), transparent var(--size));

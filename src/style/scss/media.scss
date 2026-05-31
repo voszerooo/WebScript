@@ -1,0 +1,52 @@
+
+
+@use "sass:map";
+
+
+$map: (
+    "phone": 920px,
+    "pad": 1260px,
+    "pc": 1920px,
+    "tv": 2460px,
+    
+    "1K": 1920px,
+    "2K": 2560px,
+    "4K": 4096px,
+    "8K": 8192px,
+);
+
+@mixin fit-to($key) {
+    $point: map.get($map, $key);
+    @if $point { @media (width <= $point) { @content; } }
+}
+
+@mixin fit($key) {
+    @if $key == "x" { @media (width <= 2460px) { @content; } }
+    @else if $key == "l" { @media (width <= 1920px) { @content; } }
+    @else if $key == "m" { @media (width <= 1260px) { @content; } }
+    @else if $key == "s" { @media (width <= 920px) { @content; } }
+}
+
+// ================================================== ↓ example
+
+// .item {
+//     @include fit-to("xxxx") {
+//         //...
+//     }
+// }
+
+// .item {
+//     @include fit("x") {
+//         //...
+//     }
+//     @include fit("l") {
+//         //...
+//     }
+//     @include fit("m") {
+//         //...
+//     }
+//     @include fit("s") {
+//         //...
+//     }
+// }
+

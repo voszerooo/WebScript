@@ -87,6 +87,15 @@ OVN_GLOBAL_SCHEDULER.run("Micro_Other", () => {
         GM_addStyle( /* css */ `
             html {
                 
+                &:root body {
+                    
+                    --ovnGithubWidth: 1126px;
+                    
+                }
+                
+                .container-xl { max-width: calc(var(--ovnGithubWidth) + 300px); }
+                .prc-PageLayout-Content-xWL-A:where([data-width=large]) { max-width: var(--ovnGithubWidth); }
+                
                 /* ========== 导航条 分类 */
                 .MarketingNavigation-module__list__tFbMb { width: max-content; }
                 
@@ -225,30 +234,47 @@ OVN_GLOBAL_SCHEDULER.run("Micro_Other", () => {
         GM_addStyle( /* css */ `
             html {
                 
-                .mw-page-container {
-                    --ovnLine: #00000020;
+                &:root body {
+                    
+                    --ovnWikiCA: var(--ovnAccentHEX);
+                    --ovnWikiCS: var(--ovnSecondaryHEX);
+                    --ovnWikiCP: var(--ovnPrimaryHEX);
+                    --ovnWikiBG: var(--ovnBase09HEX);
+                    --ovnWikiLine: #00000020;
+                    
+                    --ovnWikiRS: var(--ovnBaseRadius);
+                    --ovnWikiRU: var(--ovnUIRadius);
+                    --ovnWikiRM: var(--ovnPanelRadius);
+                    --ovnWikiRL: var(--ovnSurfaceRadius);
+                    --ovnWikiRX: var(--ovnRadiusX);
+                    
+                    --ovnWikiW: var(--ovnSpaceWidth02);
+                    
                 }
+                
+                /* body { font-size: 92%; } */
+                .vector-body { line-height: 1.9; }
                 
                 .mp-2012-column-right-block,
                 .mw-parser-output #mp-2012-links table {
-                    border-radius: var(--ovnUIRadius);
+                    border-radius: var(--ovnWikiRU);
                 }
                 
                 .infobox {
-                    border-radius: var(--ovnUIRadius);
-                    border-color: var(--ovnLine);
+                    border-radius: var(--ovnWikiRU);
+                    border-color: var(--ovnWikiLine);
                 }
                 
                 .wikitable {
                     overflow: hidden;
-                    border-radius: var(--ovnUIRadius);
-                    box-shadow: 0 0 0 1px var(--ovnLine);
+                    border-radius: var(--ovnWikiRU);
+                    box-shadow: 0 0 0 1px var(--ovnWikiLine);
                 }
                 .wikitable > tr > th,
                 .wikitable > tr > td,
                 .wikitable > * > tr > th,
                 .wikitable > * > tr > td {
-                    border-color: var(--ovnLine);
+                    border-color: var(--ovnWikiLine);
                 }
                 
             }

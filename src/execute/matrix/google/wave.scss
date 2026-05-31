@@ -1,11 +1,12 @@
 
 
-html {
+html:has(#main [role="listitem"] > a[tabindex="0"]) {
     
     &:root body {
         
-        --ovnGoogleWidth: var(--ovnSpaceWidth02);     // XXXXX
-        --ovnGoogleHight: var(--ovnSpace2Y);          // XXXXX
+        --ovnGoogleICON: 50px;
+        --ovnGoogleLine: #00000009;
+        --ovnGoogleSearch: calc(var(--ovnGoogleWidth) / 1.5);
         
         --ovnGoogleRS: var(--ovnBaseRadius);
         --ovnGoogleRU: var(--ovnUIRadius);
@@ -15,24 +16,85 @@ html {
         
     }
     
-    .XXXXXXXXXX, /* ==== XXXXX */
-    .XXXXXXXXXX, /* ==== XXXXX */
-    .XXXXXXXXXX  /* ==== XXXXX */ {
+    @media (width >= 1920px) { --ovnGoogleWidth: calc(var(--ovnSpaceWidthVW) - 05vw); }
+    @media (width <= 1920px) { --ovnGoogleWidth: calc(var(--ovnSpaceWidthVW) + 05vw); }
+    
+    .XXXXXXXXXX {
+        opacity: 0;
+    }
+    .XXXXXXXXXX,  // ==== XXXXX
+    .XXXXXXXXXX { // ==== XXXXX
         display: none;
     }
     
     // $ ================================================== ↓ Global
     
-        // $ ==================== ↓ XXXXXXXX
-        // ==================== ↓ XXXXX
-        // ========== XXXXX
+        // #main, #searchform { background: var(--ovnBase09HEX); }
         
+        .sfbg,
+        .appbar,
+        .Fgyi2e { // ==== head > 分类栏 背景
+            background: transparent;
+        }
         
-    // $ ================================================== ↓ XXXXX
+        // ==================== ↓ 移除下划线
         
-        :where(#XXXXX) {
+            a:hover,
+            a:hover h3.LC20lb,
+            .ngTNl:hover .ZhosBf,
+            .b2Rnsc:hover,
+            .V5XKdd:hover .ZxS7Db,
+            .c30Ztd:hover~.T3Fozb .CvgGZ {
+                text-decoration: none;
+            }
             
-            --ovnGoogleXXX: hsla(var(--ovnPrimaryHSL), .5);
+            #b_results > li.b_algo h2 a {
+                text-decoration: none !important;
+            }
+            
+            
+    // $ ================================================== ↓ Head
+    
+        :where(#searchform) {
+            
+            #tsf { transition: transform var(--ovnOftenTrans); }
+            
+            // $ ==================== ↓ 搜索框
+            
+        }
+        
+        
+    // $ ================================================== ↓ Content
+    
+        :where(#rcnt) {
+            
+            // ========== 主容器
+            &.YNk70c {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                // flex-direction: column;
+            }
+            
+        }
+        
+        :where(#botstuff) {
+            
+            --ovnSpace: 20px;
+            --ovnGap: 60px;
+            
+            // ========== DMCA 投诉
+            .Pqkn2e { opacity: .126; padding: 0 60px; font-size: 12px; transition: opacity var(--ovnOftenTrans); }
+            .Pqkn2e:hover { opacity: .4; }
+            
+        }
+        
+        
+    // $ ================================================== ↓ Bottom
+    
+        :where(#sfooter) {
+            
+            #fbarcnt { width: var(--ovnGoogleWidth); margin: 0 auto; }
             
         }
         
@@ -40,432 +102,386 @@ html {
 
 // $ ================================================== ↓ Unknown
 
+
+
+
+
+
+
+
+    
+    
+    /* ========== ↓ 仅在 "分类 => 全部" 页才应用 */
+    html:has(body [role="listitem"] > a[tabindex="0"]) {
+        
+        /* ================================================== ↓ Head */
+        
+            .NDnoQ {
+                display: grid;
+                grid-template-columns: 1fr auto 1fr;
+            }
+            .tsf {
+                grid-column: 2;
+                justify-self: center;
+                width: var(--ovnGoogleSearch);
+                max-width: var(--ovnGoogleSearch);
+                transform: translateX(-40px);
+            }
+            .Efnghe {
+                grid-column: 3;
+                justify-self: end;
+            }
+            
+            .xrOgrb { padding-top: 0; margin-top: -1px; }
+            .CvDJxb { padding: 20px 0; }
+            .wZQcA .BO2cCe, .zLSRge { border-color: var(--ovnGoogleLine); }
+            
+            /* ========== ↓ 粘性定位 */
+            
+                .minidiv .sfbg {
+                    min-height: calc(var(--ovnSpace4X) + 20px);
+                    background: hsla(0, 0%, 100%, 0.8);
+                    box-shadow: var(--ovnGlassShadow);
+                    backdrop-filter: var(--ovnPanelFilter);
+                }
+                // #searchform { top: 20px !important; }
+                .minidiv .logo { top: 12px; }
                 
-                    #tsf { transition: transform .526s var(--ovnTransitionSoft); }
+                .LoygGf.VHFyob .zLSRge { border-color: transparent; }
+                
+                .minidiv .RNNXgb { border-radius: 26px; }
+                .minidiv .emcav .RNNXgb {
+                    border-bottom-left-radius: 0;
+                    border-bottom-right-radius: 0;
+                }
+                .WzNHm { margin-top: -40px; margin-right: 5px; }
+                
+                .minidiv > .NDnoQ.P3mIxe {
+                
+                    margin-top: -10px;
+                
+                    .RNNXgb {
+                        margin: 5px 0 0;
+                        min-height: var(--ovnGoogleICON);
+                    }
+                    .iblpc, .vOY7J, .XDyW0e, .nDcEnd, .Tg7LZd { min-height: var(--ovnGoogleICON); }
                     
-                    @media (width >= 1920px) { body { --ovn-Google-Width: calc(var(--ovnSpaceWidthVW) - 05vw); } }
-                    @media (width <= 1920px) { body { --ovn-Google-Width: calc(var(--ovnSpaceWidthVW) + 05vw); } }
+                    .BKRPef { margin-top: 20px; }
+                    .Tg7LZd { line-height: 40px; }
+                    .gLFyf { padding-top: 14px; }
                     
-                    /* ========== ↓ 仅在 "分类 => 全部" 页才应用 */
-                    html:has(body [role="listitem"] > a[tabindex="0"]) {
-                        
-                        &:root body {
-                            
-                            --ovn-Google-Search: calc(var(--ovn-Google-Width) / 1.5);
-                            --ovn-Google-ICON: 50px;
-                            --ovn-Google-Line: #00000009;
-                            
-                            --ovnRadiusS: var(--ovnBaseRadius);
-                            --ovnRadiusU: var(--ovnUIRadius);
-                            --ovnRadiusM: var(--ovnPanelRadius);
-                            --ovnRadiusL: var(--ovnSurfaceRadius);
-                            
-                        }
-                        
-                        /* ================================================== ↓ Global */
-                        
-                            /* #main { background: var(--ovnBase09HEX); } */
-                            .sfbg, .Fgyi2e, .appbar { background: transparent; }
-                            
-                            /* ========== ↓ 隐藏模块
-                            
-                                #rhs  {
-                                    display: none;
-                                } */
-                            
-                            /* ========== ↓ 移除下划线 */
-                            
-                                #b_results > li.b_algo h2 a {
-                                    text-decoration: none !important;
-                                }
-                                
-                                a:hover,
-                                a:hover h3.LC20lb,
-                                .b2Rnsc:hover,
-                                .ngTNl:hover .ZhosBf,
-                                .V5XKdd:hover .ZxS7Db,
-                                .c30Ztd:hover~.T3Fozb .CvgGZ {
-                                    text-decoration: none;
-                                }
-                                
-                        /* ================================================== ↓ Head */
-                        
-                            .NDnoQ {
-                                display: grid;
-                                grid-template-columns: 1fr auto 1fr;
-                            }
-                            .tsf {
-                                grid-column: 2;
-                                justify-self: center;
-                                width: var(--ovn-Google-Search);
-                                max-width: var(--ovn-Google-Search);
-                                transform: translateX(-40px);
-                            }
-                            .Efnghe {
-                                grid-column: 3;
-                                justify-self: end;
-                            }
-                            
-                            .xrOgrb { padding-top: 0; margin-top: -1px; }
-                            .CvDJxb { padding: 20px 0; }
-                            .wZQcA .BO2cCe, .zLSRge { border-color: var(--ovn-Google-Line); }
-                            
-                            /* ========== ↓ 粘性定位 */
-                            
-                                .minidiv .sfbg {
-                                    min-height: calc(var(--ovnSpace4X) + 20px);
-                                    background: hsla(0, 0%, 100%, 0.8);
-                                    box-shadow: var(--ovnGlassShadow);
-                                    backdrop-filter: var(--ovnPanelFilter);
-                                }
-                                // #searchform { top: 20px !important; }
-                                .minidiv .logo { top: 12px; }
-                                
-                                .LoygGf.VHFyob .zLSRge { border-color: transparent; }
-                                
-                                .minidiv .RNNXgb { border-radius: 26px; }
-                                .minidiv .emcav .RNNXgb {
-                                    border-bottom-left-radius: 0;
-                                    border-bottom-right-radius: 0;
-                                }
-                                .WzNHm { margin-top: -40px; margin-right: 5px; }
-                                
-                                .minidiv > .NDnoQ.P3mIxe {
-                                
-                                    margin-top: -10px;
-                                
-                                    .RNNXgb {
-                                        margin: 5px 0 0;
-                                        min-height: var(--ovn-Google-ICON);
-                                    }
-                                    .iblpc, .vOY7J, .XDyW0e, .nDcEnd, .Tg7LZd { min-height: var(--ovn-Google-ICON); }
-                                    
-                                    .BKRPef { margin-top: 20px; }
-                                    .Tg7LZd { line-height: 40px; }
-                                    .gLFyf { padding-top: 14px; }
-                                    
-                                    .aajZCb { border-radius: 0 0 26px 26px; }
-                                    
-                                }
-                                
-                            /* ========== ↓ 搜索框 */
-                            
-                                .A8SBwf { min-width: 426px; }
-                            
-                                .RNNXgb {
-                                    border: none;
-                                    box-shadow:
-                                        0px 0px 00px 1px hsla(0, 0%, 0%, .04),
-                                        2px 5px 10px 1px hsla(0, 0%, 0%, .06);
-                                }
-                                .emcav .RNNXgb, .BgPPrc .RNNXgb {
-                                    box-shadow:
-                                        0px 0px 00px 1px hsla(0, 0%, 0%, .04),
-                                        2px 5px 10px 1px hsla(0, 0%, 0%, .06);
-                                }
-                                .aajZCb {
-                                    box-shadow:
-                                        0px 00px 00px 1px hsla(0, 0%, 0%, .04),
-                                        0px 05px 10px 0 hsla(0, 0%, 0%, .02),
-                                        0px 20px 25px 0 hsla(0, 0%, 0%, .06);
-                                }
-                                .xtSCL { border-top: none; }
-                                
-                                #Alh6id {
-                                    .sbct { min-height: 2.6em; }
-                                }
-                                
-                            /* ========== ↓ 分类 */
-                            
-                                .GG4mbd {
-                                    display: flex;
-                                    justify-content: center;
-                                    grid-column: 1/-1;
-                                    max-width: none;
-                                }
-                                .rQTE8b { max-width: var(--ovn-Google-Search); margin-left: 5.26vw; }
-                                .mXwfNd { padding: 0 20px; }
-                                
-                                
-                        /* ================================================== ↓ Content */
-                        
-                            #rcnt {
-                                display: flex;
-                                flex-direction: column;
-                                justify-content: center;
-                                align-items: center;
-                            }
-                            #center_col { width: var(--ovn-Google-Width); }
-                            .UFQ0Gb { grid-template-columns: none; column-gap: 0; }
-                            
-                            #taw {
-                            
-                                #oFNiHe .vt6azd { width: 80%; margin: 0 auto; }
-                                #oFNiHe .Pqkn2e { font-size: 14px; letter-spacing: .05em; }
-                                
-                            }
-                            
-                            /* ========== ↓ 模块 通用 */
-                            
-                                /* .MjjYud .A6K0A */
-                                #rso .MjjYud .A6K0A:has(h3, [aria-level="2"]) {
-                                    box-sizing: border-box;
-                                    position: relative;
-                                    padding: var(--ovnSpacePadding);
-                                    margin: var(--ovnSpaceMargin);
-                                    width: 100%;
-                                    font-size: 12px;
-                                    background: #FFFFFF;
-                                    box-shadow: var(--ovnOftenSurfaceShadowBase);
-                                    border-radius: var(--ovnSurfaceRadius);
-                                    transition: var(--ovnOftenTransition);
-                                }
-                                #rso .MjjYud .A6K0A:has(h3, [aria-level="2"]):hover {
-                                    z-index: 2;
-                                    box-shadow: inset 0 0 2px hsla(0, 0%, 92%, .6), var(--ovnOftenSurfaceShadowHover);
-                                    transform: var(--ovnSurfaceZoomIn);
-                                }
-                                
-                                #rso .MjjYud .A6K0A:has(.cUnQKe):hover, /* 模块 图片 | 相关问题 */
-                                #rso .ULSxyf > .MjjYud .A6K0A:hover /* 模块 特殊 */{
-                                    transform: none;
-                                }
-                                
-                                /* ========== ↓ 带 "源" 的模块 */
-                                
-                                    #rso .MjjYud .A6K0A:has(.wHYlTd.Ww4FFb.vt6azd.tF2Cxc.asEBEc, .PmEWq.wHYlTd.vt6azd.Ww4FFb, .jmjoTe.wHYlTd) {
-                                        padding-right: 0px;
-                                    }
-                                    
-                                    .jmjoTe { padding: 0 calc(36px/2 + 0px); }
-                                    
-                                /* ========== ↓ 特殊情况 */
-                                
-                                    .ULSxyf > .MjjYud .Jb0Zif .yWNJXb { margin: 0; }
-                                    .ULSxyf > .MjjYud .Jb0Zif .yWNJXb.tQtKhb { margin: 0; }
-                                    
-                                /* ========== ↓ 通用模块 含图片 */
-                                
-                                    .srKDX > .kb0PBd.ieodic.jGGQ5e { width: calc(var(--ovn-Google-Width) - 20px); }
-                                    .srKDX > .kb0PBd.LnCrMe {
-                                        position: absolute;
-                                        right: 20px;
-                                        bottom: -10%;
-                                    }
-                                    
-                                    .A6K0A > .wHYlTd.Ww4FFb.vt6azd.tF2Cxc.asEBEc[style*="max-width:652px"] { max-width: inherit !important; }
-                                    .A6K0A > .wHYlTd.Ww4FFb.vt6azd.tF2Cxc.asEBEc:has(.kb0PBd.LnCrMe) {
-                                    
-                                        height: 150px;
-                                        
-                                        .srKDX > .kb0PBd.ieodic.jGGQ5e { width: calc(var(--ovn-Google-Width) - 20px); }
-                                        .srKDX > .kb0PBd.LnCrMe { bottom: -45px; }
-                                        
-                                    }
-                                    
-                                /* ========== ↓ 通用模块 含展开内容 */
-                                .A6K0A .kb0PBd > div[style*="max-width:600px"] { max-width: 99% !important; }
-                                
-                                /* ========== ↓ 通用模块 内容块内部 底距 */
-                                
-                                    --ovnSpaceC: 20px;
-                                    
-                                    .tF2Cxc.asEBEc { margin-bottom: var(--ovnSpaceC); }
-                                    .vt6azd { margin: 0px 0px var(--ovnSpaceC); }
-                                    
-                                    
-                            /* ========== ↓ 模块 带源 */
-                            
-                                .notranslate.ESMNde.HGLrXd.ojE3Fb {
-                                    opacity: .6;
-                                    padding: var(--ovnSpacePadding);
-                                    margin: 10px -20px -10px -20px;
-                                    width: 100%;
-                                    background: var(--ovnBase09HEX);
-                                    border-radius: var(--ovnSurfaceRadius) var(--ovnSurfaceRadius) 5px 5px;
-                                }
-                                
-                                .b8lM7 > .B6fmyf.byrV5b.Mg1HEd { opacity: .6; position: absolute; right: 20px; }
-                                .b8lM7 > .B6fmyf.byrV5b.Mg1HEd .byrV5b { justify-content: flex-end; }
-                                .eFM0qc.BCF2pd { background: transparent; }
-                                .dEEN8c { width: max-content; }
-                                
-                                /* ========== ↓ 标题 */
-                                    
-                                    .MBeuO,
-                                    [aria-level="2"][role="heading"] span {
-                                        font-size: 16px;
-                                        font-weight: bold;
-                                        color: var(--ovnGoogleBlue);
-                                    }
-                                    
-                                /* ========== ↓ 正文 */
-                                
-                                    a { color: var(--ovnGoogleBlue); }
-                                    .p4wth { font-size: 13px; padding-right: 20px; }
-                                    
-                                /* ========== ↓ 匹配 */
-                                
-                                    .aCOpRe em, .aCOpRe a em, .yXK7lf em, .yXK7lf a em, .p4wth em, .p4wth a em {
-                                        color: var(--ovnGoogleRad);
-                                    }
-                                    
-                                    
-                            /* ========== ↓ Aside */
-                            
-                                #rhs {
-                                    --right: -5%;
-                                    opacity: 0;
-                                    z-index: 9;
-                                    position: fixed;
-                                    top: 50%;
-                                    right: var(--right);
-                                    transform: translateY(-50%);
-                                    padding: 20px 20px 0 20px;
-                                    width: max-content;
-                                    max-width: 526px;
-                                    background: var(--ovnGlassBase);
-                                    backdrop-filter: var(--ovnPanelFilter);
-                                    border-radius: var(--ovnSurfaceRadius);
-                                    box-shadow:
-                                        0px 05px 10px 0 hsla(0, 0%, 0%, .02),
-                                        0px 20px 25px 0 hsla(0, 0%, 0%, .04);
-                                    transition: opacity .26s ease, transform .26s ease;
-                                }
-                                #rhs:hover { opacity: 1; transform: translate(calc(20% + -50%), -50%); }
-                                
-                                @media (width <= 1920px), (height <= 1260px) { #rhs { display: none; } }
-                                
-                                #rhs .u7yw9, #jOAHU, .CeIyHb.WY0eLb { border: none; }
-                                .FalWJb { background: transparent; }
-                                
-                            /* ========== ↓ 模块 详情弹窗 */
-                                
-                                /* #sZmt3b .PG8i1e.Ooz8t.PyLEff */
-                                #Sva75c {
-                                    position: fixed;
-                                    top: 50% !important;
-                                    left: 50% !important;
-                                    transform: translate(-50%, -50%);
-                                    border-radius: var(--ovnSurfaceRadius);
-                                    width: calc(var(--ovnSpaceWidthVW) - 20vw) !important;
-                                    height: max-content !important;
-                                }
-                                /* #sZmt3b .Z7HyUd */
-                                .VuvQze .RfPPs {
-                                    padding: 10px 20px;
-                                    width: 40vw;
-                                    background: var(--ovnGlassBase);
-                                    backdrop-filter: var(--ovnPanelFilter);
-                                }
-                                .k4o2Hc, .dzz8Xc { background: transparent; }
-                                .LrPjRb[role="dialog"] iframe.P0rd4 {
-                                    border-radius: var(--ovnSurfaceRadius);
-                                    margin-bottom: 14px;
-                                }
-                                .Dgr5Hb { border-top: none; }
-                                .VuvQze .RfPPs {
-                                    box-shadow:
-                                        0px 05px 10px 0 hsla(0, 0%, 0%, .02),
-                                        0px 20px 25px 0 hsla(0, 0%, 0%, .06);
-                                }
-                                
-                            /* ========== ↓ 模块 精选摘要 */
-                            
-                                .fm06If .ILfuVd, .c2xzTb .ILfuVd, .Jb0Zif .c2xzTb .ILfuVd { font-size: 16px; }
-                                
-                            /* ========== ↓ 模块 官方词条 */
-                            
-                                .SLPe5b { grid-column: 1 / -2; }
-                                .e8Ck0d { padding: 20px 0 40px 0; }
-                                
-                                .GCSyeb { margin: 0 auto; width: calc(var(--ovn-Google-Width) - 260px); background: var(--ovn-Google-Line); }
-                                
-                            /* ========== ↓ 模块 AI 概览 */
-                            
-                                .LT6XE, .zNsLfb { max-width: 100%; }
-                                .in7vHe:not(.BgrTif) { display: block; margin: 0 auto; }
-                                .omFXYd, .KMCbD { border-bottom: none; }
-                                .zocjMe { border-bottom: 1px solid #e6effb; }
-                                
-                                #eKIzJc .YzCcne[data-mg-cp="YzCcne"] > div { margin-bottom: 0 !important; }
-                                .F0OfWd { max-width: 100%; }
-                                .WAUd4 { padding: 15px 0; }
-                                
-                                #eKIzJc {
-                                
-                                    --fontS: 14px;
-                                    --fontM: 15px;
-                                    --fontL: 16px;
-                                    
-                                    .jloFI { font-size: var(--fontL); }
-                                    .rPeykc.pyPiTc, .rPeykc.uP58nb { font-size: var(--fontL); }
-                                    .f5cPye ul, .f5cPye ol { font-size: var(--fontS); }
-                                    .vM0jzc ul, .vM0jzc ol { font-size: var(--fontS) !important; }
-                                    
-                                }
-                                
-                            /* ========== ↓ 模块 图片 */
-                            
-                                #iur .cakeVe { display: flex; justify-content: space-evenly; }
-                                .Lv2Cle .eA0Zlc.mkpRId, .cakeVe .m3LIae {
-                                    width: calc(var(--ovn-Google-Width) / 5);
-                                    max-width: 126px;
-                                }
-                                .Bi9oQd { background: var(--ovn-Google-Line); }
-                                .ZFiwCf { margin: 20px auto; }
-                                .ULSxyf { margin-bottom: 0; }
-                                
-                            /* ========== ↓ 模块 影片 */
-                            
-                                .Ea5p3b > [data-hveid="CCQQAw"][jsname="wRSfy"] { display: flex; gap: 32px; }
-                                .sHEJob { border-top: none; /* max-width: calc(var(--ovn-Google-Width) / 3 - 52px); */ }
-                                
-                            /* ========== ↓ 模块 相关问题 */
-                            
-                                .cUnQKe { margin-bottom: 20px; }
-                                
-                                .XVdSCb.KFFQ0c.xKf9F { margin-top: 20px !important; }
-                                
-                                .akqY6 { background: var(--ovn-Google-Line); }
-                                .iRPzcb { border-color: var(--ovn-Google-Line); }
-                                
-                                
-                        /* ================================================== ↓ Bottom */
-                        
-                            #botstuff { --ovnSpace: 20px; --ovnGap: 60px; }
-                            
-                            /* ========== ↓ 模块 用户还搜索了 */
-                            
-                                .ULSxyf .M6HR1c.PJI6ge.adDDi { display:none; }
-                                .ULSxyf { padding: var(--ovnSpace) 60px; }
-                                
-                                .vIifob:hover { background: #f0f1f3; }
-                                
-                            /* ========== ↓ DMCA 投诉 */
-                            
-                                #botstuff .Pqkn2e { opacity: .26; padding: 0 60px; font-size: 12px; }
-                                
-                            /* ========== ↓ 翻页 */
-                            
-                                #bres ~ [role="navigation"] {
-                                    height: 40px;
-                                    overflow: hidden;
-                                    margin: calc(var(--ovnGap) - var(--ovnSpace)) auto var(--ovnGap) auto;
-                                }
-                                .AaVjTc { margin: 0 auto; }
-                                
-                            /* ========== ↓ 底部 */
-                            
-                                #fbarcnt { width: var(--ovn-Google-Width); margin: 0 auto; }
-                                #fbar {
-                                    opacity: .6;
-                                    padding: 20px 40px 10px;
-                                    background: var(--ovnBase09HEX);
-                                    border-radius: var(--ovnSurfaceRadius) var(--ovnSurfaceRadius) 0 0;
-                                }
-                                .b2hzT { border-bottom: none; }
-                                .g0F6u, .KwU3F, .xSQxL { color: var(--ovnGoogleBlue); }
-                            
+                    .aajZCb { border-radius: 0 0 26px 26px; }
+                    
+                }
+                
+            /* ========== ↓ 搜索框 */
+            
+                .A8SBwf { min-width: 426px; }
+            
+                .RNNXgb {
+                    border: none;
+                    box-shadow:
+                        0px 0px 00px 1px hsla(0, 0%, 0%, .04),
+                        2px 5px 10px 1px hsla(0, 0%, 0%, .06);
+                }
+                .emcav .RNNXgb, .BgPPrc .RNNXgb {
+                    box-shadow:
+                        0px 0px 00px 1px hsla(0, 0%, 0%, .04),
+                        2px 5px 10px 1px hsla(0, 0%, 0%, .06);
+                }
+                .aajZCb {
+                    box-shadow:
+                        0px 00px 00px 1px hsla(0, 0%, 0%, .04),
+                        0px 05px 10px 0 hsla(0, 0%, 0%, .02),
+                        0px 20px 25px 0 hsla(0, 0%, 0%, .06);
+                }
+                .xtSCL { border-top: none; }
+                
+                #Alh6id {
+                    .sbct { min-height: 2.6em; }
+                }
+                
+            /* ========== ↓ 分类 */
+            
+                .GG4mbd {
+                    display: flex;
+                    justify-content: center;
+                    grid-column: 1/-1;
+                    max-width: none;
+                }
+                .rQTE8b { max-width: var(--ovnGoogleSearch); margin-left: 5.26vw; }
+                .mXwfNd { padding: 0 20px; }
+                
+                
+        /* ================================================== ↓ Content */
+        
+            #center_col { width: var(--ovnGoogleWidth); }
+            .UFQ0Gb { grid-template-columns: none; column-gap: 0; }
+            
+            #taw {
+            
+                #oFNiHe .vt6azd { width: 80%; margin: 0 auto; }
+                #oFNiHe .Pqkn2e { font-size: 14px; letter-spacing: .05em; }
+                
+            }
+            
+            /* ========== ↓ 模块 通用 */
+            
+                /* .MjjYud .A6K0A */
+                #rso .MjjYud .A6K0A:has(h3, [aria-level="2"]) {
+                    box-sizing: border-box;
+                    position: relative;
+                    padding: var(--ovnSpacePadding);
+                    margin: var(--ovnSpaceMargin);
+                    width: 100%;
+                    font-size: 12px;
+                    background: #FFFFFF;
+                    box-shadow: var(--ovnOftenSurfaceShadowBase);
+                    border-radius: var(--ovnSurfaceRadius);
+                    transition: var(--ovnOftenTransition);
+                }
+                #rso .MjjYud .A6K0A:has(h3, [aria-level="2"]):hover {
+                    z-index: 2;
+                    box-shadow: inset 0 0 2px hsla(0, 0%, 92%, .6), var(--ovnOftenSurfaceShadowHover);
+                    transform: var(--ovnSurfaceZoomIn);
+                }
+                
+                #rso .MjjYud .A6K0A:has(.cUnQKe):hover, /* 模块 图片 | 相关问题 */
+                #rso .MjjYud .A6K0A[data-rpos="0"]:hover, /* 其它相关信息 */
+                #rso .ULSxyf > .MjjYud .A6K0A:hover /* 模块 特殊 */{
+                    transform: none;
+                }
+                
+                /* ========== ↓ 带 "源" 的模块 */
+                
+                    #rso .MjjYud .A6K0A:has(.wHYlTd.Ww4FFb.vt6azd.tF2Cxc.asEBEc, .PmEWq.wHYlTd.vt6azd.Ww4FFb, .jmjoTe.wHYlTd) {
+                        padding-right: 0px;
                     }
                     
+                    .jmjoTe { padding: 0 calc(36px/2 + 0px); }
+                    
+                /* ========== ↓ 特殊情况 */
+                
+                    .ULSxyf > .MjjYud .Jb0Zif .yWNJXb { margin: 0; }
+                    .ULSxyf > .MjjYud .Jb0Zif .yWNJXb.tQtKhb { margin: 0; }
+                    
+                /* ========== ↓ 通用模块 含图片 */
+                
+                    .srKDX > .kb0PBd.ieodic.jGGQ5e { width: calc(var(--ovnGoogleWidth) - 20px); }
+                    .srKDX > .kb0PBd.LnCrMe {
+                        position: absolute;
+                        right: 20px;
+                        bottom: -10%;
+                    }
+                    
+                    .A6K0A > .wHYlTd.Ww4FFb.vt6azd.tF2Cxc.asEBEc[style*="max-width:652px"] { max-width: inherit !important; }
+                    .A6K0A > .wHYlTd.Ww4FFb.vt6azd.tF2Cxc.asEBEc:has(.kb0PBd.LnCrMe) {
+                    
+                        height: 150px;
+                        
+                        .srKDX > .kb0PBd.ieodic.jGGQ5e { width: calc(var(--ovnGoogleWidth) - 20px); }
+                        .srKDX > .kb0PBd.LnCrMe { bottom: -45px; }
+                        
+                    }
+                    
+                /* ========== ↓ 通用模块 含展开内容 */
+                .A6K0A .kb0PBd > div[style*="max-width:600px"] { max-width: 99% !important; }
+                
+                /* ========== ↓ 通用模块 内容块内部 底距 */
+                
+                    --ovnSpaceC: 20px;
+                    
+                    .tF2Cxc.asEBEc { margin-bottom: var(--ovnSpaceC); }
+                    .vt6azd { margin: 0px 0px var(--ovnSpaceC); }
+                    
+                    
+            /* ========== ↓ 模块 带源 */
+            
+                .notranslate.ESMNde.HGLrXd.ojE3Fb {
+                    opacity: .6;
+                    padding: var(--ovnSpacePadding);
+                    margin: 10px -20px -10px -20px;
+                    width: 100%;
+                    background: var(--ovnBase09HEX);
+                    border-radius: var(--ovnSurfaceRadius) var(--ovnSurfaceRadius) 5px 5px;
+                }
+                
+                .b8lM7 > .B6fmyf.byrV5b.Mg1HEd { opacity: .6; position: absolute; right: 20px; }
+                .b8lM7 > .B6fmyf.byrV5b.Mg1HEd .byrV5b { justify-content: flex-end; }
+                .eFM0qc.BCF2pd { background: transparent; }
+                .dEEN8c { width: max-content; }
+                
+                /* ========== ↓ 标题 */
+                    
+                    .MBeuO,
+                    [aria-level="2"][role="heading"] span {
+                        font-size: 16px;
+                        font-weight: bold;
+                        color: var(--ovnGoogleBlue);
+                    }
+                    
+                /* ========== ↓ 正文 */
+                
+                    a { color: var(--ovnGoogleBlue); }
+                    .p4wth { font-size: 13px; padding-right: 20px; }
+                    
+                /* ========== ↓ 匹配 */
+                
+                    .aCOpRe em, .aCOpRe a em, .yXK7lf em, .yXK7lf a em, .p4wth em, .p4wth a em {
+                        color: var(--ovnGoogleRad);
+                    }
+                    
+                    
+            /* ========== ↓ Aside */
+            
+                #rhs {
+                    --right: -5%;
+                    opacity: 0;
+                    z-index: 9;
+                    position: fixed;
+                    top: 50%;
+                    right: var(--right);
+                    transform: translateY(-50%);
+                    padding: 20px 20px 0 20px;
+                    width: max-content;
+                    max-width: 526px;
+                    background: var(--ovnGlassBase);
+                    backdrop-filter: var(--ovnPanelFilter);
+                    border-radius: var(--ovnSurfaceRadius);
+                    box-shadow:
+                        0px 05px 10px 0 hsla(0, 0%, 0%, .02),
+                        0px 20px 25px 0 hsla(0, 0%, 0%, .04);
+                    transition: opacity .26s ease, transform .26s ease;
+                }
+                #rhs:hover { opacity: 1; transform: translate(calc(20% + -50%), -50%); }
+                
+                @media (width <= 1920px), (height <= 1260px) { #rhs { display: none; } }
+                
+                #rhs .u7yw9, #jOAHU, .CeIyHb.WY0eLb { border: none; }
+                .FalWJb { background: transparent; }
+                
+            /* ========== ↓ 模块 详情弹窗 */
+                
+                /* #sZmt3b .PG8i1e.Ooz8t.PyLEff */
+                #Sva75c {
+                    position: fixed;
+                    top: 50% !important;
+                    left: 50% !important;
+                    transform: translate(-50%, -50%);
+                    border-radius: var(--ovnSurfaceRadius);
+                    width: calc(var(--ovnSpaceWidthVW) - 20vw) !important;
+                    height: max-content !important;
+                }
+                /* #sZmt3b .Z7HyUd */
+                .VuvQze .RfPPs {
+                    padding: 10px 20px;
+                    width: 40vw;
+                    background: var(--ovnGlassBase);
+                    backdrop-filter: var(--ovnPanelFilter);
+                }
+                .k4o2Hc, .dzz8Xc { background: transparent; }
+                .LrPjRb[role="dialog"] iframe.P0rd4 {
+                    border-radius: var(--ovnSurfaceRadius);
+                    margin-bottom: 14px;
+                }
+                .Dgr5Hb { border-top: none; }
+                .VuvQze .RfPPs {
+                    box-shadow:
+                        0px 05px 10px 0 hsla(0, 0%, 0%, .02),
+                        0px 20px 25px 0 hsla(0, 0%, 0%, .06);
+                }
+                
+            /* ========== ↓ 模块 精选摘要 */
+            
+                .fm06If .ILfuVd, .c2xzTb .ILfuVd, .Jb0Zif .c2xzTb .ILfuVd { font-size: 16px; }
+                
+            /* ========== ↓ 模块 官方词条 */
+            
+                .SLPe5b { grid-column: 1 / -2; }
+                .e8Ck0d { padding: 20px 0 40px 0; }
+                
+                .GCSyeb { margin: 0 auto; width: calc(var(--ovnGoogleWidth) - 260px); background: var(--ovnGoogleLine); }
+                
+            /* ========== ↓ 模块 AI 概览 */
+            
+                .LT6XE, .zNsLfb { max-width: 100%; }
+                .in7vHe:not(.BgrTif) { display: block; margin: 0 auto; }
+                .omFXYd, .KMCbD { border-bottom: none; }
+                .zocjMe { border-bottom: 1px solid #e6effb; }
+                
+                #eKIzJc .YzCcne[data-mg-cp="YzCcne"] > div { margin-bottom: 0 !important; }
+                .F0OfWd { max-width: 100%; }
+                .WAUd4 { padding: 15px 0; }
+                
+                #eKIzJc {
+                
+                    --fontS: 14px;
+                    --fontM: 15px;
+                    --fontL: 16px;
+                    
+                    .jloFI { font-size: var(--fontL); }
+                    .rPeykc.pyPiTc, .rPeykc.uP58nb { font-size: var(--fontL); }
+                    .f5cPye ul, .f5cPye ol { font-size: var(--fontS); }
+                    .vM0jzc ul, .vM0jzc ol { font-size: var(--fontS) !important; }
+                    
+                }
+                
+            /* ========== ↓ 模块 图片 */
+            
+                #iur .cakeVe { display: flex; justify-content: space-evenly; }
+                .Lv2Cle .eA0Zlc.mkpRId, .cakeVe .m3LIae {
+                    width: calc(var(--ovnGoogleWidth) / 5);
+                    max-width: 126px;
+                }
+                .Bi9oQd { background: var(--ovnGoogleLine); }
+                .ZFiwCf { margin: 20px auto; }
+                .ULSxyf { margin-bottom: 0; }
+                
+            /* ========== ↓ 模块 影片 */
+            
+                .Ea5p3b > [data-hveid="CCQQAw"][jsname="wRSfy"] { display: flex; gap: 32px; }
+                .sHEJob { border-top: none; /* max-width: calc(var(--ovnGoogleWidth) / 3 - 52px); */ }
+                
+            /* ========== ↓ 模块 相关问题 */
+            
+                .cUnQKe { margin-bottom: 20px; }
+                
+                .XVdSCb.KFFQ0c.xKf9F { margin-top: 20px !important; }
+                
+                .akqY6 { background: var(--ovnGoogleLine); }
+                .iRPzcb { border-color: var(--ovnGoogleLine); }
+                
+                
+        /* ================================================== ↓ Bottom */
+        
+            
+            /* ========== ↓ 模块 用户还搜索了 */
+            
+                .ULSxyf .M6HR1c.PJI6ge.adDDi { display:none; }
+                .ULSxyf { padding: var(--ovnSpace) 60px; }
+                
+                .vIifob:hover { background: #f0f1f3; }
+                
+                
+            /* ========== ↓ 翻页 */
+            
+                #bres ~ [role="navigation"] {
+                    height: 40px;
+                    overflow: hidden;
+                    margin: calc(var(--ovnGap) - var(--ovnSpace)) auto var(--ovnGap) auto;
+                }
+                .AaVjTc { margin: 0 auto; }
+                
+            /* ========== ↓ 底部 */
+            
+                #fbar {
+                    opacity: .6;
+                    padding: 20px 40px 10px;
+                    background: var(--ovnBase09HEX);
+                    border-radius: var(--ovnSurfaceRadius) var(--ovnSurfaceRadius) 0 0;
+                }
+                .b2hzT { border-bottom: none; }
+                .g0F6u, .KwU3F, .xSQxL { color: var(--ovnGoogleBlue); }
+            
+    }
+    

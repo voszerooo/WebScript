@@ -43,11 +43,6 @@ function onReady() {
         html.classList.add('ovn');
         OVN_SUBJOIN_HOOK.apply('class', { html });
         
-        if (html.classList.contains('ovnThemeLight')) {
-            html.classList.remove('ovnThemeLight');
-            html.classList.add('ovnThemeLight');
-        }
-        
         OVN.SCHEDULER.run();
         OVN.DEBUG.infoTotal();
     } catch (error) {

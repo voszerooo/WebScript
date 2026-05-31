@@ -1,12 +1,13 @@
 
 
-import color     from './.package/color.scss';
-import font      from './.package/font.scss';
-import ui        from './.package/ui.scss';
-import space     from './.package/space.scss';
-import icon      from './.package/icon.scss';
-import xfilter   from './.package/icon.xxfilterxx.scss';
-import global    from './.package/global.scss';
+import color     from './scss/color.scss';
+
+import font      from './storage/font.scss';
+import ui        from './storage/ui.scss';
+import space     from './storage/space.scss';
+import icon      from './storage/icon.scss';
+import xfilter   from './storage/icon.xxfilterxx.scss';
+import global    from './storage/global.scss';
 
 
 const subjoin = [];

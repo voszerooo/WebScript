@@ -1,0 +1,73 @@
+
+
+@use "sass:map";
+@use "sass:string";
+
+
+$map: (
+    dark: (
+        c: var(--ovnAccentHEX),
+        bg: var(--ovnPrimaryHEX),
+        bc: var(--ovnAccentHEX),
+    ),
+    light: (
+        c: var(--ovnAccentHEX),
+        bg: var(--ovnPrimaryHEX),
+        bc: var(--ovnAccentHEX),
+    ),
+);
+$theme: light;
+
+@mixin theme() {
+    @each $key, $value in $map {
+        $theme: $key !global;
+        &[data-ovn-theme="#{$key}"] { @content; }
+    }
+}
+
+@mixin themeNest() {
+    $selector: "#{&}";
+    $root: "html ";
+    $cut: string.length($root) + 1;
+    @if string.index($selector, $root) != 1 {
+        @error "themeNest() 必须在 html {} 内使用";
+    }
+    @each $key, $value in $map {
+        $theme: $key !global;
+        @at-root {
+            html[data-ovn-theme="#{$key}"] #{string.slice($selector, $cut)} {
+                @content;
+            }
+        }
+    }
+}
+
+@function ovnGet($key) {
+    $preset: map.get($map, $theme);
+    @return map.get($preset, $key);
+}
+
+// ================================================== ↓ example
+
+// html {
+    
+//     @include theme() {
+//         .xxxx {
+//             background: ovnGet("bg");
+//             color: ovnGet("c");
+//         }
+//     }
+    
+// }
+
+// html {
+    
+//     .xxxx {
+//         @include themeNest() {
+//             background: ovnGet("bg");
+//             color: ovnGet("c");
+//         }
+//     }
+    
+// }
+
