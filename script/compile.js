@@ -46,7 +46,7 @@ function compileAllWaveFiles() {
 }
 
 function startSassWatch() {
-    console.log('🎨 Watching | src/style/scss...');
+    console.log(' 👀 | src/style/scss...');
     const sassProcess = spawn('pnpm', ['exec', 'sass', '--watch', '--no-source-map', 'src/style/scss:-/---'], {
         cwd: projectRoot,
         stdio: 'inherit',
@@ -61,7 +61,7 @@ function startSassWatch() {
 compileAllWaveFiles();
 startSassWatch();
 
-console.log('👀 Watching | .wave.scss...');
+console.log(` 👀 | ${path.relative(projectRoot, matrixDir).replace(/\\/g, '/')} .wave.scss...`);
 fs.watch(matrixDir, { recursive: true }, (eventType, filename) => {
     if (filename && filename.endsWith('.wave.scss')) {
         const filePath = path.resolve(matrixDir, filename);

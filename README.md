@@ -102,43 +102,44 @@
 <br>
 
 
+### 🚀 GUIDE 
+
+ - 脚本安装 | 本脚本已上传至 [GreasyFork.WebScript](https://update.greasyfork.org/scripts/579569/GlobalCustom.user.js) 点此可快速安装
+ - 功能开关 | 本脚本为全局型脚本 如觉功能繁杂 可 <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>X</kbd> 快速呼出控制面板 开关相应功能
+ - 功能扩展 | 已留有接口 支持个人扩展定义 可详见 [GUIDE](https://github.com/voszerooo/WebScript/blob/main/-/GUIDE.md) 快速了解结构
+ 
+ 
+<br>
+
+
 ### 🔗 测试链接
 
-  - [Baidu](https://baidu.com/s?&wd=GreasyFork)
-  - [Google](https://google.com/search?q=GreasyFork)
-  - [Bing](https://bing.com/search?q=GreasyFork)
-  - [Deepseek](https://chat.deepseek.com/)
-  - [ChatGPT](https://chatgpt.com/)
-  - [YUQUE](https://www.yuque.com/)
-  - [Youtube](https://youtube.com/)
-  
-  
+ - [Baidu](https://baidu.com/s?&wd=GreasyFork)
+ - [Google](https://google.com/search?q=GreasyFork)
+ - [Bing](https://bing.com/search?q=GreasyFork)
+ - [Deepseek](https://chat.deepseek.com/)
+ - [ChatGPT](https://chatgpt.com/)
+ - [YUQUE](https://www.yuque.com/)
+ - [Youtube](https://youtube.com/)
+ 
+ 
 <br>
 
 
 ### 👾 恐有阻挠
 
 如无法正常作用 挺大概率会是权限不足的问题 可尝试开启相关权限 ↓ 
-  - **开发者模式** 「复制 `chrome://extensions/` 到地址栏打开后 页面右上角可见」
-  - **允许运行用户脚本** 「油猴详情页中」
-  - 允许访问文件网址 「油猴详情页中」「可选增强」
-  
-  
+ - **开发者模式** 「复制 `chrome://extensions/` 到地址栏打开后 页面右上角可见」
+ - **允许运行用户脚本** 「扩展详情页中」
+ - 允许访问文件网址 「扩展详情页中」「可选增强」
+ 
+ 
 <br>
 
 
 <img src="https://cdn.jsdelivr.net/gh/voszerooo/WebScript@main/resource/permission-min.png" width="100%">
 
 
-<br>
-
-
-### 🚀 GUIDE 
-
-  - 功能开关 | <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>X</kbd> 可快速呼出控制面板 开关相应功能
-  - 功能扩展 | 支持个人扩展定义 可详见 [GUIDE](https://github.com/voszerooo/WebScript/blob/main/-/GUIDE.md) 快速了解
-  
-  
 <br>
 <br>
 
