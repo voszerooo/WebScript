@@ -87,7 +87,7 @@ class headerDEV {
         compiler.hooks.afterEmit.tap('headerDEV', () => {
             const installPath = path.resolve(__dirname, 'dist', config.name);
             fs.mkdirSync(path.dirname(installPath), { recursive: true });
-            fs.writeFileSync(installPath, buildHeader() + '\n' + ovnMagic + '\n', 'utf8');
+            fs.writeFileSync(installPath, buildHeader() + ovnMagic, 'utf8');
             
             const entryPath = path.resolve(__dirname, '.build', 'dev.entry.js');
             fs.mkdirSync(path.dirname(entryPath), { recursive: true });

@@ -7,7 +7,7 @@
 
 
 $mainLight: (
-    "Accent":    #75839F,
+    "Accent":    #75839F,                          // --ovnAccentHEX | HSL | ALT | SEL | CBD | CSD
     "Secondary": #454A54,
     "Primary":   #2C2F35,
     "Dark":      #000000,
@@ -19,8 +19,8 @@ $mainDark: (
     "Dark":      #000000,
 );
 
-$baseLight: (
-    "00": #1C1E22,
+$baseLight: ( 
+    "00": #1C1E22,                                 // --ovnBase00HEX | HSL | ALT | SEL | CBD | CSD
     "01": #1F2228,
     "02": #2C2F35,
     "03": #353941,
@@ -32,45 +32,37 @@ $baseLight: (
     "09": #F9F9F9,
 );
 $baseDark: (
-    "00": #1C1E22, // "00": map.get($baseLight, "09"),
-    "01": #1F2228, // "01": map.get($baseLight, "08"),
-    "02": #2C2F35, // "02": map.get($baseLight, "07"),
-    "03": #353941, // "03": map.get($baseLight, "06"),
-    "04": #454A54, // "04": map.get($baseLight, "05"),
-    "05": #757C8A, // "05": map.get($baseLight, "04"),
-    "06": #ABB0BA, // "06": map.get($baseLight, "03"),
-    "07": #BEC2CA, // "07": map.get($baseLight, "02"),
-    "08": #F4F4F4, // "08": map.get($baseLight, "01"),
-    "09": #F9F9F9, // "09": map.get($baseLight, "00"),
+    "00": #1C1E22,
+    "01": #1F2228,
+    "02": #2C2F35,
+    "03": #353941,
+    "04": #454A54,
+    "05": #757C8A,
+    "06": #ABB0BA,
+    "07": #BEC2CA,
+    "08": #F4F4F4,
+    "09": #F9F9F9,
 );
+// $baseDark: (
+//     "00": map.get($baseLight, "09"),
+//     "01": map.get($baseLight, "08"),
+//     "02": map.get($baseLight, "07"),
+//     "03": map.get($baseLight, "06"),
+//     "04": map.get($baseLight, "05"),
+//     "05": map.get($baseLight, "04"),
+//     "06": map.get($baseLight, "03"),
+//     "07": map.get($baseLight, "02"),
+//     "08": map.get($baseLight, "01"),
+//     "09": map.get($baseLight, "00"),
+// );
 
-$glow: (
-    "00": #D9B9F9,
-    "01": #708BC2,
-    "02": #9087F8,
-    "03": #25F493,
-    "04": #13EC99,
-    "05": #79ECD9,
-    "06": #CEF4FD,
-    "07": #F7F0B7,
-    "08": #BCF5F4,
-    "09": #85E0D7,
-);
-$state: (
-    "Success":  #25F49D,
-    "Warn":     #FF7424,
-    "Error":    #FC5E4F,
-    "Link":     #478BE5, // var(--ovnBlue0000),
-    "Visited":  #00B3B3, // var(--ovnCyan0000),
-    "Match":    #FF5242, // var(--ovnOrange01),
-);
 $hue: (
-    "Red00":    #E93F3F,
+    "Red00":    #E93F3F,                           // --ovnRed00HEX | HSL
     "Red02":    #EF4444,
     "Orange00": #F55F3A,
     "Orange01": #FF5242,
     "Orange02": #EE5C2A,
-    "Yellow00": #F7F0B7, // var(--ovnGlow07HEX),
+    "Yellow00": #F7F0B7,
     "Green00":  #11D080,
     "Green01":  #29F9A9,
     "Green02":  #10B981,
@@ -78,9 +70,29 @@ $hue: (
     "Blue00":   #478BE5,
     "Blue01":   #2BC2FF,
     "Blue02":   #2BC2FF,
-    "Purple00": #9087F8, // var(--ovnGlow02HEX),
+    "Purple00": #9087F8,
 );
 
+$glow: (
+    "00": #D9B9F9,                                 // --ovnGlow00HEX | HSL
+    "01": #708BC2,
+    "02": map.get($hue, "Purple00"),
+    "03": #25F493,
+    "04": #13EC99,
+    "05": #79ECD9,
+    "06": #CEF4FD,
+    "07": map.get($hue, "Yellow00"),
+    "08": #BCF5F4,
+    "09": #85E0D7,
+);
+$state: (
+    "Success":  #25F49D,                           // --ovnStateSuccessHEX | HSL
+    "Warn":     #FF7424,
+    "Error":    #FC5E4F,
+    "Link":     map.get($hue, "Blue00"),
+    "Visited":  map.get($hue, "Cyan00"),
+    "Match":    map.get($hue, "Orange01"),
+);
 
 @mixin magic($prefix, $map, $mutually: false) {
     @each $key, $value in $map {
@@ -102,6 +114,7 @@ $hue: (
         }
     }
 }
+
 
 :root {
     
@@ -151,7 +164,6 @@ $hue: (
     // 
     // --ovnGlassBase: hsla(0, 0%, 98%, .6);
     // --ovnGlassClean: hsla(0, 0%, 98%, .8);
-    // 
     // 
     // --ovnGrid-S: hsla(0, 0%, 50%, 0.05);
     // --ovnGrid-L: hsla(0, 0%, 50%, 0.07);

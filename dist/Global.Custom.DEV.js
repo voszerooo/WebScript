@@ -39,7 +39,6 @@
 // ==/UserScript==
 
 
-
 const ovnMagic = (() => {
     
     if (window.__OVN_MAGIC__) return;
@@ -106,5 +105,4 @@ const ovnMagic = (() => {
     }
     
 })();
-
 

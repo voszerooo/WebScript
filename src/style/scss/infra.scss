@@ -73,6 +73,16 @@
 }
 
 
+// $ ================================================== ↓ effect
+
+@mixin code {
+    padding: .126em .4em;
+    text-shadow: 0 0 .126em currentColor;
+    border-radius: var(--ovnBaseRadius);
+}
+
+
+
 // ================================================== ↓ example
 
 // .item {

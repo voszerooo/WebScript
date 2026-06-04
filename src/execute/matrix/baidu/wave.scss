@@ -37,8 +37,6 @@ html {
     
     // $ ================================================== ↓ Global
     
-        .wrapper_new { background: var(--ovnBaiduBG);}
-        
         // ==================== ↓ 移除下划线
         
             #container .c-container :is(
@@ -98,7 +96,10 @@ html {
                 box-shadow: none;
             }
             
-            
+        .wrapper_new { background: var(--ovnBaiduBG);}
+        .cos-button { border-radius: var(--ovnBaiduRM); }
+        
+        
     // $ ================================================== ↓ Head
     
         :where(#head) {
@@ -134,7 +135,12 @@ html {
             
             // ==================== ↓ Markdown
             
-                --ovnMdH: 1.5em;
+                --ovnBaiduMdT: 15px;
+                --ovnBaiduMdC: 14px;
+                --ovnBaiduMdH: 1.5em;
+                
+                --cos-leading-caption-sm: var(--ovnBaiduMdT);
+                --cos-text-body-lg-higher: var(--ovnBaiduMdC);
                 
                 .cosd-markdown .marklang h3,
                 [class*="accordion-panels-link_"] [class*="accordion-panels-title_"] {
@@ -145,6 +151,7 @@ html {
                 
                 [class*="follow-up-guide_"],
                 .cosd-markdown .marklang .marklang-paragraph,
+                [class*="baikan-pc-experiment_"] .cosd-markdown .marklang,
                 [class*="pc-content-container_"] .cosd-markdown .marklang {
                     font-size: 14px;
                 }
@@ -152,11 +159,11 @@ html {
                 [class*="follow-up-guide_"],
                 .cosd-markdown .marklang li,
                 .cosd-markdown .marklang .marklang-paragraph {
-                    line-height: var(--ovnMdH);
+                    line-height: var(--ovnBaiduMdH);
                 }
                 
                 .marklang ol li, .marklang ul li {
-                    min-height: var(--ovnMdH);
+                    min-height: var(--ovnBaiduMdH);
                 }
                 
                 .cos-accordion [class*="accordion-panels-link-header_"] div span {
@@ -299,12 +306,10 @@ html {
                             [class*="nbk-index_"] [class*="content-folded_"] {
                                 max-height: 526px !important; // 覆盖内联
                             }
-                            [class*="cosd-fold-switch-mask_"] {
-                                border-radius: var(--ovnBaiduRL);
-                            }
-                            [class*="cosd-fold-switch_"] {
-                                padding: 20px 0;
-                            }
+                            [class*="cosd-fold-switch-mask_"] { border-radius: var(--ovnBaiduRL); }
+                            [class*="cosd-fold-switch_"] { margin: 20px 0 0; }
+                            [class*="follow-up_"] { margin-top: 30px; }
+                            [class*="follow-up-guide_"] { margin-bottom: 24px; }
                             
                             // overflow: auto;
                             // max-height: calc(526px + 40px);
@@ -388,9 +393,20 @@ html {
                         &[tpl="fy_sg_dict_new_san"],
                         &[tpl="fy_sg_dictwisenew_san"] {
                             
-                            .cosc-card-shadow { padding-top: 10px; }
+                            .cosc-card-shadow {
+                                padding-top: 10px;
+                                padding-bottom: 5px;
+                            }
                             .cos-swiper-item { max-width: 15%; }
                             [class*="video-wrap_"] .ovnFocal { display: none; }
+                            
+                        }
+                        &[tpl="fy_sg_dict_new_san"] {
+                            
+                            // padding-top: 20px;
+                            .cos-divider { height: 0px; }
+                            .cos-space-mt-sm { margin-top: 0; }
+                            // [class*="card-header_"] { margin-bottom: 0; }
                             
                         }
                         &[tpl="fy_sg_dictwisenew_san"] {

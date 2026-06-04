@@ -1,0 +1,14 @@
+
+
+@use "../../../style/scss/infra.scss" as *;
+
+
+html {
+    
+    .ds-markdown code {
+        @include code;
+    }
+    .ds-markdown h3 code { padding: 0 .6em; }
+        
+}
+

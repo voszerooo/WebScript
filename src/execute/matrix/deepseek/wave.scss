@@ -4,76 +4,82 @@ html {
     
     &:root body {
         
-        --ovnDeepSCA: var(--ovnAccentHEX);
-        --ovnDeepSCS: var(--ovnSecondaryHEX);
-        --ovnDeepSCP: var(--ovnPrimaryHEX);
-        --ovnDeepSBG: var(--ovnBase09HEX);
+        --ovnDSCA: var(--ovnAccentHEX);
+        --ovnDSCS: var(--ovnSecondaryHEX);
+        --ovnDSCP: var(--ovnPrimaryHEX);
+        --ovnDSBG: var(--ovnBase09HEX);
         
-        --ovnDeepSRS: var(--ovnBaseRadius);
-        --ovnDeepSRU: var(--ovnUIRadius);
-        --ovnDeepSRM: var(--ovnPanelRadius);
-        --ovnDeepSRL: var(--ovnSurfaceRadius);
-        --ovnDeepSRX: var(--ovnRadiusX);
+        --ovnDSRS: var(--ovnBaseRadius);
+        --ovnDSRU: var(--ovnUIRadius);
+        --ovnDSRM: var(--ovnPanelRadius);
+        --ovnDSRL: var(--ovnSurfaceRadius);
+        --ovnDSRX: var(--ovnRadiusX);
         
-        --ovnDeepSW: var(--ovnSpaceWidth02);
+        --ovnDSX: var(--ovnSpaceWidth02);
+        
+        @media (width <= 1260px) { --ovnDSV: calc(var(--ovnDSX) + 40vw) }
+        @media (width >= 1260px) { --ovnDSV: calc(var(--ovnDSX) + 20vw) }
+        @media (width >= 1920px) { --ovnDSV: calc(var(--ovnDSX) + 05vw) }
         
     }
     
-    // @media (width <= 2460px) { --ovnDeepSW: calc(var(--ovnSpaceWidth02) + 2vw) }
-    // @media (width <= 1920px) { --ovnDeepSW: calc(var(--ovnSpaceWidth02) + 2vw) }
-    // @media (width <= 1260px) { --ovnDeepSW: calc(var(--ovnSpaceWidth02) - 2vw) }
+    &.ovn body {
+        
+        --dsw-alias-border-l2-darkmode-thin: #0000000D;
+        --message-list-max-width: var(--ovnDSV);
+        
+        &[data-ds-dark-theme] {
+            --dsw-static-neutral-bluish-1000: #3C3C3D;
+        }
+        
+    }
     
     // $ ================================================== ↓ Global
     
-        .XXXXXXXXXXXX { background: var(--ovnDeepSBG);}
+        // .fbb737a4 { min-width: 35%; }
         
-        // ==================== ↓ 無
+        // ==================== ↓ 形
         
-            .XXXXXXXXXXXX {
-                opacity: 0;
-            }
-            .XXXXXXXXXXXX,  // ==== XXXXX
-            .XXXXXXXXXXXX { // ==== XXXXX
-                display: none;
+            .e37a04e4, // ==== 会话标题
+            ._090c426, // ==== 新对话 按钮
+            .fbb737a4, // ==== 聊天信息框
+            ._546d736, // ==== 右侧列表 对话
+            ._5a8ac7a, // ==== 右侧列表 新对话
+            .ds-button,
+            .ds-toggle-button {
+                border-radius: var(--ovnDSRM);
             }
             
-        // ==================== ↓ 隐
+            
+        // $ ==================== ↓ 输入框
         
-            .XXXXXXXXXXXX {
-                border: transparent;
-            }
-            .XXXXXXXXXXXX {
-                outline: transparent;
-            }
-            .XXXXXXXXXXXX {
-                box-shadow: none;
-            }
-            .XXXXXXXXXXXX {
-                text-decoration: none;
-            }
-            .XXXXXXXXXXXX {
-                text-decoration: none !important;
+            ._77cefa5 ._27c9245,   // ==== 首页
+            ._77cefa5 .b13855df {  // ==== 聊天页
+                min-height: 92px;
             }
             
-            
-        // $ ==================== ↓ XXXXX
-            // ========== XXXXX
-            
+        // ========== 代码块
+        .md-code-block > pre { font-size: 12px; }
+        
+        
     // $ ================================================== ↓ 首页
     
         // ========== 快速/专家 模式
-        .c15ec89f, .b0db7355, ._9f2341b { border-radius: var(--ovnRadiusM); }
+        .c15ec89f, .b0db7355, ._9f2341b { border-radius: var(--ovnDSRM); }
+        
+        // ========== 输入框
+        ._9a2f8e4 { max-width: var(--ovnDSV); }
         
         
     // $ ================================================== ↓ 聊天页
     
         // ========== 返回底部
-        .ds-atom-button.ds-floating-button {
+        .ds-button.ds-button--floating {
             right: 50%;
             transform: translateX(calc(-50% + 35px));
         }
         
-        // ========== fix 
+        // ========== 修复 思考过程 文字样式错误
             .katex .base { display: contents; }
             .cjk_fallback { font: var(--ovnOftenFontBase); }
             
@@ -90,72 +96,3 @@ html {
 
 // $ ================================================== ↓ Unknown
 
-
-
-
-
-
-
-
-
-
-                
-                    html {
-                        
-                        &:root body {
-                            
-                            --ovn-DeepSeek-Width: var(--ovnSpaceWidth02);
-                            --ovn-DeepSeek-Hight: var(--ovnSpace2Y);
-                            
-                            --ovnRadiusS: var(--ovnBaseRadius);
-                            --ovnRadiusU: var(--ovnUIRadius);
-                            --ovnRadiusM: var(--ovnPanelRadius);
-                            --ovnRadiusL: var(--ovnSurfaceRadius);
-                            
-                        }
-                        
-                        body { --dsw-alias-border-l2-darkmode-thin: hsla(0, 0%, 0%, .05); }
-                        body, body[data-ds-dark-theme] { --dsw-static-neutral-bluish-1000: #3c3c3d; }
-                        
-                        .md-code-block > pre, .md-code-block > pre * { font-family: var(--ds-font-family-code) !important; }
-                        
-                        /* ========== ↓ 首页搜索框 */
-                        ._9a2f8e4 { max-width: calc(var(--ovn-DeepSeek-Width) + 5vw); }
-                        
-                        /* ========== ↓ 输入框 */
-                        ._77cefa5 ._27c9245, ._77cefa5 .b13855df { min-height: 92px; }
-                        
-                        /* ========== ↓ 聊天容器 */
-                        .ds-virtual-list { --message-list-max-width: calc(var(--ovn-DeepSeek-Width) + 5vw); }
-                        
-                        @media (width <= 1920px) {
-                            ._9a2f8e4 { max-width: calc(var(--ovn-DeepSeek-Width) + 20vw); }
-                            .ds-virtual-list { --message-list-max-width: calc(var(--ovn-DeepSeek-Width) + 20vw); }
-                        }
-                        @media (width <= 1260px) {
-                            ._9a2f8e4 { max-width: calc(var(--ovn-DeepSeek-Width) + 40vw); }
-                            .ds-virtual-list { --message-list-max-width: calc(var(--ovn-DeepSeek-Width) + 40vw); }
-                        }
-                        
-                        
-                        
-                        .e37a04e4,        /* 会话标题 */
-                        ._090c426,        /* 新对话 按钮 */
-                        .fbb737a4,        /* 聊天信息框 */
-                        ._546d736,        /* 右侧列表 对话 */ 
-                        ._5a8ac7a,        /* 右侧列表 新对话 */ 
-                        .ds-toggle-button /* 深度思考 & 联网搜索 */{
-                            border-radius: var(--ovnRadiusM);
-                        }
-                        
-                        // .fbb737a4 { min-width: 35%; }
-                        
-                        
-                        /* ========== ↓ 代码块 */
-                        &.ovn .md-code-block > pre, .md-code-block > pre * {
-                            font-family: var(--ovnCodeFont) !important;
-                            font-size: 12px;
-                        }
-                        
-                    }
-                    

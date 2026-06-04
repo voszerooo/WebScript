@@ -87,10 +87,17 @@ OVN_GLOBAL_SCHEDULER.run("Micro_Other", () => {
         GM_addStyle( /* css */ `
             html {
                 
-                &:root body {
+                &.ovn {
                     
                     --ovnGithubWidth: 1126px;
+                    --ovnGithubBC: #3d444d40;
                     
+                }
+                
+                &[data-color-mode=dark][data-dark-theme=dark_dimmed],
+                &[data-color-mode=auto][data-light-theme=dark_dimmed] {
+                    --borderColor-default: var(--ovnGithubBC);
+                    --borderColor-muted: var(--ovnGithubBC);
                 }
                 
                 .container-xl { max-width: calc(var(--ovnGithubWidth) + 300px); }

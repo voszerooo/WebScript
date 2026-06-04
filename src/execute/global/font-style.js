@@ -31,11 +31,13 @@ OVN_GLOBAL_SCHEDULER.run("FontStyle", () => {
                 font-family: var(--ovnCodeFont) !important;
             }
             
+            /*
             .inline-code, .ds-markdown code, .prose :where(code):not(:where([class~=not-prose] *), pre *) {
                 padding: .126em .4em !important;
                 font-weight: 526 !important;
                 text-shadow: 0 0 .126em currentColor !important;
             }
+            */
             
         `);
         
