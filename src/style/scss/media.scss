@@ -5,20 +5,21 @@
 
 
 $map: (
-    "phone": 920px,
-    "pad":   1260px,
-    "pc":    1920px,
-    "tv":    2460px,
+    "x":     920px,
+    "s":     1260px,
+    "r":     1920px,
+    "l":     2460px,
+    "u":     4060px,
     
     "1K":    1920px,
     "2K":    2560px,
     "4K":    4096px,
     "8K":    8192px,
     
-    "x": 2460px,
-    "l": 1920px,
-    "m": 1260px,
-    "s": 920px,
+    "phone": 920px,
+    "pad":   1260px,
+    "pc":    1920px,
+    "tv":    2460px,
 );
 
 @mixin fit($key) {
@@ -28,13 +29,15 @@ $map: (
     } @else {
         $point: map.get($map, $key);
     }
-    @if $point { @media (width <= $point) { @content; } }
+    @if $point { @media (width >= $point) { @content; } }
 }
+
 
 // ================================================== ↓ example
 
+
 // .item {
-//     @include fit("phone") {
+//     @include fit("pc") {
 //         //...
 //     }
 //     @include fit(1920px) {

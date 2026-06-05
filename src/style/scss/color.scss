@@ -115,85 +115,73 @@ $state: (
     }
 }
 
+// ================================================== ↓ START
 
-:root {
-    
-    @include magic("ovn", $mainLight, $mutually: true);
-    @include magic("ovnBase", $baseLight, $mutually: true);
-    
-    @include theme() {
+    :root {
         
-        &, &[ovnMain] {
-            $main: null;
-            @if $theme == light { $main: $mainLight; } @else { $main: $mainDark; }
-            @include magic("ovn", $main, $mutually: true);
-        }
-        &, &[ovnBase] {
-            $base: null;
-            @if $theme == light { $base: $baseLight; } @else { $base: $baseDark; }
-            @include magic("ovnBase", $base, $mutually: true);
+        @include magic("ovn", $mainLight, $mutually: true);
+        @include magic("ovnBase", $baseLight, $mutually: true);
+        
+        @include theme() {
+            
+            &, &[ovnMain] {
+                $main: null;
+                @if $theme == light { $main: $mainLight; } @else { $main: $mainDark; }
+                @include magic("ovn", $main, $mutually: true);
+            }
+            &, &[ovnBase] {
+                $base: null;
+                @if $theme == light { $base: $baseLight; } @else { $base: $baseDark; }
+                @include magic("ovnBase", $base, $mutually: true);
+            }
+            
         }
         
     }
     
-}
-
-:root, [ovnState] {
-    @include magic("ovnGlow", $glow);
-    @include magic("ovnState", $state);
-    @include magic("ovn", $hue);
-}
-
-:root, [ovnStore] {
+    :root, [ovnState] {
+        @include magic("ovnGlow", $glow);
+        @include magic("ovnState", $state);
+        @include magic("ovn", $hue);
+    }
     
-    --ovnGridS: hsla(var(--ovnBase05HSL), .05);
-    --ovnGridL: hsla(var(--ovnBase05HSL), .07);
-    --ovnGridD: hsla(var(--ovnBase05HSL), .07);
+    :root, [ovnStore] {
+        
+        --ovnGridS: hsla(var(--ovnBase05HSL), .05);
+        --ovnGridL: hsla(var(--ovnBase05HSL), .07);
+        --ovnGridD: hsla(var(--ovnBase05HSL), .07);
+        
+        --ovnGlassBase: hsla(var(--ovnBase09HSL), .6);
+        --ovnGlassTidy: hsla(var(--ovnBase09HSL), .8);
+        --ovnGlassDark: hsla(var(--ovnPrimaryHSL), .526);
+        
+        --ovnForeground: #000;
+        --ovnBackground: #000;
+        --ovnBackdrop:   #000;
+        
+    }
     
-    --ovnGlassBase: hsla(var(--ovnBase09HSL), .6);
-    --ovnGlassTidy: hsla(var(--ovnBase09HSL), .8);
-    --ovnGlassDark: hsla(var(--ovnPrimaryHSL), .526);
+    :root, [ovnMarkdown] {
+        --ovnMarkdownH1: #494F4D;
+        --ovnMarkdownH2: #515463;
+        --ovnMarkdownH3: #40465D;
+        --ovnMarkdownH4: #4D5B66;
+        --ovnMarkdownH5: #4F5E68;
+        --ovnMarkdownH6: #5B7481;
+    }
     
-    --ovnForeground: #000;
-    --ovnBackground: #000;
-    --ovnBackdrop:   #000;
+    :root, [ovnGather] {
+        --ovnBaidu:        #4E6EF2;
+        --ovnGoogleBlue:   #4285F4;
+        --ovnGoogleRad:    #ea4335;
+        --ovnGoogleYellow: #FBBC05;
+        --ovnGoogleGreen:  #34a853;
+        --ovnBing:         #174AE4;
+        --ovnYoutubeRad:   #FD0234;
+        --ovn115:          #2777F8;
+        --ovnIQIYI:        #00F48E;
+        --ovnBiliPink:     #FB7299;
+        --ovnBiliBlue:     #00AEEC;
+    }
     
-    // --ovnGrid-S: hsla(0, 0%, 50%, 0.07);
-    // --ovnGrid-L: hsla(0, 0%, 50%, 0.09);
-    // --ovnGrid-D: hsla(0, 0%, 50%, 0.09);
-    // 
-    // --ovnGlassBase: hsla(0, 0%, 98%, .6);
-    // --ovnGlassClean: hsla(0, 0%, 98%, .8);
-    // 
-    // --ovnGrid-S: hsla(0, 0%, 50%, 0.05);
-    // --ovnGrid-L: hsla(0, 0%, 50%, 0.07);
-    // --ovnGrid-D: hsla(0, 0%, 50%, 0.07);
-    // 
-    // --ovnGlassBase: hsla(0, 0%, 98%, .6);
-    // --ovnGlassClean: hsla(0, 0%, 98%, .8);
     
-}
-
-:root, [ovnMarkdown] {
-    --ovnMarkdownH1: #494F4D;
-    --ovnMarkdownH2: #515463;
-    --ovnMarkdownH3: #40465D;
-    --ovnMarkdownH4: #4D5B66;
-    --ovnMarkdownH5: #4F5E68;
-    --ovnMarkdownH6: #5B7481;
-}
-
-:root, [ovnGather] {
-    --ovnBaidu:        #4E6EF2;
-    --ovnGoogleBlue:   #4285F4;
-    --ovnGoogleRad:    #ea4335;
-    --ovnGoogleYellow: #FBBC05;
-    --ovnGoogleGreen:  #34a853;
-    --ovnBing:         #174AE4;
-    --ovnYoutubeRad:   #FD0234;
-    --ovn115:          #2777F8;
-    --ovnIQIYI:        #00F48E;
-    --ovnBiliPink:     #FB7299;
-    --ovnBiliBlue:     #00AEEC;
-}
-

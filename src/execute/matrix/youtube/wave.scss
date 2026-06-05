@@ -73,14 +73,17 @@ html {
             
             // ==================== ↓ 播放器
             
-                .html5-video-player a:hover,                                    // ==== 全屏 下拉 item
-                .ytp-fullscreen-grid-expand-button,                             // ==== 全屏 下拉 button
-                .ytp-delhi-modern .ytp-popup,                                   // ==== 设定背景
-                .ytp-delhi-modern .ytp-volume-area,                             // ==== 音量
-                .ytp-delhi-modern .ytp-chrome-controls .ytp-play-button,        // ==== 播放
-                .ytp-delhi-modern .ytp-chrome-controls .ytp-right-controls,     // ==== 设定条
-                .ytp-delhi-modern .ytp-time-wrapper:not(.ytp-miniplayer-ui *) { // ==== 播放时间
-                    backdrop-filter: var(--ovnYoutubeBlur);
+                &.watch-root-element {
+                    .html5-video-player a:hover,                                    // ==== 全屏 下拉 item
+                    .ytp-fullscreen-grid-expand-button,                             // ==== 全屏 下拉 button
+                    .ytPlayerQuickActionButtonsHost:not(:empty),                    // ==== 全屏 反馈按钮组
+                    .ytp-delhi-modern .ytp-popup,                                   // ==== 设定背景
+                    .ytp-delhi-modern .ytp-volume-area,                             // ==== 音量
+                    .ytp-delhi-modern .ytp-chrome-controls .ytp-play-button,        // ==== 播放
+                    .ytp-delhi-modern .ytp-chrome-controls .ytp-right-controls,     // ==== 设定条
+                    .ytp-delhi-modern .ytp-time-wrapper:not(.ytp-miniplayer-ui *) { // ==== 播放时间
+                        backdrop-filter: var(--ovnYoutubeBlur);
+                    }
                 }
                 
                 // ========== 字幕
@@ -90,6 +93,12 @@ html {
                     font-size: 32px !important;
                     background: hsla(var(--ovnBase00HSL), .6) !important;
                     border-radius: var(--ovnYoutubeRS);
+                    backdrop-filter: var(--ovnYoutubeBlur);
+                }
+                
+                // ========== 进度条
+                .ytp-delhi-modern .ytp-progress-list {
+                    background: hsla(var(--ovnBase09HSL), .2);
                     backdrop-filter: var(--ovnYoutubeBlur);
                 }
                 
