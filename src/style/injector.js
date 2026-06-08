@@ -9,9 +9,10 @@ import icon      from './storage/icon.scss';
 import xfilter   from './storage/icon.xxfilterxx.scss';
 import global    from './storage/global.scss';
 
+import { OVN_SUBJOIN_HOOK } from './../store/core/hook.js';
+
 
 const subjoin = [];
-
 
 if (!__OVN_RELEASE__) { subjoin.push(xfilter); }
 const base = [color, font, ui, space, icon, global];
@@ -68,6 +69,10 @@ class Injector {
 
 const injector = new Injector();
 injector.inject();
+
+const html = document.documentElement;
+html.classList.add('ovn');
+OVN_SUBJOIN_HOOK.apply('class', { html });
 
 window.OVN_CSS_INJECTOR = injector;
 export { injector as OVN_CSS_INJECTOR };

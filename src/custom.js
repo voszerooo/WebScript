@@ -6,7 +6,6 @@ import '../script/flux.js';
 import './style/injector.js';
 
 import { OVN } from './store/derive.js';
-import { OVN_SUBJOIN_HOOK } from './store/core/hook.js';
 
 import './execute/ignite.js';
 
@@ -38,11 +37,6 @@ import './execute/ignite.js';
 
 function onReady() {
     try {
-        const html = document.documentElement;
-        
-        html.classList.add('ovn');
-        OVN_SUBJOIN_HOOK.apply('class', { html });
-        
         OVN.SCHEDULER.run();
         OVN.DEBUG.infoTotal();
     } catch (error) {
