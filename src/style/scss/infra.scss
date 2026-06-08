@@ -91,6 +91,7 @@
     
     @mixin code {
         padding: .126em .4em;
+        font-weight: 526;
         text-shadow: 0 0 .126em currentColor;
         border-radius: var(--ovnBaseRadius);
     }
@@ -101,6 +102,5 @@
 // .item {
 //     @include flex(center);
 //     @include glass;
-//     @include block;
 // }
 

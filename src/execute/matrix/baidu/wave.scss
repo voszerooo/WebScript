@@ -306,7 +306,7 @@ html {
                             [class*="nbk-index_"] [class*="content-folded_"] {
                                 max-height: 526px !important; // 覆盖内联
                             }
-                            [class*="cosd-fold-switch-mask_"] { border-radius: var(--ovnBaiduRL); }
+                            [class*="cosd-fold-switch-mask_"] { border-radius: 0 0 var(--ovnBaiduRL) var(--ovnBaiduRL); }
                             [class*="cosd-fold-switch_"] { margin: 20px 0 0; }
                             [class*="follow-up_"] { margin-top: 30px; }
                             [class*="follow-up-guide_"] { margin-bottom: 24px; }

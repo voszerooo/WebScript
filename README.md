@@ -85,7 +85,7 @@
         <td>播放器样式 / 播放列表高度增加 / ...</td>
     </tr>
     <tr>
-        <td>...</td>
+        <td><code>...</code></td>
         <td></td>
     </tr>
     <tr>
@@ -93,7 +93,7 @@
     </tr>
     <tr>
         <td style="font-weight: bold;">Micro</td>
-        <td>...</td>
+        <td><code>...</code></td>
         <td>第三方脚本/插件 等杂项 个性化样式</td>
     </tr>
 </table>

@@ -4,29 +4,29 @@ html {
     
     &:root body {
         
-        --ovnDSCA: var(--ovnAccentHEX);
-        --ovnDSCS: var(--ovnSecondaryHEX);
-        --ovnDSCP: var(--ovnPrimaryHEX);
-        --ovnDSBG: var(--ovnBase09HEX);
+        --ovnDeepSeekCA: var(--ovnAccentHEX);
+        --ovnDeepSeekCS: var(--ovnSecondaryHEX);
+        --ovnDeepSeekCP: var(--ovnPrimaryHEX);
+        --ovnDeepSeekBG: var(--ovnBase09HEX);
         
-        --ovnDSRS: var(--ovnBaseRadius);
-        --ovnDSRU: var(--ovnUIRadius);
-        --ovnDSRM: var(--ovnPanelRadius);
-        --ovnDSRL: var(--ovnSurfaceRadius);
-        --ovnDSRX: var(--ovnRadiusX);
+        --ovnDeepSeekRS: var(--ovnBaseRadius);
+        --ovnDeepSeekRU: var(--ovnUIRadius);
+        --ovnDeepSeekRM: var(--ovnPanelRadius);
+        --ovnDeepSeekRL: var(--ovnSurfaceRadius);
+        --ovnDeepSeekRX: var(--ovnRadiusX);
         
-        --ovnDSX: var(--ovnSpaceWidth02);
+        --ovnDeepSeekX: var(--ovnSpaceWidth02);
         
-        @media (width <= 1260px) { --ovnDSV: calc(var(--ovnDSX) + 40vw) }
-        @media (width >= 1260px) { --ovnDSV: calc(var(--ovnDSX) + 20vw) }
-        @media (width >= 1920px) { --ovnDSV: calc(var(--ovnDSX) + 05vw) }
+        @media (width <= 1260px) { --ovnDeepSeekV: calc(var(--ovnDeepSeekX) + 40vw) }
+        @media (width >= 1260px) { --ovnDeepSeekV: calc(var(--ovnDeepSeekX) + 20vw) }
+        @media (width >= 1920px) { --ovnDeepSeekV: calc(var(--ovnDeepSeekX) + 05vw) }
         
     }
     
     &.ovn body {
         
         --dsw-alias-border-l2-darkmode-thin: #0000000D;
-        --message-list-max-width: var(--ovnDSV);
+        --message-list-max-width: var(--ovnDeepSeekV);
         
         &[data-ds-dark-theme] {
             --dsw-static-neutral-bluish-1000: #3C3C3D;
@@ -47,7 +47,7 @@ html {
             ._5a8ac7a, // ==== 右侧列表 新对话
             .ds-button,
             .ds-toggle-button {
-                border-radius: var(--ovnDSRM);
+                border-radius: var(--ovnDeepSeekRM);
             }
             
             
@@ -65,10 +65,10 @@ html {
     // $ ================================================== ↓ 首页
     
         // ========== 快速/专家 模式
-        .c15ec89f, .b0db7355, ._9f2341b { border-radius: var(--ovnDSRM); }
+        .c15ec89f, .b0db7355, ._9f2341b { border-radius: var(--ovnDeepSeekRM); }
         
         // ========== 输入框
-        ._9a2f8e4 { max-width: var(--ovnDSV); }
+        ._9a2f8e4 { max-width: var(--ovnDeepSeekV); }
         
         
     // $ ================================================== ↓ 聊天页
@@ -83,15 +83,6 @@ html {
             .katex .base { display: contents; }
             .cjk_fallback { font: var(--ovnOftenFontBase); }
             
-            
-    // $ ================================================== ↓ XXXXX
-        
-        :where(#XXXXX) {
-            
-            --vbDeepSeekXXX: hsla(var(--ovnPrimaryHSL), .5);
-            
-        }
-        
 }
 
 // $ ================================================== ↓ Unknown
