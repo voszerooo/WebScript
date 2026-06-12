@@ -1,0 +1,23 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Custom",
+            "type": "shell",
+            "command": "pnpm",
+            "args": [ "scss" ]
+        },
+        {
+            "label": "Build",
+            "type": "shell",
+            "command": "pnpm",
+            "args": [ "build" ]
+        },
+        {
+            "label": "Dev",
+            "type": "shell",
+            "command": "pnpm",
+            "args": [ "dev" ]
+        }
+    ]
+}

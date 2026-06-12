@@ -35,6 +35,11 @@ html {
     
     // $ ================================================== ↓ Global
     
+        .ant-row [class*="QuickStart-module_wrapper_"],        // ==== 首页 快速开始
+        .ant-row [class*="Dashboard-module_dashboardTitle_"] { // ==== 首页 快速开始 标题
+            display: none;
+        }
+        
         // ========== 鼠标选取
         // .lakex-yuque-theme-light {
         //     --lakex-editor-selection: #454A54;

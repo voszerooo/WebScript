@@ -10,6 +10,26 @@ import { OVN_SUBJOIN_HOOK }      from '../../store/core/hook.js';
         
         debug: false,
         
+        // ionic: {
+            
+        //     fold: true,
+        //     block: [ ],
+            
+        //     state: true,
+        //     default: true,
+        //     name: " ",
+        //     feature: " ",
+            
+        //     match: { include: [ "*xxxxx.com/*" ], exclude: [ ] },
+        //     depend: [ "XXXXX" ],
+        //     phase: "start", // start | init | ready | end
+        //     priority: 50,
+            
+        //     ovnGrid: { feature: "背景网格", },
+        //     ovnTable: { feature: "表格样式", }
+            
+        // },
+        
         Global: {
             
             fold: false,
@@ -26,6 +46,7 @@ import { OVN_SUBJOIN_HOOK }      from '../../store/core/hook.js';
                 match: { include: [ "*" ], exclude: [ ] },
             },
             Gallop: {
+                default: false,
                 feature: "浮光掠影‌  走马观花",
                 match: { include: [ "*" ], exclude: [ ] },
             },
@@ -119,15 +140,7 @@ import { OVN_SUBJOIN_HOOK }      from '../../store/core/hook.js';
             YUQUE: {
                 
                 fold: true,
-                name: " ",
-                feature: " ",
-                state: true,
-                default: true,
-                
                 match: { include: [ "*yuque.com/*" ], exclude: [ ] },
-                // depend: [ "XXXXX" ],
-                // phase: "start", // start | init | ready | end
-                // priority: 50,
                 
                 ovnGrid: { feature: "背景网格", },
                 ovnTable: { feature: "表格样式", }

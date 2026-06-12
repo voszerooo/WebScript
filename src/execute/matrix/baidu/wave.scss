@@ -5,6 +5,7 @@ html {
     &:root body {
         
         --ovnBaiduRepair: -6px;
+        --ovnBaiduTitleR: 18px;
         --ovnBaiduKeyWord: #3978d0;
         --ovnBaiduBG: var(--ovnBase09HEX);
         --ovnBaiduP: var(--ovnSpacePadding);
@@ -49,6 +50,9 @@ html {
                 [class*="title_"] .cos-link,
                 [class*="site-link_"] .custom-underline a .cosc-title-slot:hover
             ), a, em, :link, a:hover, em:hover, a:hover em, a.cos-link:hover {
+                text-decoration: none;
+            }
+            [class*="vmp-project-new_"] [class*="vmp-project-title_"] :is(a, a em) {
                 text-decoration: none;
             }
             
@@ -239,7 +243,7 @@ html {
             
                 #container {
                     
-                    .new-pmd.c-container, .new-pmd[tpl="app/rs"] {
+                    :is(.new-pmd.c-container, .new-pmd.xpath-log, .new-pmd[tpl="app/rs"]) {
                         box-sizing: border-box;
                         position: relative;
                         padding: var(--ovnBaiduP);
@@ -251,7 +255,7 @@ html {
                         border-radius: var(--ovnBaiduRL);
                         transition: var(--ovnBaiduT);
                     }
-                    .new-pmd.c-container:hover, .new-pmd[tpl="app/rs"]:hover {
+                    :is(.new-pmd.c-container, .new-pmd.xpath-log, .new-pmd[tpl="app/rs"]):hover {
                         z-index: 2;
                         box-shadow: inset 0 0 2px hsla(0, 0%, 92%, .6), var(--ovnBaiduSH);
                         transform: var(--ovnBaiduZ);
@@ -271,6 +275,7 @@ html {
                     .new-pmd[tpl="med_wenzhen_san"]:hover,          // ==== 百度健康
                     .new-pmd[tpl="med_aigc_guru_san"]:hover,        // ==== 百度健康
                     .new-pmd[tpl*="jr_stock"]:hover,                // ==== 百度股市通
+                    .new-pmd[tpl*="jr_quote"]:hover,                // ==== 百度股市通
                     .new-pmd[tpl="jr_exchange_rate"]:hover,         // ==== 百度股市通
                     .new-pmd[tpl="ai_agent_qa_recommend"]:hover,    // ==== 聊一下更多精彩 
                     .new-pmd[tpl="yl_rw_figure_sample_san"]:hover { // ==== 作品成就
@@ -307,7 +312,7 @@ html {
                                 max-height: 526px !important; // 覆盖内联
                             }
                             [class*="cosd-fold-switch-mask_"] { border-radius: 0 0 var(--ovnBaiduRL) var(--ovnBaiduRL); }
-                            [class*="cosd-fold-switch_"] { margin: 20px 0 0; }
+                            [class*="cosd-fold-switch_"] { padding: 20px 0; }
                             [class*="follow-up_"] { margin-top: 30px; }
                             [class*="follow-up-guide_"] { margin-bottom: 24px; }
                             
@@ -352,7 +357,7 @@ html {
                         }
                         &[tpl="wenda_generate"] {
                         
-                            padding-top: 20px; // 初始 首屏生效
+                            padding-top: var(--ovnBaiduTitleR);
                             [class*="cos-dqa-group-bg_"] .cosc-card-light-bg {
                                 top: -15px;
                                 left: -15px;
@@ -365,7 +370,7 @@ html {
                         }
                         &[tpl="new_baikan_index"] {
                             
-                            padding-top: 20px;
+                            padding-top: var(--ovnBaiduTitleR);
                             padding-bottom: 0;
                             
                             [class*="nbk-index_"] [class*="nbk-interact_"] {
@@ -403,7 +408,8 @@ html {
                         }
                         &[tpl="fy_sg_dict_new_san"] {
                             
-                            // padding-top: 20px;
+                            padding-top: var(--ovnBaiduTitleR);
+                            
                             .cos-divider { height: 0px; }
                             .cos-space-mt-sm { margin-top: 0; }
                             // [class*="card-header_"] { margin-bottom: 0; }
@@ -707,6 +713,14 @@ html {
                             
                         }
                         
+                    // $ ==================== ↓ 最新信息
+                    
+                        &[tpl="jr_quote"] {
+                            
+                            padding-top: var(--ovnBaiduTitleR);
+                            
+                        }
+                        
                     // $ ==================== ↓ 最新相关信息
                     
                         &[mu*="https://wenku.baidu.com/"] {
@@ -946,6 +960,7 @@ html {
             .c-container[tpl="world_time_san"] h3,
             .c-container[tpl="fy_sg_dict_new_san"] h3,
             .c-container[tpl="wenda_generate"] h3,
+            .c-container[tpl="jr_quote"] h3,
             .c-container[tpl="fy_fanyi_ai_san"] h3,
             .c-container[tpl="jr_stock_comment_san"] h3
         ) {
@@ -971,6 +986,7 @@ html {
             html #wrapper #container.sam_newgrid .c-group-title a,
             html #wrapper #container.sam_newgrid .c-container .t,
             html #wrapper #container.sam_newgrid .c-container .c-title,
+            html #wrapper #container.sam_newgrid .xpath-log.new-pmd .c-title,
             html #wrapper #container.sam_newgrid .c-container ._paragraph_1g9za_2.lg {
                 color: var(--ovnBaiduKeyWord);
                 font-size: 15px;

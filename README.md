@@ -94,7 +94,7 @@
     <tr>
         <td style="font-weight: bold;">Micro</td>
         <td><code>...</code></td>
-        <td>第三方脚本/插件 等杂项 个性化样式</td>
+        <td>第三方脚本/插件/杂项 个性化样式</td>
     </tr>
 </table>
 
@@ -104,8 +104,8 @@
 
 ### 🚀 GUIDE 
 
- - 脚本安装 | 本脚本已上传至 [GreasyFork.WebScript](https://update.greasyfork.org/scripts/579569/GlobalCustom.user.js) 点此可快速安装
- - 功能开关 | 本脚本为全局型脚本 如觉功能繁杂 可 <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>X</kbd> 快速呼出控制面板 开关相应功能
+ - 脚本安装 | 脚本已上传至 [GreasyFork.WebScript](https://update.greasyfork.org/scripts/579569/GlobalCustom.user.js) 点此可快速安装
+ - 功能开关 | 本脚本为自用全局型脚本 如觉功能繁杂 可 <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>X</kbd> 快速呼出控制面板 开关相应功能
  - 功能扩展 | 已留有接口 支持个人扩展定义 可详见 [GUIDE](https://github.com/voszerooo/WebScript/blob/main/-/GUIDE.md) 快速了解结构
  
  
