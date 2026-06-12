@@ -87,10 +87,22 @@ OVN_GLOBAL_SCHEDULER.run("Micro_Other", () => {
         GM_addStyle( /* css */ `
             html {
                 
-                &:root body {
+                &.ovn {
                     
                     --ovnGithubWidth: 1126px;
+                    --ovnGithubXXX: #000;
                     
+                }
+                
+                &[data-color-mode=dark][data-dark-theme=dark_dimmed],
+                &[data-color-mode=auto][data-light-theme=dark_dimmed] {
+                    --borderColor-default: #3d444d40;
+                    --borderColor-muted: #3d444d40;
+                }
+                &[data-color-mode=dark][data-dark-theme=dark],
+                &[data-color-mode=auto][data-light-theme=dark] {
+                    --borderColor-default: #3d444d24;
+                    --borderColor-muted: #3d444d24;
                 }
                 
                 .container-xl { max-width: calc(var(--ovnGithubWidth) + 300px); }
@@ -395,7 +407,7 @@ OVN_GLOBAL_SCHEDULER.run("Micro_Other", () => {
         (function OVN_DOU_ReLimits() {
             
             OVN_REMOVE_LIMITS.apply({
-                key: "ctrl",
+                key: "alt",
                 ReLimits: "all",
             });
             

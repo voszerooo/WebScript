@@ -5,7 +5,6 @@
  * - 
  * - OVN_GLOBAL_BUTTON 默认按钮颜色不正确 开关可正常作用颜色 但功能开启 然后刷新 则没应用高亮颜色
  * - 改掉 __XXXX__ 这类命名
- * - scss
  * - 
  * ? ==================== ↓ ERROR
  * ? 
@@ -27,8 +26,12 @@
  * & 
  * & OVN_Options          | 按住 ctrl 点击 组名可反选操作
  * & OVN_Options          | 可储存 三个常用配置 
+ * & OVN_Options          | 每个 / 有需求变更的 项 后方新增配置齿轮 点击可弹出窗口 更改配置
  * & OVN_Options          | 在 UI 面板中 OVN_VALUE_RUNTIME 同步状态灯
  * & OVN_Options          | 当站点出现在 exclude 中时 状态灯为橙色 block 为 红色
+ * & OVN_Options          | 右键功能 可弹出功能菜单 编辑配置
+ * & OVN_Options          | 导入导出配置
+ * & OVN_Options          | 用户配置可覆盖默认配置 比如 主题色
  * & 
  * & OVN_GLOBAL_SCHEDULER | scheduler depend priority phase 应该未生效
  * & OVN_GLOBAL_SCHEDULER | 任务粒度 + 调度方式 + 执行时机 帧调度器
@@ -37,19 +40,15 @@
  * & Webpack              | scope‌ 拆分
  * & Webpack              | Webpack HMR - chunk 每个模块编写 dispose / accept 逻辑
  * & 
- * & -------------------- | data-ovn-script-bundle 注入时就放进 ovnScript
  * & yuque                | 查看其他用户文档时 网格重复
+ * & -------------------- | data-ovn-script-bundle 注入时就放进 ovnScript
  * & 
  * & 
  * + ==================== ↓ NEW
  * + 
- * + OVN_Options       | 右键功能 可弹出功能菜单 编辑配置
- * + OVN_Options       | 导入导出配置
- * + OVN_Options       | 用户配置可覆盖默认配置 比如 主题色
- * + 
  * + OVN_Preview       | 快速阅读
  * + 
- * + OVN_REMOVE_LIMITS | 新增 解除复制限制 如有难以越过的防御/不好实现 则弹出复制按钮 自动拼接
+ * + OVN_REMOVE_LIMITS | 解除复制限制 如有难以越过的防御/不好实现 则弹出复制按钮 自动拼接
  * + OVN_REMOVE_LOGIN  | 
  * + OVN_GLOBAL_POPUP  | 
  * + 

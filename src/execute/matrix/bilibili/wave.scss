@@ -18,16 +18,11 @@ html {
         
     }
     
-    .XXXXXXXXXX, /* ==== XXXXX */
-    .XXXXXXXXXX  /* ==== XXXXX */ {
-        display: none;
-    }
-    
     // $ ================================================== ↓ Global
     
-        // .header-channel, 
         // .search-input-container .search-fixed-header,
-        .bili-header .mini-header { // ========== Head
+        .header-channel,            // ==== Head 首页
+        .bili-header .mini-header { // ==== Head 播放页
             box-shadow: var(--ovnBiliShadow);
         }
         
@@ -38,34 +33,23 @@ html {
         
             // $ ==================== ↓ 播放器
             
-                // 圆角 + 阴影 「非 全屏/网页全屏 时作用」
-                #playerWrap:not(:has(.bpx-player-container:is([data-screen="web"], [data-screen="full"], [data-screen=mini]))) {
+                // .bpx-player-container[data-screen="normal"],
+                // .bpx-player-container[data-screen="wide"]           // 宽屏
+                // .bpx-player-control-entity[data-shadow-show="true"] // 隐藏黑边时
+                
+                #playerWrap:not(:has(.bpx-player-container:is(
+                    [data-screen="web"],  // 网页全屏
+                    [data-screen="full"], // 全屏
+                    [data-screen="mini"]  // 迷你播放器
+                ))) {
                     border-radius: var(--ovnBiliRU);
                     .bpx-player-video-area {
                         border-radius: var(--ovnBiliRM);
                         box-shadow: 0 20px 20px hsla(var(--ovnAccentHSL), .2);
                     }
                 }
-                
-                // 「在 隐藏黑边 时作用」
-                // <div class="bpx-player-control-entity" data-shadow-show="true">
-                
-                .bpx-player-container[data-screen=mini] { border-radius: var(--ovnBiliRU); }
-                // #bilibili-player-placeholder-top {
-                //     background: var(--bpx-dmsend-main-bg, #FFF);
-                // }
-                .bpx-player-video-perch, .bpx-player-video-wrap, .bpx-docker-major,
-                .bpx-player-container, .bpx-player-primary-area, .bpx-player-video-area {
-                    background: var(--bpx-dmsend-main-bg, #FFF);
-                }
-                .video-toolbar-container, .bpx-player-sending-bar, .bpx-player-sending-area:before {
-                    background: transparent;
-                }
-                #bilibili-player-placeholder, .bpx-player-container { box-shadow: none; }
-                
-                // ========== 全盘/网页全屏 视频背景
                 .bpx-player-video-wrap video {
-                    background: 
+                    background:
                         radial-gradient(
                             circle at 50% 50%,
                             hsla(0, 0%, 0%, .5) 000%,
@@ -77,10 +61,32 @@ html {
                             var(--ovnBiliBase) 000%,
                             hsla(0, 0%, 0%, 1) 050%,
                             var(--ovnBiliBase) 100%
-                        )
-                    ;
+                        );
+                }
+                .bpx-player-video-perch, .bpx-player-video-wrap, .bpx-docker-major,
+                .bpx-player-container, .bpx-player-primary-area, .bpx-player-video-area {
+                    background: var(--bpx-dmsend-main-bg, #FFF);
                 }
                 
+                // #bilibili-player-placeholder-top {
+                //     background: var(--bpx-dmsend-main-bg, #FFF);
+                // }
+                
+                // ==================== ↓ 同步修正
+                
+                    // ========== 原容器阴影
+                    #bilibili-player-placeholder, .bpx-player-container { box-shadow: none; }
+                    // ========== 播放器底部 交互控件容器
+                    .video-toolbar-container, .bpx-player-sending-bar, .bpx-player-sending-area:before {
+                        background: transparent;
+                    }
+                    
+                    // ========== 播放器 角落黑边
+                    .bpx-player-container[data-screen="normal"] .bpx-player-video-wrap  video {
+                        box-shadow: inset 0 0 0 1px var(--bpx-dmsend-main-bg);
+                        border-radius: var(--ovnBiliRM);
+                    }
+                    
                 // ========== 进度条 章节
                 .bpx-player-progress-schedule.bpx-player-progress-schedule-segment { border-radius: var(--ovnBiliRX); }
                 
@@ -89,9 +95,7 @@ html {
                 
                 // ========== 选集 > 当前播放 icon
                 .bpx-player-ctrl-eplist-menu-wrap { width: max-content; }
-                .bpx-player-ctrl-eplist-multi-menu-item .bpx-common-svg-icon {
-                    order: 1;
-                }
+                .bpx-player-ctrl-eplist-multi-menu-item .bpx-common-svg-icon { order: 1; }
                 
             // $ ==================== ↓ 播放列表
             
@@ -108,13 +112,14 @@ html {
                 .video-pod .video-pod__body.video-pod__body {
                     max-height: var(--ovnBiliPlayList);
                 }
-        
-            // ==================== ↓ 视频下方 边框线条
-            
-                .left-container :is(.video-toolbar-container, .video-tag-container) {
-                    border-color: #00000010;
-                }
                 
+                
+            // ========== 迷你播放器
+            .bpx-player-container[data-screen="mini"] { border-radius: var(--ovnBiliRU); }
+            
+            // ========== 视频下方 边框线条
+            .left-container :is(.video-toolbar-container, .video-tag-container) { border-color: #00000010; }
+            
         }
         
 }

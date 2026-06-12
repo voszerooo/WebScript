@@ -15,54 +15,31 @@ html {
         --ovnYuequeRL: var(--ovnSurfaceRadius);
         --ovnYuequeRX: var(--ovnRadiusX);
         
-        --ovnYuequeWidth: 260px;                                                  // 实际内容宽度为 原 750px + 设置的宽度
-        --ovnYuequeOffset: -60px;                                                 // 因原有左右侧边栏宽度不一 设置向右偏移 调整至视觉居中
-        --ovnYuequeMargin: var(--ovnYuequeWidth) / 2 + var(--ovnYuequeOffset);    // 官方值 + 宽度的一半 + 偏移值
+        --ovnYuequeV: 260px;                                               // 实际内容宽度为 原 750px + 设置的宽度
+        --ovnYuequeOffset: 0px;                                            // 因左右侧边栏宽度不一 可设置向右偏移 调整至视觉居中
+        --ovnYuequeMargin: var(--ovnYuequeV) / 2 + var(--ovnYuequeOffset); // 官方值 + 宽度的一半 + 偏移值
+        --ovnYuequeC: 180, 3%, 94%;
         
-        --ovnYuequeRS: var(--ovnBaseRadius);
-        --ovnYuequeRU: var(--ovnUIRadius);
-        --ovnYuequeRM: var(--ovnPanelRadius);
-        --ovnYuequeRL: var(--ovnSurfaceRadius);
-        --ovnYuequeRX: var(--ovnRadiusX);
+        @media (width <= 1492px) { --ovnYuequeV: 000px; }
+        @media (width >= 1260px) { --ovnYuequeV: 100px; }
+        @media (width >= 1920px) { --ovnYuequeV: 260px; }
+        
+        @media (width >= 1920px) { --ovnYuequeOffset: -40px; }
+        @media (width >= 2160px) { --ovnYuequeOffset: -60px; }
         
     }
     
-    @media (width <= 2460px) { --ovnYuequeWidth: 260px; --ovnYuequeOffset: 0px; }
-    @media (width <= 1920px) { --ovnYuequeWidth: 100px; --ovnYuequeOffset: 0px; }
-    @media (width <= 1500px) { --ovnYuequeWidth: 000px; --ovnYuequeOffset: 0px; }
+    &.ovn body {
+        --xxxxxxxxxx: 000;
+    }
     
     // $ ================================================== ↓ Global
     
-        // ==================== ↓ 無
+        .ant-row [class*="QuickStart-module_wrapper_"],        // ==== 首页 快速开始
+        .ant-row [class*="Dashboard-module_dashboardTitle_"] { // ==== 首页 快速开始 标题
+            display: none;
+        }
         
-            .XXXXXXXXXXXX {
-                opacity: 0;
-            }
-            .XXXXXXXXXXXX,  // ==== XXXXX
-            .XXXXXXXXXXXX { // ==== XXXXX
-                display: none;
-            }
-            
-        // ==================== ↓ 隐
-        
-            .XXXXXXXXXXXX {
-                border: transparent;
-            }
-            .XXXXXXXXXXXX {
-                outline: transparent;
-            }
-            .XXXXXXXXXXXX {
-                box-shadow: none;
-            }
-            
-            .XXXXXXXXXXXX {
-                text-decoration: none;
-            }
-            .XXXXXXXXXXXX {
-                text-decoration: none !important;
-            }
-            
-            
         // ========== 鼠标选取
         // .lakex-yuque-theme-light {
         //     --lakex-editor-selection: #454A54;
@@ -70,6 +47,67 @@ html {
         
         // ========== 搜索 遮罩层
         .ant-modal-wrap { backdrop-filter: blur(2px);}
+        
+        // ========== 隐藏原有背景以显示 ovnGrid
+        div[class*="BookReader-module_wrapper"] { background: transparent; }
+        
+        // $ ==================== ↓ 标题
+        
+            #main {
+                .lake-title,         // ==== 编辑模式
+                .doc-article-title { // ==== 预览模式
+                    color: var(--ovnMarkdownH1);
+                }
+                ne-h1 ne-text { color: var(--ovnMarkdownH1); }
+                ne-h2 ne-text { color: var(--ovnMarkdownH2); }
+                ne-h3 ne-text { color: var(--ovnMarkdownH3); }
+                ne-h4 ne-text { color: var(--ovnMarkdownH4); }
+                ne-h5 ne-text { color: var(--ovnMarkdownH5); }
+                ne-h6 ne-text { color: var(--ovnMarkdownH6); }
+            }
+            
+        // $ ==================== ↓ Card
+        
+            #main {
+                ne-card[data-card-type=block],                     // ==== 外框描边
+                ne-card[data-card-type=block] .ne-card-container { // ==== 卡片容器
+                    border-radius: var(--ovnYuequeRU);
+                }
+            }
+            
+        // ==================== ↓ 高亮块
+        
+            ne-alert[ne-alert-type=tips] {
+                background-color: hsla(var(--ovnYuequeC), .6);
+                border: 1px solid hsla(var(--ovnYuequeC), .8);
+            }
+            .ne-viewer ne-alert[ne-alert-type=tips]:hover {
+                border-color: hsla(var(--ovnYuequeC), 1) !important; // 覆盖官方
+            }
+            
+        // ==================== ↓ 分栏
+        
+            ne-columns ne-column {
+                --ovnX: .2;
+                line-height: calc(2.6 + .4);
+                background: hsla(var(--ovnYuequeC), .4);
+                box-shadow: inset 0 0 0 1px hsla(var(--ovnYuequeC), var(--ovnX));
+                border-radius: var(--ovnYuequeRU);
+            }
+            ne-columns ne-column:hover { --ovnX: .9; }
+            
+            // 修正 右侧贴边
+            ne-columns ne-column ne-column-border { right: -6px; }
+            
+            
+        // ========== 着重点
+        ne-uli-i .ne-list-symbol > span { color: var(--ovnAccentHEX); transform: scale(.35); }
+        
+        // ========== 行内代码
+        ne-code ne-code-content {
+            padding: .126em .4em;
+            text-shadow: 0 0 .092em currentColor;
+        }
         
         
     // $ ================================================== ↓ 预览模式
@@ -79,279 +117,278 @@ html {
             // ========== 高亮块
             ne-alert .ne-alert__content ne-p { margin-bottom: 0; }
             
+            // ========== 代码块 语言 & 按钮
+            .ne-code-viewer {
+                .ne-codeblock-copy, .ne-codeblock-explain, .ne-codeblock-mode-name, .ne-codeblock-run-button {
+                    font-size: 12px;
+                }
+            }
+            
         }
+        
         
     // $ ================================================== ↓ 编辑模式
     
         :where(#commonEditPage) {
             
-            &XXXXXXXXXXXX {
-                
-                [class*="xxxxx_"] {
-                    background: transparent !important; // 覆盖内联
-                }
-                
+            // ========== 标题
+            .lake-title-editor :is(.lake-title, .ant-input, .ant-input:focus) { background-color: transparent; }
+            
+            // ========== 工具栏 | 图片/卡片 选中/hover
+            .ne-card-toolbar {
+                margin: 10px 0 0;
+                border-radius: var(--ovnPanelRadius);
             }
             
         }
         
+        
     // $ ================================================== ↓ 搜索页
+    
     
 }
 
 // $ ================================================== ↓ Unknown
 
 
+
+
+
+
+
+
+
+
+
+
+
+        // html .ne-viewer 预览模式
+        // html .ne-editor 编辑模式
+        
+        // html .ne-viewer 预览模式
+        // html .ne-engine 编辑模式
+
+
+
         // ==================== ↓ 画板
 
 
 
+
+
+
+
+
+
+
+    /* ================================================== ↓ Global */
+    
+        html {
+            
+            /* ========== ↓ 右侧边栏 文档导航 */
+            
+                .ne-toc-sidebar, [id="sidePanel"][class^="sidePanel-module_panel_"] {
+                    
+                    background: var(--ovnGlassBase);
+                    backdrop-filter: var(--ovnPanelFilter);
+                    
+                    @media (width >= 1260px) { background: transparent; backdrop-filter: none; }
+                    
+                }
+                .ne-toc-sidebar .ne-toc-view {
+                    background-color: transparent;
+                    border-radius: var(--ovnYuequeRM) var(--ovnYuequeRU) var(--ovnYuequeRU) var(--ovnYuequeRM);
+                }
                 
-                    /* ================================================== ↓ Global */
+                /* ---------- ↓ 导航线 */
+                .ne-toc-normal-view .ne-toc-content:after, .ne-toc-normal-view .ne-toc-content:hover:after {
+                    background: transparent;
+                }
+                
+                
+            /* ========== ↓ 疑似 表格/数据表全宽 「侧边栏 开启时」 */
+            
+                [class^="DocReader-module_wrapper_"][data-doc-layout="fixed"]:is( [data-doc-sidebar="true"], [data-doc-toc="true"] )
+                    .article-content .ne-doc-major-viewer .ne-viewer-layout-mode-fixed .ne-viewer-body > :is(
+                        ne-alert-hole,
+                        ne-container-hole,
+                        ne-hole,
+                        ne-root-card-hole,
+                        ne-table-hole
+                    ).ne-full-width {
+                    width: calc(100% - 305px + var(--ovnYuequeV));
+                }
+                
+                
+            /* ========== ↓ 画板 */
+            
+                /* ---------- ↓ 工具栏 小弹窗 */
+                .lake-diagram-toolbar-shape-select-container {
+                    width: calc(260px + 40px);
+                    max-width: calc(260px + 40px);
+                    height: 350px;
+                    max-height: 350px;
+                }
+                .lake-diagram-toolbar-shape-select-container, .ant-popover .ant-popover-inner {
+                    border-radius: var(--ovnYuequeRM);
+                }
+                
+                /* ---------- ↓ 原点背景 */
+                .lake-board-canvas > .lake-diagram-viewport-container svg {
+                    --size: 2px;
+                    --gap: 20px;
+                    --dot: var(--ovnGridD);
                     
-                        html {
-                            
-                            /* ========== ↓ 右侧边栏 文档导航 */
-                            
-                                .ne-toc-sidebar, [id="sidePanel"][class^="sidePanel-module_panel_"] {
-                                    
-                                    background: var(--ovnGlassBase);
-                                    backdrop-filter: var(--ovnPanelFilter);
-                                    
-                                    @media (width >= 1260px) { background: transparent; backdrop-filter: none; }
-                                    
-                                }
-                                .ne-toc-sidebar .ne-toc-view {
-                                    background-color: transparent;
-                                    border-radius: var(--ovnYuequeRM) var(--ovnYuequeRU) var(--ovnYuequeRU) var(--ovnYuequeRM);
-                                }
-                                
-                                /* ---------- ↓ 导航线 */
-                                .ne-toc-normal-view .ne-toc-content:after, .ne-toc-normal-view .ne-toc-content:hover:after {
-                                    background: transparent;
-                                }
-                                
-                                
-                            /* ========== ↓ 疑似 表格/数据表全宽 「侧边栏 开启时」 */
-                            
-                                [class^="DocReader-module_wrapper_"][data-doc-layout="fixed"]:is( [data-doc-sidebar="true"], [data-doc-toc="true"] )
-                                    .article-content .ne-doc-major-viewer .ne-viewer-layout-mode-fixed .ne-viewer-body > :is(
-                                        ne-alert-hole,
-                                        ne-container-hole,
-                                        ne-hole,
-                                        ne-root-card-hole,
-                                        ne-table-hole
-                                    ).ne-full-width {
-                                    width: calc(100% - 305px + var(--ovnYuequeWidth));
-                                }
-                                
-                                
-                            /* ========== ↓ 画板 */
-                            
-                                /* ---------- ↓ 工具栏 小弹窗 */
-                                .lake-diagram-toolbar-shape-select-container {
-                                    width: calc(260px + 40px);
-                                    max-width: calc(260px + 40px);
-                                    height: 350px;
-                                    max-height: 350px;
-                                }
-                                .lake-diagram-toolbar-shape-select-container, .ant-popover .ant-popover-inner {
-                                    border-radius: var(--ovnYuequeRM);
-                                }
-                                
-                                /* ---------- ↓ 原点背景 */
-                                .lake-board-canvas > .lake-diagram-viewport-container svg {
-                                    --size: 2px;
-                                    --gap: 20px;
-                                    --dot: var(--ovnGridD);
-                                    
-                                    background-image:
-                                        radial-gradient(circle, var(--dot) var(--size), transparent var(--size));
-                                    background-size: var(--gap) var(--gap);
-                                    background-repeat: repeat;
-                                    background-position: 0 0;
-                                }
-                                
-                                
-                            /* ========== ↓ 着重点 */
-                            ne-uli-i .ne-list-symbol { color: var(--ovnAccentHEX); }
-                            ne-uli-i .ne-list-symbol > span { transform: scale(.35); }
-                            
-                            /* ========== ↓ 行内代码 */
-                            ne-code ne-code-content {
-                                padding: .126em .4em !important;
-                                text-shadow: 0 0 .092em currentColor !important;
-                            }
-                            
-                            /* ========== ↓ 代码块 语言 & 按钮 */
-                            .ne-code-viewer .ne-codeblock-copy, .ne-code-viewer .ne-codeblock-explain,
-                            .ne-code-viewer .ne-codeblock-mode-name, .ne-code-viewer .ne-codeblock-run-button {
-                                font-size: 12px;
-                            }
-                            
-                            /* ========== ↓ Card */
-                            :is(.ne-viewer, .ne-editor)ne-card[data-card-type=block], ne-card[data-card-type=block] .ne-card-container {
-                                border-radius: var(--ovnYuequeRU);
-                            }
-                            
-                            /* ========== ↓ 快捷键/客服中心 */
-                            .side-tip-container.side-tip-container-visible { bottom: 30px !important; }
-                                
-                                
-                            /* ========== ↓ 隐藏原有背景 显示 OVN_YUQUE_ovnGrid  */
-                            div[class*="BookReader-module_wrapper"] { background-color: transparent; }
-                            
-                            
-                            
-                        }
-                        
-                    
-                    /* ========== ↓ 内容宽度 */
-                        
-                        html .ne-viewer-body > *, html [class*="DocReader-module_header"] { transition: all .92s var(--ovnTransitionSoft) }
-                        
-                        /* ========== ↓ 阅读模式 */
-                        
-                            /* ========== ↓ 标题 */
-                            html [class*="DocReader-module_comment"],
-                            html [class*="DocReader-module_header"],
-                            html [class*="DocReader-module_info"] {
-                                max-width: calc(850px + var(--ovnYuequeMargin));
-                            }
-                            
-                            /* ========== ↓ 内容 */
-                            html .ne-doc-major-viewer .ne-viewer-layout-mode-fixed .ne-viewer-body ne-root-card-hole.ne-full-width,   /* 数据表 预览模式 */
-                            html .ne-doc-major-viewer .ne-viewer-layout-mode-fixed .ne-viewer-body > * {
-                                max-width: calc(750px + var(--ovnYuequeWidth));
-                            }
-                            
-                            html .article-content .ne-doc-major-viewer .ne-viewer-layout-mode-adapt .ne-viewer-body > *,
-                            html .article-content .ne-doc-major-viewer .ne-viewer-layout-mode-fixed .ne-viewer-body > * {
-                                margin-right: calc(var(--viewer-center-align-right) - var(--ovnYuequeMargin)) !important;
-                            }
-                            /* ========== ↓ 代码块 */
-                            html .article-content .ne-doc-major-viewer .ne-viewer-layout-mode-fixed .ne-viewer-body > ne-alert-hole,
-                            html .article-content .ne-doc-major-viewer .ne-viewer-layout-mode-fixed .ne-viewer-body > ne-container-hole,
-                            html .article-content .ne-doc-major-viewer .ne-viewer-layout-mode-fixed .ne-viewer-body > ne-hole {
-                                width: calc(100% - var(--viewer-center-align-value) + var(--ovnYuequeWidth));
-                            }
-                            
-                        /* ========== ↓ 编辑模式 */
-                        
-                            /* ========== ↓ 标题 */
-                            html .ne-doc-major-editor .ne-editor.layout-read-write:not(.ne-layout-mode-adapt) .ne-editor-extra-box {
-                                max-width: calc(890px + var(--ovnYuequeMargin));
-                            }
-                            
-                            /* ========== ↓ 内容 */
-                            html .ne-doc-major-editor .ne-layout-mode-fixed:not(.ne-normal-toc):not(.ne-ui-sidebar-visible) .ne-engine ne-root-card-hole.ne-full-width, /* 数据表 编辑模式 */
-                            html .ne-doc-major-editor .ne-editor.layout-read-write:not(.ne-layout-mode-adapt) .ne-engine>:not(.ne-full-width) {
-                                margin-right: calc(var(--center-editor-margin-right) - var(--ovnYuequeMargin)) !important;
-                                max-width: calc(750px + var(--ovnYuequeWidth));
-                            }
-                            html .ne-layout-mode-adapt .ne-editor-wrap-box, html .ne-layout-mode-fixed .ne-editor-wrap-box { background-color: transparent; }
-                            
-                            /* ========== ↓ 表格 */
-                            html .ne-doc-major-editor .ne-layout-mode-fixed.ne-normal-toc:not(.ne-ui-sidebar-visible).ne-viewport-size-toc-XXL .ne-engine ne-table-hole {
-                                max-width: calc(752px + var(--ovnYuequeWidth));
-                            }
-                            
-                            
-                    /* ========== ↓ 编辑器 标题 激活 */
-                    
-                        html .lake-title-editor .ant-input, .lake-title-editor .ant-input:focus { background-color: transparent; }
-                        
-                        
-                    /* ========== ↓ Picture */
-                    
-                        html .ne-image-wrap .ne-image-box {
-                            overflow: visible;
-                            background: transparent;
-                        }
-                        html .ne-image-wrap,
-                        html .ne-viewer ne-card[data-card-type=inline][data-card-name=image], /* 预览模式 */
-                        html .ne-editor ne-card[data-card-type=inline][data-card-name=image] /* 编辑模式 */ {
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                        }
-                        
-                        html .ne-paragraph-spacing-relax.ne-typography-classic ne-card[data-card-name=image] img {
-                            border-radius: var(--ovnPanelRadius);
-                            filter: drop-shadow(0 20px 30px hsla(var(--ovnBase04HSL), 0.050));
-                            transition: all .526s var(--ovnTransitionSoft);
-                        }
-                        html .ne-paragraph-spacing-relax.ne-typography-classic ne-card[data-card-name=image] img:hover {
-                            filter: drop-shadow(0 20px 30px hsla(var(--ovnAccentHSL), 0.260));
-                            // transform: var(--ovnSurfaceZoomIn);
-                        }
-                        
-                        /* ---------- ↓ 默认样式 */
-                        
-                            /* ---------- ↓ Hover */
-                            html .ne-editor ne-card[data-card-type=inline][data-card-name=image].ne-card-hovered .ne-image-wrap,
-                            html .ne-editor ne-card[data-card-type=inline][data-card-name=image].ne-focused .ne-image-wrap {
-                                border-color: transparent;
-                            }
-                            /* ---------- ↓ 选中图片的默认边框 */
-                            html .ne-active .ne-ui-image-resizer-box { display: none; }
-                            
-                            
-                    /* ========== ↓ Table 「下方功能添加 ovnTable样式 此处仅作修复显示」 */
-                    
-                        html ne-table-wrap.ne-ui-table-right-shadow:after { display: none; }
-                    
-                        /* ---------- ↓ table 外层容器 */
-                        html .ne-table-hole > ne-table-wrap > ne-table-inner-wrap {
-                            overflow: visible !important;
-                        }
-                        
-                        /* ---------- ↓ 标题 */
-                        html table[ne-table-row-head=true]:not([ne-table-head-text-gradient=true]) tr:first-child td .ne-td-content>.ne-b-filler,
-                        html table[ne-table-row-head=true]:not([ne-table-head-text-gradient=true]) tr:first-child td ne-text {
-                            font-weight: 700 !important;
-                            color: #4D4D4D !important;
-                        }
-                        
-                        /* ---------- ↓ 标题 背景及边框 */
-                        html table[ne-table-row-head=true]:not([ne-table-head-text-gradient=true]) tr:first-child td {
-                            background-color: #FAFAFA !important;
-                            border-color: #00000000 !important;
-                        }
-                        html table[ne-table-row-head=true]:not([ne-table-head-text-gradient=true]) tr:first-child td:not(:first-child, :last-child) {
-                            border-left: 1px solid #00000010 !important;
-                            border-right: 1px solid #00000010 !important;
-                        }
-                        
-                        /* ---------- ↓ Sticky */
-                        html ne-table-hole[class="ne-table-hole"] > ne-table-wrap > div[style*="top: 0px"] {
-                            top: -27px !important;
-                        }
-                        
-                        html tr.ne-tr.ne-tr-sticky {
-                            top: calc(79px - 27px) !important;
-                            border-radius: 0 0 var(--ovnSurfaceRadius) var(--ovnSurfaceRadius);
-                        }
-                        
-                        
-                    /* ========== ↓ 标题 */
-                    
-                        html #article-title,
-                        html ant-input lake-title,
-                        html .ne-viewer ne-h1 ne-text, html .ne-engine ne-h1 ne-text { color: var(--ovnMarkdownH1);}
-                        html .ne-viewer ne-h2 ne-text, html .ne-engine ne-h2 ne-text { color: var(--ovnMarkdownH2);}
-                        html .ne-viewer ne-h3 ne-text, html .ne-engine ne-h3 ne-text { color: var(--ovnMarkdownH3);}
-                        html .ne-viewer ne-h4 ne-text, html .ne-engine ne-h4 ne-text { color: var(--ovnMarkdownH4);}
-                        html .ne-viewer ne-h5 ne-text, html .ne-engine ne-h5 ne-text { color: var(--ovnMarkdownH5);}
-                        html .ne-viewer ne-h6 ne-text, html .ne-engine ne-h6 ne-text { color: var(--ovnMarkdownH6);}
-                        
-                        html .lake-title-editor .lake-title { background-color: transparent; }
-                        
-                    /* ========== ↓ 工具栏 */
-                    
-                        /* ---------- ↓ 选中图片 */
-                        html .ne-card-toolbar {
-                            margin: 10px 0 0;
-                            border-radius: var(--ovnPanelRadius);
-                        }
-                        
+                    background-image:
+                        radial-gradient(circle, var(--dot) var(--size), transparent var(--size));
+                    background-size: var(--gap) var(--gap);
+                    background-repeat: repeat;
+                    background-position: 0 0;
+                }
+                
+            
+        }
+        
+    
+    
+    
+    
+    
+    
+    /* ========== ↓ 内容宽度 */
+        
+        html .ne-viewer-body > *, html [class*="DocReader-module_header"] { transition: all .92s var(--ovnTransitionSoft) }
+        
+        /* ========== ↓ 阅读模式 */
+        
+            /* ========== ↓ 标题 */
+            html [class*="DocReader-module_comment"],
+            html [class*="DocReader-module_header"],
+            html [class*="DocReader-module_info"] {
+                max-width: calc(850px + var(--ovnYuequeMargin));
+            }
+            
+            /* ========== ↓ 内容 */
+            html .ne-doc-major-viewer .ne-viewer-layout-mode-fixed .ne-viewer-body ne-root-card-hole.ne-full-width,   /* 数据表 预览模式 */
+            html .ne-doc-major-viewer .ne-viewer-layout-mode-fixed .ne-viewer-body > * {
+                max-width: calc(750px + var(--ovnYuequeV));
+            }
+            
+            html .article-content .ne-doc-major-viewer .ne-viewer-layout-mode-adapt .ne-viewer-body > *,
+            html .article-content .ne-doc-major-viewer .ne-viewer-layout-mode-fixed .ne-viewer-body > * {
+                margin-right: calc(var(--viewer-center-align-right) - var(--ovnYuequeMargin)) !important;
+            }
+            /* ========== ↓ 代码块 */
+            html .article-content .ne-doc-major-viewer .ne-viewer-layout-mode-fixed .ne-viewer-body > ne-alert-hole,
+            html .article-content .ne-doc-major-viewer .ne-viewer-layout-mode-fixed .ne-viewer-body > ne-container-hole,
+            html .article-content .ne-doc-major-viewer .ne-viewer-layout-mode-fixed .ne-viewer-body > ne-hole {
+                width: calc(100% - var(--viewer-center-align-value) + var(--ovnYuequeV));
+            }
+            
+        /* ========== ↓ 编辑模式 */
+        
+            /* ========== ↓ 标题 */
+            html .ne-doc-major-editor .ne-editor.layout-read-write:not(.ne-layout-mode-adapt) .ne-editor-extra-box {
+                max-width: calc(890px + var(--ovnYuequeMargin));
+            }
+            
+            /* ========== ↓ 内容 */
+            html .ne-doc-major-editor .ne-layout-mode-fixed:not(.ne-normal-toc):not(.ne-ui-sidebar-visible) .ne-engine ne-root-card-hole.ne-full-width, /* 数据表 编辑模式 */
+            html .ne-doc-major-editor .ne-editor.layout-read-write:not(.ne-layout-mode-adapt) .ne-engine>:not(.ne-full-width) {
+                margin-right: calc(var(--center-editor-margin-right) - var(--ovnYuequeMargin)) !important;
+                max-width: calc(750px + var(--ovnYuequeV));
+            }
+            html .ne-layout-mode-adapt .ne-editor-wrap-box, html .ne-layout-mode-fixed .ne-editor-wrap-box { background-color: transparent; }
+            
+            /* ========== ↓ 表格 */
+            html .ne-doc-major-editor .ne-layout-mode-fixed.ne-normal-toc:not(.ne-ui-sidebar-visible).ne-viewport-size-toc-XXL .ne-engine ne-table-hole {
+                max-width: calc(752px + var(--ovnYuequeV));
+            }
+            
+        
+        
+        
+    
+    
+    
+        
+        
+    /* ========== ↓ Picture */
+    
+        html .ne-image-wrap .ne-image-box {
+            overflow: visible;
+            background: transparent;
+        }
+        html .ne-image-wrap,
+        html .ne-viewer ne-card[data-card-type=inline][data-card-name=image], /* 预览模式 */
+        html .ne-editor ne-card[data-card-type=inline][data-card-name=image] /* 编辑模式 */ {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        html .ne-paragraph-spacing-relax.ne-typography-classic ne-card[data-card-name=image] img {
+            border-radius: var(--ovnPanelRadius);
+            filter: drop-shadow(0 20px 30px hsla(var(--ovnBase04HSL), 0.050));
+            transition: all .526s var(--ovnTransitionSoft);
+        }
+        html .ne-paragraph-spacing-relax.ne-typography-classic ne-card[data-card-name=image] img:hover {
+            filter: drop-shadow(0 20px 30px hsla(var(--ovnAccentHSL), 0.260));
+            // transform: var(--ovnSurfaceZoomIn);
+        }
+        
+        /* ---------- ↓ 默认样式 */
+        
+            /* ---------- ↓ Hover */
+            html .ne-editor ne-card[data-card-type=inline][data-card-name=image].ne-card-hovered .ne-image-wrap,
+            html .ne-editor ne-card[data-card-type=inline][data-card-name=image].ne-focused .ne-image-wrap {
+                border-color: transparent;
+            }
+            /* ---------- ↓ 选中图片的默认边框 */
+            html .ne-active .ne-ui-image-resizer-box { display: none; }
+            
+            
+            
+    
+    
+    
+            
+            
+            
+    /* ========== ↓ Table 「下方功能添加 ovnTable样式 此处仅作修复显示」 */
+    
+        html ne-table-wrap.ne-ui-table-right-shadow:after { display: none; }
+    
+        /* ---------- ↓ table 外层容器 */
+        html .ne-table-hole > ne-table-wrap > ne-table-inner-wrap {
+            overflow: visible !important;
+        }
+        
+        /* ---------- ↓ 标题 */
+        html table[ne-table-row-head=true]:not([ne-table-head-text-gradient=true]) tr:first-child td .ne-td-content>.ne-b-filler,
+        html table[ne-table-row-head=true]:not([ne-table-head-text-gradient=true]) tr:first-child td ne-text {
+            font-weight: 700 !important;
+            color: #4D4D4D !important;
+        }
+        
+        /* ---------- ↓ 标题 背景及边框 */
+        html table[ne-table-row-head=true]:not([ne-table-head-text-gradient=true]) tr:first-child td {
+            background-color: #FAFAFA !important;
+            border-color: #00000000 !important;
+        }
+        html table[ne-table-row-head=true]:not([ne-table-head-text-gradient=true]) tr:first-child td:not(:first-child, :last-child) {
+            border-left: 1px solid #00000010 !important;
+            border-right: 1px solid #00000010 !important;
+        }
+        
+        /* ---------- ↓ Sticky */
+        html ne-table-hole[class="ne-table-hole"] > ne-table-wrap > div[style*="top: 0px"] {
+            top: -27px !important;
+        }
+        
+        html tr.ne-tr.ne-tr-sticky {
+            top: calc(79px - 27px) !important;
+            border-radius: 0 0 var(--ovnSurfaceRadius) var(--ovnSurfaceRadius);
+        }
+        
+        
