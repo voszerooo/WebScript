@@ -1,6 +1,6 @@
 
-
-import { OVN_GLOBAL_DOM }        from '../../store/infra/dom.js';
+import { OVN_VALUE_PREFS }       from '../../store/value/prefs.js';
+import { OVN_GLOBAL_INFORM }     from '../../store/infra/inform.js';
 import { OVN_GLOBAL_SCHEDULER }  from '../../store/core/scheduler.js';
 
 
@@ -12,48 +12,24 @@ OVN_GLOBAL_SCHEDULER.run("Gallop", () => {
     (function OVN_Gallop() {
         
         const config = {
-            enhance: true,
-            trailColor: '#2C2C3E50',    // 轨迹颜色
-            smoothScroll: true,         // 平滑滚动
-            initDelay: 524,             // 进入站点延迟作用
-            effective: 12,              // 手势生效最小距离
-            maxDirection: 3,            // 滑动方向 X 次后无效
-            minDistance: 15,            // 最小触发距离
-            verticalThreshold: 30,      // 有效位移阈值
-            vShapeSmoothStep: 3,        // 抗抖动 采样间隔
-            pageScrollRatio: .8,        // 上下滑 滚动比率
-            maxPathBeforeDestroy: 200,  // 动作超过销毁画布
-            maxPathPoints: 300,         // 最大路径数 防内存膨胀
+            trailColor: '#2C2C3E50',
+            effective: 12,
+            pageScrollRatio: .8,
+            maxPath: 926,
         };
-        const enhanceRules = [
-            { condition: (d) => d < 400, ratio: 1 },
-            { condition: (d) => d > 400 && d <= 999, ratio: 4 },
-            { condition: (d) => d > 999, ratio: 14 },
-        ];
         
-        function getEnhancedRatio(distance) {
-            for (const rule of enhanceRules) {
-                if (rule.condition(distance)) return rule.ratio;
-            }
-            return config.pageScrollRatio;
-        }
-        
+        let overlay = null;
+        let canvas = null;
+        let ctx = null;
         let isGestureActive = false;
-        let hasMoved = false;
         let gestureStarted = false;
-        let gestureTimer = null;
         let path = [];
         let startX = 0, startY = 0;
-        let canvas = null, ctx = null;
-        let mountContainer = null;
         let rafId = null;
-        let canvasDestroyed = false;
-        let isListenerBound = false;
-        let eventAbortController = null;
+        let gestureTimer = null;
+        let trailStopped = false;
+        let isComposing = false;
         
-        function getMountContainer() {
-            return document.getElementById('ovnDOM') || document.body;
-        }
         function getDirection(dx, dy) {
             return Math.abs(dx) > Math.abs(dy)
                 ? (dx > 0 ? 'right' : 'left')
@@ -75,8 +51,7 @@ OVN_GLOBAL_SCHEDULER.run("Gallop", () => {
         }
         function detectVShape(points) {
             if (points.length < 6) return null;
-            
-            const step = config.vShapeSmoothStep;
+            const step = 3;
             let firstDir = null, secondDir = null;
             let turnIndex = -1;
             for (let i = step; i < points.length; i += step) {
@@ -92,45 +67,34 @@ OVN_GLOBAL_SCHEDULER.run("Gallop", () => {
                 }
             }
             if (!secondDir) return null;
-            
             const realTurnIdx = Math.min(turnIndex, points.length - 1);
             const firstMove = Math.abs(points[realTurnIdx].y - points[0].y);
             const secondMove = Math.abs(points[points.length - 1].y - points[realTurnIdx].y);
-            
-            if (firstMove < config.verticalThreshold || secondMove < config.verticalThreshold) {
-                return null;
-            }
+            if (firstMove < 30 || secondMove < 30) return null;
             return firstDir === 'up' && secondDir === 'down' ? 'up-down'
                 : (firstDir === 'down' && secondDir === 'up' ? 'down-up' : null);
         }
         
         function doScroll(amount) {
-            window.scrollBy({
-                top: amount,
-                behavior: config.smoothScroll ? 'smooth' : 'auto'
-            });
+            window.scrollBy({ top: amount, behavior: 'smooth' });
         }
         function executeAction(action, distance = 0) {
             switch (action) {
                 case 'left': history.back(); break;
                 case 'right': history.forward(); break;
                 case 'up-down':
-                    window.scrollTo({
-                        top: document.documentElement.scrollHeight,
-                        behavior: config.smoothScroll ? 'smooth' : 'auto'
-                    });
+                    window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
                     break;
                 case 'down-up':
-                    window.scrollTo({
-                        top: 0,
-                        behavior: config.smoothScroll ? 'smooth' : 'auto'
-                    });
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                     break;
                 case 'up':
                 case 'down': {
                     let ratio = config.pageScrollRatio;
-                    if (config.enhance && distance >= config.minDistance) {
-                        ratio = getEnhancedRatio(distance);
+                    if (distance >= config.effective) {
+                        if (distance < 426) ratio = 1;
+                        else if (distance <= 926) ratio = 4;
+                        else ratio = 12;
                     }
                     const amount = (action === 'up' ? -1 : 1) * window.innerHeight * ratio;
                     doScroll(amount);
@@ -140,77 +104,41 @@ OVN_GLOBAL_SCHEDULER.run("Gallop", () => {
             }
         }
         
-        function isInteractiveElement(element) {
-            if (!element) return false;
-            const tag = element.tagName;
-            if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || tag === 'BUTTON' || tag === 'A') return true;
-            if (element.isContentEditable) return true;
-            const role = element.getAttribute('role');
-            if (role === 'textbox' || role === 'searchbox' || role === 'combobox' || role === 'button' || role === 'link') return true;
-            return element.closest?.('[contenteditable="true"], [contenteditable=""]') !== null;
+        function ensureOverlay() {
+            if (overlay && overlay.parentNode) return true;
+            if (overlay) { overlay = null; canvas = null; ctx = null; }
+            const container = document.getElementById('ovnDOM') || document.body;
+            if (!container) return false;
+            
+            overlay = document.createElement('div');
+            overlay.id = 'ovnGallop';
+            overlay.style.cssText = 'display:none;position:fixed;top:0;left:0;width:100%;height:100%;z-index: var(--ovnPriority09,92926192);pointer-events:none;';
+            
+            canvas = document.createElement('canvas');
+            canvas.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;';
+            ctx = canvas.getContext('2d');
+            overlay.appendChild(canvas);
+            container.appendChild(overlay);
+            return true;
         }
-        function getOrCreateCanvas() {
-            if (!mountContainer) mountContainer = getMountContainer();
-            if (!canvas) {
-                canvas = document.createElement('canvas');
-                canvas.style.cssText = `
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    pointer-events: none;
-                    z-index: 999999999;
-                    opacity: 0;
-                    transition: opacity .2s ease;
-                `;
-                mountContainer.appendChild(canvas);
-                ctx = canvas.getContext('2d');
-            }
+        function showOverlay() {
+            if (!ensureOverlay()) return;
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-            return canvas;
+            overlay.style.display = 'block';
+        }
+        function hideOverlay() {
+            if (!overlay) return;
+            overlay.style.display = 'none';
+            if (rafId) {
+                cancelAnimationFrame(rafId);
+                rafId = null;
+            }
+            trailStopped = false;
         }
         
-        function showCanvas() {
-            canvasDestroyed = false;
-            const el = getOrCreateCanvas();
-            el.style.transition = 'none';
-            el.style.opacity = '1';
-            void el.offsetHeight;
-            el.style.transition = 'opacity .2s ease';
-            clearCanvas();
-        }
-        function hideCanvas() {
-            if (canvas) canvas.style.opacity = '0';
-        }
-        function destroyCanvas() {
-            if (!canvas || canvasDestroyed) return;
-            canvasDestroyed = true;
-            canvas.style.opacity = '0';
-            const onTransitionEnd = () => {
-                canvas.removeEventListener('transitionend', onTransitionEnd);
-                if (canvas) {
-                    canvas.remove();
-                    canvas = null;
-                    ctx = null;
-                }
-            };
-            canvas.addEventListener('transitionend', onTransitionEnd, { once: true });
-            setTimeout(() => {
-                if (canvas && canvas.parentNode && canvas.style.opacity === '0') {
-                    canvas.remove();
-                    canvas = null;
-                    ctx = null;
-                }
-            }, 200);
-        }
-        function clearCanvas() {
-            if (!ctx) return;
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-        }
         function scheduleDraw() {
-            if (canvasDestroyed) return;
+            if (!ctx || trailStopped) return;
             if (!rafId) {
                 rafId = requestAnimationFrame(() => {
                     drawTrailNow();
@@ -219,12 +147,19 @@ OVN_GLOBAL_SCHEDULER.run("Gallop", () => {
             }
         }
         function drawTrailNow() {
-            if (!ctx || path.length < 2 || canvasDestroyed) return;
-            clearCanvas();
+            if (!ctx || path.length < 2 || trailStopped) return;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.beginPath();
             ctx.moveTo(path[0].x, path[0].y);
-            for (let i = 1; i < path.length; i++) {
-                ctx.lineTo(path[i].x, path[i].y);
+            if (path.length === 2) {
+                ctx.lineTo(path[1].x, path[1].y);
+            } else {
+                for (let i = 1; i < path.length - 1; i++) {
+                    const midX = (path[i].x + path[i + 1].x) / 2;
+                    const midY = (path[i].y + path[i + 1].y) / 2;
+                    ctx.quadraticCurveTo(path[i].x, path[i].y, midX, midY);
+                }
+                ctx.lineTo(path[path.length - 1].x, path[path.length - 1].y);
             }
             ctx.strokeStyle = config.trailColor;
             ctx.lineWidth = 2;
@@ -233,21 +168,24 @@ OVN_GLOBAL_SCHEDULER.run("Gallop", () => {
             ctx.stroke();
         }
         
-        function resetGesture(immediate = false) {
+        function stopTrail() {
+            if (trailStopped) return;
+            trailStopped = true;
+            if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const count = OVN_VALUE_PREFS.gallop.get('destroy_tip', 0);
+            if (count < 2) {
+                OVN_GLOBAL_INFORM.OVN.top('YO 👾 调皮');
+                OVN_VALUE_PREFS.gallop.set('destroy_tip', count + 1);
+            }
+        }
+        
+        function resetGesture(immediate) {
             const doReset = () => {
                 isGestureActive = false;
-                hasMoved = false;
                 gestureStarted = false;
                 path = [];
-                hideCanvas();
-                document.documentElement.classList.remove('gesture-active');
-                window.removeEventListener('mousemove', onMouseMove, true);
-                window.removeEventListener('mouseup', onMouseUp, true);
+                hideOverlay();
                 if (gestureTimer) clearTimeout(gestureTimer);
-                if (rafId) {
-                    cancelAnimationFrame(rafId);
-                    rafId = null;
-                }
             };
             if (immediate) {
                 doReset();
@@ -257,14 +195,11 @@ OVN_GLOBAL_SCHEDULER.run("Gallop", () => {
             }
         }
         
-        let isComposing = false;
         window.addEventListener('compositionstart', () => { isComposing = true; });
         window.addEventListener('compositionend', () => { isComposing = false; });
         
         function onMouseDown(e) {
             if (e.button !== 2 || isComposing) return;
-            if (isInteractiveElement(e.target)) return;
-            
             if (gestureTimer) {
                 clearTimeout(gestureTimer);
                 gestureTimer = null;
@@ -272,26 +207,22 @@ OVN_GLOBAL_SCHEDULER.run("Gallop", () => {
             resetGesture(true);
             
             isGestureActive = true;
-            hasMoved = false;
             gestureStarted = false;
+            trailStopped = false;
             startX = e.clientX;
             startY = e.clientY;
             path = [{ x: e.clientX, y: e.clientY }];
-            
-            document.documentElement.classList.add('gesture-active');
-            window.addEventListener('mousemove', onMouseMove, true);
-            window.addEventListener('mouseup', onMouseUp, true);
         }
         
+        function onContextMenu(e) {
+            if (isGestureActive && gestureStarted) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        }
         function onMouseMove(e) {
             if (!isGestureActive) return;
-            if (isComposing) {
-                resetGesture(true);
-                return;
-            }
-            hasMoved = true;
-            e.preventDefault();
-            e.stopPropagation();
+            if (isComposing) { resetGesture(true); return; }
             
             const point = { x: e.clientX, y: e.clientY };
             const dx = point.x - startX;
@@ -300,18 +231,20 @@ OVN_GLOBAL_SCHEDULER.run("Gallop", () => {
             if (!gestureStarted) {
                 if (distanceSq > config.effective * config.effective) {
                     gestureStarted = true;
-                    showCanvas();
+                    showOverlay();
                 } else {
                     return;
                 }
             }
+            e.preventDefault();
+            e.stopPropagation();
+            const lastPt = path[path.length - 1];
+            const stepDx = point.x - lastPt.x;
+            const stepDy = point.y - lastPt.y;
+            if (stepDx * stepDx + stepDy * stepDy < 4) return;
             path.push(point);
-            if (path.length > config.maxPathPoints) {
-                path.shift();
-            }
-            if (path.length > config.maxPathBeforeDestroy && !canvasDestroyed) {
-                destroyCanvas();
-            }
+            if (path.length >= config.maxPath && !trailStopped) stopTrail();
+            if (path.length > config.maxPath) path.shift();
             scheduleDraw();
         }
         function onMouseUp(e) {
@@ -322,13 +255,9 @@ OVN_GLOBAL_SCHEDULER.run("Gallop", () => {
                 const dx = lastPoint.x - startX;
                 const dy = lastPoint.y - startY;
                 const distance = Math.sqrt(dx * dx + dy * dy);
-                
-                if (distance >= config.minDistance) {
+                if (distance >= config.effective) {
                     const dirChanges = countDirectionChanges(path);
-                    if (dirChanges > config.maxDirection) {
-                        resetGesture(false);
-                        return;
-                    }
+                    if (dirChanges > 3) { resetGesture(false); return; }
                     const vShapeAction = detectVShape(path);
                     if (vShapeAction) {
                         executeAction(vShapeAction);
@@ -339,55 +268,28 @@ OVN_GLOBAL_SCHEDULER.run("Gallop", () => {
                         }
                     }
                 }
+                resetGesture(false);
+            } else {
+                resetGesture(true);
             }
-            resetGesture(false);
         }
-        window.addEventListener('contextmenu', (e) => {
-            if (isGestureActive && hasMoved) {
-                e.preventDefault();
-                e.stopPropagation();
-                e.stopImmediatePropagation();
-            }
-        }, { capture: true, passive: false });
         
-        function startGestureListener(container) {
-            mountContainer = container;
-            if (isListenerBound) return;
-            const styleId = 'ovn-gesture-style';
-            if (!document.getElementById(styleId)) {
-                const style = document.createElement('style');
-                style.id = styleId;
-                style.textContent = '.gesture-active { user-select: none !important; -webkit-user-select: none !important; }';
-                const ovnContainer = document.getElementById('ovnDOM');
-                if (ovnContainer) ovnContainer.appendChild(style);
-                else document.head.appendChild(style);
-            }
-            
-            eventAbortController = new AbortController();
-            const signal = eventAbortController.signal;
-            
-            document.addEventListener('mousedown', onMouseDown, { capture: true, passive: false, signal });
-            window.addEventListener('blur', () => resetGesture(true), { signal });
+        function init() {
+            document.addEventListener('mousedown', onMouseDown, { capture: true, passive: false });
+            document.addEventListener('mousemove', onMouseMove, { capture: true, passive: false });
+            document.addEventListener('mouseup', onMouseUp, { capture: true, passive: false });
+            document.addEventListener('contextmenu', onContextMenu, { capture: true, passive: false });
+            window.addEventListener('blur', () => { if (isGestureActive) resetGesture(true); });
             window.addEventListener('resize', () => {
-                if (canvas) {
+                if (isGestureActive && canvas) {
                     canvas.width = window.innerWidth;
                     canvas.height = window.innerHeight;
-                    if (isGestureActive) clearCanvas();
                 }
-            }, { signal });
-            
-            isListenerBound = true;
+            });
         }
         
-        if (typeof OVN_GLOBAL_DOM !== 'undefined' && OVN_GLOBAL_DOM.bindOVN) {
-            OVN_GLOBAL_DOM.bindOVN().then(container => {
-                setTimeout(() => startGestureListener(container), config.initDelay);
-            });
-        } else {
-            setTimeout(() => startGestureListener(getMountContainer()), config.initDelay);
-        }
+        setTimeout(init, 524);
         
     })();
     
 });
-

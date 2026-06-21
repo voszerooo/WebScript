@@ -35,6 +35,7 @@ html {
     
     // $ ================================================== ↓ Global
     
+        #rc-tabs-0-tab-doc a[data-aspm-param="action=doc"],    // ==== 首页 文档 标题
         .ant-row [class*="QuickStart-module_wrapper_"],        // ==== 首页 快速开始
         .ant-row [class*="Dashboard-module_dashboardTitle_"] { // ==== 首页 快速开始 标题
             display: none;
@@ -75,6 +76,11 @@ html {
                 }
             }
             
+        // ==================== ↓ 代码块
+        
+            // ========== 行号
+            .ͼ1 .cm-lineNumbers .cm-gutterElement { min-width: 3.5em; }
+            
         // ==================== ↓ 高亮块
         
             ne-alert[ne-alert-type=tips] {
@@ -110,6 +116,15 @@ html {
         }
         
         
+    // $ ================================================== ↓ 首页
+    
+        :where(.lark:has(.ant-row [class*="QuickStart-module_wrapper_"])) {
+            
+            [class*="index-module_wrapper_"] .ant-tabs > .ant-tabs-nav { margin-bottom: 20px; }
+            
+        }
+        
+        
     // $ ================================================== ↓ 预览模式
     
         .ne-viewer .ne-viewer-body {
@@ -139,6 +154,15 @@ html {
                 margin: 10px 0 0;
                 border-radius: var(--ovnPanelRadius);
             }
+            
+        }
+        
+    // $ ================================================== ↓ 非用户文档
+    
+        :where(:has(.editor > #lark-mini-editor)) {
+            
+            // 回复聊天框
+            #doc-reader-comment { position: relative; z-index: 1; }
             
         }
         

@@ -46,11 +46,10 @@ import { OVN_SUBJOIN_HOOK }      from '../../store/core/hook.js';
                 match: { include: [ "*" ], exclude: [ ] },
             },
             Gallop: {
-                default: false,
                 feature: "浮光掠影‌  走马观花",
                 match: { include: [ "*" ], exclude: [ ] },
             },
-            Preview: {
+            QuickRead: {
                 match: { include: [ "*" ], exclude: [ ] },
             },
             CustomICON: {

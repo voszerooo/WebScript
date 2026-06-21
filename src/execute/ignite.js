@@ -9,6 +9,7 @@
     import './global/scroll-bar.js';
     import './global/loader-bar.js';
     import './global/gallop.js';
+    import './global/quick-read.js';
     
     import './global/custom-icon.js';
     import './global/selection.js';

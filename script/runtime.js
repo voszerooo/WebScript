@@ -113,12 +113,17 @@
                 .replace(/\bGM_addElement\s*\(/g, 'window.OVN_GM_API.addElement(');
                 
             var dom = getDOM();
+            var scriptBox = document.getElementById('ovnScript');
+            if (!scriptBox) {
+                scriptBox = document.createElement('div');
+                scriptBox.id = 'ovnScript';
+                dom.appendChild(scriptBox);
+            }
             scriptEl = GM_API.addElement('script', {
                 textContent: processed,
                 'data-ovn-script-bundle': ''
             });
-            dom.appendChild(scriptEl);
-            
+            scriptBox.appendChild(scriptEl);
         } catch (e) {
             ovnLog('API error ' + e.message);
         }

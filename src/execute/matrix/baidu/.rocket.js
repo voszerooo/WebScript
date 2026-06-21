@@ -2,6 +2,7 @@
 
 import { OVN_MATCH_RULE }        from '../../../store/infra/match.js';
 import { OVN_GLOBAL_SCHEDULER }  from '../../../store/core/scheduler.js';
+import { OVN_QUICK_READ }        from '../../../store/utils/quick-read.js';
 import { OVN_ADD_CLASS }         from '../../../store/utils/add-class.js';
 
 import wave from './wave.scss';
@@ -33,8 +34,8 @@ OVN_GLOBAL_SCHEDULER.run("Baidu", () => {
         
     //     OVN_QUICK_READ.apply({
     //         letterKey: false,
-    //         buttonPrev: '#page a:has([alt="上一页"])',
-    //         buttonNext: '#page a:has([alt="下一页"])',
+    //         buttonPrev: '#page a.n[class*="prev_"]',
+    //         buttonNext: '#page a.n[class*="next_"]',
     //     });
         
     // })();

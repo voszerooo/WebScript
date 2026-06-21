@@ -34,8 +34,8 @@ OVN_GLOBAL_SCHEDULER.run("ovnGrid", () => {
         
         OVN_ADD_CLASS.apply({
             target: [
-                '.ne-editor-wrap-content',                      // 编辑模式
-                '.ne-viewer-layout-mode-fixed .ne-viewer-body', // 预览模式
+                '.ne-viewer .ne-viewer-body',                           // 预览模式
+                '.ne-editor.layout-read-write .ne-editor-wrap-content', // 编辑模式
             ],
             subjoin: [ "ovnGrid", "ovnSolid", ],
         });

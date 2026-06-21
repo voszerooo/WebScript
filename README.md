@@ -2,19 +2,19 @@
 
 <div align="center">
 
-### 👽
-# WebScript
-
-[![release](https://img.shields.io/github/v/release/voszerooo/WebScript)](https://github.com/voszerooo/WebScript/releases/latest)
-[![main](https://img.shields.io/badge/main-gray)](https://github.com/voszerooo/WebScript/tree/main)
-[![dev](https://img.shields.io/badge/dev-gray)](https://github.com/voszerooo/WebScript/tree/dev)
-[![guide](https://img.shields.io/badge/guide-gray)](https://github.com/voszerooo/WebScript/blob/main/-/GUIDE.md)
-[![license](https://img.shields.io/github/license/voszerooo/WebScript)](https://cdn.jsdelivr.net/gh/voszerooo/WebScript@main/LICENSE)
-
-<br>
-
-<img src="https://cdn.jsdelivr.net/gh/voszerooo/WebScript@main/resource/preview-min.png" width="100%">
-
+  ### 👽
+  # WebScript
+  
+  [![install](https://img.shields.io/github/v/release/voszerooo/WebScript?label=install)](https://update.greasyfork.org/scripts/579569/GlobalCustom.user.js)
+  [![main](https://img.shields.io/badge/main-gray)](https://github.com/voszerooo/WebScript/tree/main)
+  [![dev](https://img.shields.io/badge/dev-gray)](https://github.com/voszerooo/WebScript/tree/dev)
+  [![release](https://img.shields.io/badge/release-gray)](https://github.com/voszerooo/WebScript/releases/latest)
+  [![guide](https://img.shields.io/badge/guide-gray)](https://github.com/voszerooo/WebScript/blob/main/-/GUIDE.md)
+  [![license](https://img.shields.io/github/license/voszerooo/WebScript)](https://cdn.jsdelivr.net/gh/voszerooo/WebScript@main/LICENSE)
+  
+  <br>
+  <img src="https://cdn.jsdelivr.net/gh/voszerooo/WebScript@main/resource/preview-min.png" width="100%">
+  
 </div>
 
 
@@ -25,7 +25,10 @@
 
 <table>
     <tr>
-        <td style="font-weight: bold;" rowspan="6">Global</td>
+        <td colspan="3">&nbsp</td>
+    </tr>
+    <tr>
+        <td rowspan="7"><b>Global</b></td>
         <td><code>LoaderBar</code></td>
         <td>顶部加载条 => 进度条</td>
     </tr>
@@ -35,30 +38,41 @@
     </tr>
     <tr>
         <td><code>Gallop</code></td>
-        <td>网页手势</td>
+        <td>
+            网页手势 ┆ 鼠标右键
+            <code>/\</code>
+            <code>\/</code>
+            <code>短</code>
+            <code>中</code>
+            <code>长</code>
+            划 可快速浏览
+        </td>
+    </tr>
+    <tr>
+        <td><code>QuickRead</code></td>
+        <td>快速阅读 ┆ <code>↑ ↓ ← →</code> <code>W S A D</code> 可快速浏览 <code>← →</code> 为部分站点增强功能 </td>
     </tr>
     <tr>
         <td><code>FontStyle</code></td>
-        <td>自定义字体 | 可配置对应站点使用自定义字体</td>
+        <td>自定义字体 ┆ 让对应站点使用自定义字体</td>
     </tr>
     <tr>
         <td><code>CustomICON</code></td>
         <td>
-            自定义 favicon | 配置 "xxx.com" : "xxx.svg"
-            映射至对应资源/变量 可实现个性化显示
+            自定义 favicon ┆ 配置域名映射至对应资源/变量 可实现个性化显示
         </td>
     </tr>
     <tr>
         <td><code>Selection</code></td>
-        <td>选取样式 | 自定义 鼠标选取样式</td>
+        <td>选取样式 ┆ 自定义 鼠标选取样式</td>
     </tr>
     <tr>
         <td colspan="3">&nbsp</td>
     </tr>
     <tr>
-        <td style="font-weight: bold;" rowspan="8">Matrix</td>
+        <td rowspan="7"><b>Matrix</b></td>
         <td><code>Baidu</code> <code>Google</code> <code>Bing</code></td>
-        <td>相应搜索引擎页面 | 自定义样式 快速阅读等</td>
+        <td>相应搜索引擎页面 ┆ 快速阅读 / 自定义样式等</td>
     </tr>
     <tr>
         <td><code>ComfyUI</code></td>
@@ -66,35 +80,34 @@
     </tr>
     <tr>
         <td><code>DeepSeek</code> <code>ChatGPT</code></td>
-        <td>AI 问答类 | 容器宽度增加 / ...</td>
+        <td>AI 问答类 ┆ 容器宽度增加 / ...</td>
     </tr>
     <tr>
         <td><code>YUQUE</code></td>
-        <td>语雀 | 网格背景 / 表格样式 / ...</td>
+        <td>语雀 ┆ 网格背景 / 表格样式 / ...</td>
     </tr>
     <tr>
         <td><code>TickTick</code></td>
-        <td>滴答清单 | 任务列宽度增加 / ...</td>
+        <td>滴答清单 ┆ 任务列宽度增加 / ...</td>
     </tr>
     <tr>
         <td><code>Youtube</code></td>
-        <td>内容展示数变更 / ...</td>
+        <td>变更内容展示数 / 控件毛玻璃 / ...</td>
     </tr>
     <tr>
         <td><code>Bilibili</code></td>
         <td>播放器样式 / 播放列表高度增加 / ...</td>
     </tr>
     <tr>
-        <td><code>...</code></td>
-        <td></td>
-    </tr>
-    <tr>
         <td colspan="3">&nbsp</td>
     </tr>
     <tr>
-        <td style="font-weight: bold;">Micro</td>
+        <td><b>Micro</b></td>
         <td><code>...</code></td>
-        <td>第三方脚本/插件/杂项 个性化样式</td>
+        <td>炸七炸八/插件/第三方脚本等 个性化样式</td>
+    </tr>
+    <tr>
+        <td colspan="3">&nbsp</td>
     </tr>
 </table>
 
@@ -104,9 +117,9 @@
 
 ### 🚀 GUIDE 
 
- - 脚本安装 | 脚本已上传至 [GreasyFork.WebScript](https://update.greasyfork.org/scripts/579569/GlobalCustom.user.js) 点此可快速安装
- - 功能开关 | 本脚本为自用全局型脚本 如觉功能繁杂 可 <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>X</kbd> 快速呼出控制面板 开关相应功能
- - 功能扩展 | 已留有接口 支持个人扩展定义 可详见 [GUIDE](https://github.com/voszerooo/WebScript/blob/main/-/GUIDE.md) 快速了解结构
+ - 脚本安装 ┆ 已上传至 [GreasyFork.WebScript](https://update.greasyfork.org/scripts/579569/GlobalCustom.user.js) 点此可快速安装
+ - 功能开关 ┆ 本脚本为全局型 自用脚本 如觉功能繁杂 可 <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>X</kbd> 快速呼出控制面板 开关相应功能
+ - 功能扩展 ┆ 已留有接口 支持个人扩展定义 可详见 [GUIDE](https://github.com/voszerooo/WebScript/blob/main/-/GUIDE.md) 快速了解结构
  
  
 <br>

@@ -24,7 +24,7 @@ function compileWaveFile(filePath) {
             cwd: projectRoot
         });
     } catch (error) {
-        console.error(`✗ Error compiling ${filePath}:`);
+        console.error(`✗ Error compiling ${filePath}: `);
         console.error(error.stderr?.toString() || error.message);
     }
 }
@@ -53,7 +53,7 @@ function startSassWatch() {
         shell: true
     });
     sassProcess.on('error', (error) => {
-        console.error('❌ Sass watch process error:', error.message);
+        console.error('❌ Sass watch process error: ', error.message);
     });
     return sassProcess;
 }

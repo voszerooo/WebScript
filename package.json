@@ -3,7 +3,7 @@
     "name": "webscript",
     "ScriptName": "Global.Custom",
     "description": "全局定制",
-    "intact": "顶部加载条 => 进度条 | 个性化滚动条 | 网页手势 | favicon 替换 | 自定义字体 | 百度 / Google / Bing / 语雀 / ComfyUI / DeepSeek / ChatGPT ... 等多站点 个性化/优化/增强",
+    "intact": "顶部加载条 => 进度条 | 个性化滚动条 | 网页手势 | 快速阅读 | favicon 替换 | 自定义字体 | 百度 / Google / Bing / 语雀 / ComfyUI / DeepSeek / ChatGPT ... 等多站点 个性化/优化/增强",
     "version": "7.0.2",
     "license": "Apache-2.0",
     "author": "voszerooo",
@@ -11,6 +11,7 @@
     "github": "https://github.com/voszerooo",
     "homepage": "https://github.com/voszerooo/WebScript",
     "source": "greasyfork.org/scripts/579569",
+    
     "type": "module",
     "main": "src/custom.js",
     "scripts": {
@@ -24,9 +25,9 @@
         "scss": "node script/compile.js"
     },
     "devDependencies": {
-        "@babel/core": "^7.29.0",
-        "@babel/eslint-parser": "^7.28.6",
-        "@babel/preset-env": "^7.29.5",
+        "@babel/core": "^7.29.7",
+        "@babel/eslint-parser": "^7.29.7",
+        "@babel/preset-env": "^7.29.7",
         "@parcel/watcher": "^2.5.6",
         "babel-loader": "^10.1.1",
         "babel-plugin-transform-remove-console": "^6.9.4",
@@ -41,7 +42,7 @@
         "prettier": "^3.8.3",
         "progress-bar-webpack-plugin": "^2.1.0",
         "sass": "^1.99.0",
-        "sass-loader": "^16.0.8",
+        "sass-loader": "^17.0.0",
         "string-replace-loader": "^3.3.0",
         "style-loader": "^4.0.0",
         "terser-webpack-plugin": "^5.6.0",
