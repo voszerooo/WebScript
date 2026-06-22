@@ -241,6 +241,24 @@ OVN_GLOBAL_SCHEDULER.run("Micro_Other", () => {
     
     
     if (OVN_MATCH_RULE.match({
+        include: [ "*shenyandayi.com/*" ], exclude: [ ] })
+    ) {
+        GM_addStyle( /* css */ `
+            html {
+                
+                #root { background-color: #f5f5f5; }
+                .result-page { background-color: transparent; }
+                .result.theme-wantwords {
+                    width: var(--ovnSpaceWidthVW);
+                    margin: 0 auto;
+                }
+                
+            }
+        `);
+    }
+    
+    
+    if (OVN_MATCH_RULE.match({
         include: [ "*wikipedia.org/*" ], exclude: [ ] })
     ) {
         GM_addStyle( /* css */ `
@@ -413,68 +431,6 @@ OVN_GLOBAL_SCHEDULER.run("Micro_Other", () => {
             
         })();
         
-    }
-    
-    
-    if (OVN_MATCH_RULE.match({
-        include: [ "*xiaohongshu.com/*" ], exclude: [ ] })
-    ) {
-        
-        GM_addStyle( /* css */ `
-            html {
-                
-                .side-bar .channel-list {
-                    overflow: hidden;
-                    overscroll-behavior: none;
-                }
-                
-            }
-        `);
-        
-        (function OVN_RadBook_ReLimits() {
-            
-            OVN_REMOVE_LIMITS.apply({
-                key: "ctrl",
-                ReLimits: "all",
-            });
-            
-        })();
-        
-    }
-    
-    
-    if (OVN_MATCH_RULE.match({
-        include: [ "*://115.com/*" ], exclude: [ ] })
-    ) {
-        GM_addStyle( /* css */ `
-            html {
-                
-                /* ========== 云下载 弹窗 */
-                
-                    .offline-box {
-                        position: fixed !important;
-                        top: 50% !important;
-                        left: 50% !important;
-                        transform: translate(-50%, -50%);
-                        width: 43vw !important;
-                        height: 50vh;
-                        border-radius: var(--ovnSurfaceRadius);
-                        transition: all .43s var(--ovnTransitionSoft);
-                    }
-                    
-                    /* ========== 云下载 输入框 */
-                    .dialog-input.input-offline textarea {
-                        height: 32vh;
-                        border-radius: var(--ovnSurfaceRadius);
-                    }
-                    
-                    @media (width <= 1200px) {
-                        .offline-box { width: 59vw !important; height: 92vh;}
-                        .dialog-input.input-offline textarea { height: 70vh;}
-                    }
-                    
-            }
-        `);
     }
     
     

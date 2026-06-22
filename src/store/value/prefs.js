@@ -10,7 +10,6 @@
             function key(rawKey) {
                 return `${prefix}:${rawKey}`;
             }
-            
             return {
                 has(rawKey) {
                     return cache.has(rawKey);
@@ -29,44 +28,40 @@
                     cache.delete(rawKey);
                     GM_deleteValue(key(rawKey));
                 },
-                clear() {
-                    cache.clear();
-                },
-                keys() {
-                    return cache.keys();
-                }
+                clear() { cache.clear(); },
+                keys() { return cache.keys(); }
             };
-            
         }
         
-        const prefs = store("prefs");
-        const hover = store("hover");
-        const fold = store("fold");
-        const visited = store("visited");
+        const prefix = [
+            'prefs',
+            'hover',
+            'fold',
+            'visited',
+            'gallop'
+        ];
+        const prefixSet = new Set(prefix);
+        const stores = Object.create(null);
+        for (const name of prefix) { stores[name] = store(name); }
         
         function reset() {
-            const allKeys = GM_listValues();
-            for (const fullKey of allKeys) {
-                if (
-                    fullKey.startsWith("prefs:") ||
-                    fullKey.startsWith("hover:") ||
-                    fullKey.startsWith("fold:") ||
-                    fullKey.startsWith("visited:")
-                ) {
+            for (const fullKey of GM_listValues()) {
+                const prefix = fullKey.split(':', 1)[0];
+                if (prefixSet.has(prefix)) {
                     GM_deleteValue(fullKey);
                 }
             }
-            prefs.clear();
-            hover.clear();
-            fold.clear();
-            visited.clear();
+            for (const name of prefix) {
+                stores[name].clear();
+            }
         }
         
         return {
-            prefs,
-            hover,
-            fold,
-            visited,
+            prefs:   stores.prefs,
+            hover:   stores.hover,
+            fold:    stores.fold,
+            gallop:  stores.gallop,
+            visited: stores.visited,
             reset
         };
         

@@ -2,32 +2,29 @@
 
 # $ ==================== ↓ OVN
 
-node_modules/
-# .vscode/
+.vscode/*
 # .github/
+# .claude/
+# .copilot/
 
-.build/
+node_modules/
+.build/*
 # build/
 # dist/
 
 -/---/
 -/GreasyFork.md
--/MEMORY.md
--/NORM.md
 
+*.ovn
+*.xxfilterxx.*
 resource/source/
 custom.ico
-*.xxfilterxx.*
-
-
-# ==================== ↓ KEEP
-
-!.build/.cache/
 
 
 # ==================== ↓ Other
 
 .venv/
+.env
 .env/
 
 .DS_Store
@@ -38,4 +35,10 @@ desktop.ini
 *.cache
 *.tmp
 *.temp
+
+
+# ==================== ↓ KEEP
+
+!**.gitkeep
+!.vscode/tasks.json
 

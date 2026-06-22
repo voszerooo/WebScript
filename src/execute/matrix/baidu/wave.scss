@@ -261,11 +261,17 @@ html {
                         transform: var(--ovnBaiduZ);
                     }
                     #content_left > :first-of-type:hover,           // ==== 内容区 首个
+                    .new-pmd[tpl="yl_ps_main"]:hover,               // ==== 首屏
+                    .new-pmd[tpl="yl_ps_relationship"]:hover,       // ==== 人物关系
+                    .new-pmd[tpl="ai_ask"]:hover,                   // ==== AI 提问
+                    .new-pmd[tpl="wenda_generate"]:hover,           // ==== AI 问答生成
                     .new-pmd[tpl="app/rs"]:hover,                   // ==== 相关搜索
                     .new-pmd[tpl="recommend_list"]:hover,           // ==== 相关搜索
-                    .new-pmd[tpl="wenda_generate"]:hover,           // ==== AI 问答生成
-                    .new-pmd[tpl="ai_ask"]:hover,                   // ==== AI 提问
+                    .new-pmd[tpl*="jr_stock"]:hover,                // ==== 百度股市通
+                    .new-pmd[tpl*="jr_quote"]:hover,                // ==== 百度股市通
+                    .new-pmd[tpl="jr_exchange_rate"]:hover,         // ==== 百度股市通
                     .new-pmd[tpl="new_baikan_index"]:hover,         // ==== 百度 AI
+                    .new-pmd[tpl="guanfanghao_san"]:hover,          // ==== 百家号
                     .new-pmd[tpl="image_grid_san"]:hover,           // ==== 百度图片
                     .new-pmd[tpl="fy_sg_dict_new_san"]:hover,       // ==== 百度翻译
                     .new-pmd[tpl="sg_kg_entity_san"]:hover,         // ==== 百度百科
@@ -274,9 +280,7 @@ html {
                     .new-pmd[tpl="xueshu_links_new"]:hover,         // ==== 百度学术
                     .new-pmd[tpl="med_wenzhen_san"]:hover,          // ==== 百度健康
                     .new-pmd[tpl="med_aigc_guru_san"]:hover,        // ==== 百度健康
-                    .new-pmd[tpl*="jr_stock"]:hover,                // ==== 百度股市通
-                    .new-pmd[tpl*="jr_quote"]:hover,                // ==== 百度股市通
-                    .new-pmd[tpl="jr_exchange_rate"]:hover,         // ==== 百度股市通
+                    .new-pmd[tpl="med_doctor_same_name_san"]:hover, // ==== 百度健康
                     .new-pmd[tpl="ai_agent_qa_recommend"]:hover,    // ==== 聊一下更多精彩 
                     .new-pmd[tpl="yl_rw_figure_sample_san"]:hover { // ==== 作品成就
                         transform: none;
@@ -312,7 +316,7 @@ html {
                                 max-height: 526px !important; // 覆盖内联
                             }
                             [class*="cosd-fold-switch-mask_"] { border-radius: 0 0 var(--ovnBaiduRL) var(--ovnBaiduRL); }
-                            [class*="cosd-fold-switch_"] { padding: 20px 0; }
+                            [class*="cosd-fold-switch_"] { padding: 20px 0 0; }
                             [class*="follow-up_"] { margin-top: 30px; }
                             [class*="follow-up-guide_"] { margin-bottom: 24px; }
                             
@@ -320,7 +324,8 @@ html {
                             // max-height: calc(526px + 40px);
                             // &::-webkit-scrollbar { display: none; }
                             
-                            [class*="card-border_"] { margin-top: -5px; border-color: transparent; }
+                            [style*="--cardBg"] { margin-top: -13px; }
+                            [class*="card-border_"] { border-color: transparent; }
                             
                             // .cosc-card-content { margin-top: var(--ovnBaiduRepair); }
                             .cosc-card-light-bg:not([tpl="wenda_generate"] div) { top: var(--ovnBaiduRepair); }
@@ -373,10 +378,11 @@ html {
                             padding-top: var(--ovnBaiduTitleR);
                             padding-bottom: 0;
                             
-                            [class*="nbk-index_"] [class*="nbk-interact_"] {
-                                margin: 0;
-                                padding: 15px 0;
-                            }
+                            // [class*="nbk-index_"] [class*="nbk-interact_"] {
+                            //     margin: 0;
+                            //     padding: 15px 0;
+                            // }
+                            [class*="nbk-index_"] .cosd-markdown .marklang ul > li:before { top: 7px; }
                             
                         }
                         
@@ -466,9 +472,13 @@ html {
                         
                             // ========== ICON
                             
-                                [class*="title-wrapper_"] [class*="front-icon_"] { position: absolute; transform: scale(.8); }
                                 [class*="title-box_"]:has([class*="front-icon_"]) .t { padding-left: 50px; }
-                            
+                                [class*="title-wrapper_"] [class*="front-icon_"] {
+                                    position: absolute;
+                                    transform: scale(.5);
+                                    left: -18px;
+                                }
+                                
                         }
                         
                     // $ ==================== ↓ 百度汉语
@@ -508,6 +518,12 @@ html {
                             [class*="image-container_"][class*="image-container-pc_"] { display: flex; gap: 40px; }
                             [class*="image-container_"] [class*="row-border-list_"] { gap: 20px; }
                             .cos-image-background { border-radius: var(--ovnPanelRadius); }
+                            
+                            // ========== 修复标题背景
+                            [class*="container_"] [class*="head_"] {
+                                overflow: visible;
+                                margin-right: 0;
+                            }
                             
                         }
                         
@@ -558,6 +574,28 @@ html {
                         &[tpl="med_aigc_guru_san"] {
                         
                             [class*="medAigcPcCard_"] { margin-top: 10px; }
+                            
+                        }
+                        
+                        &[tpl="med_doctor_same_name_san"] {
+                            
+                            // ========== 修复标题背景
+                            .cosc-card-content > div > .cos-line-clamp-1 {
+                                overflow: visible;
+                                margin-top: -18px;
+                            }
+                            
+                            [class*="afterFiveWrap_"] > [class*="doctorItem_"] { margin-top: 20px; }
+                            .cos-more-link { margin: 15px 0; }
+                            
+                        }
+                        
+                    // $ ==================== ↓ 人物简介
+                    
+                        &[tpl="yl_ps_main"] {
+                        
+                            [class*="aladdin_"] { margin-top: -5px; }
+                            [class*="_content-border_"] { padding: 0 15px; }
                             
                         }
                         
@@ -954,9 +992,10 @@ html {
     
         html #wrapper #container h3:not( 
             .cos-space-mt-md h3,
-            .card-title_2GtKe h3,
-            .exta-links-pc_2sXPl h3,
-            .exta-link-pc_3aUAb h3,
+            [class*="doctorName_"] > h3,
+            [class*="card-title_"] > h3,
+            [class*="exta-links-pc_"] > h3,
+            [class*="exta-link-pc_"] > h3,
             .c-container[tpl="world_time_san"] h3,
             .c-container[tpl="fy_sg_dict_new_san"] h3,
             .c-container[tpl="wenda_generate"] h3,

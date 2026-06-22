@@ -75,10 +75,11 @@ import { OVN_SUBJOIN_HOOK }      from '../../store/core/hook.js';
                             btn.textContent = state ? names[0] : names[1];
                             btn.style.background = state ? colors[0] : colors[1];
                         }
-                        updateUI();
                         if (type === "switch") {
                             onClick?.({ phase: "init", type, key, state, button: btn });
+                            state = OVN_VALUE_RUNTIME.get(key, defaultVal);
                         }
+                        updateUI();
                         btn.addEventListener("click", () => {
                             if (type === "switch") {
                                 state = OVN_VALUE_RUNTIME.toggle(key);

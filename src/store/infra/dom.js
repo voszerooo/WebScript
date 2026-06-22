@@ -91,6 +91,24 @@ import { OVN_SUBJOIN_HOOK }      from '../../store/core/hook.js';
                 logBox    = ensure(container, DOM_LOG);
                 classify(container);
                 autoConduct(container);
+                if (id === DOM_BASE) watchBody();
+            }
+            let bodyObserver = null;
+            let watchTimer = null;
+            function watchBody() {
+                if (bodyObserver) bodyObserver.disconnect();
+                bodyObserver = new MutationObserver(() => {
+                    if (watchTimer) return;
+                    watchTimer = setTimeout(() => {
+                        watchTimer = null;
+                        if (instance && document.contains(instance)) return;
+                        instance = null;
+                        readyPromise = null;
+                        OVN_OBSERVER_CENTER.disconnectKey(observeKey);
+                        init();
+                    }, 126);
+                });
+                bodyObserver.observe(document.body, { childList: true });
             }
             function ensure(container, id) {
                 let el = document.getElementById(id);
@@ -147,8 +165,10 @@ import { OVN_SUBJOIN_HOOK }      from '../../store/core/hook.js';
                 if (readyPromise) return readyPromise;
                 readyPromise = new Promise(resolve => {
                     function done() {
+                        setTimeout(() => {
                         const el = init();
                         resolve(el);
+                        }, 0);
                     }
                     if (document.readyState === 'loading') {
                         document.addEventListener('DOMContentLoaded', done, { once: true });
@@ -170,7 +190,6 @@ import { OVN_SUBJOIN_HOOK }      from '../../store/core/hook.js';
         }
         
         const OVN = create(DOM_BASE);
-        
         return {
             create: create,
             bindOVN(callback) { return OVN.bind(callback); },

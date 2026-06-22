@@ -35,7 +35,6 @@ function buildHeader() {
         __CONNECT__: 'localhost'
     });
     const skipRaw = [
-        '@connectXXX',
         '@resourceXXX',
         '@LOG',
         '@namespace',
@@ -53,6 +52,10 @@ function buildHeader() {
     const lines = headerRaw.split('\n');
     const headerLines = [];
     for (const line of lines) {
+        if (line.includes('@connectXXX')) {
+            headerLines.push(`// @connect                   localhost`);
+            continue;
+        }
         if (line.includes('@requireXXX')) {
             headerLines.push(`// @require                   http://localhost:${config.port}/${config.entry}`);
             continue;
