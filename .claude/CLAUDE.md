@@ -1,1 +1,1 @@
-../-/NORM.md
+../-/INTENT.md

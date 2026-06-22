@@ -3,7 +3,6 @@
 /**
  * $ NEXT
  * - 
- * - 
  * - ---------- | GLOBAL | 
  * - ---------- | BUILD  | 
  * - ---------- | DEV    |
@@ -14,6 +13,7 @@
  * ! 
  * ? ==================== ↓ WARN
  * ?
+ * ? OVN_Debug           | GLOBAL | 被排除的站点 面板直接没有显示 而非 MATCH 红灯
  * ? OVN_OBSERVER_CENTER | GLOBAL | 共享 Observer 实例可能导致一断全断或空转不释放
  * ? ------------------- | BUILD  | 在某些网站动态更新页面内容后 需手动刷新才可正确应用样式
  * ? ------------------- | DEV    | 在某些网站会触发弹窗 "访问此设备上的其他应用和服务" 允许 屏蔽
@@ -36,15 +36,14 @@
  * & Webpack              | eager lazy
  * & Webpack              | scope‌ 拆分
  * & Webpack              | Webpack HMR - chunk 每个模块编写 dispose / accept 逻辑
- * & 
- * & -------------------- | data-ovn-script-bundle 注入时就放进 ovnScript
+ * & injector.js          | 换掉声明式注入
  * & 
  * & 
  * + ==================== ↓ NEW
  * + 
- * + OVN_REMOVE_LIMITS | 解除复制限制 如有难以越过的防御/不好实现 则弹出复制按钮 自动拼接
- * + OVN_REMOVE_LOGIN  | 
  * + OVN_GLOBAL_POPUP  | 
+ * + OVN_REMOVE_LOGIN  | 
+ * + OVN_REMOVE_LIMITS | 解除复制限制 如有难以越过的防御/不好实现 则弹出复制按钮 自动拼接
  * + 
  * + ----------------- | YOUTUBE 字幕翻译
  * + 

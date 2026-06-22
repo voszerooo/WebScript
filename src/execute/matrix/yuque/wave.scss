@@ -167,6 +167,13 @@ html {
         }
         
         
+    // $ ================================================== ↓ 知识库首页
+    
+        [class*="BookOverview-module_containerWrapper_"] {
+            .ovnGrid.ovnSolid::after { display: none; }
+        }
+        
+        
     // $ ================================================== ↓ 搜索页
     
     

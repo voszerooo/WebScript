@@ -6,9 +6,9 @@
   # WebScript
   
   [![install](https://img.shields.io/github/v/release/voszerooo/WebScript?label=install)](https://update.greasyfork.org/scripts/579569/GlobalCustom.user.js)
+  [![release](https://img.shields.io/badge/release-gray)](https://github.com/voszerooo/WebScript/releases/latest)
   [![main](https://img.shields.io/badge/main-gray)](https://github.com/voszerooo/WebScript/tree/main)
   [![dev](https://img.shields.io/badge/dev-gray)](https://github.com/voszerooo/WebScript/tree/dev)
-  [![release](https://img.shields.io/badge/release-gray)](https://github.com/voszerooo/WebScript/releases/latest)
   [![guide](https://img.shields.io/badge/guide-gray)](https://github.com/voszerooo/WebScript/blob/main/-/GUIDE.md)
   [![license](https://img.shields.io/github/license/voszerooo/WebScript)](https://cdn.jsdelivr.net/gh/voszerooo/WebScript@main/LICENSE)
   
@@ -50,7 +50,7 @@
     </tr>
     <tr>
         <td><code>QuickRead</code></td>
-        <td>快速阅读 ┆ <code>↑ ↓ ← →</code> <code>W S A D</code> 可快速浏览 <code>← →</code> 为部分站点增强功能 </td>
+        <td>快速阅读 ┆ <code>↑ ↓ ← →</code> <code>W S A D</code> 可快速浏览 <code>← →</code> 为部分站点增强</td>
     </tr>
     <tr>
         <td><code>FontStyle</code></td>
@@ -103,8 +103,8 @@
     </tr>
     <tr>
         <td><b>Micro</b></td>
-        <td><code>...</code></td>
-        <td>炸七炸八/插件/第三方脚本等 个性化样式</td>
+        <td><code>==</code></td>
+        <td>炸七炸八 / 插件 / 第三方脚本等 个性化样式</td>
     </tr>
     <tr>
         <td colspan="3">&nbsp</td>
@@ -130,10 +130,12 @@
  - [Baidu](https://baidu.com/s?&wd=GreasyFork)
  - [Google](https://google.com/search?q=GreasyFork)
  - [Bing](https://bing.com/search?q=GreasyFork)
- - [Deepseek](https://chat.deepseek.com/)
+ - [DeepSeek](https://chat.deepseek.com/)
  - [ChatGPT](https://chatgpt.com/)
- - [YUQUE](https://www.yuque.com/)
+ - [YUQUE](https://yuque.com/)
+ - [TickTick](https://dida365.com/)
  - [Youtube](https://youtube.com/)
+ - [Bilibili](https://bilibili.com/)
  
  
 <br>
@@ -153,6 +155,5 @@
 <img src="https://cdn.jsdelivr.net/gh/voszerooo/WebScript@main/resource/permission-min.png" width="100%">
 
 
-<br>
 <br>
 

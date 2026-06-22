@@ -1,5 +1,14 @@
 
 
-- [Preferences](../.claude/memory/preferences.md) — 最小化修改，不加多余注释/格式化，diff 尽量小
-- [Style](../.claude/memory/style.md) — 命名禁止单字母，event/amount 完整词，注释密度对齐 scroll-bar，DOM 走 bindOVN
+# 结构总览
 
+ 详细目录树见 [GUIDE.md](../-/GUIDE.md) 以下是文件速查
+
+ - [项目结构](../-/GUIDE.md#项目结构)
+ - [执行流程](../-/GUIDE.md#执行流程)
+ - [主入口](../src/custom.js)
+ - [封装入口](../src/store/derive.js)
+ - [执行入口](../src/execute/ignite.js)
+ - [样式入口](../src/style/injector.js)
+ 
+ 

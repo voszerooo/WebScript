@@ -47,10 +47,16 @@ import { OVN_SUBJOIN_HOOK }      from '../../store/core/hook.js';
             },
             Gallop: {
                 feature: "浮光掠影‌  走马观花",
-                match: { include: [ "*" ], exclude: [ ] },
+                match: {
+                    include: [ "*" ],
+                    exclude: [ "*dida365.com/*", "*ticktick.com/*" ]
+                },
             },
             QuickRead: {
-                match: { include: [ "*" ], exclude: [ ] },
+                match: {
+                    include: [ "*" ],
+                    exclude: [ "*bilibili.com/*" ]
+                },
             },
             CustomICON: {
                 feature: "站点 ICO 替换 | 书签栏 > DeepSeek > HUA! 黑鲸",
@@ -59,7 +65,10 @@ import { OVN_SUBJOIN_HOOK }      from '../../store/core/hook.js';
             },
             Selection: {
                 feature: "原生鼠标选取样式 个性化",
-                match: { include: [ "*" ], exclude: [ "*yuque.com/*" ] },
+                match: {
+                    include: [ "*" ],
+                    exclude: [ "*yuque.com/*" ]
+                },
             },
             FontStyle: {
                 feature: "字体样式 | 可去 FontStyle 重定义所需站点/变更应用已安装的某款字体",
@@ -81,13 +90,7 @@ import { OVN_SUBJOIN_HOOK }      from '../../store/core/hook.js';
                         ...OVN_SITE_GROUP.Media,
                         
                     ],
-                    exclude: [
-                        
-                        "*youtube.com/*",
-                        
-                        ...OVN_SITE_GROUP.Font,
-                        
-                    ]
+                    exclude: [ "*youtube.com/*", ...OVN_SITE_GROUP.Font, ]
                 }
             },
             

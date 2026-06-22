@@ -12,10 +12,10 @@ OVN_GLOBAL_SCHEDULER.run("QuickRead", () => {
     (function OVN_QuickRead() {
         
         function apply({
+            ratio = .8,
             scroll = true,
             smooth = true,
-            ratio = .8,
-            letterKey = true,
+            letter = true,
         } = {}) {
             
             const doScroll = (amount) => window.scrollBy({
@@ -29,7 +29,7 @@ OVN_GLOBAL_SCHEDULER.run("QuickRead", () => {
                 ArrowDown: () => scroll && doScroll( window.innerHeight * ratio),
             };
             
-            if (letterKey) Object.assign(keyMap, {
+            if (letter) Object.assign(keyMap, {
                 w: keyMap.ArrowUp,
                 s: keyMap.ArrowDown,
             });
