@@ -1,4 +1,5 @@
 
+
 import { OVN_VALUE_PREFS }       from '../../store/value/prefs.js';
 import { OVN_GLOBAL_INFORM }     from '../../store/infra/inform.js';
 import { OVN_GLOBAL_SCHEDULER }  from '../../store/core/scheduler.js';
@@ -12,23 +13,10 @@ OVN_GLOBAL_SCHEDULER.run("Gallop", () => {
     (function OVN_Gallop() {
         
         const config = {
-            trailColor: '#2C2C3E50',
             effective: 12,
             pageScrollRatio: .8,
             maxPath: 926,
         };
-        
-        let overlay = null;
-        let canvas = null;
-        let ctx = null;
-        let isGestureActive = false;
-        let gestureStarted = false;
-        let path = [];
-        let startX = 0, startY = 0;
-        let rafId = null;
-        let gestureTimer = null;
-        let trailStopped = false;
-        let isComposing = false;
         
         function getDirection(dx, dy) {
             return Math.abs(dx) > Math.abs(dy)
@@ -42,7 +30,7 @@ OVN_GLOBAL_SCHEDULER.run("Gallop", () => {
             for (let i = 5; i < points.length; i += 5) {
                 const dx = points[i].x - points[i - 5].x;
                 const dy = points[i].y - points[i - 5].y;
-                if (Math.abs(dx) < 3 && Math.abs(dy) < 3) continue;
+                if (dx * dx + dy * dy < config.effective * config.effective) continue;
                 const dir = getDirection(dx, dy);
                 if (lastDir && dir !== lastDir) changes++;
                 lastDir = dir;
@@ -70,9 +58,17 @@ OVN_GLOBAL_SCHEDULER.run("Gallop", () => {
             const realTurnIdx = Math.min(turnIndex, points.length - 1);
             const firstMove = Math.abs(points[realTurnIdx].y - points[0].y);
             const secondMove = Math.abs(points[points.length - 1].y - points[realTurnIdx].y);
-            if (firstMove < 30 || secondMove < 30) return null;
+            if (firstMove < 26 || secondMove < 26) return null;
             return firstDir === 'up' && secondDir === 'down' ? 'up-down'
                 : (firstDir === 'down' && secondDir === 'up' ? 'down-up' : null);
+        }
+        
+        function isEditable(el) {
+            if (!el) return false;
+            const tag = el.tagName;
+            if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return true;
+            if (el.isContentEditable) return true;
+            return el.closest?.('[contenteditable="true"], [contenteditable=""]') !== null;
         }
         
         function doScroll(amount) {
@@ -80,7 +76,7 @@ OVN_GLOBAL_SCHEDULER.run("Gallop", () => {
         }
         function executeAction(action, distance = 0) {
             switch (action) {
-                case 'left': history.back(); break;
+                case 'left': if (history.length > 1) history.back(); break;
                 case 'right': history.forward(); break;
                 case 'up-down':
                     window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
@@ -104,6 +100,10 @@ OVN_GLOBAL_SCHEDULER.run("Gallop", () => {
             }
         }
         
+        let overlay = null;
+        let canvas = null;
+        let ctx = null;
+        
         function ensureOverlay() {
             if (overlay && overlay.parentNode) return true;
             if (overlay) { overlay = null; canvas = null; ctx = null; }
@@ -112,30 +112,49 @@ OVN_GLOBAL_SCHEDULER.run("Gallop", () => {
             
             overlay = document.createElement('div');
             overlay.id = 'ovnGallop';
-            overlay.style.cssText = 'display:none;position:fixed;top:0;left:0;width:100%;height:100%;z-index: var(--ovnPriority09,92926192);pointer-events:none;';
-            
+            overlay.style.cssText =
+                'display:none;' +
+                'position:fixed;top:0;left:0;width:100%;height:100%;' +
+                'z-index: var(--ovnPriority09,92926192);' +
+                'pointer-events:none;' +
+                'user-select:none;' +
+                '-webkit-user-select:none;' +
+                'cursor:default;';
             canvas = document.createElement('canvas');
-            canvas.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;';
+            canvas.style.cssText =
+                'position:absolute;top:0;left:0;width:100%;height:100%;' +
+                'pointer-events:none;';
             ctx = canvas.getContext('2d');
+            
             overlay.appendChild(canvas);
             container.appendChild(overlay);
             return true;
         }
+        
+        let trailColor = '';
+        
         function showOverlay() {
             if (!ensureOverlay()) return;
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            const dpr = window.devicePixelRatio || 1;
+            canvas.width = window.innerWidth * dpr;
+            canvas.height = window.innerHeight * dpr;
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
             overlay.style.display = 'block';
+            overlay.style.pointerEvents = 'auto';
+            trailColor = getComputedStyle(document.documentElement)
+                .getPropertyValue('--ovnGallopTrail').trim() || '#2C2C3E50';
         }
         function hideOverlay() {
             if (!overlay) return;
+            overlay.style.pointerEvents = 'none';
             overlay.style.display = 'none';
-            if (rafId) {
-                cancelAnimationFrame(rafId);
-                rafId = null;
-            }
-            trailStopped = false;
         }
+        function isOverlayActive() {
+            return overlay && overlay.style.pointerEvents === 'auto';
+        }
+        
+        let rafId = null;
+        let trailStopped = false;
         
         function scheduleDraw() {
             if (!ctx || trailStopped) return;
@@ -161,7 +180,7 @@ OVN_GLOBAL_SCHEDULER.run("Gallop", () => {
                 }
                 ctx.lineTo(path[path.length - 1].x, path[path.length - 1].y);
             }
-            ctx.strokeStyle = config.trailColor;
+            ctx.strokeStyle = trailColor;
             ctx.lineWidth = 2;
             ctx.lineCap = 'round';
             ctx.lineJoin = 'round';
@@ -179,55 +198,46 @@ OVN_GLOBAL_SCHEDULER.run("Gallop", () => {
             }
         }
         
-        function resetGesture(immediate) {
-            const doReset = () => {
-                isGestureActive = false;
-                gestureStarted = false;
-                path = [];
-                hideOverlay();
-                if (gestureTimer) clearTimeout(gestureTimer);
-            };
-            if (immediate) {
-                doReset();
-            } else {
-                if (gestureTimer) clearTimeout(gestureTimer);
-                gestureTimer = setTimeout(doReset, 150);
-            }
-        }
+        let isGestureActive = false;
+        let gestureStarted = false;
+        let path = [];
+        let startX = 0, startY = 0;
+        let gestureTimer = null;
         
-        window.addEventListener('compositionstart', () => { isComposing = true; });
-        window.addEventListener('compositionend', () => { isComposing = false; });
-        
-        function onMouseDown(e) {
-            if (e.button !== 2 || isComposing) return;
+        function cleanupGesture() {
             if (gestureTimer) {
                 clearTimeout(gestureTimer);
                 gestureTimer = null;
             }
-            resetGesture(true);
-            
-            isGestureActive = true;
+            window.removeEventListener('mousemove', onWinMouseMove, true);
+            window.removeEventListener('mouseup', onWinMouseUp, true);
+            isGestureActive = false;
             gestureStarted = false;
+            path = [];
+            hideOverlay();
+            if (rafId) {
+                cancelAnimationFrame(rafId);
+                rafId = null;
+            }
             trailStopped = false;
-            startX = e.clientX;
-            startY = e.clientY;
-            path = [{ x: e.clientX, y: e.clientY }];
         }
         
-        function onContextMenu(e) {
-            if (isGestureActive && gestureStarted) {
-                e.preventDefault();
-                e.stopPropagation();
-            }
+        function scheduleCleanup() {
+            if (gestureTimer) clearTimeout(gestureTimer);
+            window.removeEventListener('mousemove', onWinMouseMove, true);
+            window.removeEventListener('mouseup', onWinMouseUp, true);
+            gestureTimer = setTimeout(cleanupGesture, 200);
         }
-        function onMouseMove(e) {
+        
+        function onWinMouseMove(e) {
             if (!isGestureActive) return;
-            if (isComposing) { resetGesture(true); return; }
+            if (isComposing) { cleanupGesture(); return; }
             
             const point = { x: e.clientX, y: e.clientY };
             const dx = point.x - startX;
             const dy = point.y - startY;
             const distanceSq = dx * dx + dy * dy;
+            
             if (!gestureStarted) {
                 if (distanceSq > config.effective * config.effective) {
                     gestureStarted = true;
@@ -238,58 +248,111 @@ OVN_GLOBAL_SCHEDULER.run("Gallop", () => {
             }
             e.preventDefault();
             e.stopPropagation();
+            
             const lastPt = path[path.length - 1];
             const stepDx = point.x - lastPt.x;
             const stepDy = point.y - lastPt.y;
             if (stepDx * stepDx + stepDy * stepDy < 4) return;
+            
             path.push(point);
             if (path.length >= config.maxPath && !trailStopped) stopTrail();
             if (path.length > config.maxPath) path.shift();
             scheduleDraw();
         }
-        function onMouseUp(e) {
+        
+        function onWinMouseUp(e) {
             if (!isGestureActive) return;
-            if (gestureStarted) {
-                e.stopPropagation();
-                const lastPoint = path[path.length - 1] || { x: startX, y: startY };
-                const dx = lastPoint.x - startX;
-                const dy = lastPoint.y - startY;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-                if (distance >= config.effective) {
-                    const dirChanges = countDirectionChanges(path);
-                    if (dirChanges > 3) { resetGesture(false); return; }
-                    const vShapeAction = detectVShape(path);
-                    if (vShapeAction) {
-                        executeAction(vShapeAction);
-                    } else {
-                        const dir = getDirection(dx, dy);
-                        if (['left', 'right', 'up', 'down'].includes(dir)) {
-                            executeAction(dir, distance);
-                        }
+            if (e.button !== 2) return;
+            
+            e.preventDefault();
+            e.stopPropagation();
+            
+            if (!gestureStarted) {
+                cleanupGesture();
+                return;
+            }
+            const lastPoint = path[path.length - 1] || { x: startX, y: startY };
+            const dx = lastPoint.x - startX;
+            const dy = lastPoint.y - startY;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance >= config.effective) {
+                const dirChanges = countDirectionChanges(path);
+                if (dirChanges > 3) { scheduleCleanup(); return; }
+                const vShapeAction = detectVShape(path);
+                if (vShapeAction) {
+                    executeAction(vShapeAction);
+                } else {
+                    const dir = getDirection(dx, dy);
+                    if (['left', 'right', 'up', 'down'].includes(dir)) {
+                        executeAction(dir, distance);
                     }
                 }
-                resetGesture(false);
-            } else {
-                resetGesture(true);
+            }
+            scheduleCleanup();
+        }
+        
+        function onWinContextMenu(e) {
+            if (isOverlayActive()) {
+                e.preventDefault();
+                e.stopPropagation();
+                // e.stopImmediatePropagation();
+            }
+        }
+        function onWinAuxClick(e) {
+            if (isOverlayActive()) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        }
+        function onWinSelectStart(e) {
+            if (isOverlayActive()) {
+                e.preventDefault();
+                e.stopPropagation();
             }
         }
         
+        let isComposing = false;
+        
+        function onDocMouseDown(e) {
+            if (e.button !== 2 || isComposing || isEditable(e.target)) return;
+            
+            cleanupGesture();
+            
+            window.addEventListener('mousemove', onWinMouseMove, true);
+            window.addEventListener('mouseup', onWinMouseUp, true);
+            
+            isGestureActive = true;
+            gestureStarted = false;
+            trailStopped = false;
+            startX = e.clientX;
+            startY = e.clientY;
+            path = [{ x: e.clientX, y: e.clientY }];
+        }
+        
+        window.addEventListener('compositionstart', () => { isComposing = true; });
+        window.addEventListener('compositionend', () => { isComposing = false; });
+        
         function init() {
-            document.addEventListener('mousedown', onMouseDown, { capture: true, passive: false });
-            document.addEventListener('mousemove', onMouseMove, { capture: true, passive: false });
-            document.addEventListener('mouseup', onMouseUp, { capture: true, passive: false });
-            document.addEventListener('contextmenu', onContextMenu, { capture: true, passive: false });
-            window.addEventListener('blur', () => { if (isGestureActive) resetGesture(true); });
+            if (!ensureOverlay()) {
+                setTimeout(init, 524);
+                return;
+            }
+            window.addEventListener('contextmenu', onWinContextMenu, { capture: true, passive: false });
+            window.addEventListener('auxclick', onWinAuxClick, { capture: true, passive: false });
+            window.addEventListener('selectstart', onWinSelectStart, { capture: true });
+            window.addEventListener('mousedown', onDocMouseDown, { capture: true, passive: false });
+            window.addEventListener('blur', () => { if (isGestureActive) cleanupGesture(); });
             window.addEventListener('resize', () => {
-                if (isGestureActive && canvas) {
-                    canvas.width = window.innerWidth;
-                    canvas.height = window.innerHeight;
+                if (isGestureActive && canvas && ctx) {
+                    canvas.width = window.innerWidth * (window.devicePixelRatio || 1);
+                    canvas.height = window.innerHeight * (window.devicePixelRatio || 1);
+                    ctx.setTransform(window.devicePixelRatio || 1, 0, 0, window.devicePixelRatio || 1, 0, 0);
                 }
             });
         }
-        
         setTimeout(init, 524);
-        
     })();
     
 });
+

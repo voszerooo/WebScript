@@ -21,6 +21,7 @@ const config = {
     
     port: 9290,
     name: `${pkg.ScriptName}.DEV.js`,
+    path: '-/---',
     entry: 'dev.entry.js',
     bundle: 'dev.bundle.js',
     
@@ -92,7 +93,7 @@ class headerDEV {
             fs.mkdirSync(path.dirname(installPath), { recursive: true });
             fs.writeFileSync(installPath, buildHeader() + ovnMagic, 'utf8');
             
-            const entryPath = path.resolve(__dirname, '.build', 'dev.entry.js');
+            const entryPath = path.resolve(__dirname, config.path, config.entry);
             fs.mkdirSync(path.dirname(entryPath), { recursive: true });
             fs.writeFileSync(entryPath, buildEntry(), 'utf8');
         });
@@ -115,7 +116,7 @@ export default merge(configBase(), {
     mode: process.env.NODE_ENV,
     
     output: {
-        path: path.resolve(__dirname, '.build'),
+        path: path.resolve(__dirname, config.path),
         filename: config.bundle,
         pathinfo: false
     },
@@ -131,7 +132,7 @@ export default merge(configBase(), {
             'Access-Control-Allow-Origin': '*'
         },
         static: [
-            { directory: path.resolve(__dirname, '.build'), publicPath: '/' },
+            { directory: path.resolve(__dirname, config.path), publicPath: '/' },
             { directory: path.resolve(__dirname, 'dist'),   publicPath: '/' }
         ],
         devMiddleware: { writeToDisk: true },

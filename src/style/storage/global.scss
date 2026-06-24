@@ -117,6 +117,17 @@
     }
     
     
+// $ ================================================== ↓ Theme
+
+    [data-ovn-theme="light"] {
+        --ovnGallopTrail: hsla(var(--ovnBase02HSL), .26);
+    }
+    
+    [data-ovn-theme="dark"] {
+        --ovnGallopTrail: hsla(var(--ovnDarkHSL), .52);
+    }
+    
+    
 // $ ================================================== ↓ Panel
 
     .ovnPanelBase {
