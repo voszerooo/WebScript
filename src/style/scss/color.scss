@@ -10,13 +10,13 @@ $mainLight: (
     "Accent":    #75839F,                          // --ovnAccentHEX | HSL | ALT | SEL | CBD | CSD
     "Secondary": #454A54,
     "Primary":   #2C2F35,
-    "Dark":      #000000,
+    "Dark":      #0B0C0E,
 );
 $mainDark: (
     "Accent":    #4C525E,
     "Secondary": #2D3139,
     "Primary":   #1D1E20,
-    "Dark":      #000000,
+    "Dark":      #0B0C0E,
 );
 
 $baseLight: ( 
@@ -145,22 +145,6 @@ $state: (
         @include magic("ovn", $hue);
     }
     
-    :root, [ovnStore] {
-        
-        --ovnGridS: hsla(var(--ovnBase05HSL), .05);
-        --ovnGridL: hsla(var(--ovnBase05HSL), .07);
-        --ovnGridD: hsla(var(--ovnBase05HSL), .07);
-        
-        --ovnGlassBase: hsla(var(--ovnBase09HSL), .6);
-        --ovnGlassTidy: hsla(var(--ovnBase09HSL), .8);
-        --ovnGlassDark: hsla(var(--ovnPrimaryHSL), .526);
-        
-        --ovnForeground: #000;
-        --ovnBackground: #000;
-        --ovnBackdrop:   #000;
-        
-    }
-    
     :root, [ovnMarkdown] {
         --ovnMarkdownH1: #494F4D;
         --ovnMarkdownH2: #515463;
@@ -182,6 +166,22 @@ $state: (
         --ovnIQIYI:        #00F48E;
         --ovnBiliPink:     #FB7299;
         --ovnBiliBlue:     #00AEEC;
+    }
+    
+    :root, [ovnStore] {
+        
+        --ovnGridS: hsla(var(--ovnBase05HSL), .05);
+        --ovnGridL: hsla(var(--ovnBase05HSL), .07);
+        --ovnGridD: hsla(var(--ovnBase05HSL), .07);
+        
+        --ovnGlassBase: hsla(var(--ovnBase09HSL), .6);
+        --ovnGlassTidy: hsla(var(--ovnBase09HSL), .8);
+        --ovnGlassDark: hsla(var(--ovnPrimaryHSL), .526);
+        
+        --ovnForeground: #000;
+        --ovnBackground: #000;
+        --ovnBackdrop:   #000;
+        
     }
     
     
