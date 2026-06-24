@@ -3,10 +3,10 @@
 /**
  * $ NEXT
  * - 
- * - ---------- | GLOBAL | 
+ * - ---------- | GLOBAL | OVN_ADD_CLASS > OVN_SUBJOIN_CLASS / ADD_CLASS / OVN_ADD_CLASS.subjoin .class
  * - ---------- | BUILD  | 
- * - ---------- | DEV    |
- * - ---------- | UNK    |
+ * - ---------- | DEV    | 
+ * - ---------- | UNK    | 
  * - 
  * ! ==================== ↓ ERROR
  * ! 

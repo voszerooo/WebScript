@@ -92,17 +92,55 @@ OVN_GLOBAL_SCHEDULER.run("Micro_Other", () => {
                     --ovnGithubWidth: 1126px;
                     --ovnGithubXXX: #000;
                     
+                    --ovnHistoryHue: 192;
+                    
                 }
                 
-                &[data-color-mode=dark][data-dark-theme=dark_dimmed],
-                &[data-color-mode=auto][data-light-theme=dark_dimmed] {
+                &[data-color-mode="dark"][data-color-mode="dark"],
+                &[data-color-mode="auto"][data-color-mode="auto"] {
+                    
+                    --borderColor-default: #3d444d24;
+                    --borderColor-muted: #3d444d24;
+                    --display-orange-scale-0: hsla(var(--ovnHistoryHue), 40%, 12%, 1);
+                    --display-orange-scale-1: hsla(var(--ovnHistoryHue), 52%, 15%, 1);
+                    --display-orange-scale-2: hsla(var(--ovnHistoryHue), 77%, 22%, 1);
+                    --display-orange-scale-3: hsla(var(--ovnHistoryHue), 80%, 27%, 1);
+                    --display-orange-scale-4: hsla(var(--ovnHistoryHue), 81%, 33%, 1);
+                    --display-orange-scale-5: hsla(var(--ovnHistoryHue), 83%, 42%, 1);
+                    --display-orange-scale-6: hsla(var(--ovnHistoryHue), 85%, 54%, 1);
+                    --display-orange-scale-7: hsla(var(--ovnHistoryHue), 87%, 59%, 1);
+                    --display-orange-scale-8: hsla(var(--ovnHistoryHue), 89%, 69%, 1);
+                    --display-orange-scale-9: hsla(var(--ovnHistoryHue), 91%, 77%, 1);
+                    
+                    // --data-orange-color-emphasis: hsla(190,81%,33%,1);
+                    // --data-orange-color-muted: hsla(190,72%,11%,1);
+                    
+                    // --display-orange-bgColor-emphasis: hsla(190,81%,33%,1);
+                    // --display-orange-bgColor-muted: hsla(190,72%,11%,1);
+                    // --display-orange-borderColor-emphasis: hsla(190,83%,42%,1);
+                    // --display-orange-borderColor-muted: hsla(190,74%,15%,1);
+                    // --display-orange-fgColor: hsla(190,85%,54%,1);
+                    
+                    // --label-orange-bgColor-active: hsla(190,77%,22%,1);
+                    // --label-orange-bgColor-hover: hsla(190,74%,15%,1);
+                    // --label-orange-bgColor-rest: hsla(190,72%,11%,1);
+                    // --label-orange-borderColor: hsla(190,0%,0%,0);
+                    // --label-orange-fgColor-active: hsla(190,89%,69%,1);
+                    // --label-orange-fgColor-hover: hsla(190,87%,59%,1);
+                    // --label-orange-fgColor-rest: hsla(190,85%,54%,1);
+                    
+                }
+                
+                &[data-color-mode="dark"][data-dark-theme="dark_dimmed"],
+                &[data-color-mode="auto"][data-light-theme="dark_dimmed"] {
                     --borderColor-default: #3d444d40;
                     --borderColor-muted: #3d444d40;
                 }
-                &[data-color-mode=dark][data-dark-theme=dark],
-                &[data-color-mode=auto][data-light-theme=dark] {
-                    --borderColor-default: #3d444d24;
-                    --borderColor-muted: #3d444d24;
+                
+                :focus-visible {
+                    outline: 2px solid #478FE5;
+                    outline-offset: -2px;
+                    border-radius: var(--ovnBaseRadius);
                 }
                 
                 .container-xl { max-width: calc(var(--ovnGithubWidth) + 300px); }
@@ -161,6 +199,15 @@ OVN_GLOBAL_SCHEDULER.run("Micro_Other", () => {
                     font-family: var(--ovnCodeFont) !important;
                 }
                 
+                /* ========== 粘滞行 */
+                [class*="style_column"] > [id*="drg-blk"] > div > [class*="style_root"]:has(+[class*="style_block"]) {
+                    position: sticky;
+                    top: 0;
+                    z-index: 1;
+                    background: var(--ovnGlassBase);
+                    backdrop-filter: var(--ovnBaseFilter);
+                }
+                
             }
         `);
     }
@@ -182,6 +229,22 @@ OVN_GLOBAL_SCHEDULER.run("Micro_Other", () => {
             html {
             
                 p, li { line-height: 1.5; }
+                
+                .code-container {
+                    border-color: #e5e5e5c4;
+                    border-radius: var(--ovnBaseRadius);
+                    padding-top: 15px;
+                    margin-top: 10px;
+                }
+                ol.linenums {
+                    padding-left: 4em;
+                    font-size: 10px;
+                    li { line-height: 1.9; }
+                }
+                pre.prettyprint {
+                    padding: 0;
+                    border-color: transparent;
+                }
                 
                 code {
                     padding: .126em .4em;
