@@ -1698,22 +1698,10 @@
           r = 12,
           e = 0.8,
           t = 926;
-        let o = null,
-          i = null,
-          c = null,
-          s = !1,
-          l = !1,
-          M = [],
-          d = 0,
-          g = 0,
-          v = null,
-          p = null,
-          N = !1,
-          m = !1;
-        function y(n, r) {
+        function o(n, r) {
           return Math.abs(n) > Math.abs(r) ? (n > 0 ? 'right' : 'left') : r > 0 ? 'down' : 'up';
         }
-        function L(n, t = 0) {
+        function i(n, t = 0) {
           switch (n) {
             case 'left':
               history.back();
@@ -1738,100 +1726,103 @@
             }
           }
         }
-        function I() {
-          if (o && o.parentNode) return !0;
-          o && ((o = null), (i = null), (c = null));
+        let c = null,
+          s = null,
+          l = null;
+        function M() {
+          if (c && c.parentNode) return !0;
+          c && ((c = null), (s = null), (l = null));
           const n = document.getElementById('ovnDOM') || document.body;
-          return !!n && ((o = document.createElement('div')), (o.id = 'ovnGallop'), (o.style.cssText = 'display:none;position:fixed;top:0;left:0;width:100%;height:100%;z-index: var(--ovnPriority09,92926192);pointer-events:none;user-select:none;-webkit-user-select:none;cursor:default;'), (i = document.createElement('canvas')), (i.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;'), (c = i.getContext('2d')), o.appendChild(i), n.appendChild(o), !0);
+          return !!n && ((c = document.createElement('div')), (c.id = 'ovnGallop'), (c.style.cssText = 'display:none;position:fixed;top:0;left:0;width:100%;height:100%;z-index: var(--ovnPriority09,92926192);pointer-events:none;user-select:none;-webkit-user-select:none;cursor:default;'), (s = document.createElement('canvas')), (s.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;'), (l = s.getContext('2d')), c.appendChild(s), n.appendChild(c), !0);
         }
-        function j() {
-          o && ((o.style.pointerEvents = 'none'), (o.style.display = 'none'), v && (cancelAnimationFrame(v), (v = null)), (N = !1));
+        function d() {
+          return c && 'auto' === c.style.pointerEvents;
         }
-        function h() {
-          return o && 'auto' === o.style.pointerEvents;
-        }
-        function D() {
-          c &&
-            !N &&
-            (v ||
-              (v = requestAnimationFrame(() => {
+        let g = null,
+          v = !1;
+        function p() {
+          l &&
+            !v &&
+            (g ||
+              (g = requestAnimationFrame(() => {
                 (!(function () {
-                  if (!c || M.length < 2 || N) return;
-                  if ((c.clearRect(0, 0, i.width, i.height), c.beginPath(), c.moveTo(M[0].x, M[0].y), 2 === M.length)) c.lineTo(M[1].x, M[1].y);
+                  if (!l || y.length < 2 || v) return;
+                  if ((l.clearRect(0, 0, s.width, s.height), l.beginPath(), l.moveTo(y[0].x, y[0].y), 2 === y.length)) l.lineTo(y[1].x, y[1].y);
                   else {
-                    for (let n = 1; n < M.length - 1; n++) {
-                      const r = (M[n].x + M[n + 1].x) / 2,
-                        e = (M[n].y + M[n + 1].y) / 2;
-                      c.quadraticCurveTo(M[n].x, M[n].y, r, e);
+                    for (let n = 1; n < y.length - 1; n++) {
+                      const r = (y[n].x + y[n + 1].x) / 2,
+                        e = (y[n].y + y[n + 1].y) / 2;
+                      l.quadraticCurveTo(y[n].x, y[n].y, r, e);
                     }
-                    c.lineTo(M[M.length - 1].x, M[M.length - 1].y);
+                    l.lineTo(y[y.length - 1].x, y[y.length - 1].y);
                   }
-                  ((c.strokeStyle = n), (c.lineWidth = 2), (c.lineCap = 'round'), (c.lineJoin = 'round'), c.stroke());
+                  ((l.strokeStyle = n), (l.lineWidth = 2), (l.lineCap = 'round'), (l.lineJoin = 'round'), l.stroke());
                 })(),
-                  (v = null));
+                  (g = null));
               })));
         }
-        function x() {
-          (p && clearTimeout(p),
-            window.removeEventListener('mousemove', b, !0),
-            window.removeEventListener('mouseup', w, !0),
-            (p = setTimeout(() => {
-              ((s = !1), (l = !1), (M = []), j(), (p = null));
-            }, 200)));
+        let N = !1,
+          m = !1,
+          y = [],
+          L = 0,
+          I = 0,
+          j = null;
+        function h() {
+          (j && (clearTimeout(j), (j = null)), window.removeEventListener('mousemove', x, !0), window.removeEventListener('mouseup', T, !0), (N = !1), (m = !1), (y = []), c && ((c.style.pointerEvents = 'none'), (c.style.display = 'none')), g && (cancelAnimationFrame(g), (g = null)), (v = !1));
         }
-        function T() {
-          (p && (clearTimeout(p), (p = null)), window.removeEventListener('mousemove', b, !0), window.removeEventListener('mouseup', w, !0), (s = !1), (l = !1), (M = []), j());
+        function D() {
+          (j && clearTimeout(j), window.removeEventListener('mousemove', x, !0), window.removeEventListener('mouseup', T, !0), (j = setTimeout(h, 200)));
         }
-        function b(n) {
-          if (!s) return;
-          if (m) return void T();
-          (n.preventDefault(), n.stopPropagation());
+        function x(n) {
+          if (!N) return;
+          if (z) return void h();
           const e = { x: n.clientX, y: n.clientY },
-            o = e.x - d,
-            v = e.y - g;
-          if (!l) {
-            if (!(o * o + v * v > r * r)) return;
-            l = !0;
+            o = e.x - L,
+            i = e.y - I;
+          if (!m) {
+            if (!(o * o + i * i > r * r)) return;
+            ((m = !0), M() && ((s.width = window.innerWidth), (s.height = window.innerHeight), (c.style.display = 'block'), (c.style.pointerEvents = 'auto')));
           }
-          const p = M[M.length - 1],
-            y = e.x - p.x,
-            L = e.y - p.y;
-          y * y + L * L < 4 ||
-            (M.push(e),
-            M.length >= t &&
-              !N &&
+          (n.preventDefault(), n.stopPropagation());
+          const d = y[y.length - 1],
+            g = e.x - d.x,
+            j = e.y - d.y;
+          g * g + j * j < 4 ||
+            (y.push(e),
+            y.length >= t &&
+              !v &&
               (function () {
-                if (N) return;
-                ((N = !0), c && c.clearRect(0, 0, i.width, i.height));
+                if (v) return;
+                ((v = !0), l && l.clearRect(0, 0, s.width, s.height));
                 const n = a.gallop.get('destroy_tip', 0);
                 n < 2 && (u.OVN.top('YO 👾 调皮'), a.gallop.set('destroy_tip', n + 1));
               })(),
-            M.length > t && M.shift(),
-            D());
+            y.length > t && y.shift(),
+            p());
         }
-        function w(n) {
-          if (!s) return;
+        function T(n) {
+          if (!N) return;
           if (2 !== n.button) return;
-          if ((n.preventDefault(), n.stopPropagation(), !l)) return void x();
-          const e = M[M.length - 1] || { x: d, y: g },
-            t = e.x - d,
-            o = e.y - g,
-            a = Math.sqrt(t * t + o * o);
-          if (a >= r) {
+          if ((n.preventDefault(), n.stopPropagation(), !m)) return void h();
+          const e = y[y.length - 1] || { x: L, y: I },
+            t = e.x - L,
+            a = e.y - I,
+            c = Math.sqrt(t * t + a * a);
+          if (c >= r) {
             const n = (function (n) {
               if (n.length < 6) return 0;
               let r = 0,
                 e = null;
               for (let t = 5; t < n.length; t += 5) {
-                const o = n[t].x - n[t - 5].x,
-                  a = n[t].y - n[t - 5].y;
-                if (Math.abs(o) < 3 && Math.abs(a) < 3) continue;
-                const i = y(o, a);
-                (e && i !== e && r++, (e = i));
+                const a = n[t].x - n[t - 5].x,
+                  i = n[t].y - n[t - 5].y;
+                if (Math.abs(a) < 3 && Math.abs(i) < 3) continue;
+                const c = o(a, i);
+                (e && c !== e && r++, (e = c));
               }
               return r;
-            })(M);
-            if (n > 3) return void x();
+            })(y);
+            if (n > 3) return void D();
             const r = (function (n) {
               if (n.length < 6) return null;
               let r = null,
@@ -1853,44 +1844,49 @@
                 a = Math.abs(n[o].y - n[0].y),
                 i = Math.abs(n[n.length - 1].y - n[o].y);
               return a < 30 || i < 30 ? null : 'up' === r && 'down' === e ? 'up-down' : 'down' === r && 'up' === e ? 'down-up' : null;
-            })(M);
-            if (r) L(r);
+            })(y);
+            if (r) i(r);
             else {
-              const n = y(t, o);
-              ['left', 'right', 'up', 'down'].includes(n) && L(n, a);
+              const n = o(t, a);
+              ['left', 'right', 'up', 'down'].includes(n) && i(n, c);
             }
           }
-          x();
+          D();
+        }
+        function b(n) {
+          d() && (n.preventDefault(), n.stopPropagation(), n.stopImmediatePropagation());
+        }
+        function w(n) {
+          d() && (n.preventDefault(), n.stopPropagation());
         }
         function S(n) {
-          h() && (n.preventDefault(), n.stopPropagation(), n.stopImmediatePropagation());
+          d() && (n.preventDefault(), n.stopPropagation());
         }
         function A(n) {
-          h() && (n.preventDefault(), n.stopPropagation());
+          N && !n.relatedTarget && h();
         }
-        function z(n) {
-          h() && (n.preventDefault(), n.stopPropagation());
-        }
+        let z = !1;
         function C(n) {
-          2 !== n.button || m || (n.preventDefault(), n.stopPropagation(), T(), I() && ((i.width = window.innerWidth), (i.height = window.innerHeight), (o.style.display = 'block'), (o.style.pointerEvents = 'auto')), window.addEventListener('mousemove', b, !0), window.addEventListener('mouseup', w, !0), (s = !0), (l = !1), (N = !1), (d = n.clientX), (g = n.clientY), (M = [{ x: n.clientX, y: n.clientY }]));
+          2 !== n.button || z || (h(), window.addEventListener('mousemove', x, !0), window.addEventListener('mouseup', T, !0), (N = !0), (m = !1), (v = !1), (L = n.clientX), (I = n.clientY), (y = [{ x: n.clientX, y: n.clientY }]));
         }
         (window.addEventListener('compositionstart', () => {
-          m = !0;
+          z = !0;
         }),
           window.addEventListener('compositionend', () => {
-            m = !1;
+            z = !1;
           }),
           setTimeout(function n() {
-            I()
-              ? (window.addEventListener('contextmenu', S, { capture: !0, passive: !1 }),
-                window.addEventListener('auxclick', A, { capture: !0, passive: !1 }),
-                window.addEventListener('selectstart', z, { capture: !0 }),
+            M()
+              ? (window.addEventListener('contextmenu', b, { capture: !0, passive: !1 }),
+                window.addEventListener('auxclick', w, { capture: !0, passive: !1 }),
+                window.addEventListener('selectstart', S, { capture: !0 }),
                 document.addEventListener('mousedown', C, { capture: !0, passive: !1 }),
+                document.addEventListener('mouseout', A),
                 window.addEventListener('blur', () => {
-                  s && T();
+                  N && h();
                 }),
                 window.addEventListener('resize', () => {
-                  s && i && ((i.width = window.innerWidth), (i.height = window.innerHeight));
+                  N && s && ((s.width = window.innerWidth), (s.height = window.innerHeight));
                 }))
               : setTimeout(n, 524);
           }, 524));

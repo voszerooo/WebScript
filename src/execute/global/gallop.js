@@ -17,20 +17,6 @@ OVN_GLOBAL_SCHEDULER.run("Gallop", () => {
             maxPath: 926,
         };
 
-        let overlay = null;
-        let canvas = null;
-        let ctx = null;
-        let isGestureActive = false;
-        let gestureStarted = false;
-        let path = [];
-        let startX = 0, startY = 0;
-        let rafId = null;
-        let gestureTimer = null;
-        let trailStopped = false;
-        let isComposing = false;
-
-        // ============================================ 手势识别
-
         function getDirection(dx, dy) {
             return Math.abs(dx) > Math.abs(dy)
                 ? (dx > 0 ? 'right' : 'left')
@@ -76,8 +62,6 @@ OVN_GLOBAL_SCHEDULER.run("Gallop", () => {
                 : (firstDir === 'down' && secondDir === 'up' ? 'down-up' : null);
         }
 
-        // ============================================ 动作执行
-
         function doScroll(amount) {
             window.scrollBy({ top: amount, behavior: 'smooth' });
         }
@@ -107,7 +91,9 @@ OVN_GLOBAL_SCHEDULER.run("Gallop", () => {
             }
         }
 
-        // ============================================ Overlay 管理
+        let overlay = null;
+        let canvas = null;
+        let ctx = null;
 
         function ensureOverlay() {
             if (overlay && overlay.parentNode) return true;
@@ -141,7 +127,6 @@ OVN_GLOBAL_SCHEDULER.run("Gallop", () => {
             if (!ensureOverlay()) return;
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-            // 物理隔离：pointer-events:auto 阻挡所有新的指针交互（hover 等）
             overlay.style.display = 'block';
             overlay.style.pointerEvents = 'auto';
         }
@@ -150,19 +135,14 @@ OVN_GLOBAL_SCHEDULER.run("Gallop", () => {
             if (!overlay) return;
             overlay.style.pointerEvents = 'none';
             overlay.style.display = 'none';
-            if (rafId) {
-                cancelAnimationFrame(rafId);
-                rafId = null;
-            }
-            trailStopped = false;
         }
 
-        // 判断 overlay 是否处于激活态（用于 contextmenu 阻止条件）
         function isOverlayActive() {
             return overlay && overlay.style.pointerEvents === 'auto';
         }
 
-        // ============================================ 轨迹绘制
+        let rafId = null;
+        let trailStopped = false;
 
         function scheduleDraw() {
             if (!ctx || trailStopped) return;
@@ -206,27 +186,13 @@ OVN_GLOBAL_SCHEDULER.run("Gallop", () => {
             }
         }
 
-        // ============================================ 状态管理
+        let isGestureActive = false;
+        let gestureStarted = false;
+        let path = [];
+        let startX = 0, startY = 0;
+        let gestureTimer = null;
 
-        // ★ 关键：永远延迟清理，给 contextmenu 时间触发到 overlay 上被拦截
-        function resetGesture() {
-            if (gestureTimer) clearTimeout(gestureTimer);
-
-            // 移除动态 window 捕获监听器
-            window.removeEventListener('mousemove', onWinMouseMove, true);
-            window.removeEventListener('mouseup', onWinMouseUp, true);
-
-            gestureTimer = setTimeout(() => {
-                isGestureActive = false;
-                gestureStarted = false;
-                path = [];
-                hideOverlay();
-                gestureTimer = null;
-            }, 200);
-        }
-
-        // 紧急清理（blur / 窗口失焦时使用，此时 contextmenu 不会触发）
-        function forceReset() {
+        function cleanupGesture() {
             if (gestureTimer) {
                 clearTimeout(gestureTimer);
                 gestureTimer = null;
@@ -237,17 +203,23 @@ OVN_GLOBAL_SCHEDULER.run("Gallop", () => {
             gestureStarted = false;
             path = [];
             hideOverlay();
+            if (rafId) {
+                cancelAnimationFrame(rafId);
+                rafId = null;
+            }
+            trailStopped = false;
         }
 
-        // ============================================ Window 捕获阶段处理器
-        // 动态注册，可移除；捕获阶段确保无论目标元素是谁都能拦截
+        function scheduleCleanup() {
+            if (gestureTimer) clearTimeout(gestureTimer);
+            window.removeEventListener('mousemove', onWinMouseMove, true);
+            window.removeEventListener('mouseup', onWinMouseUp, true);
+            gestureTimer = setTimeout(cleanupGesture, 200);
+        }
 
         function onWinMouseMove(e) {
             if (!isGestureActive) return;
-            if (isComposing) { forceReset(); return; }
-
-            e.preventDefault();
-            e.stopPropagation();
+            if (isComposing) { cleanupGesture(); return; }
 
             const point = { x: e.clientX, y: e.clientY };
             const dx = point.x - startX;
@@ -257,10 +229,14 @@ OVN_GLOBAL_SCHEDULER.run("Gallop", () => {
             if (!gestureStarted) {
                 if (distanceSq > config.effective * config.effective) {
                     gestureStarted = true;
+                    showOverlay();
                 } else {
                     return;
                 }
             }
+
+            e.preventDefault();
+            e.stopPropagation();
 
             const lastPt = path[path.length - 1];
             const stepDx = point.x - lastPt.x;
@@ -281,8 +257,7 @@ OVN_GLOBAL_SCHEDULER.run("Gallop", () => {
             e.stopPropagation();
 
             if (!gestureStarted) {
-                // 没有实质拖拽，但仍延迟清理以拦截 contextmenu
-                resetGesture();
+                cleanupGesture();
                 return;
             }
 
@@ -293,7 +268,7 @@ OVN_GLOBAL_SCHEDULER.run("Gallop", () => {
 
             if (distance >= config.effective) {
                 const dirChanges = countDirectionChanges(path);
-                if (dirChanges > 3) { resetGesture(); return; }
+                if (dirChanges > 3) { scheduleCleanup(); return; }
                 const vShapeAction = detectVShape(path);
                 if (vShapeAction) {
                     executeAction(vShapeAction);
@@ -305,13 +280,8 @@ OVN_GLOBAL_SCHEDULER.run("Gallop", () => {
                 }
             }
 
-            // 延迟清理 → overlay 保持可见 200ms，contextmenu 被拦截
-            resetGesture();
+            scheduleCleanup();
         }
-
-        // ============================================ 始终注册的 Window 捕获处理器
-        // contextmenu / auxclick 不是 PointerEvent，必须在 window 捕获阶段拦截
-        // 始终注册，用 overlay 可见性（而非 isGestureActive）作为阻止条件
 
         function onWinContextMenu(e) {
             if (isOverlayActive()) {
@@ -335,21 +305,19 @@ OVN_GLOBAL_SCHEDULER.run("Gallop", () => {
             }
         }
 
-        // ============================================ Document 捕获阶段：检测右键
+        function onDocMouseOut(e) {
+            if (isGestureActive && !e.relatedTarget) {
+                cleanupGesture();
+            }
+        }
+
+        let isComposing = false;
 
         function onDocMouseDown(e) {
             if (e.button !== 2 || isComposing) return;
 
-            e.preventDefault();
-            e.stopPropagation();
+            cleanupGesture();
 
-            // 清理上一个手势的残留（包括定时器）
-            forceReset();
-
-            // 展示隔离层
-            showOverlay();
-
-            // 动态注册 window 捕获监听器 — 无论鼠标在哪个元素上都能拦截
             window.addEventListener('mousemove', onWinMouseMove, true);
             window.addEventListener('mouseup', onWinMouseUp, true);
 
@@ -361,8 +329,6 @@ OVN_GLOBAL_SCHEDULER.run("Gallop", () => {
             path = [{ x: e.clientX, y: e.clientY }];
         }
 
-        // ============================================ 初始化
-
         window.addEventListener('compositionstart', () => { isComposing = true; });
         window.addEventListener('compositionend', () => { isComposing = false; });
 
@@ -372,16 +338,14 @@ OVN_GLOBAL_SCHEDULER.run("Gallop", () => {
                 return;
             }
 
-            // 始终注册的 window 捕获监听器（无需移除）
             window.addEventListener('contextmenu', onWinContextMenu, { capture: true, passive: false });
             window.addEventListener('auxclick', onWinAuxClick, { capture: true, passive: false });
             window.addEventListener('selectstart', onWinSelectStart, { capture: true });
 
-            // document 捕获阶段：检测右键按下
             document.addEventListener('mousedown', onDocMouseDown, { capture: true, passive: false });
+            document.addEventListener('mouseout', onDocMouseOut);
 
-            // 全局清理
-            window.addEventListener('blur', () => { if (isGestureActive) forceReset(); });
+            window.addEventListener('blur', () => { if (isGestureActive) cleanupGesture(); });
             window.addEventListener('resize', () => {
                 if (isGestureActive && canvas) {
                     canvas.width = window.innerWidth;
