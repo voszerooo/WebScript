@@ -3,7 +3,7 @@
 
 // @name                      Global.Custom.DEV
 // @description               dev_loader
-// @version                   7.1.0
+// @version                   7.1.1
 // @author                    voszerooo
 // @icon                      https://greasyfork.org/vite/assets/blacklogo96-CxYTSM_T.png
 // @sourceXXX                 https://greasyfork.org/scripts/579569
