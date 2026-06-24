@@ -13,6 +13,7 @@ try {
     const newVersion = pkg.version;
     
     execSync('git add .');
+    execSync('git add -f dist/');
     execSync(`git commit -m "release: ver.${newVersion}"`);
     execSync(`git tag -a ver.${newVersion} -m ""`);
     console.log(` 👽 | Git TAG - ver.${newVersion}`);
