@@ -88,7 +88,37 @@ html {
                 border: 1px solid hsla(var(--ovnYuequeC), .8);
             }
             .ne-viewer ne-alert[ne-alert-type=tips]:hover {
-                border-color: hsla(var(--ovnYuequeC), 1) !important; // 覆盖官方
+                border-color: hsla(var(--ovnYuequeC), 1) !important; // 覆盖内联
+            }
+            
+        // ==================== ↓ Picture
+        
+            #doc-reader-content ne-card[data-card-type=inline][data-card-name=image] {
+                
+                &, .ne-image-wrap {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                
+                // ========== 编辑模式 > hover 边框
+                &:is(.ne-card-hovered, .ne-focused) .ne-image-wrap { border-color: transparent; }
+                // ========== 编辑模式 > active 边框控件 .ne-active
+                .ne-ui-image-resizer-box { display: none; }
+                
+            }
+            
+            .ne-image-wrap .ne-image-box {
+                overflow: visible;
+                background: transparent !important; // 覆盖内联
+            }
+            .ne-image-wrap.ne-image-loaded .ne-image {
+                border-radius: var(--ovnPanelRadius);
+                filter: drop-shadow(0 20px 30px hsla(var(--ovnBase04HSL), 0.050));
+                transition: all .526s var(--ovnTransitionSoft);
+                &:hover {
+                    filter: drop-shadow(0 20px 30px hsla(var(--ovnAccentHSL), 0.260));
+                }
             }
             
         // ==================== ↓ 分栏
@@ -335,52 +365,6 @@ html {
             html .ne-doc-major-editor .ne-layout-mode-fixed.ne-normal-toc:not(.ne-ui-sidebar-visible).ne-viewport-size-toc-XXL .ne-engine ne-table-hole {
                 max-width: calc(752px + var(--ovnYuequeV));
             }
-            
-        
-        
-        
-    
-    
-    
-        
-        
-    /* ========== ↓ Picture */
-    
-        html .ne-image-wrap .ne-image-box {
-            overflow: visible;
-            background: transparent;
-        }
-        html .ne-image-wrap,
-        html .ne-viewer ne-card[data-card-type=inline][data-card-name=image], /* 预览模式 */
-        html .ne-editor ne-card[data-card-type=inline][data-card-name=image] /* 编辑模式 */ {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        html .ne-paragraph-spacing-relax.ne-typography-classic ne-card[data-card-name=image] img {
-            border-radius: var(--ovnPanelRadius);
-            filter: drop-shadow(0 20px 30px hsla(var(--ovnBase04HSL), 0.050));
-            transition: all .526s var(--ovnTransitionSoft);
-        }
-        html .ne-paragraph-spacing-relax.ne-typography-classic ne-card[data-card-name=image] img:hover {
-            filter: drop-shadow(0 20px 30px hsla(var(--ovnAccentHSL), 0.260));
-            // transform: var(--ovnSurfaceZoomIn);
-        }
-        
-        /* ---------- ↓ 默认样式 */
-        
-            /* ---------- ↓ Hover */
-            html .ne-editor ne-card[data-card-type=inline][data-card-name=image].ne-card-hovered .ne-image-wrap,
-            html .ne-editor ne-card[data-card-type=inline][data-card-name=image].ne-focused .ne-image-wrap {
-                border-color: transparent;
-            }
-            /* ---------- ↓ 选中图片的默认边框 */
-            html .ne-active .ne-ui-image-resizer-box { display: none; }
-            
-            
-            
-    
     
     
             

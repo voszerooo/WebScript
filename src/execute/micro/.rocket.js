@@ -149,6 +149,11 @@ OVN_GLOBAL_SCHEDULER.run("Micro_Other", () => {
                 /* ========== 导航条 分类 */
                 .MarketingNavigation-module__list__tFbMb { width: max-content; }
                 
+                /* ========== 预览 代码块 */
+                .js-snippet-clipboard-copy-unpositioned .markdown-body .snippet-clipboard-content {
+                    border-radius: 8px;
+                }
+                
                 .markdown-body .highlight pre, .markdown-body pre { font-size: 75%; line-height: 1.7; }
                 
             }
