@@ -20,30 +20,30 @@
  - 编写代码 有相应封装的情况下 应优先调用全局封装实现 确定要调用后 见 [模块封装](../src/store/derive.js) 会有引用 可找到具体代码位置
  
  
-| 全局封装               | 职责                | 作用                             | 典型示例                                                  |
-| ---------------------- | ------------------- | -------------------------------- | --------------------------------------------------------- |
-| `OVN_VALUE_PREFS`      | 持久化存储          | 需要持久化用户设置               | 保存已访问链接列表 / hover 提示次数上限                   |
-| `OVN_VALUE_RUNTIME`    | 运行时状态 统一状态 | 获取/修改各功能状态 理想唯一途径 | 验证模块启用状态 / 切换功能开关                           |
-| `OVN_VALUE_TEMP`       | 全局缓存            | 避免重复计算                     | 缓存正则编译 / URL 解析结果                               |
-|                        |                     |                                  |                                                           |
-| `OVN_GLOBAL_DOM`       | DOM 容器管理        | 全局 #ovnDOM 容器 避免DOM污染    | css / script / 调试日志容器                               |
-| `OVN_MATCH_RULE`       | URL 规则编译与匹配  | 检测 URL 是否符合规则            | 判断是否应在当前页面执行                                  |
-| `OVN_SITE_GROUP`       | 常用站点组          | 储存常用站点分组                 | 获取 Chat/ProgDev/Media 等分组的 URL 列表                 |
-| `OVN_OBSERVER_CENTER`  | 观察者 统一管理     | 监听 DOM 变化                    | 监听 DOM 节点 加载后处理动态内容                          |
-| `OVN_GLOBAL_INFORM`    | 全局通知            | 显示通知 通知用户的窗口          | 操作成功/失败同时 hover 提示                              |
-| `OVN_RANDOM_JITTER`    | 随机延迟生成器      | 模拟自然人类行为                 | 自动加载/点击的延迟抖动 规避反爬                          |
-| `OVN_GLOBAL_DEBUG`     | 调试日志记录        | 记录执行步骤 「调试」            | 记录模块执行进度 / 错误信息 / 监控性能指标                |
-| `OVN_GLOBAL_BUTTON`    | 按钮生成            | 创建页面控制按钮                 | 页面顶部功能开关 / 浮动面板控制                           |
-|                        |                     |                                  |                                                           |
-| `OVN_GLOBAL_CONFIG`    | 全局配置            | 配置                             | 定义全局模块 / 功能模块 / 站点特化模块                    |
-| `OVN_MODULE_RESOLVER`  | 模块查询与解析      | 模块 key 查询与解析              | 根据 key/group/site 查找模块 / 获取依赖链                 |
-| `OVN_GLOBAL_VERIFY`    | 模块执行前验证      | 检查模块是否应执行               | 验证 URL 匹配 / 启用状态 / 依赖完整性                     |
-| `OVN_GLOBAL_SCHEDULER` | 模块执行队列与调度  | 调度模块执行                     | 按 start/init/ready/end 阶段 / 优先级排序                 |
-| `OVN_SUBJOIN_HOOK`     | 用户扩展钩子        | 模块前/后注入附加功能            | 在模块执行前修改配置 / 执行后清理资源                     |
-|                        |                     |                                  |                                                           |
-| `OVN_ADD_CLASS`        | 类名添加            | 在目标 DOM 节点上添加 class      | 添加类名 / 支持检测已访问链接 添加 visited 样式类         |
-| `OVN_QUICK_READ`       | 快速阅读            | 快速阅读模式                     | 绑定 Arrow/WASD 键翻页 / 自定义滚动幅度                   |
-| `OVN_REMOVE_LIMITS`    | 移除限制            | 解除页面限制                     | 移除 userSelect/pointerEvents 限制 / 启用右键             |
-| `OVN_AUTO_LOAD`        | 自动加载            | 自动加载下一页                   | 无限滚动 / 支持 smart/loadInfinite/multipage 模式自动加载 |
-| `OVN_AUTO_EXECUTE`     | 自动执行            | 自动执行操作                     | 自动点击按钮 / 聚焦输入框 / 悬停元素 「最多10步」         |
+| 全局封装               | 职责范围            | 核心行为                                                                                                                                                                                             |
+| ---------------------- | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `OVN_GLOBAL_CONFIG`    | 全局模块注册中心    | 定义 Global / Matrix / Micro 三级模块树 每个模块含 match「URL 匹配」 phase「start / init / ready / end」 priority「优先级」 depend「依赖」 state「默认开关」等字段 OVN_CONFIG_MERGE 支持深度合并扩展 |
+| `OVN_MODULE_RESOLVER`  | 模块解析与查询      | 从 CONFIG 构建 flat「key→mod」 + tree「嵌套」双索引 resolve(key) 依次尝试完整匹配 → 尾部匹配 → 分组匹配 getChain 获取从根到自身的依赖链 getGroup 获取所属分组 compiledMatch 预编译 URL 规则          |
+| `OVN_GLOBAL_VERIFY`    | 模块执行前置校验    | 四步流水线 block「分组屏蔽」→ match「URL 匹配」→ state「RUNTIME 开关」→ chain「依赖链完整性」 任一步失败返回 { ready: false, reason } 每步通过 OVN_GLOBAL_DEBUG 记录 trace                           |
+| `OVN_GLOBAL_SCHEDULER` | 模块调度与执行      | 按 phase「start → init → ready → end」分队列调度 简单模块「无依赖 / 无 phase / priority=0」直接同步执行 复杂模块入队后 microtask flush run(key, callback) 为统一入口                                 |
+| `OVN_SUBJOIN_HOOK`     | 插件扩展钩子        | on(name, handler) 注册扩展处理器 apply(name, context) 触发全部已注册处理器 返回值可合并到 context 向 CONFIG / DOM / INFORM / BUTTON 注入外部逻辑                                                     |
+|                        |                     |                                                                                                                                                                                                      |
+| `OVN_GLOBAL_DOM`       | DOM 容器管理        | 维护 #ovnDOM 全局容器 含 #ovnStyle #ovnScript #ovnLog 子容器 自动分类 style / script 标签到对应子容器 MutationObserver 监听 body 容器被外部移除后自动重建 create(id) 可创建独立命名容器              |
+| `OVN_MATCH_RULE`       | URL 规则编译与匹配  | compile({ include, exclude }) 将通配符 * 编译为正则 返回 { test(url) } 对象 结果由 OVN_VALUE_TEMP 缓存 check(pattern, url) 单模式检测 any(patterns, url) 批量检测                                    |
+| `OVN_SITE_GROUP`       | 站点 URL 分组       | 静态维护 AIGC / Chat / ProgDev / Manage / Search / Media / Font 七组 URL 通配符数组 供 CONFIG 模块 match.include 通过 spread 引用「如 ...OVN_SITE_GROUP.Chat」                                       |
+| `OVN_OBSERVER_CENTER`  | MutationObserver 池 | 按 target + options 合并复用观察者实例 避免重复创建 observeWithKey(key) 支持 key 索引管理 disconnectKey / disconnectAll debounce / autoDisconnect / onceWhen                                         |
+| `OVN_GLOBAL_INFORM`    | 全局通知与悬浮提示  | top / left 位置弹出 toast「自动渐隐」 hover(element, msg, times) 悬浮提示「支持次数限制 通过 PREFS 持久化」 create(bindFn) 工厂模式 可绑定自定义 DOM 容器                                            |
+| `OVN_RANDOM_JITTER`    | 随机延迟生成        | get({ delay, interval, random, order }) → delay + interval×order + Math.random()×random「毫秒」 run(fn, options) 封装 setTimeout 供 AUTO_LOAD / AUTO_EXECUTE 调用                                    |
+| `OVN_GLOBAL_DEBUG`     | 链路追踪与日志      | startTrace / okTrace / failTrace / skipTrace 记录模块各步骤状态及耗时 getSnapshot() 汇总全部模块执行结果「含步骤明细 / 控制台行」 infoTotal() 输出总览到控制台                                       |
+| `OVN_GLOBAL_BUTTON`    | 页面控制按钮        | 支持 switch「开关 与 RUNTIME 双向绑定」/ action「执行回调」/ jump「跳转 URL map」三种按钮 create(bindDOM, scope) 工厂模式 按 data-order 排序插入 DOM                                                 |
+|                        |                     |                                                                                                                                                                                                      |
+| `OVN_ADD_CLASS`        | CSS 类名添加        | apply({ target, subjoin, trace }) 为 DOM 批量添加类名 trace 模式追踪已访问链接「click 事件 + visitedSet + PREFS 持久化」 通过 OBSERVER 监听动态内容自动应用                                          |
+| `OVN_QUICK_READ`       | 键盘翻页与滚动      | 绑定 Arrow / WASD 键 ←→ 点击翻页按钮 ↑↓ 滚动视口 apply({ scroll, smooth, ratio, letterKey, buttonPrev, buttonNext })                                                                                 |
+| `OVN_REMOVE_LIMITS`    | 解除页面交互限制    | menu 模式放行右键菜单 / 文本选择 / 复制粘贴 drag 模式重置 userSelect / pointerEvents 启用图片视频拖拽 支持 hotkey 条件激活「按住指定键时生效」                                                       |
+| `OVN_AUTO_LOAD`        | 自动翻页加载        | smart「IntersectionObserver + 上滚累计检测」/ loadInfinite「IntersectionObserver 触底」/ multipage「批量加载 N 页」 含 JITTER 随机延迟防频率检测                                                     |
+| `OVN_AUTO_EXECUTE`     | 自动执行操作序列    | apply({ step1..step10 }) 最多 10 步 每步 target「选择器」+ action「click / focus / hover」 JITTER 步进延迟 strict 模式遇错即停 backstage 后台也执行                                                  |
+|                        |                     |                                                                                                                                                                                                      |
+| `OVN_VALUE_PREFS`      | 持久化键值存储      | GM_getValue / GM_setValue 封装 内置 prefs / hover / fold / visited / gallop 五个命名空间 store(prefix) 工厂含内存缓存层 reset() 清空全部                                                             |
+| `OVN_VALUE_RUNTIME`    | 运行时状态管理      | get(key, default) / set / toggle 基于 PREFS 持久化 chain(keys) 检测依赖链全部启用 group(key) 检测分组状态 snapshot / restore 备份恢复                                                                |
+| `OVN_VALUE_TEMP`       | 版本化临时缓存      | compute(type, key, factory) 惰性创建并缓存 分类存储 regex / match / chain / compiled bump() 全局版本递增 统一失效所有缓存                                                                            |
 

@@ -45,9 +45,136 @@
   
 ### 模块封装
 
-  可在 [derive.js](https://github.com/voszerooo/WebScript/blob/main/src/store/derive.js) 总览封装及依赖关系 
+  可在 [derive.js](../src/store/derive.js) 总览封装引用及依赖关系 
   
-  
+<table>
+    <tr>
+        <td colspan="4">&nbsp;</td>
+    </tr>
+    <tr>
+        <td rowspan="5"><b>core</b></td>
+        <td><code>OVN_GLOBAL_CONFIG</code></td>
+        <td>全局配置</td>
+        <td>统一管理各模块配置 控制启用与匹配规则等</td>
+    </tr>
+    <tr>
+        <td><code>OVN_MODULE_RESOLVER</code></td>
+        <td>模块解析与查询</td>
+        <td>按 key 查找模块 解析依赖链与分组归属</td>
+    </tr>
+    <tr>
+        <td><code>OVN_GLOBAL_VERIFY</code></td>
+        <td>模块执行前置校验</td>
+        <td>校验 block → match → state → chain 判定模块能否执行</td>
+    </tr>
+    <tr>
+        <td><code>OVN_GLOBAL_SCHEDULER</code></td>
+        <td>模块调度与执行</td>
+        <td>按阶段与优先级 统一调度各模块的执行顺序</td>
+    </tr>
+    <tr>
+        <td><code>OVN_SUBJOIN_HOOK</code></td>
+        <td>插件扩展钩子</td>
+        <td>允许外部注入自定义逻辑 扩展 修改配置等</td>
+    </tr>
+    <tr>
+        <td colspan="4">&nbsp;</td>
+    </tr>
+    <tr>
+        <td rowspan="8"><b>infra</b></td>
+        <td><code>OVN_GLOBAL_DOM</code></td>
+        <td>DOM 容器管理</td>
+        <td>全局 #ovnDOM 容器 统一管理 style/script/log 防 DOM 污染</td>
+    </tr>
+    <tr>
+        <td><code>OVN_MATCH_RULE</code></td>
+        <td>URL 规则编译与匹配</td>
+        <td>检测 URL 是否命中 include/exclude 规则</td>
+    </tr>
+    <tr>
+        <td><code>OVN_SITE_GROUP</code></td>
+        <td>站点 URL 分组</td>
+        <td>预设常用站点分组</td>
+    </tr>
+    <tr>
+        <td><code>OVN_OBSERVER_CENTER</code></td>
+        <td>观察者池管理</td>
+        <td>统一管理页面 DOM 变化监听 避免重复创建观察者</td>
+    </tr>
+    <tr>
+        <td><code>OVN_GLOBAL_INFORM</code></td>
+        <td>全局通知与提示</td>
+        <td>操作反馈通知与悬浮提示</td>
+    </tr>
+    <tr>
+        <td><code>OVN_RANDOM_JITTER</code></td>
+        <td>随机延迟生成</td>
+        <td>生成随机延迟抖动 让自动化操作更像人类行为</td>
+    </tr>
+    <tr>
+        <td><code>OVN_GLOBAL_DEBUG</code></td>
+        <td>链路追踪与日志</td>
+        <td>追踪并记录各模块的执行过程</td>
+    </tr>
+    <tr>
+        <td><code>OVN_GLOBAL_BUTTON</code></td>
+        <td>按钮生成</td>
+        <td>在页面上创建功能开关或操作按钮</td>
+    </tr>
+    <tr>
+        <td colspan="4">&nbsp;</td>
+    </tr>
+    <tr>
+        <td rowspan="5"><b>utils</b></td>
+        <td><code>OVN_ADD_CLASS</code></td>
+        <td>CSS 类名添加</td>
+        <td>给目标节点附加 CSS 类名 可选标记已访问链接</td>
+    </tr>
+    <tr>
+        <td><code>OVN_QUICK_READ</code></td>
+        <td>键盘翻页与滚动</td>
+        <td>用键盘方向键或 WASD 快速翻页滚动页面</td>
+    </tr>
+    <tr>
+        <td><code>OVN_REMOVE_LIMITS</code></td>
+        <td>解除页面交互限制</td>
+        <td>解除右键/选择/拖拽限制 hotkey 条件激活</td>
+    </tr>
+    <tr>
+        <td><code>OVN_AUTO_LOAD</code></td>
+        <td>自动翻页加载</td>
+        <td>支持 smart / loadInfinite / multipage 三种模式</td>
+    </tr>
+    <tr>
+        <td><code>OVN_AUTO_EXECUTE</code></td>
+        <td>自动执行操作序列</td>
+        <td>按步骤序列自动 click/focus/hover 最多 10 步</td>
+    </tr>
+    <tr>
+        <td colspan="4">&nbsp;</td>
+    </tr>
+    <tr>
+        <td rowspan="3"><b>value</b></td>
+        <td><code>OVN_VALUE_PREFS</code></td>
+        <td>持久化键值存储</td>
+        <td>GM 持久化存储 保存用户设置</td>
+    </tr>
+    <tr>
+        <td><code>OVN_VALUE_RUNTIME</code></td>
+        <td>运行时状态管理</td>
+        <td>统一 get/set/toggle 模块开关状态 chain 检测依赖链完整性</td>
+    </tr>
+    <tr>
+        <td><code>OVN_VALUE_TEMP</code></td>
+        <td>版本化临时缓存</td>
+        <td>缓存中间计算结果 避免重复编译和解析</td>
+    </tr>
+    <tr>
+        <td colspan="4">&nbsp;</td>
+    </tr>
+</table>
+
+
 <br>
 
 
