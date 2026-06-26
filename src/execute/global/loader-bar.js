@@ -14,12 +14,22 @@ OVN_GLOBAL_SCHEDULER.run("LoaderBar", () => {
         
         if (window.top !== window.self) return;
         
+        function setFnToken(dom, token) {
+            let value = dom.getAttribute('data-ovn-fn') || '';
+            let list = value ? value.split(' ') : [];
+            list = list.filter(item => item !== 'LoaderBar' && item !== 'ScrollBar');
+            list.push(token);
+            dom.setAttribute('data-ovn-fn', list.join(' '));
+        }
+        let dom = document.getElementById('ovnDOM');
+        if (dom) setFnToken(dom, 'LoaderBar');
+        
         function create() {
             if (document.getElementById('ovnLoaderBar')) return;
             
             let loaderBar = document.createElement('div');
             loaderBar.id = 'ovnLoaderBar';
-            loaderBar.dataset.state = 'loading';
+            let loading = true;
             OVN_GLOBAL_DOM.bindOVN(dom => dom.appendChild(loaderBar));
             
             // let loaded = 0, total = 0, obs, domCache = 0, domCacheAt = 0;
@@ -41,24 +51,22 @@ OVN_GLOBAL_SCHEDULER.run("LoaderBar", () => {
             //             loaded += list.getEntries().length;
             //             total = Math.max(total, domRes(), loaded + 2);
             //             let pct = Math.min(Math.round((loaded / total) * 100), 92);
-            //             if (loaderBar.dataset.state === 'loading' && (pct > 3 || document.readyState !== 'loading')) {
-            //                 loaderBar.dataset.state = '';
+            //             if (loading && (pct > 3 || document.readyState !== 'loading')) {
+            //                 loading = false;
             //                 loaderBar.style.animation = 'none';
             //             }
-            //             if (loaderBar.dataset.state !== 'loading') {
+            //             if (!loading) {
             //                 loaderBar.style.width = Math.max(parseFloat(loaderBar.style.width) || 0, pct) + '%';
             //             }
             //         });
             //         obs.observe({ type: 'resource', buffered: true });
             //     } catch (e) {}
             // }
-            
             function onReady() {
                 let cur = parseFloat(loaderBar.style.width) || 0;
-                let next = document.readyState === 'interactive' ? 80
-                    : document.readyState === 'complete' ? 100 : 0;
-                if (next > 0 && loaderBar.dataset.state === 'loading') {
-                    loaderBar.dataset.state = '';
+                let next = document.readyState === 'interactive' ? 80 : document.readyState === 'complete' ? 100 : 0;
+                if (next > 0 && loading) {
+                    loading = false;
                     loaderBar.style.animation = 'none';
                 }
                 loaderBar.style.width = Math.max(cur, next) + '%';
@@ -69,7 +77,8 @@ OVN_GLOBAL_SCHEDULER.run("LoaderBar", () => {
                 }
             }
             function switchToScroll() {
-                loaderBar.dataset.state = 'ovnScrollBar';
+                let dom = document.getElementById('ovnDOM');
+                if (dom) setFnToken(dom, 'ScrollBar');
                 loaderBar.style.animation = 'none';
                 window.addEventListener('resize', onResize);
                 onResize();

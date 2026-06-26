@@ -1,6 +1,5 @@
 
 
-import { OVN_GLOBAL_DOM }        from '../../store/infra/dom.js';
 import { OVN_GLOBAL_SCHEDULER }  from '../../store/core/scheduler.js';
 
 
@@ -92,7 +91,6 @@ OVN_GLOBAL_SCHEDULER.run("QuickRead", () => {
                 tagName === "select" ||
                 target.isContentEditable
             ) return;
-            
             if (event.defaultPrevented) return;
             
             const key = event.key;
@@ -100,7 +98,6 @@ OVN_GLOBAL_SCHEDULER.run("QuickRead", () => {
             if (!action) return;
             
             event.preventDefault();
-            
             if (event.repeat) {
                 const dir = scrollDir[key];
                 if (dir && !holdRAF) startHold(dir);
@@ -125,7 +122,11 @@ OVN_GLOBAL_SCHEDULER.run("QuickRead", () => {
             stopHold(event.key);
         });
         
-        OVN_GLOBAL_DOM.bindOVN(dom => { dom.setAttribute('data-ovn-fn', config.key); });
+        let dom = document.getElementById('ovnDOM');
+        if (dom) {
+            let value = dom.getAttribute('data-ovn-fn') || '';
+            dom.setAttribute('data-ovn-fn', value ? value + ' ' + config.key : config.key);
+        }
         
     })();
     

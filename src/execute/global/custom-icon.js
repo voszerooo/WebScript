@@ -31,7 +31,7 @@ OVN_GLOBAL_SCHEDULER.run("CustomICON", () => {
             "bing.com": "--ovnICON-Microsoft",
             "dillinger.io": "--ovnICON-Markdown-Line",
             
-            "chat.deepseek.com": "--ovnICON-Deepseek",
+            "deepseek.com": "--ovnICON-Deepseek",
             "gemini.google.com": "--ovnICON-Gemini-Vint",
             "liblib.art": "--ovnICON-Liblib",
             "prompts.chat": "--ovnICON-Prompt",

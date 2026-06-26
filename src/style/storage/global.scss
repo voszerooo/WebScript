@@ -112,7 +112,7 @@
         transition: width .4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity .26s ease-out;
         
     }
-    #ovnLoaderBar[data-state="loading"] {
+    #ovnDOM[data-ovn-fn~="LoaderBar"] #ovnLoaderBar {
         animation: ovnLoader 2.4s infinite cubic-bezier(0.4, 0.0, 0.6, 1);
     }
     
