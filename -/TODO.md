@@ -4,6 +4,7 @@
  * $ NEXT
  * - 
  * - ---------- | GLOBAL | OVN_ADD_CLASS > OVN_SUBJOIN_CLASS / ADD_CLASS / OVN_ADD_CLASS.subjoin .class
+ * - ---------- | GLOBAL | bindOVN > OVN
  * - ---------- | BUILD  | 
  * - ---------- | DEV    | 
  * - ---------- | UNK    | 
@@ -84,4 +85,27 @@ status
 promise
 done
 running
+
+
+
+
+<div id="ovnDOM">
+    <div id="ovnStyle"></div>
+    <div id="ovnMagic" data-ovn-fn="..." ></div>
+    <div id="ovnGallop" style="display: none; position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: var(--ovnPriority09,92926192); pointer-events: none; user-select: none; cursor: default;"><canvas style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none;"></canvas></div>
+    <div id="ovnLoaderBar" style="width: 50.7839%; animation: auto ease 0s 1 normal none running none; display: block;"></div>
+    <div id="ovnScript"></div>
+    <div id="ovnLog"></div>
+</div>
+
+
+
+
+### 项目结构
+
+ - 保持现有 未经允许不得乱建文件/文件夹
+ - 记忆 .claude/memory/ 文件名规范: 作用域-功能-xxxxx
+
+
+
 
