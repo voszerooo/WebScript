@@ -15,8 +15,8 @@ metadata:
 **统一 helper 模式：**
 ```js
 function setFnToken(dom, token) {
-    let val = dom.getAttribute('data-ovn-fn') || '';
-    let list = val ? val.split(' ') : [];
+    let value = dom.getAttribute('data-ovn-fn') || '';
+    let list = value ? value.split(' ') : [];
     list = list.filter(t => t !== 'LoaderBar' && t !== 'ScrollBar');
     list.push(token);
     dom.setAttribute('data-ovn-fn', list.join(' '));

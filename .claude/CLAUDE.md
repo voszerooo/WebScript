@@ -1,1 +1,1 @@
-../-/INTENT.md
+../AGENTS.md
