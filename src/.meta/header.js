@@ -12,12 +12,12 @@
 // @include                   *://baidu.com/*
 // @include                   *://google.com/*
 // @include                   *://bing.com/*
-// @include                   *://youtube.com/*
-// @include                   *://bilibili.com/*
 // @include                   *://chat.deepseek.com/*
 // @include                   *://deepseek.com/*
 // @include                   *://chatgpt.com/*
-// @include                   *://zhihu.com/*
+// @include                   *://yuque.com/*
+// @include                   *://youtube.com/*
+// @include                   *://bilibili.com/*
 // @include                   *://localhost:*/*
 // @include                   *://127.0.0.1:*/*
 // @exclude                   *.cloudflare.com/*

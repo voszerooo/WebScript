@@ -203,6 +203,7 @@ OVN_GLOBAL_SCHEDULER.run("Micro_Other", () => {
                 :not(.material-icons) {
                     font-family: var(--ovnCodeFont) !important;
                 }
+                #sidebar { z-index: 2; }
                 
                 /* ========== 粘滞行 */
                 [class*="style_column"] > [id*="drg-blk"] > div > [class*="style_root"]:has(+[class*="style_block"]) {
@@ -213,6 +214,21 @@ OVN_GLOBAL_SCHEDULER.run("Micro_Other", () => {
                     backdrop-filter: var(--ovnBaseFilter);
                 }
                 
+                /* ========== icon */
+                
+                    /* ========== group */
+                    [class*="style_iconWrapper"] {
+                        [class*="style_icon"]:not(:has(.icon-doc)) { opacity: .9; }
+                        [class*="style_visibleIcon"] { opacity: 0 !important; }
+                        [class*="style_visibleCaret"][class*="style_icon"] { opacity: .9 !important; }
+                    }
+                    
+                    /* ========== item */
+                    [class*="style_draggableItem"] {
+                        [class*="style_pageOutline"] { display: none; }
+                        [class*="style_favicon"] { height: auto; }
+                    }
+                    
             }
         `);
     }

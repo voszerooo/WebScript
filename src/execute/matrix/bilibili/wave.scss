@@ -5,7 +5,6 @@ html {
     &:root body {
         
         --ovnBiliCount: 15;
-        --ovnBiliPlayList: calc(35px * var(--ovnBiliCount));      // 播放列表高度
         --ovnBiliBase: hsla(var(--ovnAccentHSL-H), 10%, 20%, 1);  // 播放器 底色
         --ovnBiliShadow: var(--ovnGlassShadow);
         --ovnBiliBlur: var(--ovnPanelFilter);
@@ -110,7 +109,7 @@ html {
                 }
                 // ========== 播放列表
                 .video-pod .video-pod__body.video-pod__body {
-                    max-height: var(--ovnBiliPlayList);
+                    max-height: calc(var(--ovnBiliItemH) * var(--ovnBiliCount));
                 }
                 
                 

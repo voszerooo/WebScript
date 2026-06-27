@@ -75,6 +75,7 @@ html {
             .c-container .cos-row > .cos-col[style*="width:25%"],                                        // ==== 百度百科
             .c-container .cos-row.bottom-gap_2aWpR.single-image_6zdhC > .cos-col[style*="width:24.5%"] { // ==== 电影 封面
                 width: 10% !important;
+                min-width: 100px;
             }
             
         // ==================== ↓ 原生模块边框
@@ -100,19 +101,123 @@ html {
                 box-shadow: none;
             }
             
-        .wrapper_new { background: var(--ovnBaiduBG);}
+        body { background: var(--ovnBaiduBG); }
         .cos-button { border-radius: var(--ovnBaiduRM); }
+        
+        @media (width <= 1500px) { #u { display: none; } }
+        @media (width <= 1260px) {
+            body.pc-fresh-wrapper-con {
+                --ovnX: 92vw;
+                --ovnGap: 60px;
+                overflow-x: hidden;
+                min-width: auto;
+                width: var(--ovnX);
+                max-width: var(--ovnX);
+            }
+            #wrapper #s_tab {
+                width: 100vw;
+                justify-content: center;
+                .s_tab_inner.s_tab_inner.s_tab_inner {
+                    padding: 0 min(calc(var(--ovnGap) * 2), 20px);
+                    justify-content: space-evenly;
+                    width: var(--ovnX);
+                    min-width: max-content;
+                }
+            }
+            #wrapper #wrapper_wrapper {
+                margin: 0 var(--ovnGap);
+                width: calc(100vw - var(--ovnGap) * 2);
+            }
+        }
+        @media (width <= 926px) {
+            body.pc-fresh-wrapper-con {
+                --ovnGap: 20px;
+            }
+            #wrapper #head {
+                min-width: max-content;
+                margin: 0 var(--ovnGap);
+                .s_form { justify-content: flex-start; }
+            }
+            #wrapper #main-wrapper {
+                width: calc(var(--ovnX) - 100px);
+                @media (width <= 526px) {
+                    width: min(calc(var(--ovnX) - 100px), 350px);
+                }
+            }
+        }
         
         
     // $ ================================================== ↓ Head
     
-        :where(#head) {
+        .wrapper_new #head { 
             
-            --ovnBaiduXXX: hsla(var(--ovnPrimaryHSL), .5);
+            top: 0;
+            width: 100%;
+            background: var(--ovnGlassBase) !important;
+            backdrop-filter: var(--ovnPanelFilter);
+            transition: var(--ovnOftenTransition);
+            
+            &.peak-down { background: transparent; }
+            &.s_down { box-shadow: var(--ovnGlassShadow); }
+            
+            // ==================== ↓ 搜索框
+            
+                .s_form {
+                    display: flex;
+                    justify-content: center;
+                    padding: 0;
+                    width: auto;
+                }
+                .s_ipt_wr, .bdsug-new { width: var(--ovnBaiduSearch); }
+                
+                .soutu-env-new .soutu-layer .soutu-url-wrap,
+                .soutu-env-new .soutu-layer #soutu-url-kw {
+                    width: var(--ovnBaiduSearch);
+                }
+                
+                #kw { width: 87%; }
+                
+                
+            // html #wrapper #head:not(.s-manhattan-index div, .s_form_nologin div) {
+                // .head_wrapper {
+                //     display: flex;
+                //     justify-content: space-around;
+                //     transform: translate3d(-15px, 0 , 1px);
+                //     width: 100%;
+                // }
+                
+                // /* ========== ↓ 用户中心 */
+                
+                //     .head_wrapper #u {
+                //         position: fixed;
+                //         right: 40px;
+                //         padding: 0;
+                //     }
+            // }
             
         }
         
+        // ==================== ↓ 分类
         
+            .new-pmd[tpl="app/head-tab"] {
+                
+                #s_tab {
+                    display: flex;
+                    justify-content: center;
+                    border: none;
+                    padding-top: 70px;
+                    padding-left: 0;
+                    
+                    .s_tab_inner.s_tab_inner.s_tab_inner {
+                        width: calc(var(--ovnBaiduSearch) + 260px);
+                        min-width: 920px;
+                    }
+                    
+                }
+                
+            }
+            
+            
     // $ ================================================== ↓ Content
     
         // html #wrapper #wrapper_wrapper #container #content_left .c-container[tpl="XXXXX"]
@@ -121,6 +226,7 @@ html {
             
             margin: 0 auto;
             width: var(--ovnBaiduWidth);
+            transition: var(--ovnOftenTransition);
             
             #container {
                 width: 100%;
@@ -129,8 +235,8 @@ html {
             }
             #container #content_left {
                 width: 100%;
-                padding: 0 !important;     // 覆盖内联
-                margin: 0 auto !important; // 覆盖内联
+                padding-left: 0 !important; // 覆盖官方
+                margin: 0 auto !important;  // 覆盖官方
             }
             
         }
@@ -181,6 +287,40 @@ html {
                 transform: scale(.8);
             }
             
+            // $ ==================== ↓ TopTip
+            
+                #rs_top_new, .hit-toptip, .hit_top_new {
+                    opacity: .6;
+                    display: flex;
+                    justify-content: center;
+                    margin: 20px 0 10px;
+                }
+                .new-pmd {
+                    
+                    &:is([tpl="app/toptip"], [tpl="app/search-tool"], [tpl="app/hit-top-new"]) {
+                        br { display: none; }
+                    }
+                    
+                    &[tpl="app/toptip"] {
+                        .c-gap-bottom-large { margin-bottom: 0px; }
+                    }
+                    &[tpl="app/hit-top-new"] {
+                        .c-icon-bear-circle { transform: scale(.8); }
+                    }
+                    &[tpl="app/search-tool"] {
+                        // ========== 筛选信息
+                        [class*="outer_"] { margin-top: 10px;}
+                        [class*="options_"] { opacity: .8; width: 90%; margin: 0 auto;}
+                    }
+                    
+                }
+                // #content_left > .k8vt8hp {
+                //     opacity: .5;
+                //     margin: 0 auto; /* margin-top: -1.2em; */
+                //     margin-top: 10px;
+                //     width: max-content;
+                // }
+                
             // $ ==================== ↓ 组件
             
                 :where(.c-container) {
@@ -190,10 +330,10 @@ html {
                         &[tpl="ms_new_calc"] {
                         
                             .new-pmd { width: 60%; margin: 20px auto; }
-                            .calc-oprate_24c8k { display: flex; justify-content: space-evenly; }
-                            .calc-oprate_24c8k .func-calc_3t0OK { width: 60%;}
+                            [class*="calc-oprate_"] { display: flex; justify-content: space-evenly; }
+                            [class*="calc-oprate_"] [class*="func-calc_"] { width: 60%;}
                             
-                            .calc-box_1qoea {
+                            [class*="calc-box_"] {
                                 box-shadow: 
                                     inset 1px 1px 1px 0px rgba(255, 255, 255, 0.8),
                                     inset -1px -1px 1px 0px rgba(40, 49, 85, 0.3),
@@ -207,7 +347,7 @@ html {
                         &[tpl="ms_calendar_san"] {
                         
                             &.new-pmd { width: 60%; min-width: 600px; margin: 20px auto; }
-                            ._bg-header_1ml43_46 { width: 99%; top: -5px; left: 5px; }
+                            [class*="_bg-header_"] { width: 99%; top: -5px; left: 5px; }
                             
                         }
                         
@@ -215,8 +355,8 @@ html {
                     
                         &[tpl="world_time_san"] {
                         
-                            .source_4yrHg { position: absolute; bottom: 5px; }
-                            ._paragraph_1g9za_2.md, .sc-source-text { color: #FFF; }
+                            [class*="source_"] { position: absolute; bottom: 5px; }
+                            [class*="_paragraph"].md, .sc-source-text { color: #FFF; }
                             
                         }
                         
@@ -224,7 +364,7 @@ html {
                     
                         &[tpl="jr_exrate_san"] {
                         
-                            .aladdin_3Tvaz .bg-header_G63NE { top: calc(-10px + var(--ovnBaiduRepair)); }
+                            [class*="aladdin_"] [class*="bg-header_"] { top: calc(-10px + var(--ovnBaiduRepair)); }
                             
                         }
                         
@@ -761,11 +901,12 @@ html {
                         
                     // $ ==================== ↓ XXXXX
                     
-                        // &[tpl="www_struct"] {
+                        &[tpl="www_struct"] {
                             
-                        //     [class*="title-wrapper_"] { padding-top: 10px; }
+                            // [class*="title-wrapper_"] { padding-top: 10px; }
+                            h3 { margin-top: 0 !important; }
                             
-                        // }
+                        }
                         
                     // $ ==================== ↓ 相关搜索
                     
@@ -859,133 +1000,8 @@ html {
 
 
 
-        
-/* ================================================== ↓ Head */
 
-    html .wrapper_new #head { 
-        top: 0;
-        width: 100%;
-        background: var(--ovnGlassBase) !important;
-        backdrop-filter: var(--ovnPanelFilter);
-        transition: var(--ovnOftenTransition);
-    }
-    html .wrapper_new #head.peak-down { background: transparent; }
-    html .wrapper_new #head.s_down { box-shadow: var(--ovnGlassShadow); }
-    
-    html #wrapper #head:not(.s-manhattan-index div, .s_form_nologin div) {
-    
-        .head_wrapper {
-            display: flex;
-            justify-content: space-around;
-            transform: translate3d(-15px, 0 , 1px);
-            width: 100%;
-        }
-        
-        /* ========== ↓ 用户中心 */
-        
-            .head_wrapper #u {
-                position: fixed;
-                right: 40px;
-                padding: 0;
-            }
-            
-        /* ========== ↓ 搜索框 */
-        
-            .s_form {
-                display: flex;
-                justify-content: center;
-                padding: 0;
-                width: auto;
-            }
-            .s_ipt_wr { width: var(--ovnBaiduSearch); }
-            .s_form_fresh { width: inherit; padding: 0; }
-            .bdsug-new { width: var(--ovnBaiduSearch); }
-            .soutu-env-new .soutu-layer .soutu-url-wrap, .soutu-env-new .soutu-layer #soutu-url-kw { width: var(--ovnBaiduSearch); }
-            
-            #kw.s_ipt { width: 87%; }
-            
-    }
-    
-    /* ========== ↓ 分类 */
-    
-        html .result-molecule.new-pmd:has(#s_tab) {
-            --container-left-gap: auto;
-            display: flex;
-            justify-content: center;
-        }
-        
-        html #wrapper .new-pmd[tpl="app/head-tab"] {
-        
-            #s_tab {
-                display: flex;
-                justify-content: center;
-                border: none;
-                padding-top: 70px;
-                padding-left: 0;
-            }
-            
-            #s_tab .s_tab_inner {
-                display: flex;
-                justify-content: space-between;
-                width: calc(var(--ovnBaiduSearch) + 260px);
-                min-width: 920px;
-                padding-left: 0;
-            }
-            
-        }
-        
-    /* ========== ↓ 检索信息 搜索框下 */
-    
-        html #rs_top_new, html .hit-toptip, html .hit_top_new {
-            opacity: .6;
-            display: flex;
-            justify-content: center;
-            margin: 20px 0 10px;
-            width: auto;
-        }
-        
-        html #wrapper .new-pmd[tpl="app/search-tool"] {
-        
-            br { display: none; }
-            
-            /* ========== ↓ 筛选信息 */
-            .outer_wqJjM { margin-top: 10px;}
-            .options_2Vntk { opacity: .8; width: 90%; margin: 0 auto;}
-            
-        }
-        
-        html #wrapper .new-pmd[tpl="app/toptip"] {
-        
-            br { display: none; }
-            .c-gap-bottom-large { margin-bottom: 0px; }
-            
-        }
-        
-        html #wrapper .new-pmd[tpl="app/hit-top-new"] {
-        
-            br { display: none; }
-            .c-icon-bear-circle { transform: scale(.8); }
-            
-        }
-        
-        /* ========== ↓ 以商家官网为准 */
-        html #content_left > .k8vt8hp {
-            opacity: .5;
-            margin: 0 auto; /* margin-top: -1.2em; */
-            margin-top: 10px;
-            width: max-content;
-        }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
         
 /* ================================================== ↓ Content */
 
