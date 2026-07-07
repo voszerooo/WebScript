@@ -30,7 +30,7 @@ OVN_GLOBAL_SCHEDULER.run("LoaderBar", () => {
             let loaderBar = document.createElement('div');
             loaderBar.id = 'ovnLoaderBar';
             let loading = true;
-            OVN_GLOBAL_DOM.bindOVN(dom => dom.appendChild(loaderBar));
+            OVN_GLOBAL_DOM.OVN(dom => dom.appendChild(loaderBar));
             
             // let loaded = 0, total = 0, obs, domCache = 0, domCacheAt = 0;
             // let domRes = () => {

@@ -192,7 +192,7 @@ import { OVN_SUBJOIN_HOOK }      from '../../store/core/hook.js';
         const OVN = create(DOM_BASE);
         return {
             create: create,
-            bindOVN(callback) { return OVN.bind(callback); },
+            OVN(callback) { return OVN.bind(callback); },
         };
         
     })();

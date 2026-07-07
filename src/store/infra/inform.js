@@ -121,7 +121,7 @@ import { OVN_SUBJOIN_HOOK }      from '../../store/core/hook.js';
         
         return {
             create: create,
-            OVN: create(OVN_GLOBAL_DOM.bindOVN, { informTime: 3000 }),
+            OVN: create(OVN_GLOBAL_DOM.OVN, { informTime: 3000 }),
         };
         
     })();

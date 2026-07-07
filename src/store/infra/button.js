@@ -126,7 +126,7 @@ import { OVN_SUBJOIN_HOOK }      from '../../store/core/hook.js';
         
         return {
             create: create,
-            bindOVN: create(OVN_GLOBAL_DOM.bindOVN, ['ovnButtonBase', 'ovnButtonUnder']),
+            OVN: create(OVN_GLOBAL_DOM.OVN, ['ovnButtonBase', 'ovnButtonUnder']),
         };
         
     })();
