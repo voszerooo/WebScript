@@ -9,7 +9,7 @@ metadata:
 
 **注册规范：**
 - 每个模块追加自己的 token，不要覆盖已有值
-- 初始注册用 `OVN_GLOBAL_DOM.bindOVN`（异步安全），后续状态切换用 `document.getElementById('ovnDOM')` 直接操作（DOM 已确保存在）
+- 初始注册用 `OVN_GLOBAL_DOM.OVN`（异步安全），后续状态切换用 `document.getElementById('ovnDOM')` 直接操作（DOM 已确保存在）
 - 多状态模块用独立 token 切换（如 `LoaderBar` → `ScrollBar`），禁止用 `/` 拼接成单 token
 
 **统一 helper 模式：**
@@ -29,4 +29,4 @@ function setFnToken(dom, token) {
 
 **Why:** 避免各模块各自为政的 data 属性命名，统一到主容器上一个属性管理，CSS 可根据功能激活状态精确控制样式。
 
-**How to apply:** 新增全局功能模块时，用 `OVN_GLOBAL_DOM.bindOVN` 追加自身 token 到 `data-ovn-fn`；有多状态则在状态切换时更新 token。CSS 中用 `~=` 选择器匹配。
+**How to apply:** 新增全局功能模块时，用 `OVN_GLOBAL_DOM.OVN` 追加自身 token 到 `data-ovn-fn`；有多状态则在状态切换时更新 token。CSS 中用 `~=` 选择器匹配。

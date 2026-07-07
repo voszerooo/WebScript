@@ -1,14 +1,30 @@
 
+
 :root, [ovnGlobalSpace] {
+    
+    --ovnL1: 9999;
+    --ovnL2: 99999;
+    --ovnL3: 999999;
+    --ovnL4: 9999999;
+    --ovnL5: 99999999;
+    --ovnL9: 999999999;
+    
+    --ovnLItem:    var(--ovnL1);
+    --ovnLHead:    var(--ovnL2);
+    --ovnLSticky:  var(--ovnL3);
+    --ovnLSidebar: var(--ovnL4);
+    --ovnLFn:      calc(var(--ovnL4) + 1);
+    --ovnLOverlay: var(--ovnL5);
+    --ovnLInform:  var(--ovnL9);
+    
+    --ovnOftenTrans: .526s var(--ovnTransitionSoft);
+    
+    
+    
     
     --ovnPriority00: 9999;
     --ovnPriority02: 999999;
     --ovnPriority09: 999999999;
-    --ovnPriorityHead: ;
-    --ovnPrioritySidebar: ;
-    --ovnPriorityFooter: ;
-    --ovnPriorityItem: ;
-    --ovnPriorityBase: ;
     
     --ovnSpace2X: 20px;
     --ovnSpace4X: 60px;
@@ -38,6 +54,6 @@
     --ovnTransitionFlow:    cubic-bezier(.240, .926, .60, 0.920);
     --ovnTransitionElastic: cubic-bezier(.175, .885, .32, 1.260);
     --ovnOftenTransition: all .526s var(--ovnTransitionSoft);
-    --ovnOftenTrans: .526s var(--ovnTransitionSoft);
     
 }
+

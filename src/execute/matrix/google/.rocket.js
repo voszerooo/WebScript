@@ -37,19 +37,20 @@ OVN_GLOBAL_SCHEDULER.run("Google", () => {
     })();
     
     
-    if (OVN_MATCH_RULE.match({ include: [ "*mail.google.com/*" ], exclude: [] })) {
+    // // Mailtrack
+    // if (OVN_MATCH_RULE.match({ include: [ "*mail.google.com/*" ], exclude: [] })) {
         
-        GM_addStyle( /* css */ `
+    //     GM_addStyle( /* css */ `
         
-            html {
-                .mt-actions-container .ms-quick-actions-button.new-logo { display: none; }
-                .mt-tool .mt-tool-button .mt-tool-icon { background: transparent; }
-                #mailtrack-menu-opener .mt-logo > svg.mt-svg-icon { display: none; }
-            }
+    //         html {
+    //             .mt-actions-container .ms-quick-actions-button.new-logo { display: none; }
+    //             .mt-tool .mt-tool-button .mt-tool-icon { background: transparent; }
+    //             #mailtrack-menu-opener .mt-logo > svg.mt-svg-icon { display: none; }
+    //         }
             
-        `);
+    //     `);
         
-    }
+    // }
     
     
     if (OVN_MATCH_RULE.match({ include: [ "*google.com/search/about-this-result*", ], exclude: [] })) {

@@ -3,9 +3,8 @@
 /**
  * $ NEXT
  * - 
- * - ---------- | GLOBAL | OVN_ADD_CLASS > OVN_SUBJOIN_CLASS / ADD_CLASS / OVN_ADD_CLASS.subjoin .class
- * - ---------- | GLOBAL | bindOVN > OVN
- * - ---------- | BUILD  | 
+ * - ---------- | GLOBAL | 
+ * - ---------- | GLOBAL | 
  * - ---------- | DEV    | 
  * - ---------- | UNK    | 
  * - 
@@ -14,7 +13,7 @@
  * ! 
  * ? ==================== ↓ WARN
  * ?
- * ? OVN_Debug           | GLOBAL | 被排除的站点 面板直接没有显示 而非 MATCH 红灯
+ * ? OVN_Debug           | GLOBAL | 被排除的站点 面板状态灯非 MATCH 红灯
  * ? OVN_OBSERVER_CENTER | GLOBAL | 共享 Observer 实例可能导致一断全断或空转不释放
  * ? ------------------- | BUILD  | 在某些网站动态更新页面内容后 需手动刷新才可正确应用样式
  * ? ------------------- | DEV    | 在某些网站会触发弹窗 "访问此设备上的其他应用和服务" 允许 屏蔽
@@ -50,6 +49,7 @@
  * + 
  * + ----------------- | 挂载 悬浮/面板按钮/快捷键 可呼出弹窗 能输入多行下载链接 进行 单独/批量下载 「调用浏览器原生方式」
  * + 
+ * + ----------------- | 按住 在图片资源上 按住 alt .2 ms 可放大预览图片
  * + ----------------- | 关灯模式 可 快捷键 > 视频下新增一个遮罩层
  * + ----------------- | 封装 按键 > 绑定某些功能
  * + ----------------- | 将 站点的某个功能绑定快捷键
@@ -92,8 +92,8 @@ running
 <div id="ovnDOM">
     <div id="ovnStyle"></div>
     <div id="ovnMagic" data-ovn-fn="..." ></div>
-    <div id="ovnGallop" style="display: none; position: fixed; top: 0px; left: 0px; width: 100%; height: 100%; z-index: var(--ovnPriority09,92926192); pointer-events: none; user-select: none; cursor: default;"><canvas style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; pointer-events: none;"></canvas></div>
-    <div id="ovnLoaderBar" style="width: 50.7839%; animation: auto ease 0s 1 normal none running none; display: block;"></div>
+    <div id="ovnGallop" style=""></canvas></div>
+    <div id="ovnLoaderBar" style=""></div>
     <div id="ovnScript"></div>
     <div id="ovnLog"></div>
 </div>
@@ -108,4 +108,7 @@ running
 
 
 
+方案 B：统一 setFnToken 工具函数
 
+把 LoaderBar 里 setFnToken 的逻辑抽象为通用工具，基于 config 中定义的顺序做有序插入（而非简单 push
+到末尾）。各模块调用时传入自己的 key，工具函数保证最终结果按 config 顺序排列。

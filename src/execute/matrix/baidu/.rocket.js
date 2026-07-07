@@ -20,9 +20,10 @@ OVN_GLOBAL_SCHEDULER.run("Baidu", () => {
         
         OVN_ADD_CLASS.apply({
             target: [
-                ".c-container [data-module='title']",
-                ".c-container [class^='title_']",
-                ".c-container h3[class*='title'] a",
+                // ".c-container [data-module='title']",
+                // ".c-container [class^='title_']",
+                // ".c-container h3[class*='title'] a",
+                "#container :is(h3.t, h3.cosc-title) > a",
             ],
             subjoin: [ "ovnFocal", "ovnLR", ],
         });
@@ -46,21 +47,21 @@ OVN_GLOBAL_SCHEDULER.run("Baidu", () => {
         exclude: [ ] })
     ) {
         GM_addStyle( /* css */ `
-        
             html {
                 
                 &:root body {
                     
                     --ovnChatWidth: calc(var(--ovnSpaceWidthVW) - 00vw);
                     
-                    &.cos-pc {
+                }
+                
+                @media (width >= 1920px) {
+                    .cos-pc {
                         --max-conv-width: var(--ovnSpaceWidth02);
                     }
-                    
                 }
                 
             }
-            
         `);
     }
     
@@ -69,7 +70,6 @@ OVN_GLOBAL_SCHEDULER.run("Baidu", () => {
         exclude: [ ] })
     ) {
         GM_addStyle( /* css */ `
-        
             html {
                 
                 &:root body {
@@ -104,7 +104,6 @@ OVN_GLOBAL_SCHEDULER.run("Baidu", () => {
                 }
                 
             }
-            
         `);
     }
     

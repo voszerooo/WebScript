@@ -28,6 +28,7 @@ OVN_GLOBAL_SCHEDULER.run("CustomICON", () => {
             "ticktick.com": "--ovnICON-Tick-Vint",
             "dida365.com": "--ovnICON-Tick-Vint",
             "yuque.com": "--ovnICON-YUQUE",
+            "notion.com": "--ovnICON-Notion-Vint",
             "bing.com": "--ovnICON-Microsoft",
             "dillinger.io": "--ovnICON-Markdown-Line",
             
@@ -45,6 +46,7 @@ OVN_GLOBAL_SCHEDULER.run("CustomICON", () => {
         };
         
         const stubborn = [
+            "notion.com",
             "dillinger.io",
             "ip.skk.moe",
         ];

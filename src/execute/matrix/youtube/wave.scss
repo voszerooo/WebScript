@@ -49,7 +49,19 @@ html {
             
         }
         
-
+        
+    // $ ================================================== ↓ 博主页
+    
+        :where(#page-manager) {
+            
+            #contents { 
+                --ytd-rich-grid-items-per-row: 5;
+                --ytd-rich-grid-posts-per-row: 5;
+            }
+            
+        }
+        
+        
     // $ ================================================== ↓ 播放页
     
         :where(.watch-root-element) {
@@ -74,17 +86,20 @@ html {
             // ==================== ↓ 播放器
             
                 &.watch-root-element {
-                    .html5-video-player a:hover,                                    // ==== 全屏 下拉 item
-                    .ytp-fullscreen-grid-expand-button,                             // ==== 全屏 下拉 button
-                    .ytPlayerQuickActionButtonsHost:not(:empty),                    // ==== 全屏 反馈按钮组
-                    .ytp-delhi-modern .ytp-popup,                                   // ==== 设定背景
-                    .ytp-delhi-modern .ytp-volume-area,                             // ==== 音量
-                    .ytp-delhi-modern .ytp-chrome-controls .ytp-play-button,        // ==== 播放
-                    .ytp-delhi-modern .ytp-chrome-controls .ytp-right-controls,     // ==== 设定条
-                    .ytp-delhi-modern .ytp-time-wrapper:not(.ytp-miniplayer-ui *) { // ==== 播放时间
+                    .html5-video-player a:hover,                                         // ==== 全屏 下拉 item
+                    .ytp-fullscreen-grid-expand-button,                                  // ==== 全屏 下拉 button
+                    .ytPlayerQuickActionButtonsHost:not(:empty),                         // ==== 全屏 反馈按钮组
+                    .ytp-delhi-modern .ytp-popup,                                        // ==== 设定背景
+                    .ytp-delhi-modern .ytp-volume-area,                                  // ==== 音量
+                    .ytp-delhi-modern .ytp-chrome-controls .ytp-play-button,             // ==== 播放
+                    .ytp-delhi-modern .ytp-chrome-controls .ytp-right-controls,          // ==== 设定条
+                    .ytp-delhi-modern .ytp-time-wrapper:not(.ytp-miniplayer-ui *),       // ==== 播放时间
+                    .ytp-delhi-modern .ytp-tooltip-bottom-text.ytp-tooltip-bottom-text { // ==== 提示
                         backdrop-filter: var(--ovnYoutubeBlur);
                     }
                 }
+                
+                // .ytp-delhi-modern .ytp-tooltip:not(.ytp-frosted-glass-fade-transition) .ytp-tooltip-bottom-text {
                 
                 // ========== 字幕
                 .html5-video-player .caption-visual-line .ytp-caption-segment:last-child {
@@ -103,6 +118,7 @@ html {
                 }
                 
         }
+        
         
     // $ ================================================== ↓ 搜索页
     

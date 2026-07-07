@@ -530,6 +530,8 @@
 
     .ovnButtonBase {
         cursor: pointer;
+        pointer-events: auto;
+        z-index: var(--ovnLFn);
         user-select: none;
         border: var(--ovnUIBorder) var(--ovnAccentCBD);
         font-size: 1em;

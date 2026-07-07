@@ -500,11 +500,11 @@ OVN_GLOBAL_SCHEDULER.run("Micro_Other", () => {
         include: [ "*douyin.com/*" ], exclude: [ ] })
     ) {
         
-        GM_addStyle( /* css */ `
+        // GM_addStyle( /* css */ `
         
-            html.ovn, html body, html body > div:first-child { height: auto; }
+        //     html.ovn, html body, html body > div:first-child { height: auto; }
             
-        `);
+        // `);
         
         (function OVN_DOU_ReLimits() {
             
