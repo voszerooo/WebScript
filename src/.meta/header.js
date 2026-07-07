@@ -12,7 +12,6 @@
 // @include                   *://baidu.com/*
 // @include                   *://google.com/*
 // @include                   *://bing.com/*
-// @include                   *://chat.deepseek.com/*
 // @include                   *://deepseek.com/*
 // @include                   *://chatgpt.com/*
 // @include                   *://yuque.com/*
@@ -30,6 +29,7 @@
 // @grant                     GM_deleteValue
 // @grant                     GM_xmlhttpRequest
 // @grant                     GM_addElement
+// @grant                     GM_openInTab
 // @grant                     unsafeWindow
 // @run-at                    document-start
 

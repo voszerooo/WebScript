@@ -96,7 +96,7 @@
     </tr>
     <tr>
         <td><code>Bilibili</code></td>
-        <td>播放器样式 / 播放列表高度增加 / ...</td>
+        <td>批量加载 / 播放器样式 / 播放列表高度增加 / ...</td>
     </tr>
     <tr>
         <td colspan="3">&nbsp</td>

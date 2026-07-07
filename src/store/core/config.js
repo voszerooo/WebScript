@@ -155,7 +155,11 @@ import { OVN_SUBJOIN_HOOK }      from '../../store/core/hook.js';
                 match: { include: [ "*youtube.com/*" ], exclude: [ ] },
             },
             Bilibili: {
+                fold: true,
                 match: { include: [ "*Bilibili.com/*" ], exclude: [ ] },
+                BatchLoad: {
+                    match: { include: [ "*Bilibili.com/*&search*" ], exclude: [ ] },
+                },
             },
             
         },

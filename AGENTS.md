@@ -41,6 +41,7 @@
 | `OVN_QUICK_READ`       | 键盘翻页与滚动      | 绑定 Arrow / WASD 键 ←→ 点击翻页按钮 ↑↓ 滚动视口 apply({ scroll, smooth, ratio, letterKey, buttonPrev, buttonNext })                                                                                 |
 | `OVN_REMOVE_LIMITS`    | 解除页面交互限制    | menu 模式放行右键菜单 / 文本选择 / 复制粘贴 drag 模式重置 userSelect / pointerEvents 启用图片视频拖拽 支持 hotkey 条件激活「按住指定键时生效」                                                       |
 | `OVN_AUTO_LOAD`        | 自动翻页加载        | smart「IntersectionObserver + 上滚累计检测」/ loadInfinite「IntersectionObserver 触底」/ multipage「批量加载 N 页」 含 JITTER 随机延迟防频率检测                                                     |
+| `OVN_BATCH_LOAD`       | 批量加载            | apply({ delay, interval, random, item, target, url }) 从目标容器倒序选取 item 个匹配 url 的链接，每个链接 `OVN_GLOBAL_INFORM` 延迟后打开                                                             |
 | `OVN_AUTO_EXECUTE`     | 自动执行操作序列    | apply({ step1..step10 }) 最多 10 步 每步 target「选择器」+ action「click / focus / hover」 JITTER 步进延迟 strict 模式遇错即停 backstage 后台也执行                                                  |
 |                        |                     |                                                                                                                                                                                                      |
 | `OVN_VALUE_PREFS`      | 持久化键值存储      | GM_getValue / GM_setValue 封装 内置 prefs / hover / fold / visited / gallop 五个命名空间 store(prefix) 工厂含内存缓存层 reset() 清空全部                                                             |

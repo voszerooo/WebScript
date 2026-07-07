@@ -146,6 +146,11 @@
         <td>支持 smart / loadInfinite / multipage 三种模式</td>
     </tr>
     <tr>
+        <td><code>OVN_BATCH_LOAD</code></td>
+        <td>批量加载</td>
+        <td>可配置常用网站的目标容器 一键打开前 X 个内容</td>
+    </tr>
+    <tr>
         <td><code>OVN_AUTO_EXECUTE</code></td>
         <td>自动执行操作序列</td>
         <td>按步骤序列自动 click/focus/hover 最多 10 步</td>
