@@ -29,6 +29,7 @@
  * & OVN_Options          | 右键功能 可弹出功能菜单 编辑配置
  * & OVN_Options          | 导入导出配置 +- 按钮 快速添加 排除当前站点
  * & OVN_Options          | 用户配置可覆盖默认配置 比如 主题色
+ * & OVN_CustomICON       | 标签页如在后台打开 功能将无法生效
  * & 
  * & OVN_GLOBAL_SCHEDULER | scheduler depend priority phase 应该未生效
  * & OVN_GLOBAL_SCHEDULER | 任务粒度 + 调度方式 + 执行时机 帧调度器
