@@ -405,6 +405,17 @@ html {
                         [class*="title-box_"] { width: 100%; }
                         
                         :is(h3.t, h3.cosc-title):not( 
+                            .cos-space-mt-md h3,
+                            [tpl="world_time_san"] h3,
+                            [tpl="fy_sg_dict_new_san"] h3,
+                            [tpl="wenda_generate"] h3,
+                            [tpl="jr_quote"] h3,
+                            [tpl="fy_fanyi_ai_san"] h3,
+                            [tpl="jr_stock_comment_san"] h3,
+                            [class*="doctorName_"] > h3,
+                            [class*="card-title_"] > h3,
+                            [class*="exta-links-pc_"] > h3,
+                            [class*="exta-link-pc_"] > h3,
                             [class*="sitelink-summary_"] > h3
                         ) {
                             padding: var(--ovnBaiduP);
@@ -412,6 +423,8 @@ html {
                             width: 100%;
                             background: var(--ovnBaiduBG);
                             border-radius: var(--ovnBaiduRL) var(--ovnBaiduRL) 5px 5px;
+                        }
+                        :is(h3.t, h3.cosc-title) {
                             > a, .cosc-title-md {
                                 color: var(--ovnBaiduC);
                                 font-size: 15px;
@@ -639,6 +652,7 @@ html {
                             .cos-divider { height: 0px; }
                             .cos-space-mt-sm { margin-top: 0; }
                             // [class*="card-header_"] { margin-bottom: 0; }
+                            [class*="pc-title_"] { margin-bottom: .2em; }
                             
                         }
                         &[tpl="fy_sg_dictwisenew_san"] {
