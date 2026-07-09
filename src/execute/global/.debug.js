@@ -209,7 +209,7 @@ import { OVN_MODULE_RESOLVER }   from '../../store/core/resolver.js';
             panel.appendChild(bottomRow);
             overlay.appendChild(panel);
             
-            OVN_GLOBAL_DOM.bindOVN(dom => dom.appendChild(overlay));
+            OVN_GLOBAL_DOM.OVN(dom => dom.appendChild(overlay));
             setTimeout(() => overlay.classList.add("ovnShow"), 20);
             
             setTimeout(() => {

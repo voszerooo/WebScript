@@ -149,6 +149,11 @@ OVN_GLOBAL_SCHEDULER.run("Micro_Other", () => {
                 /* ========== 导航条 分类 */
                 .MarketingNavigation-module__list__tFbMb { width: max-content; }
                 
+                /* ========== 预览 代码块 */
+                .js-snippet-clipboard-copy-unpositioned .markdown-body .snippet-clipboard-content {
+                    border-radius: 8px;
+                }
+                
                 .markdown-body .highlight pre, .markdown-body pre { font-size: 75%; line-height: 1.7; }
                 
             }
@@ -198,6 +203,7 @@ OVN_GLOBAL_SCHEDULER.run("Micro_Other", () => {
                 :not(.material-icons) {
                     font-family: var(--ovnCodeFont) !important;
                 }
+                #sidebar { z-index: 2; }
                 
                 /* ========== 粘滞行 */
                 [class*="style_column"] > [id*="drg-blk"] > div > [class*="style_root"]:has(+[class*="style_block"]) {
@@ -208,6 +214,21 @@ OVN_GLOBAL_SCHEDULER.run("Micro_Other", () => {
                     backdrop-filter: var(--ovnBaseFilter);
                 }
                 
+                /* ========== icon */
+                
+                    /* ========== group */
+                    [class*="style_iconWrapper"] {
+                        [class*="style_icon"]:not(:has(.icon-doc)) { opacity: .9; }
+                        [class*="style_visibleIcon"] { opacity: 0 !important; }
+                        [class*="style_visibleCaret"][class*="style_icon"] { opacity: .9 !important; }
+                    }
+                    
+                    /* ========== item */
+                    [class*="style_draggableItem"] {
+                        [class*="style_pageOutline"] { display: none; }
+                        [class*="style_favicon"] { height: auto; }
+                    }
+                    
             }
         `);
     }
@@ -479,11 +500,11 @@ OVN_GLOBAL_SCHEDULER.run("Micro_Other", () => {
         include: [ "*douyin.com/*" ], exclude: [ ] })
     ) {
         
-        GM_addStyle( /* css */ `
+        // GM_addStyle( /* css */ `
         
-            html.ovn, html body, html body > div:first-child { height: auto; }
+        //     html.ovn, html body, html body > div:first-child { height: auto; }
             
-        `);
+        // `);
         
         (function OVN_DOU_ReLimits() {
             

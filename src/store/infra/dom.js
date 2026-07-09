@@ -126,7 +126,7 @@ import { OVN_SUBJOIN_HOOK }      from '../../store/core/hook.js';
                 if (!styleBox || !scriptBox) return;
                 Array.from(container.children).forEach(el => {
                     if (el === styleBox || el === scriptBox || el === logBox) return;
-                    if (el.hasAttribute('data-ovn-frozen')) return;
+                    if (el.hasAttribute('data-ovn-frozen') || el.hasAttribute('data-ovn-fn')) return;
                     if (isTargetType(el, 'style'))  moveIfNeeded(el, styleBox);
                     else if (isTargetType(el, 'script')) moveIfNeeded(el, scriptBox);
                 });
@@ -144,7 +144,7 @@ import { OVN_SUBJOIN_HOOK }      from '../../store/core/hook.js';
                             mutation.addedNodes.forEach(node => {
                                 if (node.nodeType !== 1) return;
                                 if (node === styleBox || node === scriptBox || node === logBox) return;
-                                if (node.hasAttribute('data-ovn-frozen')) return;
+                                if (node.hasAttribute('data-ovn-frozen') || node.hasAttribute('data-ovn-fn')) return;
                                 
                                 if (isTargetType(node, 'style')) {
                                     if (moveIfNeeded(node, styleBox)) orderChanged = true;
@@ -192,7 +192,7 @@ import { OVN_SUBJOIN_HOOK }      from '../../store/core/hook.js';
         const OVN = create(DOM_BASE);
         return {
             create: create,
-            bindOVN(callback) { return OVN.bind(callback); },
+            OVN(callback) { return OVN.bind(callback); },
         };
         
     })();

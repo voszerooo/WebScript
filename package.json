@@ -15,11 +15,12 @@
     "main": "src/custom.js",
     "scripts": {
         "dev": "webpack serve --config webpack.config.dev.js",
+        "build:dev": "webpack --config webpack.config.dev.js",
         "build": "cross-env BUILD_VERSION=true webpack --config webpack.config.build.js",
         "build:release": "cross-env BUILD_VERSION=true BUILD_TARGET=release webpack --config webpack.config.build.js",
-        "build:patch": "pnpm version patch --recursive --no-git-tag-version && pnpm dev && pnpm build:release && node script/publish.js",
-        "build:minor": "pnpm version minor --recursive --no-git-tag-version && pnpm dev && pnpm build:release && node script/publish.js",
-        "build:major": "pnpm version major --recursive --no-git-tag-version && pnpm dev && pnpm build:release && node script/publish.js",
+        "build:patch": "pnpm version patch --recursive --no-git-tag-version && pnpm build:dev && pnpm build:release && node script/publish.js",
+        "build:minor": "pnpm version minor --recursive --no-git-tag-version && pnpm build:dev && pnpm build:release && node script/publish.js",
+        "build:major": "pnpm version major --recursive --no-git-tag-version && pnpm build:dev && pnpm build:release && node script/publish.js",
         "x": "cross-env BUILD_VERSION=true ANALYZE=true webpack --config webpack.config.build.js",
         "scss": "node script/compile.js"
     },

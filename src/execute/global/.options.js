@@ -270,7 +270,7 @@ import { OVN_MODULE_RESOLVER }   from '../../store/core/resolver.js';
             btnWrap.className = "ovnButton";
             btnWrap.append(applyBtn, resetBtn);
             panel.append(vessel, btnWrap);
-            OVN_GLOBAL_DOM.bindOVN(dom => dom.appendChild(panel));
+            OVN_GLOBAL_DOM.OVN(dom => dom.appendChild(panel));
             setTimeout(() => panel.classList.add("ovnShow"), 20);
             
             setTimeout(() => {

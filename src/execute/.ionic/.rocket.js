@@ -25,6 +25,7 @@ import { OVN_QUICK_READ }        from '../../../store/utils/quick-read.js';
 import { OVN_REMOVE_LIMITS }     from '../../../store/utils/remove-limits.js';
 import { OVN_AUTO_LOAD }         from '../../../store/utils/auto-load.js';
 import { OVN_AUTO_EXECUTE }      from '../../../store/utils/auto-execute.js';
+import { OVN_BATCH_LOAD }        from '../../../store/utils/batch-load.js';
 
 import wave from './wave.scss';
 import scss from './.wave.scss';

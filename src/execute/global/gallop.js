@@ -115,7 +115,7 @@ OVN_GLOBAL_SCHEDULER.run("Gallop", () => {
             overlay.style.cssText =
                 'display:none;' +
                 'position:fixed;top:0;left:0;width:100%;height:100%;' +
-                'z-index: var(--ovnPriority09,92926192);' +
+                'z-index: var(--ovnPriority09,9292692);' +
                 'pointer-events:none;' +
                 'user-select:none;' +
                 '-webkit-user-select:none;' +
@@ -186,7 +186,6 @@ OVN_GLOBAL_SCHEDULER.run("Gallop", () => {
             ctx.lineJoin = 'round';
             ctx.stroke();
         }
-        
         function stopTrail() {
             if (trailStopped) return;
             trailStopped = true;
@@ -352,6 +351,13 @@ OVN_GLOBAL_SCHEDULER.run("Gallop", () => {
             });
         }
         setTimeout(init, 524);
+        
+        let dom = document.getElementById('ovnDOM');
+        if (dom) {
+            let value = dom.getAttribute('data-ovn-fn') || '';
+            dom.setAttribute('data-ovn-fn', value ? value + ' Gallop' : 'Gallop');
+        }
+        
     })();
     
 });

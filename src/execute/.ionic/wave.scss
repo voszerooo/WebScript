@@ -9,11 +9,12 @@ html {
         --ovnXxxxCP: var(--ovnPrimaryHEX);
         --ovnXxxxBG: var(--ovnBase09HEX);
         
-        --ovnXxxxRS: var(--ovnBaseRadius);
-        --ovnXxxxRU: var(--ovnUIRadius);
-        --ovnXxxxRM: var(--ovnPanelRadius);
-        --ovnXxxxRL: var(--ovnSurfaceRadius);
-        --ovnXxxxRX: var(--ovnRadiusX);
+        --ovnXxxxRB: var(--ovnRB);
+        --ovnXxxxRU: var(--ovnRU);
+        --ovnXxxxRP: var(--ovnRP);
+        --ovnXxxxRS: var(--ovnRS);
+        --ovnXxxxRL: var(--ovnRL);
+        --ovnXxxxRX: var(--ovnRX);
         
         --ovnXxxxX: var(--ovnSpaceWidth02);
         
@@ -26,8 +27,6 @@ html {
     &.ovn body {
         --xxxxxxxxxx: 000;
     }
-    
-    // * { background: #0FF !important; }
     
     // $ ================================================== ↓ Global
     
@@ -54,7 +53,7 @@ html {
             text-decoration: none;
         }
         xxxxxxxxxx {
-            border-radius: var(--ovnXxxxRM);
+            border-radius: var(--ovnXxxxRP);
         }
         
         // $ ==================== ↓ XXXXX
@@ -87,3 +86,4 @@ html {
 
 // $ ================================================== ↓ Unknown
 
+// * { background: #0FF !important; }

@@ -4,17 +4,22 @@ html {
     
     &:root body {
         
-        --ovnBaiduRepair: -6px;
-        --ovnBaiduTitleR: 18px;
-        --ovnBaiduKeyWord: #3978d0;
+        --ovnBaiduR: -6px;
+        --ovnBaiduTR: 18px;
+        --ovnBaiduC: #3978d0;
         --ovnBaiduBG: var(--ovnBase09HEX);
         --ovnBaiduP: var(--ovnSpacePadding);
         --ovnBaiduM: var(--ovnSpaceMargin);
         --ovnBaiduS: var(--ovnOftenSurfaceShadowBase);
         --ovnBaiduSH: var(--ovnOftenSurfaceShadowHover);
-        --ovnBaiduSC: var(--ovnSurfaceShadow);
+        --ovnBaiduSS: var(--ovnSurfaceShadow);
+        --ovnBaiduG: var(--ovnGlassBase);
+        --ovnBaiduGS: var(--ovnGlassShadow);
+        --ovnBaiduF: var(--ovnPanelFilter);
+        --ovnBaiduOT: var(--ovnOftenTrans);
         --ovnBaiduT: var(--ovnOftenTransition);
         --ovnBaiduZ: var(--ovnSurfaceZoomIn);
+        --ovnBaiduBC: var(--ovnBaseColor);
         --ovnBaiduWidth: var(--ovnSpaceWidthVW);
         --ovnBaiduSearch: calc(var(--ovnSpaceWidthVW) / 2 );
         
@@ -38,7 +43,55 @@ html {
     
     // $ ================================================== ↓ Global
     
-        // ==================== ↓ 移除下划线
+        .cos-button { border-radius: var(--ovnBaiduRM); }
+        body { background: var(--ovnBaiduBG); }
+        
+        @media (width <= 1500px) { #u { display: none; } }
+        @media (width <= 1260px) {
+            body.pc-fresh-wrapper-con {
+                --ovnX: 92vw;
+                --ovnGap: 60px;
+                overflow-x: hidden;
+                min-width: auto;
+                width: var(--ovnX);
+                max-width: var(--ovnX);
+            }
+            #wrapper #s_tab {
+                width: 100vw;
+                justify-content: center;
+                .s_tab_inner.s_tab_inner.s_tab_inner {
+                    padding: 0 min(calc(var(--ovnGap) * 2), 20px);
+                    justify-content: space-evenly;
+                    width: var(--ovnX);
+                    min-width: max-content;
+                }
+            }
+            #wrapper #wrapper_wrapper {
+                margin: 0 var(--ovnGap);
+                width: calc(100vw - var(--ovnGap) * 2);
+            }
+            #wrapper #wrapper_wrapper #container #content_left {
+                padding-top: 10px !important;
+            }
+        }
+        @media (width <= 926px) {
+            body.pc-fresh-wrapper-con {
+                --ovnGap: 20px;
+            }
+            #wrapper #head {
+                min-width: max-content;
+                margin: 0 var(--ovnGap);
+                .s_form { justify-content: flex-start; }
+            }
+            #wrapper #main-wrapper {
+                width: calc(var(--ovnX) - 100px);
+                @media (width <= 526px) {
+                    width: min(calc(var(--ovnX) - 100px), 350px);
+                }
+            }
+        }
+        
+        // ==================== ↓ 文本样式
         
             #container .c-container :is(
                 .t *,
@@ -52,6 +105,8 @@ html {
             ), a, em, :link, a:hover, em:hover, a:hover em, a.cos-link:hover {
                 text-decoration: none;
             }
+            a.cosc-title-a .cosc-title-slot, a.cosc-title-a .cosc-title-slot em,
+            a.cosc-title-a .cosc-title-slot:hover, a.cosc-title-a .cosc-title-slot:hover em,
             [class*="vmp-project-new_"] [class*="vmp-project-title_"] :is(a, a em) {
                 text-decoration: none;
             }
@@ -63,6 +118,18 @@ html {
                 text-decoration: none !important;
             }
             
+            a, a:hover, a.cos-link, a.cos-link:hover { color: var(--ovnBaiduC); }
+            [class*="info_"] > [class*="title_"] {
+                color: var(--ovnBaiduC);
+                font-size: 12px;
+                font-weight: normal;
+                line-height: 1.5;
+                &:hover {
+                    text-decoration: none;
+                    color: var(--ovnBaiduC);
+                }
+            }
+            
         // ==================== ↓ 内容区图片尺寸
         
             .c-container[tpl="ai_ecology"] .cos-row-col-12 > .cos-col-6,                      // ==== 轻秒图片转换器
@@ -71,10 +138,12 @@ html {
                 width: 15% !important;
             }
             .c-container[tpl="nvl_bookstore_san"] .cos-row-col-12 > .cos-col-3,                          // ==== 在线阅读
+            .c-container[tpl="b2b_factory_wise_san"] .cos-row-col-12 > .cos-col-3,                       // ==== 百度爱采购
             .c-container[tpl="sg_kg_entity_san"] .cos-row.cos-gutter > .cos-col-3,                       // ==== 百度百科
             .c-container .cos-row > .cos-col[style*="width:25%"],                                        // ==== 百度百科
             .c-container .cos-row.bottom-gap_2aWpR.single-image_6zdhC > .cos-col[style*="width:24.5%"] { // ==== 电影 封面
                 width: 10% !important;
+                min-width: 100px;
             }
             
         // ==================== ↓ 原生模块边框
@@ -82,7 +151,7 @@ html {
             .pc-fresh-smooth .cu-border:after,
             .pc-fresh-smooth .c-group-wrapper::after,
             .pc-fresh-smooth .cosc-card-shadow:after,
-            .pc-fresh-smooth .new-pmd .c-border::after {
+            .pc-fresh-smooth .c-border::after {
                 border: transparent;
             }
             
@@ -93,26 +162,85 @@ html {
         // ==================== ↓ 原生模块阴影
         
             .cu-border,
-            .new-pmd .c-border,
+            .c-border,
             .cosc-card-shadow,
             [class*="re-box-shadow_"],
             [class*="pc-first-style_"] {
                 box-shadow: none;
             }
             
-        .wrapper_new { background: var(--ovnBaiduBG);}
-        .cos-button { border-radius: var(--ovnBaiduRM); }
-        
-        
+            
     // $ ================================================== ↓ Head
     
-        :where(#head) {
+        .wrapper_new #head { 
             
-            --ovnBaiduXXX: hsla(var(--ovnPrimaryHSL), .5);
+            top: 0;
+            width: 100%;
+            background: var(--ovnBaiduG) !important;
+            backdrop-filter: var(--ovnBaiduF);
+            transition: var(--ovnBaiduT);
+            
+            &.peak-down { background: transparent; }
+            &.s_down { box-shadow: var(--ovnBaiduGS); }
+            
+            // ==================== ↓ 搜索框
+            
+                .s_form {
+                    display: flex;
+                    justify-content: center;
+                    padding: 0;
+                    width: auto;
+                }
+                .s_ipt_wr, .bdsug-new { width: var(--ovnBaiduSearch); }
+                
+                .soutu-env-new .soutu-layer .soutu-url-wrap,
+                .soutu-env-new .soutu-layer #soutu-url-kw {
+                    width: var(--ovnBaiduSearch);
+                }
+                
+                #kw { width: 87%; }
+                
+                
+            // html #wrapper #head:not(.s-manhattan-index div, .s_form_nologin div) {
+                // .head_wrapper {
+                //     display: flex;
+                //     justify-content: space-around;
+                //     transform: translate3d(-15px, 0 , 1px);
+                //     width: 100%;
+                // }
+                
+                // /* ========== ↓ 用户中心 */
+                
+                //     .head_wrapper #u {
+                //         position: fixed;
+                //         right: 40px;
+                //         padding: 0;
+                //     }
+            // }
             
         }
         
+        // ==================== ↓ 分类
         
+            .new-pmd[tpl="app/head-tab"] {
+                
+                #s_tab {
+                    display: flex;
+                    justify-content: center;
+                    border: none;
+                    padding-top: 70px;
+                    padding-left: 0;
+                    
+                    .s_tab_inner.s_tab_inner.s_tab_inner {
+                        width: calc(var(--ovnBaiduSearch) + 260px);
+                        min-width: 920px;
+                    }
+                    
+                }
+                
+            }
+            
+            
     // $ ================================================== ↓ Content
     
         // html #wrapper #wrapper_wrapper #container #content_left .c-container[tpl="XXXXX"]
@@ -121,6 +249,7 @@ html {
             
             margin: 0 auto;
             width: var(--ovnBaiduWidth);
+            transition: var(--ovnBaiduT);
             
             #container {
                 width: 100%;
@@ -129,8 +258,8 @@ html {
             }
             #container #content_left {
                 width: 100%;
-                padding: 0 !important;     // 覆盖内联
-                margin: 0 auto !important; // 覆盖内联
+                padding: 0 !important;     // 覆盖官方
+                margin: 0 auto !important; // 覆盖官方
             }
             
         }
@@ -174,13 +303,41 @@ html {
                     font-weight: bold;
                 }
                 
-            // ========== 官方标
-            [class*="title-wrapper_"] [class*="prefix-icon_"] {
-                position: absolute;
-                right: 0;
-                transform: scale(.8);
-            }
+            // $ ==================== ↓ TopTip
             
+                #rs_top_new, .hit-toptip, .hit_top_new {
+                    opacity: .6;
+                    display: flex;
+                    justify-content: center;
+                    margin: 20px 0 10px;
+                }
+                .new-pmd {
+                    
+                    &:is([tpl="app/toptip"], [tpl="app/search-tool"], [tpl="app/hit-top-new"]) {
+                        br { display: none; }
+                    }
+                    
+                    &[tpl="app/toptip"] {
+                        .c-gap-bottom-large { margin-bottom: 0px; }
+                    }
+                    &[tpl="app/hit-top-new"] {
+                        .c-icon-bear-circle { transform: scale(.8); }
+                    }
+                    &[tpl="app/search-tool"] {
+                        // ========== 筛选信息
+                        [class*="outer_"] { margin-top: 10px;}
+                        [class*="options_"] { opacity: .8; width: 90%; margin: 0 auto;}
+                    }
+                    
+                }
+                // ========== 请以商家官网为准
+                .k8vt8hp {
+                    opacity: .5;
+                    margin: 0 auto;
+                    margin-top: 10px;
+                    width: max-content;
+                }
+                
             // $ ==================== ↓ 组件
             
                 :where(.c-container) {
@@ -190,10 +347,10 @@ html {
                         &[tpl="ms_new_calc"] {
                         
                             .new-pmd { width: 60%; margin: 20px auto; }
-                            .calc-oprate_24c8k { display: flex; justify-content: space-evenly; }
-                            .calc-oprate_24c8k .func-calc_3t0OK { width: 60%;}
+                            [class*="calc-oprate_"] { display: flex; justify-content: space-evenly; }
+                            [class*="calc-oprate_"] [class*="func-calc_"] { width: 60%;}
                             
-                            .calc-box_1qoea {
+                            [class*="calc-box_"] {
                                 box-shadow: 
                                     inset 1px 1px 1px 0px rgba(255, 255, 255, 0.8),
                                     inset -1px -1px 1px 0px rgba(40, 49, 85, 0.3),
@@ -207,7 +364,7 @@ html {
                         &[tpl="ms_calendar_san"] {
                         
                             &.new-pmd { width: 60%; min-width: 600px; margin: 20px auto; }
-                            ._bg-header_1ml43_46 { width: 99%; top: -5px; left: 5px; }
+                            [class*="_bg-header_"] { width: 99%; top: -5px; left: 5px; }
                             
                         }
                         
@@ -215,8 +372,8 @@ html {
                     
                         &[tpl="world_time_san"] {
                         
-                            .source_4yrHg { position: absolute; bottom: 5px; }
-                            ._paragraph_1g9za_2.md, .sc-source-text { color: #FFF; }
+                            [class*="source_"] { position: absolute; bottom: 5px; }
+                            [class*="_paragraph"].md, .sc-source-text { color: #FFF; }
                             
                         }
                         
@@ -224,7 +381,7 @@ html {
                     
                         &[tpl="jr_exrate_san"] {
                         
-                            .aladdin_3Tvaz .bg-header_G63NE { top: calc(-10px + var(--ovnBaiduRepair)); }
+                            [class*="aladdin_"] [class*="bg-header_"] { top: calc(-10px + var(--ovnBaiduR)); }
                             
                         }
                         
@@ -243,6 +400,40 @@ html {
             
                 #container {
                     
+                    &#container {
+                        
+                        [class*="title-box_"] { width: 100%; }
+                        
+                        :is(h3.t, h3.cosc-title):not( 
+                            [class*="sitelink-summary_"] > h3
+                        ) {
+                            padding: var(--ovnBaiduP);
+                            margin: -10px -20px 10px -20px;
+                            width: 100%;
+                            background: var(--ovnBaiduBG);
+                            border-radius: var(--ovnBaiduRL) var(--ovnBaiduRL) 5px 5px;
+                            > a, .cosc-title-md {
+                                color: var(--ovnBaiduC);
+                                font-size: 15px;
+                                font-weight: bold;
+                                line-height: 1.5;
+                            }
+                        }
+                        
+                        // ========== 官方标
+                        [class*="title-box_"] [class*="prefix-icon_"] {
+                            position: absolute;
+                            right: 0;
+                            transform: scale(.8);
+                            [class*="tag_"] {
+                                padding: .4em .5em;
+                                margin: 0;
+                                border-radius: var(--ovnBaiduRU);
+                            }
+                        }
+                        
+                    }
+                    
                     :is(.new-pmd.c-container, .new-pmd.xpath-log, .new-pmd[tpl="app/rs"]) {
                         box-sizing: border-box;
                         position: relative;
@@ -253,26 +444,27 @@ html {
                         background: #FFFFFF;
                         box-shadow: var(--ovnBaiduS);
                         border-radius: var(--ovnBaiduRL);
-                        transition: var(--ovnBaiduT);
-                    }
-                    :is(.new-pmd.c-container, .new-pmd.xpath-log, .new-pmd[tpl="app/rs"]):hover {
-                        z-index: 2;
-                        box-shadow: inset 0 0 2px hsla(0, 0%, 92%, .6), var(--ovnBaiduSH);
-                        transform: var(--ovnBaiduZ);
+                        transition: transform var(--ovnBaiduOT);
+                        &:hover {
+                            z-index: 2;
+                            box-shadow: inset 0 0 2px hsla(0, 0%, 92%, .6), var(--ovnBaiduSH);
+                            transform: var(--ovnBaiduZ);
+                        }
                     }
                     #content_left > :first-of-type:hover,           // ==== 内容区 首个
                     .new-pmd[tpl="yl_ps_main"]:hover,               // ==== 首屏
                     .new-pmd[tpl="yl_ps_relationship"]:hover,       // ==== 人物关系
                     .new-pmd[tpl="ai_ask"]:hover,                   // ==== AI 提问
+                    .new-pmd[tpl="new_baikan_index"]:hover,         // ==== AI 提问
                     .new-pmd[tpl="wenda_generate"]:hover,           // ==== AI 问答生成
                     .new-pmd[tpl="app/rs"]:hover,                   // ==== 相关搜索
                     .new-pmd[tpl="recommend_list"]:hover,           // ==== 相关搜索
                     .new-pmd[tpl*="jr_stock"]:hover,                // ==== 百度股市通
                     .new-pmd[tpl*="jr_quote"]:hover,                // ==== 百度股市通
                     .new-pmd[tpl="jr_exchange_rate"]:hover,         // ==== 百度股市通
-                    .new-pmd[tpl="new_baikan_index"]:hover,         // ==== 百度 AI
                     .new-pmd[tpl="guanfanghao_san"]:hover,          // ==== 百家号
                     .new-pmd[tpl="image_grid_san"]:hover,           // ==== 百度图片
+                    .new-pmd[tpl="fy_fanyi_ai_san"]:hover,          // ==== 百度翻译
                     .new-pmd[tpl="fy_sg_dict_new_san"]:hover,       // ==== 百度翻译
                     .new-pmd[tpl="sg_kg_entity_san"]:hover,         // ==== 百度百科
                     .new-pmd[tpl="bk_polysemy"]:hover,              // ==== 百度百科
@@ -286,17 +478,28 @@ html {
                         transform: none;
                     }
                     
-                    // ========== 修正
-                    &.sam_newgrid #content_left .result-op, &.sam_newgrid #content_left .result {
-                        margin-bottom: 0;
-                    }
+                    // ==================== ↓ 修正
                     
+                        // ========== 内容块间隙
+                        &.sam_newgrid #content_left .result-op, &.sam_newgrid #content_left .result { margin-bottom: 0; }
+                        
+                        // ========== 第一组 ? 内容宽度
+                        .c-group-wrapper.c-group-no-border {
+                            margin: 0 auto;
+                        }
+                        
                 }
                 
                 #container .new-pmd {
                     
                     .recommend-none-border { display: flex; gap: 20px; }
                     .c-gap-top-middle { margin-top: 0; }
+                    
+                    &[tpl="www_index"] {
+                        
+                        [class*="exta-link-pc_"] { margin-bottom: 4px; }
+                        
+                    }
                     
                     // $ ==================== ↓ 百度 AI
                     
@@ -327,15 +530,17 @@ html {
                             [style*="--cardBg"] { margin-top: -13px; }
                             [class*="card-border_"] { border-color: transparent; }
                             
-                            // .cosc-card-content { margin-top: var(--ovnBaiduRepair); }
-                            .cosc-card-light-bg:not([tpl="wenda_generate"] div) { top: var(--ovnBaiduRepair); }
+                            // .cosc-card-content { margin-top: var(--ovnBaiduR); }
+                            .cosc-card-light-bg:not([tpl="wenda_generate"] div) { top: var(--ovnBaiduR); }
                             .cosd-markdown .marklang .marklang-paragraph { line-height: 1.5; }
                             
                             .cosc-card-shadow { padding: 10px var(--cos-space-md) 10px; }
                             
                         }
                         &[tpl="ai_index"] {
-                        
+                            
+                            // &:hover { transform: none; }
+                            
                             [class*="_aladdin"] {
                                 width: 97%;
                                 margin: 0 auto;
@@ -362,7 +567,7 @@ html {
                         }
                         &[tpl="wenda_generate"] {
                         
-                            padding-top: var(--ovnBaiduTitleR);
+                            padding-top: var(--ovnBaiduTR);
                             [class*="cos-dqa-group-bg_"] .cosc-card-light-bg {
                                 top: -15px;
                                 left: -15px;
@@ -375,13 +580,19 @@ html {
                         }
                         &[tpl="new_baikan_index"] {
                             
-                            padding-top: var(--ovnBaiduTitleR);
+                            padding-top: var(--ovnBaiduTR);
                             padding-bottom: 0;
                             
                             // [class*="nbk-index_"] [class*="nbk-interact_"] {
                             //     margin: 0;
                             //     padding: 15px 0;
                             // }
+                            
+                            .cos-accordion-panel-header { padding-top: 5px; }
+                            [class*="cosd-fold-switch_"] { padding: 15px 0; }
+                            
+                            // ========== 图片宽度
+                            .cosd-video-scroll-swiper-item { max-width: 260px !important; } // 覆盖官方
                             [class*="nbk-index_"] .cosd-markdown .marklang ul > li:before { top: 7px; }
                             
                         }
@@ -397,8 +608,8 @@ html {
                             [class*="daoliu-con_"] { margin-top: 15px; }
                             [class*="footer_"] { margin-top: -5px; }
                             
-                            .cosc-card-content { margin-top: var(--ovnBaiduRepair); }
-                            .cosc-card-light-bg:not([tpl="wenda_generate"] div) { top: var(--ovnBaiduRepair); }
+                            .cosc-card-content { margin-top: var(--ovnBaiduR); }
+                            .cosc-card-light-bg:not([tpl="wenda_generate"] div) { top: var(--ovnBaiduR); }
                             
                         }
                         &[tpl="fy_sg_dict_new_san"],
@@ -409,12 +620,21 @@ html {
                                 padding-bottom: 5px;
                             }
                             .cos-swiper-item { max-width: 15%; }
-                            [class*="video-wrap_"] .ovnFocal { display: none; }
+                            [class*="video-wrap_"] .ovnFocal::after { display: none; }
+                            
+                        }
+                        
+                        &[tpl="fy_fanyi_ai_san"] {
+                            
+                            .cos-space-mb-lg { margin-top: 10px; }
+                            .cos-divider { background-color: transparent; }
                             
                         }
                         &[tpl="fy_sg_dict_new_san"] {
                             
-                            padding-top: var(--ovnBaiduTitleR);
+                            padding-top: var(--ovnBaiduTR);
+                            
+                            .cosc-card-shadow { padding: 0 15px; }
                             
                             .cos-divider { height: 0px; }
                             .cos-space-mt-sm { margin-top: 0; }
@@ -443,11 +663,21 @@ html {
                             [class*="matting-container_"] { width: 3rem; }
                             
                         }
+                        
+                    // $ ==================== ↓ 百度百科
+                    
                         &[tpl="sg_kg_entity_san"] {
+                            
+                            .cu-line-clamp-default {
+                                color: var(--ovnBaiduC);
+                                font-size: 15px;
+                                font-weight: bold;
+                                line-height: 1.5;
+                            }
                             
                             .c-span9 { width: 85%; }
                             [class*="button_"] [class*="content_"] { 
-                                color: var(--ovnBaiduKeyWord);
+                                color: var(--ovnBaiduC);
                             }
                             
                             // ========== 演员列表
@@ -517,13 +747,19 @@ html {
                             h3.cosc-title > a.ovnFocal.ovnLR { display: inline-block; }
                             [class*="image-container_"][class*="image-container-pc_"] { display: flex; gap: 40px; }
                             [class*="image-container_"] [class*="row-border-list_"] { gap: 20px; }
-                            .cos-image-background { border-radius: var(--ovnPanelRadius); }
+                            .cos-image-background { border-radius: var(--ovnBaiduRM); }
+                            
+                            [class*="cos-image-item_"] [class*="image-common_"] {
+                                border-radius: var(--ovnBaiduRM);
+                            }
                             
                             // ========== 修复标题背景
                             [class*="container_"] [class*="head_"] {
                                 overflow: visible;
                                 margin-right: 0;
                             }
+                            // ========== 去除多余下划线
+                            [class*="head_"].ovnFocal::after { display: none; }
                             
                         }
                         
@@ -587,6 +823,14 @@ html {
                             
                             [class*="afterFiveWrap_"] > [class*="doctorItem_"] { margin-top: 20px; }
                             .cos-more-link { margin: 15px 0; }
+                            
+                        }
+                        
+                    // $ ==================== ↓ 品牌项目信息
+                    
+                        &[tpl="vmp_newproject_new"] {
+                            
+                            .c-span9 { width: 40vw; }
                             
                         }
                         
@@ -681,7 +925,7 @@ html {
                     
                         &[tpl="rel_base_realtime"] {
                         
-                            img { border-radius: var(--ovnBaseRadius); }
+                            img { border-radius: var(--ovnBaiduRS); }
                             .cos-image-3-2 { padding-bottom: 25%; mask-image: linear-gradient(to bottom, #000 95%, transparent 100%); }
                             .cos-image-fit-cover .cos-image-background { background-size: contain; }
                             
@@ -697,7 +941,7 @@ html {
                         }
                         &[tpl="rel_base_realtime"] {
                         
-                            img { border-radius: var(--ovnBaseRadius); }
+                            img { border-radius: var(--ovnBaiduRS); }
                             .cos-image-3-2 { padding-bottom: 25%; mask-image: linear-gradient(to bottom, #000 95%, transparent 100%); }
                             .cos-image-fit-cover .cos-image-background { background-size: contain; }
                             
@@ -710,8 +954,8 @@ html {
                     
                         &[tpl="short_video"] {
                         
-                            .content_LHXYt > div { display: flex; gap: 20px; }
-                            .content_LHXYt .c-row { display: flex; gap: 20px; }
+                            [class*="content_"] > div { display: flex; gap: 20px; }
+                            [class*="content_"] .c-row { display: flex; gap: 20px; }
                             .c-gap-top-large, .c-span4 { margin: 0; }
                             
                         }
@@ -721,7 +965,7 @@ html {
                         &[tpl="ai_agent_distribute"] {
                         
                             .card-title_6qPL6 { width: 100%; }
-                            .content_EbWw1 .common-content_4dXMi { width: 95%; }
+                            [class*="content_"] [class*="common-content_"] { width: 95%; }
                             
                         }
                         
@@ -732,7 +976,7 @@ html {
                             // ========== 标题
                             
                                 .cos-space-mt-lg { margin-top: 0; }
-                                .agent-qa-card_3V5cX .card-title_2GtKe { margin: 10px 0; }
+                                [class*="agent-qa-card_"] [class*="card-title_"] { margin: 10px 0; }
                                 
                         }
                         
@@ -740,14 +984,14 @@ html {
                     
                         &[tpl="news-realtime"] {
                         
-                            .single-card-wrapper_2nlg9 {
+                            [class*="single-card-wrapper_"] {
                                 display: flex;
                                 justify-content: flex-start;
-                                border-radius: var(--ovnSurfaceRadius);
+                                border-radius: var(--ovnBaiduRL);
                                 box-shadow: none;
                             }
-                            .single-card-wrapper_2nlg9 > .c-row { display: flex; }
-                            .single-card-wrapper_2nlg9 > .c-row:last-of-type { display: none; }
+                            [class*="single-card-wrapper_"] > .c-row { display: flex; }
+                            [class*="single-card-wrapper_"] > .c-row:last-of-type { display: none; }
                             
                         }
                         
@@ -755,7 +999,40 @@ html {
                     
                         &[tpl="jr_quote"] {
                             
-                            padding-top: var(--ovnBaiduTitleR);
+                            padding-top: var(--ovnBaiduTR);
+                            
+                        }
+                        
+                    // $ ==================== ↓ XXXXX
+                    
+                        &[tpl="www_struct"], &[tpl="www_text"] {
+                            
+                            // ========== 标题间隙
+                            [class*="title-box-full_"] { margin-top: -10px; }
+                            
+                            h3 { margin-top: 0 !important; }
+                            
+                        }
+                        
+                    // $ ==================== ↓ 相关搜索
+                    
+                        &[tpl="recommend_list"] {
+                        
+                            [class*="pc-rg-upgrade_"] [class*="item_"] {
+                                margin: 5px !important;
+                                color: var(--ovnBaiduC);
+                            }
+                            
+                        }
+                        &[tpl="app/rs"] {
+                        
+                            padding: var(--ovnBaiduP) !important;
+                            margin: var(--ovnBaiduM) !important;
+                            
+                            #rs_new { margin: 0; width: 100%; }
+                            #rs_new table { margin: 20px auto; }
+                            #rs_new table tr { display: flex; gap: 40px; }
+                            #rs_new table tr [class*="rs-link_"] { color: var(--ovnBaiduBC);}
                             
                         }
                         
@@ -767,28 +1044,6 @@ html {
                                 background-size: contain !important;
                                 padding-bottom: 25% !important;
                             }
-                            
-                        }
-                        
-                    // $ ==================== ↓ 相关搜索
-                    
-                        &[tpl="recommend_list"] {
-                        
-                            .pc-rg-upgrade_2X3zi .item_3WKCf {
-                                margin: 5px !important;
-                                color: var(--ovnBaiduKeyWord);
-                            }
-                            
-                        }
-                        &[tpl="app/rs"] {
-                        
-                            padding: var(--ovnSpacePadding) !important;
-                            margin: var(--ovnSpaceMargin) !important;
-                            
-                            #rs_new { margin: 0; width: 100%; }
-                            #rs_new table { margin: 20px auto; }
-                            #rs_new table tr { display: flex; gap: 40px; }
-                            #rs_new table tr .rs-link_2DE3Q { color: var(--ovnBaseColor);}
                             
                         }
                         
@@ -814,10 +1069,10 @@ html {
                 margin: 0;
             }
             
-            a:hover, a:hover .pc, .n:hover, a { color: var(--ovnBaiduKeyWord); }
+            a:hover, a:hover .pc, .n:hover, a { color: var(--ovnBaiduC); }
             a:hover, a:hover .pc, .n:hover {
                 background: transparent;
-                box-shadow: var(--ovnBaiduSC) hsla(var(--ovnAccentHSL), .2);
+                box-shadow: var(--ovnBaiduSS) hsla(var(--ovnAccentHSL), .2);
             }
             
             // ========== 翻页
@@ -833,244 +1088,3 @@ html {
 
 // $ ================================================== ↓ Unknown
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    html {
-        
-            
-        /* ========== ↓ 修正标题间隙 */
-        
-            .pc-fresh-smooth .new-pmd .c-border /* 初始生效 全网热卖 */ {
-                padding-top: 0;
-            }
-            
-        /* ========== ↓ 修正标题动画 */
-        
-            .pc-fresh-title-con .custom-underline > .cosc-title-a {
-                display: inline-block;
-            }
-            
-    }
-        
-/* ================================================== ↓ Head */
-
-    html .wrapper_new #head { 
-        top: 0;
-        width: 100%;
-        background: var(--ovnGlassBase) !important;
-        backdrop-filter: var(--ovnPanelFilter);
-        transition: var(--ovnOftenTransition);
-    }
-    html .wrapper_new #head.peak-down { background: transparent; }
-    html .wrapper_new #head.s_down { box-shadow: var(--ovnGlassShadow); }
-    
-    html #wrapper #head:not(.s-manhattan-index div, .s_form_nologin div) {
-    
-        .head_wrapper {
-            display: flex;
-            justify-content: space-around;
-            transform: translate3d(-15px, 0 , 1px);
-            width: 100%;
-        }
-        
-        /* ========== ↓ 用户中心 */
-        
-            .head_wrapper #u {
-                position: fixed;
-                right: 40px;
-                padding: 0;
-            }
-            
-        /* ========== ↓ 搜索框 */
-        
-            .s_form {
-                display: flex;
-                justify-content: center;
-                padding: 0;
-                width: auto;
-            }
-            .s_ipt_wr { width: var(--ovnBaiduSearch); }
-            .s_form_fresh { width: inherit; padding: 0; }
-            .bdsug-new { width: var(--ovnBaiduSearch); }
-            .soutu-env-new .soutu-layer .soutu-url-wrap, .soutu-env-new .soutu-layer #soutu-url-kw { width: var(--ovnBaiduSearch); }
-            
-            #kw.s_ipt { width: 87%; }
-            
-    }
-    
-    /* ========== ↓ 分类 */
-    
-        html .result-molecule.new-pmd:has(#s_tab) {
-            --container-left-gap: auto;
-            display: flex;
-            justify-content: center;
-        }
-        
-        html #wrapper .new-pmd[tpl="app/head-tab"] {
-        
-            #s_tab {
-                display: flex;
-                justify-content: center;
-                border: none;
-                padding-top: 70px;
-                padding-left: 0;
-            }
-            
-            #s_tab .s_tab_inner {
-                display: flex;
-                justify-content: space-between;
-                width: calc(var(--ovnBaiduSearch) + 260px);
-                min-width: 920px;
-                padding-left: 0;
-            }
-            
-        }
-        
-    /* ========== ↓ 检索信息 搜索框下 */
-    
-        html #rs_top_new, html .hit-toptip, html .hit_top_new {
-            opacity: .6;
-            display: flex;
-            justify-content: center;
-            margin: 20px 0 10px;
-            width: auto;
-        }
-        
-        html #wrapper .new-pmd[tpl="app/search-tool"] {
-        
-            br { display: none; }
-            
-            /* ========== ↓ 筛选信息 */
-            .outer_wqJjM { margin-top: 10px;}
-            .options_2Vntk { opacity: .8; width: 90%; margin: 0 auto;}
-            
-        }
-        
-        html #wrapper .new-pmd[tpl="app/toptip"] {
-        
-            br { display: none; }
-            .c-gap-bottom-large { margin-bottom: 0px; }
-            
-        }
-        
-        html #wrapper .new-pmd[tpl="app/hit-top-new"] {
-        
-            br { display: none; }
-            .c-icon-bear-circle { transform: scale(.8); }
-            
-        }
-        
-        /* ========== ↓ 以商家官网为准 */
-        html #content_left > .k8vt8hp {
-            opacity: .5;
-            margin: 0 auto; /* margin-top: -1.2em; */
-            margin-top: 10px;
-            width: max-content;
-        }
-        
-        
-/* ================================================== ↓ Content */
-
-
-    /* ========== ↓ 模块 标题 */
-    
-        html #wrapper #container h3:not( 
-            .cos-space-mt-md h3,
-            [class*="doctorName_"] > h3,
-            [class*="card-title_"] > h3,
-            [class*="exta-links-pc_"] > h3,
-            [class*="exta-link-pc_"] > h3,
-            .c-container[tpl="world_time_san"] h3,
-            .c-container[tpl="fy_sg_dict_new_san"] h3,
-            .c-container[tpl="wenda_generate"] h3,
-            .c-container[tpl="jr_quote"] h3,
-            .c-container[tpl="fy_fanyi_ai_san"] h3,
-            .c-container[tpl="jr_stock_comment_san"] h3
-        ) {
-            padding: var(--ovnSpacePadding);
-            margin: -10px -20px 10px -20px;
-            width: 100%;
-            background: var(--ovnBase09HEX);
-            border-radius: var(--ovnSurfaceRadius) var(--ovnSurfaceRadius) 5px 5px;
-        }
-        html .cos-pc .title-box_4YBsj { width: 100%; }
-        html .cos-pc .title-wrapper_6E6PV { margin-top: -10px; }
-        html .cos-pc .title-wrapper_6E6PV .pre-text_6ulGP { z-index: 1; }
-        html ._link_1iyz5_2 { margin-bottom: 0; }
-        
-        /* ========== ↓ 标题字号 */
-        
-            html a, html a:hover,
-            html a.cos-link, html a.cos-link:hover { color: var(--ovnBaiduKeyWord); }
-        
-            html .cosc-title-md,
-            html ._paragraph_10ku5_2.md,
-            html ._paragraph_1g9za_2.md,
-            html #wrapper #container.sam_newgrid .c-group-title a,
-            html #wrapper #container.sam_newgrid .c-container .t,
-            html #wrapper #container.sam_newgrid .c-container .c-title,
-            html #wrapper #container.sam_newgrid .xpath-log.new-pmd .c-title,
-            html #wrapper #container.sam_newgrid .c-container ._paragraph_1g9za_2.lg {
-                color: var(--ovnBaiduKeyWord);
-                font-size: 15px;
-                font-weight: bold;
-                line-height: 1.5;
-            }
-            
-        /* ========== ↓ 官方标 */
-        
-            html .cos-pc .title-wrapper_6E6PV .suffix-icon_3Ox2w { position: absolute; right: calc(20px - 25px); /* 减去模块内边距 */ }
-            html .cos-pc .title-wrapper_6E6PV .suffix-icon_3Ox2w .www-tag-fill-blue_3n0y3 { border-radius: var(--ovnUIRadius); }
-            
-            html #wrapper #container .c-container[tpl="vmp_offical_website"] {
-            
-                .header_CIV6C:has(h3.t) { margin-top: -10px; }
-                
-                .header_CIV6C a.official-label_26SUN { position: absolute; right: calc(20px - 20px); }
-                
-            }
-            
-        /* ========== ↓ 标题 icon */
-        
-        html .front-icon_7wpfB { z-index: 999;}
-        
-        
-        
-/* ================================================== ↓ Other */
-
-    /* ---------- ↓ 修正模块距离 */
-    html .cos-pc .aladdin-struct_r13eS { margin: 10px 0; }
-    
-    /* ========== ↓ 内容块 -> 内容 距离 */
-    
-        html ._content-border_1ml43_4:not([tpl="jy_hy_zi_accu_san"] ._content-border_1ml43_4) {
-            padding: 0 20px;
-            margin: 10px -20px;
-            /* padding: var(--ovnSpacePadding);
-            margin: 0 -20px; */
-        }
-        
-        /* ========== ↓ 内容块 -> 内容 宽度 */
-        html #wrapper #container .c-container[tpl="www_index"] {
-        
-            .cos-row .cos-col.content-space-between_44mGk[style*="width:75%;"] {
-                width: 89% !important;
-            }
-            
-        }

@@ -27,7 +27,7 @@ import { OVN_QUICK_READ }        from './utils/quick-read.js';
 import { OVN_REMOVE_LIMITS }     from './utils/remove-limits.js';
 import { OVN_AUTO_LOAD }         from './utils/auto-load.js';
 import { OVN_AUTO_EXECUTE }      from './utils/auto-execute.js';
-// import { OVN_BATCH_LOAD }        from './utils/batch-load.js';
+import { OVN_BATCH_LOAD }        from './utils/batch-load.js';
 
 
 // $ ================================================== ↓ DERIVE
@@ -58,6 +58,7 @@ import { OVN_AUTO_EXECUTE }      from './utils/auto-execute.js';
         REMOVE_LIMITS: OVN_REMOVE_LIMITS,  // & OVN_OBSERVER_CENTER
         AUTO_LOAD: OVN_AUTO_LOAD,          // & OVN_RANDOM_JITTER
         AUTO_EXECUTE: OVN_AUTO_EXECUTE,    // & OVN_RANDOM_JITTER        OVN_GLOBAL_DEBUG
+        BATCH_LOAD: OVN_BATCH_LOAD,        // & OVN_RANDOM_JITTER
         
     };
     

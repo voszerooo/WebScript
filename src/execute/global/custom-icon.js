@@ -28,10 +28,11 @@ OVN_GLOBAL_SCHEDULER.run("CustomICON", () => {
             "ticktick.com": "--ovnICON-Tick-Vint",
             "dida365.com": "--ovnICON-Tick-Vint",
             "yuque.com": "--ovnICON-YUQUE",
+            "notion.com": "--ovnICON-Notion-Vint",
             "bing.com": "--ovnICON-Microsoft",
             "dillinger.io": "--ovnICON-Markdown-Line",
             
-            "chat.deepseek.com": "--ovnICON-Deepseek",
+            "deepseek.com": "--ovnICON-Deepseek",
             "gemini.google.com": "--ovnICON-Gemini-Vint",
             "liblib.art": "--ovnICON-Liblib",
             "prompts.chat": "--ovnICON-Prompt",
@@ -45,6 +46,7 @@ OVN_GLOBAL_SCHEDULER.run("CustomICON", () => {
         };
         
         const stubborn = [
+            "notion.com",
             "dillinger.io",
             "ip.skk.moe",
         ];

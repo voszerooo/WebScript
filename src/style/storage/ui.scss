@@ -1,5 +1,16 @@
 
+
 :root, [ovnGlobalUI] {
+    
+    --ovnRB: 4px;
+    --ovnRU: 6px;
+    --ovnRP: 12.6px;
+    --ovnRS: 20.6px;
+    --ovnRL: 24.6px;
+    --ovnRX: 9202px;
+    
+    
+    
     
     --ovnBaseRadius: 4px;
     --ovnBaseBorder: 1px solid;
@@ -41,9 +52,7 @@
     --ovnOftenSurfaceShadowBase: var(--ovnSurfaceShadow) hsla(var(--ovnBase04HSL), .05);
     --ovnOftenSurfaceShadowHover: var(--ovnSurfaceShadow) hsla(var(--ovnAccentHSL), .126);
     
-    --ovnLargeRadius: 24.6px;
     --ovnRadiusX: 9260px;
-    
     --ovnGlassShadow: 
         inset 0px -1px 4px hsla(var(--ovnBase09HSL), .26),
         var(--ovnPanelShadow) hsla(var(--ovnBase04HSL), .0526);
@@ -54,6 +63,3 @@
     
 }
 
-:root, [ovnGlobalUI] {
-    --ovnRS: 20.6px;
-}
