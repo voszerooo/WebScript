@@ -603,7 +603,7 @@
             var(--ovnTipsShadow-M) hsla(var(--ovnAccentHSL), .120),
             var(--ovnTipsShadow-L) hsla(var(--ovnAccentHSL), .092);
         border-radius: .92em;
-        transition: var(--ovnOftenTransition);
+        transition: transform var(--ovnOftenTrans);
         
     }
     .ovnTips.fade { opacity: 0; transition: opacity .26s ease; }

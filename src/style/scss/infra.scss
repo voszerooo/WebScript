@@ -55,7 +55,7 @@
     }
     
     @mixin zoom {
-        transition: var(--ovnOftenTransition);
+        transition: transform var(--ovnOftenTrans);
         &:hover {
             z-index: var(--ovnPriority00);
             box-shadow: 

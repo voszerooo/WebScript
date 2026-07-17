@@ -238,7 +238,7 @@ html:has(#main [role="listitem"] > a[tabindex="0"]) {
                     background: #FFFFFF;
                     box-shadow: var(--ovnOftenSurfaceShadowBase);
                     border-radius: var(--ovnSurfaceRadius);
-                    transition: var(--ovnOftenTransition);
+                    transition: transform var(--ovnOftenTrans);
                 }
                 #rso .MjjYud .A6K0A:has(h3, [aria-level="2"]):hover {
                     z-index: 2;

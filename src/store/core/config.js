@@ -124,6 +124,9 @@ import { OVN_SUBJOIN_HOOK }      from '../../store/core/hook.js';
                 ChatGPT: {
                     match: { include: [ "*chatgpt.com/*" ], exclude: [ ] },
                 },
+                Gemini: {
+                    match: { include: [ "*gemini.google.com/*" ], exclude: [ ] },
+                },
                 DOUBAO: {
                     match: { include: [ "*doubao.com/*" ], exclude: [ ] },
                 },

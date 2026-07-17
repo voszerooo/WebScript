@@ -4,126 +4,76 @@ html {
     
     &:root body {
         
-        --ovnChatgptWidth: var(--ovnSpaceWidth02);     // XXXXX
-        --ovnChatgptHight: var(--ovnSpace2Y);          // XXXXX
+        --ovnChatCA: var(--ovnAccentHEX);
+        --ovnChatCS: var(--ovnSecondaryHEX);
+        --ovnChatCP: var(--ovnPrimaryHEX);
+        --ovnChatBG: var(--ovnBase09HEX);
         
-        --ovnChatgptRS: var(--ovnBaseRadius);
-        --ovnChatgptRU: var(--ovnUIRadius);
-        --ovnChatgptRM: var(--ovnPanelRadius);
-        --ovnChatgptRL: var(--ovnSurfaceRadius);
-        --ovnChatgptRX: var(--ovnRadiusX);
+        --ovnChatRB: var(--ovnRB);
+        --ovnChatRU: var(--ovnRU);
+        --ovnChatRP: var(--ovnRP);
+        --ovnChatRS: var(--ovnRS);
+        --ovnChatRL: var(--ovnRL);
+        --ovnChatRX: var(--ovnRX);
+        
+        --ovnChatX: var(--ovnSpaceWidth02);
+        
+        @media (width >= 1080px) { --ovnChatV: calc(var(--ovnChatX) + 20vw) }
+        @media (width >= 1600px) { --ovnChatV: calc(var(--ovnChatX) + 15vw) }
+        @media (width >= 1920px) { --ovnChatV: calc(var(--ovnChatX) + 02vw) }
         
     }
     
-    .XXXXXXXXXX, /* ==== XXXXX */
-    .XXXXXXXXXX, /* ==== XXXXX */
-    .XXXXXXXXXX  /* ==== XXXXX */ {
-        display: none;
+    &.ovn body {
+        .\@w-lg\/main\:\[--thread-content-max-width\:48rem\] {
+            --thread-content-max-width: var(--ovnChatV);
+        }
     }
     
     // $ ================================================== ↓ Global
     
-        // $ ==================== ↓ XXXXXXXX
-        // ==================== ↓ XXXXX
-        // ========== XXXXX
-        
-        
-    // $ ================================================== ↓ 首页
-    
         // ========== 问答种类
         .sm\:rounded-\[100px\] {
-            border-radius: var(--ovnRadiusM);
+            border-radius: var(--ovnChatRP);
         }
         
-    // $ ================================================== ↓ XXXXX
+        // ========== 项目设置 弹窗及指令框
+        .max-w-lg[id^="radix-_r_"] { max-width: calc(9vw + 26vw); }
+        #instructions { min-height: 12vh; height: 26vh; }
         
-        :where(#XXXXX) {
-            
-            --ovnChatgptXXX: hsla(var(--ovnPrimaryHSL), .5);
-            
+        .shadow-xs, .shadow-xxs, .shadow-short-composer {
+            --tw-shadow:
+                0px 0px 00px 1px var(--tw-shadow-color, var(--shadow-color-2, #0000000F)),
+                0px 5px 10px 0px var(--tw-shadow-color, var(--shadow-color-1, #00000009));
+            border: none;
         }
         
+        // $ ==================== ↓ 聊天框
+        
+            form[data-type="unified-composer"] {
+                
+                .shadow-short {
+                    --tw-shadow:
+                        0px 0px 00px 1px var(--tw-shadow-color, var(--shadow-color-2, #0000000D)),
+                        0px 5px 10px 0px var(--tw-shadow-color, var(--shadow-color-1, #00000012));
+                }
+                
+                .min-h-14 { min-height: calc(var(--spacing) * 14 + 40px); }
+                
+                p.placeholder { opacity: .4; }
+                
+                [class*="[grid-area:leading]"] { display: flex; align-items: center; }
+                
+            }
+            
+        // &.ovn [class*="rounded-[18px]"] { border-radius: 14px; }
+        // [dir=ltr] code[class*=language-] { font-weight: 500; }
+        
+            
+    // $ ================================================== ↓ 首页
+    
+    
 }
 
 // $ ================================================== ↓ Unknown
-
-
-
-
-                
-                    html {
-                        
-                        &:root body {
-                            
-                            --ovn-ChatGPT-Width: var(--ovnSpaceWidth02);
-                            
-                            --ovnRadiusS: var(--ovnBaseRadius);
-                            --ovnRadiusU: var(--ovnUIRadius);
-                            --ovnRadiusM: var(--ovnPanelRadius);
-                            --ovnRadiusL: var(--ovnSurfaceRadius);
-                            
-                        }
-                        
-                        /* ---------- ↓ 项目设置 弹窗及指令框 */
-                        .max-w-lg[id^="radix-_r_"] { max-width: calc(9vw + 26vw); }
-                        #instructions { min-height: 12vh; height: 26vh; }
-                        
-                    }
-                    
-                    
-                    @media (width >= 1080px) { html [class*="--thread-content-max-width"] { --thread-content-max-width: calc(var(--ovnSpaceWidth02) + 20vw); } }
-                    @media (width >= 1600px) { html [class*="--thread-content-max-width"] { --thread-content-max-width: calc(var(--ovnSpaceWidth02) + 15vw); } }
-                    @media (width >= 1920px) { html [class*="--thread-content-max-width"] { --thread-content-max-width: calc(var(--ovnSpaceWidth02) + 05vw); } }
-                    
-                    /* ========== ↓ 首页 聊天框 */
-                    @media (width >= 1920px) { html main:has(#thread .mb-7 .text-page-header) [class*="--thread-content-max-width"] {
-                        --thread-content-max-width: calc(var(--ovnSpaceWidth02) + 02vw);
-                    } }
-                    
-                    html.ovn [class*="rounded-[18px]"] { border-radius: 14px; }
-                    
-                    html .shadow-xs, html .shadow-xxs, html .shadow-short-composer {
-                        --tw-shadow:
-                            0px 0px 00px 1px var(--tw-shadow-color, var(--shadow-color-2, #0000000F)),
-                            0px 5px 10px 0px var(--tw-shadow-color, var(--shadow-color-1, #00000009));
-                        border: none;
-                    }
-                    html [dir=ltr] code[class*=language-] { font-weight: 500; }
-                    
-                    /* ========== ↓ 聊天框 */
-                    
-                        html form[data-type="unified-composer"] {
-                        
-                            .min-h-14 { min-height: calc(var(--spacing) * 14 + 20px); }
-                            
-                            .shadow-short {
-                                --tw-shadow:
-                                    0px 0px 00px 1px var(--tw-shadow-color, var(--shadow-color-2, #0000000D)),
-                                    0px 5px 10px 0px var(--tw-shadow-color, var(--shadow-color-1, #00000012));
-                            }
-                        
-                            ._prosemirror-parent_ebv8s_2 p.placeholder { opacity: .4; }
-                            [class*="[grid-area:leading]"] { display: flex; align-items: center; } 
-                            
-                            /* ========== ↓ 展开时 
-                            &[data-expanded] {
-                                ._prosemirror-parent_ebv8s_2 .ProseMirror { margin-top: auto; }
-                            } */
-                            
-                        }
-                        
-                        /* 
-                            侧边栏展开 var(--sidebar-width) 侧边栏关闭 var(--sidebar-rail-width)
-                            transform: translateX(calc(-1 * (var(--sidebar-width) - var(--sidebar-rail-width)) / 2));
-                            
-                        html body:has([data-testid="close-sidebar-button"][aria-expanded="true"]) :is(.mx-auto, .mt-auto, button.border-token-border-default) {
-                            transform: translateX(calc(-52px)); 
-                        } */
-                       
-
-
-
-
-
-
 
