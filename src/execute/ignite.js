@@ -23,6 +23,7 @@
     
     import './matrix/deepseek/.rocket.js';
     import './matrix/chatgpt/.rocket.js';
+    import './matrix/gemini/.rocket.js';
     import './matrix/doubao/.rocket.js';
     
     import './matrix/comfyui/.rocket.js';

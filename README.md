@@ -79,7 +79,7 @@
         <td>原生界面 及 <code>Manager</code> <code>Crystools</code> ... 个性化样式</td>
     </tr>
     <tr>
-        <td><code>DeepSeek</code> <code>ChatGPT</code></td>
+        <td><code>DeepSeek</code> <code>ChatGPT</code> <code>Gemini</code></td>
         <td>AI 问答类 ┆ 容器宽度增加 / ...</td>
     </tr>
     <tr>

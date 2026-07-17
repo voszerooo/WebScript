@@ -37,7 +37,7 @@
  * & Webpack              | eager lazy
  * & Webpack              | scope‌ 拆分
  * & Webpack              | Webpack HMR - chunk 每个模块编写 dispose / accept 逻辑
- * & injector.js          | 换掉声明式注入
+ * & .rocket.js 及 样式    | 换成模块自注册
  * & 
  * & 
  * + ==================== ↓ NEW

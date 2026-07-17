@@ -108,7 +108,7 @@ html {
                         html #b_header {
                             min-height: calc(var(--ovnSpace4X) + 20px);
                             background: var(--ovnColorBase);
-                            transition: var(--ovnOftenTransition);
+                            transition: transform var(--ovnOftenTrans);
                         }
                         html #b_header::after {
                             pointer-events: none;
@@ -260,7 +260,7 @@ html {
                                 background: #FFFFFF;
                                 box-shadow: var(--ovnOftenSurfaceShadowBase);
                                 border-radius: var(--ovnSurfaceRadius);
-                                transition: var(--ovnOftenTransition);
+                                transition: transform var(--ovnOftenTrans);
                             }
                             html #b_content #b_results > li:not(.b_top, .b_pag):hover {
                                 z-index: 2;

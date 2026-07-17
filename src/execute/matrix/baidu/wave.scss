@@ -17,7 +17,6 @@ html {
         --ovnBaiduGS: var(--ovnGlassShadow);
         --ovnBaiduF: var(--ovnPanelFilter);
         --ovnBaiduOT: var(--ovnOftenTrans);
-        --ovnBaiduT: var(--ovnOftenTransition);
         --ovnBaiduZ: var(--ovnSurfaceZoomIn);
         --ovnBaiduBC: var(--ovnBaseColor);
         --ovnBaiduWidth: var(--ovnSpaceWidthVW);
@@ -105,16 +104,14 @@ html {
             ), a, em, :link, a:hover, em:hover, a:hover em, a.cos-link:hover {
                 text-decoration: none;
             }
-            a.cosc-title-a .cosc-title-slot, a.cosc-title-a .cosc-title-slot em,
-            a.cosc-title-a .cosc-title-slot:hover, a.cosc-title-a .cosc-title-slot:hover em,
-            [class*="vmp-project-new_"] [class*="vmp-project-title_"] :is(a, a em) {
-                text-decoration: none;
-            }
             
             #container .c-container :is(
                 [class*="_sc-title_"] :is(*, :hover, :hover *),
                 [class*="doc-title_"] :is(a:hover, &:hover em, a:hover em) 
-            ) {
+            ),
+            [class*="vmp-project-new_"] [class*="vmp-project-title_"] :is(a, a em),
+            .cosc-title-a .cosc-title-slot :is( a, a em, a:hover, a:hover em ),
+            .cosc-title-a .cosc-title-slot:is( &, em, :hover, :hover em, a:hover, a:hover em ) {
                 text-decoration: none !important;
             }
             
@@ -483,6 +480,7 @@ html {
                     .new-pmd[tpl="bk_polysemy"]:hover,              // ==== 百度百科
                     .new-pmd[tpl="jy_wenku_wenshu"]:hover,          // ==== 百度文库
                     .new-pmd[tpl="xueshu_links_new"]:hover,         // ==== 百度学术
+                    .new-pmd[tpl="pc_soft_app"]:hover,              // ==== 百度应用
                     .new-pmd[tpl="med_wenzhen_san"]:hover,          // ==== 百度健康
                     .new-pmd[tpl="med_aigc_guru_san"]:hover,        // ==== 百度健康
                     .new-pmd[tpl="med_doctor_same_name_san"]:hover, // ==== 百度健康
@@ -840,6 +838,14 @@ html {
                             
                         }
                         
+                    // $ ==================== ↓ 百度应用
+                    
+                        &[tpl="pc_soft_app"] {
+                            
+                            .c-span10 { width: stretch; }
+                            
+                        }
+                        
                     // $ ==================== ↓ 品牌项目信息
                     
                         &[tpl="vmp_newproject_new"] {
@@ -1043,7 +1049,7 @@ html {
                             padding: var(--ovnBaiduP) !important;
                             margin: var(--ovnBaiduM) !important;
                             
-                            #rs_new { margin: 0; width: 100%; }
+                            #rs_new { margin: 0; width: 100%; overflow: auto; }
                             #rs_new table { margin: 20px auto; }
                             #rs_new table tr { display: flex; gap: 40px; }
                             #rs_new table tr [class*="rs-link_"] { color: var(--ovnBaiduBC);}

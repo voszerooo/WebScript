@@ -1,0 +1,127 @@
+
+
+html {
+    
+    &:root body {
+        
+        --ovnGeminiCA: var(--ovnAccentHEX);
+        --ovnGeminiCS: var(--ovnSecondaryHEX);
+        --ovnGeminiCP: var(--ovnPrimaryHEX);
+        --ovnGeminiBG: var(--ovnBase09HEX);
+        
+        --ovnGeminiRB: var(--ovnRB);
+        --ovnGeminiRU: var(--ovnRU);
+        --ovnGeminiRP: var(--ovnRP);
+        --ovnGeminiRS: var(--ovnRS);
+        --ovnGeminiRL: var(--ovnRL);
+        --ovnGeminiRX: var(--ovnRX);
+        
+        --ovnGeminiX: var(--ovnSpaceWidth02);
+        --ovnGeminiInput: 50px;
+        
+        @media (width <= 1260px) { --ovnGeminiV: calc(var(--ovnGeminiX) + 40vw) }
+        @media (width >= 1260px) { --ovnGeminiV: calc(var(--ovnGeminiX) + 20vw) }
+        @media (width >= 1920px) { --ovnGeminiV: calc(var(--ovnGeminiX) + 02vw) }
+        
+    }
+    
+    &.ovn body {
+        
+        --ovnGeminiSYS: var(--lumi-sys-color--surface);
+        
+        &:where(.theme-host) {
+            --lumi-sys-color--code-background: #1f2026;                         // ==== 代码块 背景
+            --gem-sys-shape--corner-full: var(--ovnGeminiRP);                   // ==== 按钮 hover 圆角
+            --mat-list-active-indicator-shape: var(--ovnGeminiRP);              // ==== 信息 Raw 圆角
+            --mat-icon-button-container-shape: var(--ovnGeminiRP);              // ==== 按钮 普通 圆角
+            --mat-button-text-container-shape: var(--ovnGeminiRP);              // ==== 按钮 模式 圆角
+            --mat-button-filled-container-shape: var(--ovnGeminiRP);            // ==== 按钮 升级 圆角
+        }
+        &:where(.theme-host):where(.enable-lm-spacing-tokens) {
+            --gem-sys-shape--corner-extra-large-max: var(--ovnGeminiRP);        // ==== 消息框 圆角
+            --gem-sys-shape--corner-extra-large-increased: var(--ovnGeminiRL);  // ==== 输入框 圆角
+        }
+        .enable-luminous-content-width-update {
+            --bard-chat-window-content-width-default: var(--ovnGeminiV);        // ==== 内容 宽度
+        }
+        .chat-history-scroll-container.lm.lm {
+            --gradient-fade-height: 0;                                          // ==== 信息遮罩过渡 渐变高度
+        }
+    }
+    
+    // $ ================================================== ↓ Global
+    
+        // $ ==================== ↓ 输入框
+        
+            .lm-input-redesign, .lm-input-redesign-ssr {
+                .initial-input-area-container.initial-input-area-container,       // ==== 输入框 幽灵
+                .input-area-container.input-area-container.input-area-container { // ==== 输入框
+                    max-width: var(--ovnGeminiV);
+                    border-radius: var(--ovnGeminiRL);
+                }
+                .input-area.input-area.input-area.input-area.input-area:is(&, :has(.text-input-field.simplified-input-area)) {
+                    --input-area-content-size: var(--ovnGeminiInput);
+                }
+                .initial-input-area-container textarea {
+                    --input-area-height: var(--ovnGeminiInput);
+                }
+            }
+            
+            
+    // $ ================================================== ↓ 聊天页
+    
+        .content-wrapper.content-wrapper {
+            
+            // ========== 聊天容器最外层 加上搜索框的高度
+            .conversation-container model-response {
+                padding-bottom: calc( 50px + var(--ovnGeminiInput));
+            }
+            
+            // $ ==================== ↓ 消息容器
+            
+                // ========== 代码块 按钮组
+                .enable-luminous-code-block .code-block-decoration.header-formatted { margin-right: -20px; }
+                
+                // ========== 提醒 其回答未必正确无误
+                input-container .enable-luminous-disclaimer-updates .capabilities-disclaimer.capabilities-disclaimer p {
+                    margin-block: 5px;
+                }
+                
+                .enable-luminous-prompt-bubble .user-query-bubble-with-background,     // ==== 用户
+                .enable-luminous-code-block .formatted-code-block-internal-container { // ==== AI
+                    padding: 1em 1.5em;
+                }
+                
+                // ========== 去除上下两个空行
+                .query-text-line.ng-star-inserted > .ng-star-inserted {
+                    display: none;
+                }
+                
+                // ========== 按钮 展开更多
+                .enable-luminous-prompt-bubble .luminous-toggle-container {
+                    bottom: 10px;
+                    inset-inline-end: 10px;
+                }
+                .enable-luminous-prompt-bubble .luminous-expand-fade { opacity: 0; }
+                
+        }
+        
+        :where(.content-wrapper) {
+            
+            .input-gradient.input-gradient {
+                position: fixed;
+                background: linear-gradient( to top, var(--ovnGeminiSYS), transparent);
+                &:before { background: none; }
+            }
+            
+            // ========== markdown 缩进 icon
+            .ng-star-inserted .markdown ul > li:before {
+                left: 15px;
+            }
+            
+        }
+        
+}
+
+// $ ================================================== ↓ Unknown
+
